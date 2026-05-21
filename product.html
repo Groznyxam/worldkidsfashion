@@ -11,7 +11,7 @@
 <div class="announce" aria-hidden="true"><div class="announce-track"><span>🇹🇷 Direct from Bursa</span><span>·</span><span>🚚 Free Shipping $300+</span><span>·</span><span>🌿 GOTS Organic Available</span><span>·</span><span>📦 Low MOQ</span><span>·</span><span>🇹🇷 Direct from Bursa</span><span>·</span><span>🚚 Free Shipping $300+</span><span>·</span><span>🌿 GOTS Organic Available</span><span>·</span><span>📦 Low MOQ</span></div></div>
 <header class="site-header"><div class="hdr-inner">
   <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion™</span><span class="logo-sub">Wholesale Only</span></div></a>
-  <nav class="nav-main"><a href="catalog.html" class="nav-item">All Products</a><a href="catalog.html?cat=baby" class="nav-item">Baby</a><a href="catalog.html?cat=girls" class="nav-item">Girls</a><a href="catalog.html?cat=boys" class="nav-item">Boys</a><a href="catalog.html?cat=newborn" class="nav-item">Newborn</a><a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents">For Parents</a>
+  <nav class="nav-main"><a href="catalog.html" class="nav-item" data-i18n="nav_catalog">All Products</a><a href="catalog.html?cat=baby" class="nav-item">Baby</a><a href="catalog.html?cat=girls" class="nav-item">Girls</a><a href="catalog.html?cat=boys" class="nav-item">Boys</a><a href="catalog.html?cat=newborn" class="nav-item">Newborn</a><a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents">For Parents</a>
     </nav>
   <div class="hdr-right"><div class="search-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" id="searchInput" placeholder="Search…" autocomplete="off"><div class="search-results" id="liveResults"></div></div><a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a><div id="langWrap" style="position:relative;display:inline-block">
         <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
@@ -79,8 +79,7 @@
 <footer class="site-footer" style="padding:24px 0 0"><div class="container"><div class="ft-bottom" style="border-top:none"><div class="ft-copy">© 2025 WorldKidsFashion™</div><a href="catalog.html" style="font-size:13px;color:rgba(255,255,255,.3)">← Back to Catalog</a></div></div></footer>
 <script src="i18n.js"></script>
 <script src="app.js"></script>
-<script>wkfInitLang();</script>
-<script>
+<script>wkfInitLang();</script><script>
 function switchTab(btn, id) {
   document.querySelectorAll('.tab-content-div, [id^="tab-"]').forEach(t => { if(t.id.startsWith('tab-')) t.style.display='none'; });
   document.querySelectorAll('.tab-btn').forEach(b => { b.style.borderBottom='none'; b.style.color='var(--mist)'; b.style.fontWeight='500'; });
