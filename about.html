@@ -1,87 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — WorldKidsFashion™</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="announce" aria-hidden="true"><div class="announce-track"><span><span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span></span><span>·</span><span><span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span></span><span>·</span><span><span data-i18n="ann3">🌿 GOTS Certified Organic Available</span></span><span>·</span><span><span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span></span><span>·</span><span><span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span></span><span>·</span><span><span data-i18n="ann3">🌿 GOTS Certified Organic Available</span></span></div></div>
-<header class="site-header"><div class="hdr-inner">
-  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion™</span><span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span>/span></div></a>
-  <nav class="nav-main"><a href="catalog.html" class="nav-item" data-i18n="nav_catalog">Catalog</a><a href="services.html" class="nav-item" data-i18n="nav_services"><span data-i18n="ft_services">Services</span>/a><a href="about.html" class="nav-item" style="color:var(--red)">About</a><a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents"><span data-i18n="ft_parents">For Parents</span>/a>
-    </nav>
-  <div class="hdr-right"><a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a><div id="langWrap" style="position:relative;display:inline-block">
-        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
-        <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
-          <div style="padding:4px 10px 6px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#444;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px">Language</div>
-          <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
-          <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
-          <button onclick="wkfSetLang('fr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇫🇷 Français</button>
-          <button onclick="wkfSetLang('de')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇩🇪 Deutsch</button>
-          <button onclick="wkfSetLang('tr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇹🇷 Türkçe</button>
-          <button onclick="wkfSetLang('no')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇳🇴 Norsk</button>
-        </div>
+<div class="announce" aria-hidden="true"><div class="announce-track">
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span><span>·</span>
+  <span data-i18n="ann3">🌿 GOTS Certified Organic Available</span><span>·</span>
+  <span data-i18n="ann4">📦 Low MOQ · No Middleman · No Commission</span><span>·</span>
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span>
+</div></div>
+
+<header class="site-header" id="siteHeader"><div class="hdr-inner">
+  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion™</span><span class="logo-sub" data-i18n="logo_sub">Wholesale Only</span></div></a>
+  <nav class="nav-main">
+    <a href="catalog.html" class="nav-item" data-i18n="nav_catalog">Catalog</a>
+    <a href="services.html" class="nav-item" data-i18n="nav_services">Services</a>
+    <a href="about.html" class="nav-item" style="color:var(--red)" data-i18n="nav_about">About</a>
+    <a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents">For Parents</a>
+  </nav>
+  <div class="hdr-right">
+    <a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a>
+    <a href="account.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+    <div id="langWrap" style="position:relative;display:inline-block">
+      <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
+      <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
+        <div style="padding:4px 10px 6px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#666;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px" data-i18n="lang_choose">Language</div>
+        <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
+        <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
+        <button onclick="wkfSetLang('fr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇫🇷 Français</button>
+        <button onclick="wkfSetLang('de')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇩🇪 Deutsch</button>
+        <button onclick="wkfSetLang('tr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇹🇷 Türkçe</button>
+        <button onclick="wkfSetLang('no')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇳🇴 Norsk</button>
       </div>
-      <a href="register.html" class="hdr-cta"><span data-i18n="btn_register">Register Free →</span></a></div>
+    </div>
+    <a href="register.html" class="hdr-cta" data-i18n="btn_register">Register Free →</a>
+  </div>
 </div></header>
 
-
 <div class="page-hero"><div class="container"><div class="ph-inner">
-  <div class="breadcrumb"><a href="index.html">Home</a> › About</div>
-  <h1 class="page-h1">The World's <em style="font-style:italic;color:var(--gold)">Biggest</em> Wholesale<br>Kids Fashion Hub</h1>
-  <p class="page-sub">Born in Bursa, growing globally. Our story, our mission, our values.</p>
+  <div class="breadcrumb"><a href="index.html">Home</a> › <span data-i18n="nav_about">About</span></div>
+  <h1 class="page-h1" data-i18n="about_h1">The World's <em style="font-style:italic;color:var(--gold)">Biggest</em> Wholesale Kids Fashion Hub</h1>
+  <p class="page-sub" data-i18n="about_sub">Born in Istanbul, growing globally. Our story, our mission, our values.</p>
 </div></div></div>
 
 <section class="sec"><div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
   <div>
-    <span class="sec-eye">Our Story</span>
-    <h2 class="sec-h2">From Bursa to<br><em>120 Countries</em></h2>
-    <p style="font-size:15px;line-height:1.85;color:var(--stone);margin-bottom:20px">WorldKidsFashion™ was founded with a single mission: to connect the world's best Turkish kids & baby clothing manufacturers directly with resellers around the globe — eliminating middlemen, reducing costs, and empowering entrepreneurs.</p>
-    <p style="font-size:15px;line-height:1.85;color:var(--stone);margin-bottom:20px">We are based in Bursa, Nilüfer — the heart of Turkey's world-class textile industry. Our warehouse is strategically located to serve all major shipping routes to Europe, the Middle East, Africa, and beyond.</p>
-    <p style="font-size:15px;line-height:1.85;color:var(--stone)">Today, 20,000+ resellers in 120+ countries trust WKF as their primary source for wholesale kids fashion. From boutique owners in Poland to Amazon sellers in the USA — our community is global.</p>
+    <span class="sec-eye" data-i18n="about_story_eye">Our Story</span>
+    <h2 class="sec-h2" data-i18n="about_story_h2">From Istanbul to<br><em>120 Countries</em></h2>
+    <p style="font-size:15px;line-height:1.85;color:var(--stone);margin-bottom:20px" data-i18n="about_p1">WorldKidsFashion™ was founded with a single mission: to connect the world's best Turkish kids & baby clothing manufacturers directly with resellers around the globe — eliminating middlemen, reducing costs, and empowering entrepreneurs.</p>
+    <p style="font-size:15px;line-height:1.85;color:var(--stone);margin-bottom:20px" data-i18n="about_p2">We are based in Istanbul — the heart of Turkey's world-class textile industry. Our warehouse is strategically located to serve all major shipping routes to Europe, the Middle East, Africa, and beyond.</p>
+    <p style="font-size:15px;line-height:1.85;color:var(--stone)" data-i18n="about_p3">Today, 20,000+ resellers in 120+ countries trust WKF as their primary source for wholesale kids fashion. From boutique owners in Poland to Amazon sellers in the USA — our community is global.</p>
   </div>
   <div style="background:linear-gradient(135deg,#ffecd2,#d4c5a0);border-radius:var(--r-xl);height:440px;display:flex;align-items:center;justify-content:center;font-size:100px">🇹🇷</div>
 </div></section>
 
 <section class="sec sec-alt"><div class="container">
-  <span class="sec-eye" style="text-align:center;display:block">Our Values</span>
-  <h2 class="sec-h2" style="text-align:center">What We Stand For</h2>
+  <span class="sec-eye" style="text-align:center;display:block" data-i18n="about_values_eye">Our Values</span>
+  <h2 class="sec-h2" style="text-align:center" data-i18n="about_values_h2">What We Stand For</h2>
   <div class="svc-grid">
-    <div class="svc-card"><div class="svc-icon">🤝</div><h3>No Middlemen</h3><p>Direct relationships with 50+ Turkish manufacturers. You pay factory price, not market price. No hidden commissions, ever.</p></div>
-    <div class="svc-card"><div class="svc-icon">🌿</div><h3>Sustainability</h3><p>GOTS certified organic options. Safe for babies, good for the planet. We're committed to ethical production standards.</p></div>
-    <div class="svc-card"><div class="svc-icon">🔍</div><h3>Quality Control</h3><p>Every product is inspected before shipping. We stand behind our quality — returns accepted for any quality issues.</p></div>
-    <div class="svc-card"><div class="svc-icon">⚡</div><h3>Speed</h3><p>Orders processed within 24 hours. Shipped via UPS, DHL, FedEx. Most destinations receive within 3–7 business days.</p></div>
-    <div class="svc-card"><div class="svc-icon">🌍</div><h3>Global Reach</h3><p>120+ countries served. We understand international shipping, customs, and export regulations so you don't have to.</p></div>
-    <div class="svc-card featured"><div class="svc-icon">💬</div><h3>Real Support</h3><p>A real person answers every question. WhatsApp, email, or phone — we're here Mon–Fri 9–18 GMT+3. No bots.</p><a href="account.html" class="svc-link">Contact us →</a></div>
+    <div class="svc-card"><div class="svc-icon">🤝</div><h3 data-i18n="val1_h">No Middlemen</h3><p data-i18n="val1_p">Direct relationships with 50+ Turkish manufacturers. You pay factory price, not market price. No hidden commissions, ever.</p></div>
+    <div class="svc-card"><div class="svc-icon">🌿</div><h3 data-i18n="val2_h">Sustainability</h3><p data-i18n="val2_p">GOTS certified organic options. Safe for babies, good for the planet. We're committed to ethical production standards.</p></div>
+    <div class="svc-card"><div class="svc-icon">🔍</div><h3 data-i18n="val3_h">Quality Control</h3><p data-i18n="val3_p">Every product is inspected before shipping. We stand behind our quality — returns accepted for any quality issues.</p></div>
+    <div class="svc-card"><div class="svc-icon">⚡</div><h3 data-i18n="val4_h">Speed</h3><p data-i18n="val4_p">Orders processed within 24 hours. Shipped via UPS, DHL, FedEx. Most destinations receive within 3–7 business days.</p></div>
+    <div class="svc-card"><div class="svc-icon">🌍</div><h3 data-i18n="val5_h">Global Reach</h3><p data-i18n="val5_p">120+ countries served. We understand international shipping, customs, and export regulations so you don't have to.</p></div>
+    <div class="svc-card featured"><div class="svc-icon">💬</div><h3 data-i18n="val6_h">Real Support</h3><p data-i18n="val6_p">A real person answers every question. WhatsApp, email, or phone — we're here Mon–Fri 9–18 GMT+3. No bots.</p><a href="account.html" class="svc-link" data-i18n="val6_link">Contact us →</a></div>
   </div>
 </div></section>
 
 <section class="sec sec-dark"><div class="container" style="text-align:center">
-  <span class="sec-eye" style="color:var(--gold)">By the Numbers</span>
-  <h2 class="sec-h2"><em>Our Track Record</em></h2>
+  <span class="sec-eye" style="color:var(--gold)" data-i18n="about_kpi_eye">By the Numbers</span>
+  <h2 class="sec-h2" data-i18n="about_kpi_h2"><em>Our Track Record</em></h2>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:48px">
-    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">20K+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px">Active Resellers</div></div>
-    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">120+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px">Countries Served</div></div>
-    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">2K+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px">Unique Models</div></div>
-    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">50+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px">Manufacturers</div></div>
+    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">20K+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px" data-i18n="stat_resellers">Active Resellers</div></div>
+    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">120+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px" data-i18n="stat_countries">Countries Served</div></div>
+    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">2K+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px" data-i18n="about_models">Unique Models</div></div>
+    <div><div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold-light);line-height:1">50+</div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px" data-i18n="about_mfg">Manufacturers</div></div>
   </div>
 </div></section>
 
 <section class="cta-sec"><div class="container"><div class="cta-inner">
-  <div><h2 class="cta-h2">Ready to Join<br>Our Community?</h2><p class="cta-sub">Register free and start ordering wholesale today.</p></div>
-  <div class="cta-right"><a href="register.html" class="btn-cta-white"><span data-i18n="btn_cta">Create Free Account</span></a><div class="cta-note">✓ Free · ✓ Instant access · ✓ No commitment</div></div>
+  <div><h2 class="cta-h2" data-i18n="about_cta_h">Ready to Join<br>Our Community?</h2><p class="cta-sub" data-i18n="about_cta_p">Register free and start ordering wholesale today.</p></div>
+  <div class="cta-right"><a href="register.html" class="btn-cta-white" data-i18n="btn_cta">Create Free Account</a><div class="cta-note" data-i18n="about_cta_note">✓ Free · ✓ Instant access · ✓ No commitment</div></div>
 </div></div></section>
 
-<footer class="site-footer"><div class="container"><div class="ft-grid">
-  <div><a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion™</span><span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span>/span></div></a><p class="ft-brand-text">The world's largest wholesale marketplace for Turkish kids & baby clothing. Part of the Globality Group.</p><div class="ft-social"><a href="#" class="ft-soc">LI</a><a href="https://instagram.com/aeromagas" target="_blank" class="ft-soc">IG</a><a href="#" class="ft-soc">FB</a><a href="#" class="ft-soc">WA</a></div></div>
-  <div class="ft-col"><h4><span data-i18n="ft_products">Products</span>/h4><a href="catalog.html?cat=newborn">Newborn</a><a href="catalog.html?cat=baby">Baby</a><a href="catalog.html?cat=girls">Girls</a><a href="catalog.html?cat=boys">Boys</a><a href="catalog.html"><span data-i18n="svc4_h">Organic / GOTS</span></a></div>
-  <div class="ft-col"><h4><span data-i18n="ft_services">Services</span>/h4><a href="services.html"><span data-i18n="svc1_h"><span data-i18n="svc1_h">Wholesale</span></span></a><a href="services.html"><span data-i18n="svc2_h"><span data-i18n="svc2_h">Private Label</span></span></a><a href="services.html"><span data-i18n="svc3_h"><span data-i18n="svc3_h">Custom Production</span></span></a><a href="services.html"><span data-i18n="svc5_h"><span data-i18n="svc5_h">Dropshipping</span></span></a></div>
-  <div class="ft-col"><h4><span data-i18n="ft_company">Company</span>/h4><a href="about.html"><span data-i18n="ft_about">About WKF</span></a><a href="register.html"><span data-i18n="ft_reseller">Become a Reseller</span></a><a href="about.html"><span data-i18n="ft_testi">Testimonials</span></a></div>
-  <div class="ft-col"><h4>Contact</h4><a href="mailto:info@worldkidsfashion.org">📧 info@worldkidsfashion.org</a><a href="https://wa.me/995598146418">💬 WhatsApp</a><a href="#">📍 Istanbul, Turkey</a></div>
-</div><div class="ft-bottom"><div class="ft-copy">© 2025 WorldKidsFashion™ · Globality Mob. · Tel: +33 6 95 61 12 93 · Istanbul, Turkey</div><div class="ft-pay"><span>🏦 Bank Transfer</span><span>💳 PayPal</span><span>⚡ Wise</span><span>₿ Crypto</span></div></div></div></footer>
+<footer class="site-footer"><div class="container">
+  <div class="ft-grid">
+    <div>
+      <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion™</span><span class="logo-sub" data-i18n="logo_sub">Wholesale Only</span></div></a>
+      <p class="ft-brand-text" data-i18n="ft_brand">The world's largest wholesale marketplace for Turkish kids & baby clothing. Part of the Globality Group. Serving resellers in 120+ countries since 2020.</p>
+      <div class="ft-social"><a href="#" class="ft-soc">LI</a><a href="https://instagram.com/aeromagas" target="_blank" class="ft-soc">IG</a><a href="#" class="ft-soc">FB</a><a href="https://wa.me/995598146418" class="ft-soc">WA</a></div>
+    </div>
+    <div class="ft-col">
+      <h4 data-i18n="ft_products">Products</h4>
+      <a href="catalog.html?cat=newborn" data-i18n="ft_newborn">Newborn Collection</a>
+      <a href="catalog.html?cat=girls" data-i18n="ft_girls">Girls (2–14y)</a>
+      <a href="catalog.html?cat=boys" data-i18n="ft_boys">Boys (2–14y)</a>
+      <a href="catalog.html" data-i18n="ft_gots">Organic / GOTS</a>
+    </div>
+    <div class="ft-col">
+      <h4 data-i18n="ft_services">Services</h4>
+      <a href="services.html" data-i18n="svc1_h">Wholesale</a>
+      <a href="services.html" data-i18n="svc2_h">Private Label</a>
+      <a href="services.html" data-i18n="svc3_h">Custom Production</a>
+      <a href="services.html" data-i18n="svc5_h">Dropshipping</a>
+    </div>
+    <div class="ft-col">
+      <h4 data-i18n="ft_company">Company</h4>
+      <a href="about.html" data-i18n="ft_about">About WKF</a>
+      <a href="register.html" data-i18n="ft_reseller">Become a Reseller</a>
+      <a href="about.html" data-i18n="ft_testi">Testimonials</a>
+      <a href="about.html" data-i18n="ft_impressum">Impressum</a>
+    </div>
+    <div class="ft-col">
+      <h4 data-i18n="ft_support">Support</h4>
+      <a href="mailto:info@worldkidsfashion.org">📧 info@worldkidsfashion.org</a>
+      <a href="https://wa.me/995598146418" data-i18n="ft_whatsapp">💬 WhatsApp Support</a>
+      <a href="#" data-i18n="ft_ship">📦 Shipping Policy</a>
+      <a href="#" data-i18n="ft_return">↩️ Return Policy</a>
+      <a href="#" data-i18n="ft_faq">🧾 FAQ</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2025 WorldKidsFashion™ · Globality Mob. · Tel: +33 6 95 61 12 93 · Istanbul, Turkey</div>
+    <div class="ft-pay"><span data-i18n="pay1">🏦 Bank Transfer</span><span data-i18n="pay2">💳 PayPal</span><span data-i18n="pay3">⚡ Wise</span><span data-i18n="pay4">₿ Crypto</span></div>
+  </div>
+</div></footer>
 <script src="i18n.js"></script>
 <script src="app.js"></script>
-<script>wkfInitLang();</script></body></html>
+<script>wkfInitLang();</script>
+</body>
+</html>
