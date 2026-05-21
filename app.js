@@ -8,145 +8,145 @@ const PRODUCTS = [
   {
     id:1, name:'Organic Newborn Gift Set 5pcs', brand:'PureOrganic', cat:'newborn',
     price:24.90, moq:'Min. 3 sets', badge:'gots', sizes:['50','56','62'], colors:['White','Beige','Mint'],
-    img:'https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?newborn,baby,clothes',
     desc:'5-piece GOTS certified organic cotton set. Includes 2 bodysuits, 1 romper, 1 hat and 1 mittens. Ultra-soft, pre-washed. Safe for sensitive newborn skin.'
   },
   {
     id:2, name:'Baby Girl Floral Summer Dress', brand:'TurkishKids', cat:'baby',
     price:8.50, moq:'Min. 6 pcs', badge:'new', sizes:['68','74','80','86'], colors:['Pink','White'],
-    img:'https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,girl,dress',
     desc:'Lightweight cotton summer dress with floral print. Elasticated waist, comfortable fit. Machine washable at 30°C.'
   },
   {
     id:3, name:'Boy Sport Tracksuit Set 2pcs', brand:'ActiveKids', cat:'boys',
     price:15.90, moq:'Min. 6 pcs', badge:'hot', sizes:['92','98','104','110','116'], colors:['Navy','Black','Red'],
-    img:'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?boy,sport,kids',
     desc:'Cotton fleece tracksuit with zip hoodie and matching joggers. Ribbed cuffs and waistband. Perfect for everyday active wear.'
   },
   {
     id:4, name:'Girl Denim Jacket + Skirt Set', brand:'TurkishKids', cat:'girls',
     price:22.90, moq:'Min. 4 pcs', badge:'new', sizes:['98','104','110','116','122'], colors:['Blue','Pink'],
-    img:'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?girl,denim,fashion',
     desc:'Soft denim jacket with matching A-line skirt. Embroidered details, snap button closure. A versatile set for any season.'
   },
   {
     id:5, name:'Baby Knit Romper Organic', brand:'PureOrganic', cat:'baby',
     price:11.90, moq:'Min. 6 pcs', badge:'gots', sizes:['62','68','74','80'], colors:['Beige','Gray'],
-    img:'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,romper,organic',
     desc:'Hand-knit organic cotton romper. Snap button legs for easy changing. GOTS certified. Perfect gift for newborns and babies.'
   },
   {
     id:6, name:'Boy Linen Summer Set 2pcs', brand:'NaturalKids', cat:'boys',
     price:13.50, moq:'Min. 6 pcs', badge:null, sizes:['86','92','98','104'], colors:['Beige','White'],
-    img:'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?boy,summer,kids',
     desc:'100% linen shirt and shorts set. Breathable and lightweight for hot summers. Relaxed fit, easy-care fabric.'
   },
   {
     id:7, name:'Girl Party Dress Tulle', brand:'LittlePrincess', cat:'girls',
     price:18.90, moq:'Min. 4 pcs', badge:'new', sizes:['92','98','104','110','116'], colors:['Pink','Gold','White'],
-    img:'https://images.unsplash.com/photo-1476234251651-f353703a034d?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?girl,party,dress',
     desc:'Elegant tulle party dress with satin bodice. Hidden zip back, soft lining. Perfect for birthdays and special occasions.'
   },
   {
     id:8, name:'Boy Winter Puffer Jacket', brand:'ActiveKids', cat:'boys',
     price:28.50, moq:'Min. 3 pcs', badge:null, sizes:['104','110','116','122','128'], colors:['Navy','Black'],
-    img:'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?boy,jacket,winter',
     desc:'Water-resistant puffer jacket with fleece lining. Warm to -15°C. Hood with faux-fur trim. 2 zippered pockets.'
   },
   {
     id:9, name:'Newborn Hospital Outfit Set', brand:'BabyCosy', cat:'newborn',
     price:16.90, moq:'Min. 4 sets', badge:'hot', sizes:['50','56'], colors:['White','Mint','Pink'],
-    img:'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?newborn,hospital,baby',
     desc:'Complete hospital outfit: hat, bodysuit, scratch mittens, booties and blanket. Ultra-soft interlock cotton. Our bestseller.'
   },
   {
     id:10, name:'Baby Girl Tutu Dress', brand:'LittlePrincess', cat:'baby',
     price:9.90, moq:'Min. 6 pcs', badge:null, sizes:['68','74','80','86'], colors:['Pink','Lilac'],
-    img:'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,girl,tutu',
     desc:'Adorable tutu dress with cotton bodice and tulle skirt. Snap closure at back. Perfect for photos and celebrations.'
   },
   {
     id:11, name:'Unisex Muslin Swaddle 3pcs', brand:'PureOrganic', cat:'newborn',
     price:19.50, moq:'Min. 5 sets', badge:'gots', sizes:['Universal'], colors:['White','Mint'],
-    img:'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,swaddle,newborn',
     desc:'Set of 3 GOTS organic muslin swaddle blankets. 120x120cm each. Breathable, gets softer with each wash. Gender neutral.'
   },
   {
     id:12, name:'Girl Embroidered Blouse', brand:'TurkishKids', cat:'girls',
     price:7.90, moq:'Min. 6 pcs', badge:'sale', sizes:['98','104','110','116'], colors:['White','Powder'],
-    img:'https://images.unsplash.com/photo-1558171813-0c454baa4f8b?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?girl,blouse,children',
     desc:'Cotton blouse with hand-embroidered floral details. Button back, relaxed fit. Pairs beautifully with any bottom.'
   },
   {
     id:13, name:'Boy Cargo Shorts + Tee Set', brand:'ActiveKids', cat:'boys',
     price:12.50, moq:'Min. 6 pcs', badge:'sale', sizes:['86','92','98','104','110'], colors:['Khaki','Navy'],
-    img:'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?boy,shorts,summer',
     desc:'Cotton cargo shorts with matching graphic tee. 4 functional pockets, elastic waistband. Cool and practical for summer.'
   },
   {
     id:14, name:'Newborn Organic Bodysuits 5pcs', brand:'PureOrganic', cat:'newborn',
     price:21.90, moq:'Min. 3 sets', badge:'gots', sizes:['50','56','62'], colors:['White','Ecru'],
-    img:'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,bodysuit,organic',
     desc:'5 GOTS organic cotton bodysuits in coordinating colours. Envelope neck for easy dressing. Snap closure, pre-washed.'
   },
   {
     id:15, name:'Baby Boy Dino Set 3pcs', brand:'BabyCosy', cat:'baby',
     price:12.90, moq:'Min. 12 pcs', badge:'new', sizes:['62','68','74','80'], colors:['Blue','Gray'],
-    img:'https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,boy,dinosaur',
     desc:'3-piece dinosaur print set: bodysuit, leggings and bib. Soft jersey cotton. Great for gifting or daily wear.'
   },
   {
     id:16, name:'Girl Hoodie + Jogger Set', brand:'TurkishKids', cat:'girls',
     price:17.50, moq:'Min. 4 pcs', badge:null, sizes:['104','110','116','122','128'], colors:['Lilac','Pink'],
-    img:'https://images.unsplash.com/photo-1460533893735-45cea2212645?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?girl,hoodie,casual',
     desc:'Soft cotton fleece hoodie with matching jogger pants. Kangaroo pocket, flat waistband. Cosy and stylish.'
   },
   {
     id:17, name:'Baby Organic Sleep Sack', brand:'PureOrganic', cat:'baby',
     price:14.90, moq:'Min. 6 pcs', badge:'gots', sizes:['68','80','92'], colors:['White','Gray','Mint'],
-    img:'https://images.unsplash.com/photo-1490750967868-88df5691cc88?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,sleep,organic',
     desc:'GOTS organic cotton sleep sack. 1.0 TOG rating. 2-way zip for easy night changes. Shoulder snaps, sleeveless design.'
   },
   {
     id:18, name:'Girl Floral Jumpsuit', brand:'LittlePrincess', cat:'girls',
     price:14.90, moq:'Min. 6 pcs', badge:'new', sizes:['98','104','110','116','122'], colors:['Rose','Yellow'],
-    img:'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?boy,sport,kids',
     desc:'Floral print cotton jumpsuit with button front and wide-leg. Adjustable shoulder straps. Effortless summer style.'
   },
   {
     id:19, name:'Boy Swim Shorts UV50+', brand:'ActiveKids', cat:'boys',
     price:6.90, moq:'Min. 12 pcs', badge:'new', sizes:['86','92','98','104','110','116'], colors:['Blue','Orange','Green'],
-    img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?boy,swim,beach',
     desc:'Quick-dry swim shorts with UV50+ protection. Mesh lining, elasticated waistband with drawstring. Perfect for beach & pool.'
   },
   {
     id:20, name:'Newborn Bear Velour Onesie', brand:'BabyCosy', cat:'newborn',
     price:13.90, moq:'Min. 6 pcs', badge:'hot', sizes:['50','56','62'], colors:['Beige','Brown','Gray'],
-    img:'https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,onesie,newborn',
     desc:'Super soft velour all-in-one with bear ear hood. Full zip front for easy dressing. Machine washable, keeps shape.'
   },
   {
     id:21, name:'Girl School Uniform Set', brand:'TurkishKids', cat:'girls',
     price:19.90, moq:'Min. 6 pcs', badge:null, sizes:['104','110','116','122','128','134'], colors:['Navy','Burgundy'],
-    img:'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?boy,jacket,winter',
     desc:'Classic school uniform: pleated skirt and cotton blouse. Durable fabric, easy-iron. Available in navy and burgundy.'
   },
   {
     id:22, name:'Boy Knit Winter Set', brand:'NaturalKids', cat:'boys',
     price:23.50, moq:'Min. 4 pcs', badge:null, sizes:['92','98','104','110','116'], colors:['Camel','Gray','Green'],
-    img:'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,romper,organic',
     desc:'Wool-blend knit sweater and matching trousers. Ribbed collar and cuffs. Warm and stylish for autumn/winter.'
   },
   {
     id:23, name:'Baby Girl Ruffle Romper', brand:'LittlePrincess', cat:'baby',
     price:8.90, moq:'Min. 6 pcs', badge:'sale', sizes:['62','68','74','80','86'], colors:['Pink','Peach','White'],
-    img:'https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?baby,girl,dress',
     desc:'Cotton romper with ruffle collar and sleeves. Snap buttons at leg, bow detail. Perfect for photos and everyday wear.'
   },
   {
     id:24, name:'Unisex Organic Starter Pack 10pcs', brand:'PureOrganic', cat:'newborn',
     price:49.90, moq:'Min. 2 sets', badge:'gots', sizes:['50-56','56-62','62-68'], colors:['Neutral Mix'],
-    img:'https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=400&fit=crop',
+    img:'https://source.unsplash.com/400x400/?newborn,baby,clothes',
     desc:'Complete newborn starter kit: 3 bodysuits, 2 rompers, 2 leggings, 1 hat, 1 mittens, 1 blanket. 100% GOTS organic. Best value.'
   },
 ];
@@ -235,7 +235,7 @@ function renderCard(p) {
 
   return `
     <div class="pcard" onclick="location.href='product.html?id=${p.id}'">
-      <div class="pcard-img ${p.bg||'pcard-img-bg1'}" style="overflow:hidden;padding:0">
+      <div class="pcard-img ${p.bg||'pcard-img-bg1'}" style="overflow:hidden;padding:0;height:196px">
         ${badgeHtml}
         ${imgContent}
         <button class="pwish-btn" data-wish="${p.id}" onclick="event.stopPropagation();toggleWish(${p.id})">${isWished?'❤️':'🤍'}</button>
