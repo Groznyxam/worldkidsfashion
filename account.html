@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account — WorldKidsFashion™</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="announce" aria-hidden="true"><div class="announce-track"><span>🚚 Free Shipping $300+</span><span>·</span><span>🌿 GOTS Organic</span><span>·</span><span>📦 Low MOQ</span><span>·</span><span>🚚 Free Shipping $300+</span><span>·</span><span>🌿 GOTS Organic</span><span>·</span><span>📦 Low MOQ</span></div></div>
+<header class="site-header"><div class="hdr-inner">
+  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion™</span><span class="logo-sub">Wholesale Only</span></div></a>
+  <nav class="nav-main"><a href="catalog.html" class="nav-item">All Products</a><a href="catalog.html?cat=baby" class="nav-item">Baby</a><a href="catalog.html?cat=girls" class="nav-item">Girls</a><a href="catalog.html?cat=boys" class="nav-item">Boys</a><a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents">For Parents</a>
+    </nav>
+  <div class="hdr-right"><a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a><button id="logoutBtn" style="background:none;border:1px solid var(--border);padding:7px 16px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;color:var(--stone)">Logout</button></div>
+</div></header>
+<div id="langBar" style="background:#0e0e0f;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 16px;flex-wrap:wrap">
+  <span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#444;margin-right:4px">🌐</span>
+  <button onclick="wkfSetLang('en')" style="padding:4px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:none;color:#bbb;font-size:.8rem;cursor:pointer;font-family:inherit">🇬🇧 EN</button>
+  <button onclick="wkfSetLang('ru')" style="padding:4px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:none;color:#bbb;font-size:.8rem;cursor:pointer;font-family:inherit">🇷🇺 RU</button>
+  <button onclick="wkfSetLang('fr')" style="padding:4px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:none;color:#bbb;font-size:.8rem;cursor:pointer;font-family:inherit">🇫🇷 FR</button>
+  <button onclick="wkfSetLang('de')" style="padding:4px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:none;color:#bbb;font-size:.8rem;cursor:pointer;font-family:inherit">🇩🇪 DE</button>
+  <button onclick="wkfSetLang('tr')" style="padding:4px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:none;color:#bbb;font-size:.8rem;cursor:pointer;font-family:inherit">🇹🇷 TR</button>
+  <button onclick="wkfSetLang('no')" style="padding:4px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:none;color:#bbb;font-size:.8rem;cursor:pointer;font-family:inherit">🇳🇴 NO</button>
+</div>
+
+<div class="page-hero" style="padding:40px 0"><div class="container"><div class="ph-inner">
+  <div class="breadcrumb"><a href="index.html">Home</a> › My Account</div>
+  <h1 class="page-h1" style="font-size:40px">Welcome, <span id="accountName">Reseller</span> 👋</h1>
+  <p class="page-sub" id="accountEmail"></p>
+</div></div></div>
+
+<div class="container"><div class="account-layout">
+  <aside>
+    <nav class="acc-menu">
+      <a href="#" class="acc-link" onclick="showAccSection('dashboard',this)"><span class="ico">📊</span> Dashboard</a>
+      <a href="#" class="acc-link" onclick="showAccSection('orders',this)"><span class="ico">📦</span> My Orders</a>
+      <a href="#" class="acc-link" onclick="showAccSection('wishlist',this)"><span class="ico">❤️</span> Wishlist</a>
+      <a href="#" class="acc-link" onclick="showAccSection('profile',this)"><span class="ico">👤</span> Profile</a>
+      <a href="#" class="acc-link" onclick="showAccSection('invoices',this)"><span class="ico">🧾</span> Invoices</a>
+      <a href="#" class="acc-link" onclick="showAccSection('support',this)"><span class="ico">💬</span> Support</a>
+    </nav>
+  </aside>
+  <main>
+    <!-- DASHBOARD -->
+    <div id="acc-dashboard" class="acc-panel">
+      <div class="stat-boxes">
+        <div class="stat-box"><div class="sb-val">3</div><div class="sb-lbl">Total Orders</div></div>
+        <div class="stat-box"><div class="sb-val">$1,240</div><div class="sb-lbl">Total Spent</div></div>
+        <div class="stat-box"><div class="sb-val">Gold</div><div class="sb-lbl">Reseller Tier</div></div>
+      </div>
+      <div class="acc-section">
+        <div class="acc-section-title">Recent Orders</div>
+        <table class="orders-tbl">
+          <thead><tr><th>Order #</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><strong>WKF-2024-0891</strong></td><td>Dec 12, 2024</td><td>24 pcs</td><td><strong>$312.00</strong></td><td><span class="status status-delivered">Delivered</span></td><td><a href="#" style="color:var(--red);font-size:13px">View</a></td></tr>
+            <tr><td><strong>WKF-2024-0754</strong></td><td>Nov 03, 2024</td><td>36 pcs</td><td><strong>$486.00</strong></td><td><span class="status status-delivered">Delivered</span></td><td><a href="#" style="color:var(--red);font-size:13px">View</a></td></tr>
+            <tr><td><strong>WKF-2025-0012</strong></td><td>Jan 08, 2025</td><td>48 pcs</td><td><strong>$442.00</strong></td><td><span class="status status-processing">Processing</span></td><td><a href="#" style="color:var(--red);font-size:13px">Track</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="acc-section">
+        <div class="acc-section-title">Quick Actions</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="catalog.html" class="btn-primary">🛍️ Browse New Arrivals</a>
+          <button onclick="showAccSection('support',document.querySelector('[onclick*=support]'))" style="padding:12px 20px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif">💬 Contact Support</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div id="acc-orders" class="acc-panel" style="display:none">
+      <div class="acc-section">
+        <div class="acc-section-title">All Orders</div>
+        <table class="orders-tbl">
+          <thead><tr><th>Order #</th><th>Date</th><th>Products</th><th>Total</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>WKF-2024-0891</strong></td><td>Dec 12, 2024</td><td>Baby Dino Set ×12, Floral Dress ×12</td><td><strong>$312.00</strong></td><td><span class="status status-delivered">Delivered</span></td></tr>
+            <tr><td><strong>WKF-2024-0754</strong></td><td>Nov 03, 2024</td><td>Newborn Set ×6, Sport Set ×12, Romper ×18</td><td><strong>$486.00</strong></td><td><span class="status status-delivered">Delivered</span></td></tr>
+            <tr><td><strong>WKF-2025-0012</strong></td><td>Jan 08, 2025</td><td>Party Dress ×12, Winter Jacket ×6, Swaddle ×30</td><td><strong>$442.00</strong></td><td><span class="status status-processing">Processing</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- WISHLIST -->
+    <div id="acc-wishlist" class="acc-panel" style="display:none">
+      <div class="acc-section">
+        <div class="acc-section-title">Saved Products</div>
+        <div class="pgrid" id="wishlistGrid" style="grid-template-columns:repeat(3,1fr)"><p style="color:var(--mist);grid-column:1/-1">No saved products yet. <a href="catalog.html" style="color:var(--red)">Browse catalog →</a></p></div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div id="acc-profile" class="acc-panel" style="display:none">
+      <div class="acc-section">
+        <div class="acc-section-title">Profile Information</div>
+        <div class="fg-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="fg"><label>First Name</label><input type="text" value="John"></div>
+          <div class="fg"><label>Last Name</label><input type="text" value="Smith"></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" id="profileEmail"></div>
+        <div class="fg"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 234 567 8900"></div>
+        <div class="fg"><label>Company Name</label><input type="text" placeholder="Your business name"></div>
+        <button class="btn-primary" onclick="showToast('Profile saved!','success')" style="margin-top:8px">Save Changes</button>
+      </div>
+    </div>
+
+    <!-- INVOICES -->
+    <div id="acc-invoices" class="acc-panel" style="display:none">
+      <div class="acc-section">
+        <div class="acc-section-title">Invoices</div>
+        <table class="orders-tbl">
+          <thead><tr><th>Invoice #</th><th>Date</th><th>Amount</th><th>Download</th></tr></thead>
+          <tbody>
+            <tr><td>WKF-INV-2024-891</td><td>Dec 12, 2024</td><td>$312.00</td><td><a href="#" style="color:var(--red)">📄 PDF</a></td></tr>
+            <tr><td>WKF-INV-2024-754</td><td>Nov 03, 2024</td><td>$486.00</td><td><a href="#" style="color:var(--red)">📄 PDF</a></td></tr>
+            <tr><td>WKF-INV-2025-012</td><td>Jan 08, 2025</td><td>$442.00</td><td><a href="#" style="color:var(--red)">📄 PDF</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div id="acc-support" class="acc-panel" style="display:none">
+      <div class="acc-section">
+        <div class="acc-section-title">Contact Support</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+          <div style="background:var(--silk);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:32px;margin-bottom:8px">💬</div><h4 style="margin-bottom:6px">WhatsApp</h4><p style="font-size:13px;color:var(--mist);margin-bottom:12px">Mon–Fri 9–18 GMT+3</p><a href="#" class="btn-primary" style="font-size:13px;padding:8px 18px">Open WhatsApp</a></div>
+          <div style="background:var(--silk);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:32px;margin-bottom:8px">📧</div><h4 style="margin-bottom:6px">Email</h4><p style="font-size:13px;color:var(--mist);margin-bottom:12px">Reply within 24h</p><a href="mailto:info@worldkidsfashion.org" class="btn-primary" style="font-size:13px;padding:8px 18px">Send Email</a></div>
+        </div>
+        <div class="fg"><label>Subject</label><select><option>Order Issue</option><option>Shipping</option><option>Product Quality</option><option>Payment</option><option>Other</option></select></div>
+        <div class="fg"><label>Message</label><textarea style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;min-height:100px;resize:vertical" placeholder="Describe your issue…"></textarea></div>
+        <button class="btn-primary" onclick="showToast('Ticket submitted! We\'ll reply within 24h.','success')">Submit Ticket</button>
+      </div>
+    </div>
+  </main>
+</div></div>
+
+<footer class="site-footer" style="padding:24px 0 0"><div class="container"><div class="ft-bottom" style="border-top:none"><div class="ft-copy">© 2025 WorldKidsFashion™</div></div></div></footer>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+<script>wkfInitLang();</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  renderAccount();
+  const prof = document.getElementById('profileEmail');
+  const u = JSON.parse(localStorage.getItem('wkf_user') || 'null');
+  if (prof && u) prof.value = u.email || '';
+  // wishlist panel
+  const wg = document.getElementById('wishlistGrid');
+  if (wg && wishlist && wishlist.length) {
+    const prods = PRODUCTS.filter(p => wishlist.includes(p.id));
+    wg.innerHTML = prods.map(renderCard).join('');
+  }
+});
+</script>
+</body></html>

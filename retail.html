@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retail Shop — WorldKidsFashion™ For Parents</title>
+<meta name="description" content="Buy premium Turkish kids clothing at retail prices. Individual pieces, all ages, fast delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.retail-hero{background:linear-gradient(135deg,#fdf6ee 0%,#faf3f0 100%);padding:60px 0 40px;border-bottom:1px solid var(--border);text-align:center}
+.retail-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;margin-bottom:12px}
+.retail-hero h1 em{font-style:italic;color:var(--red)}
+.retail-hero p{color:var(--stone);font-size:1rem;max-width:520px;margin:0 auto 24px}
+.price-badge{display:inline-flex;gap:8px;align-items:center;background:var(--white);border:1px solid var(--border2);border-radius:30px;padding:8px 18px;font-size:.85rem;color:var(--stone);margin-bottom:28px}
+.price-badge strong{color:var(--ink)}
+.retail-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;align-items:center}
+.rf-btn{padding:8px 18px;border:1px solid var(--border2);border-radius:20px;background:var(--white);cursor:pointer;font-size:.85rem;font-family:'DM Sans',sans-serif;transition:all .2s}
+.rf-btn.active,.rf-btn:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.retail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-bottom:60px}
+.r-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:box-shadow .2s,transform .2s}
+.r-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.r-card-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,var(--silk),var(--cream))}
+.r-card-body{padding:16px}
+.r-card-brand{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--stone);margin-bottom:4px}
+.r-card-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:8px;color:var(--ink)}
+.r-card-age{font-size:.8rem;color:var(--stone);margin-bottom:12px}
+.r-card-prices{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.r-price-retail{font-size:1.2rem;font-weight:600;color:var(--red);font-family:'DM Mono',monospace}
+.r-price-old{font-size:.8rem;color:var(--mist);text-decoration:line-through}
+.r-price-saving{font-size:.75rem;color:#2d9e5f;font-weight:600}
+.r-card-btn{width:100%;padding:10px;background:var(--ink);color:var(--white);border:none;border-radius:var(--r);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;transition:background .2s}
+.r-card-btn:hover{background:var(--red)}
+.retail-info{background:var(--silk);border-radius:var(--r-lg);padding:32px;margin-bottom:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:center}
+.ri-item h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;color:var(--ink)}
+.ri-item p{font-size:.85rem;color:var(--stone);margin:0}
+</style>
+</head>
+<body>
+
+<div class="ticker-wrap"><div class="ticker-track">
+  <span>🛍️ Retail Shop for Parents</span><span>·</span>
+  <span>🚚 Free Shipping on orders $100+</span><span>·</span>
+  <span>🌿 GOTS Organic Available</span><span>·</span>
+  <span>📦 Ships in 3–7 days</span><span>·</span>
+  <span>↩️ 30-day returns</span><span>·</span>
+  <span>🛍️ Retail Shop for Parents</span><span>·</span>
+  <span>🚚 Free Shipping on orders $100+</span><span>·</span>
+</div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="hdr-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span class="logo-main">WorldKidsFashion™</span>
+        <span class="logo-sub">Wholesale Only</span>
+      </div>
+    </a>
+    <nav class="nav-main">
+      <a href="catalog.html" class="nav-item"><span data-i18n="nav_catalog">Catalog</span</a>
+      <a href="services.html" class="nav-item"><span data-i18n="nav_services">Services</span</a>
+      <a href="about.html" class="nav-item"><span data-i18n="nav_about">About</span</a>
+      <a href="parents.html" class="nav-item" style="color:var(--red)"><span data-i18n="nav_parents">For Parents</span</a>
+    </nav>
+    <div class="hdr-right">
+      <a href="cart.html" class="hdr-icon">🛒 <span id="cartCount">0</span></a>
+      <a href="account.html" class="hdr-icon">👤</a>
+      
+      
+      <a href="register.html" class="btn-primary btn-sm"><span data-i18n="btn_register">Register Free →</span></a>
+    </div>
+  </div>
+      
+</footer>
+
+
+<script src="app.js"></script>
+<script>wkfInitLang();</script>
+<script src="i18n.js"></script>
+<script>
+// ── PRICING ENGINE ──────────────────────────────────────────
+// Settings loaded from wkf_pricing (set in admin panel)
+const PRICING = JSON.parse(localStorage.getItem('wkf_pricing') || JSON.stringify({
+  wholesale_markup: 10,   // % added to supplier price
+  retail_markup: 15       // % added to wholesale price
+}));
+
+function calcPrices(supplierPrice) {
+  const wholesale = supplierPrice * (1 + PRICING.wholesale_markup / 100);
+  const retail    = wholesale * (1 + PRICING.retail_markup / 100);
+  return {
+    supplier:  Math.round(supplierPrice * 100) / 100,
+    wholesale: Math.round(wholesale * 100) / 100,
+    retail:    Math.round(retail * 100) / 100
+  };
+}
+
+// ── SAMPLE PRODUCTS (будут заменяться через импорт) ─────────
+const RETAIL_PRODUCTS = [
+  {id:'r1',name:'Premium Newborn Set',brand:'BabyCosy',cat:'newborn',age:'0–3m',emoji:'👶',supplierPrice:12.00},
+  {id:'r2',name:'Organic Cotton Bodysuit',brand:'PureOrganic',cat:'organic',age:'0–6m',emoji:'🌿',supplierPrice:8.50},
+  {id:'r3',name:'Baby Girl Summer Dress',brand:'LittlePrincess',cat:'baby',age:'6–12m',emoji:'🎀',supplierPrice:14.00},
+  {id:'r4',name:'Baby Boy Tracksuit',brand:'ActiveKids',cat:'baby',age:'12–24m',emoji:'🐻',supplierPrice:16.50},
+  {id:'r5',name:'Girls Party Dress',brand:'LittlePrincess',cat:'girls',age:'4–8y',emoji:'👗',supplierPrice:22.00},
+  {id:'r6',name:'Boys Sports Set',brand:'ActiveKids',cat:'boys',age:'6–10y',emoji:'⚽',supplierPrice:19.00},
+  {id:'r7',name:'Organic Newborn Gift Set',brand:'PureOrganic',cat:'newborn',age:'0–3m',emoji:'🎁',supplierPrice:28.00},
+  {id:'r8',name:'Girls Winter Coat',brand:'TurkishKids',cat:'girls',age:'2–6y',emoji:'🧥',supplierPrice:35.00},
+  {id:'r9',name:'Boys Denim Jacket',brand:'TurkishKids',cat:'boys',age:'4–10y',emoji:'🫧',supplierPrice:30.00},
+  {id:'r10',name:'Baby Organic Sleep Set',brand:'PureOrganic',cat:'organic',age:'3–12m',emoji:'🌙',supplierPrice:18.00},
+  {id:'r11',name:'Girls Summer Set',brand:'LittlePrincess',cat:'girls',age:'2–5y',emoji:'🌸',supplierPrice:17.00},
+  {id:'r12',name:'Newborn Hospital Pack',brand:'BabyCosy',cat:'newborn',age:'0–1m',emoji:'🏥',supplierPrice:45.00},
+];
+
+let currentFilter = 'all';
+
+function filterRetail(cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.rf-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderProducts();
+}
+
+function renderProducts() {
+  const grid = document.getElementById('retail-grid');
+  const list = currentFilter === 'all'
+    ? RETAIL_PRODUCTS
+    : RETAIL_PRODUCTS.filter(p => p.cat === currentFilter);
+
+  grid.innerHTML = list.map(p => {
+    const prices = calcPrices(p.supplierPrice);
+    const saving = ((prices.retail - prices.wholesale) / prices.retail * 100).toFixed(0);
+    return `
+    <div class="r-card">
+      <div class="r-card-img">${p.emoji}</div>
+      <div class="r-card-body">
+        <div class="r-card-brand">${p.brand}</div>
+        <div class="r-card-name">${p.name}</div>
+        <div class="r-card-age">Age: ${p.age}</div>
+        <div class="r-card-prices">
+          <div class="r-price-retail">$${prices.retail.toFixed(2)}</div>
+          <div class="r-price-old">Boutique price: ~$${(prices.retail * 1.8).toFixed(2)}</div>
+          <div class="r-price-saving">You save ~${saving}% vs high street</div>
+        </div>
+        <button class="r-card-btn" onclick="addToCart(${JSON.stringify(p).replace(/"/g,'&quot;')},${prices.retail})">
+          🛒 Add to Cart
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function addToCart(product, price) {
+  const cart = JSON.parse(localStorage.getItem('wkf_cart') || '[]');
+  const existing = cart.find(i => i.id === 'retail_' + product.id);
+  if (existing) existing.qty++;
+  else cart.push({id:'retail_'+product.id, name:product.name, price, qty:1, type:'retail'});
+  localStorage.setItem('wkf_cart', JSON.stringify(cart));
+  document.getElementById('cartCount').textContent = cart.reduce((s,i)=>s+i.qty,0);
+  
+  const btn = event.target;
+  btn.textContent = '✓ Added!';
+  btn.style.background = '#2d9e5f';
+  setTimeout(()=>{btn.textContent='🛒 Add to Cart';btn.style.background='';},1500);
+}
+
+renderProducts();
+
+// Sync cart count
+const savedCart = JSON.parse(localStorage.getItem('wkf_cart') || '[]');
+document.getElementById('cartCount').textContent = savedCart.reduce((s,i)=>s+i.qty,0);
+</script>
+</body>
+</html>

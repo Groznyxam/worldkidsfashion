@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a Partner — WorldKidsFashion™</title>
+<meta name="description" content="Earn money selling premium Turkish kids clothing. No warehouse, no upfront stock. Join the WKF parent partner programme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.partner-hero{background:linear-gradient(135deg,var(--ink) 0%,#1a0a20 100%);color:var(--white);padding:80px 0 60px;text-align:center}
+.partner-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:300;margin-bottom:16px}
+.partner-hero h1 em{font-style:italic;color:var(--gold-light)}
+.partner-hero p{color:var(--mist);font-size:1.05rem;max-width:520px;margin:0 auto 32px}
+.partner-hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.pstat{text-align:center}
+.pstat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--gold-light);display:block}
+.pstat-label{font-size:.8rem;color:var(--mist);text-transform:uppercase;letter-spacing:.06em}
+.partner-how{padding:60px 0;background:var(--silk)}
+.partner-how h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;text-align:center;margin-bottom:8px}
+.partner-how p.sub{color:var(--stone);text-align:center;margin-bottom:40px}
+.how-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.how-step{background:var(--white);border-radius:var(--r-lg);padding:28px 24px;text-align:center;border:1px solid var(--border)}
+.how-step-num{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--white);font-size:.85rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.how-step h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:8px}
+.how-step p{font-size:.85rem;color:var(--stone);line-height:1.6;margin:0}
+.partner-tiers{padding:60px 0}
+.partner-tiers h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;text-align:center;margin-bottom:8px}
+.tiers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:36px}
+.tier-card{border-radius:var(--r-lg);padding:32px 24px;border:2px solid var(--border);position:relative;background:var(--white)}
+.tier-card.featured{border-color:var(--gold);background:linear-gradient(135deg,#fff9ee,#fff)}
+.tier-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.tier-icon{font-size:2.4rem;margin-bottom:12px}
+.tier-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;margin-bottom:6px}
+.tier-min{font-size:.82rem;color:var(--stone);margin-bottom:16px}
+.tier-commission{font-size:2rem;font-weight:700;color:var(--red);font-family:'DM Mono',monospace;margin-bottom:16px}
+.tier-features{list-style:none;padding:0;margin:0;font-size:.85rem;color:var(--stone)}
+.tier-features li{padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:8px}
+.tier-features li:last-child{border:none}
+.partner-form{padding:60px 0;background:var(--silk)}
+.partner-form h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;text-align:center;margin-bottom:8px}
+.partner-form p.sub{color:var(--stone);text-align:center;margin-bottom:36px}
+.pform{max-width:560px;margin:0 auto;background:var(--white);border-radius:var(--r-lg);padding:36px;border:1px solid var(--border)}
+.pform-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pform label{display:block;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--stone);margin-bottom:6px}
+.pform input,.pform select,.pform textarea{width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.9rem;background:var(--white);color:var(--ink);box-sizing:border-box;transition:border .2s}
+.pform input:focus,.pform select:focus,.pform textarea:focus{outline:none;border-color:var(--ink)}
+.pform textarea{resize:vertical;min-height:80px}
+.pform-group{margin-bottom:18px}
+.pform-submit{width:100%;padding:14px;background:var(--ink);color:var(--white);border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:background .2s;margin-top:8px}
+.pform-submit:hover{background:var(--red)}
+.success-msg{display:none;text-align:center;padding:32px;background:#f0fdf4;border-radius:var(--r-lg);border:1px solid #86efac}
+.success-msg h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:8px;color:#15803d}
+.success-msg p{color:#166534;font-size:.9rem}
+</style>
+</head>
+<body>
+
+<div class="ticker-wrap"><div class="ticker-track">
+  <span>🤝 Partner Programme</span><span>·</span>
+  <span>Earn 10–25% commission · No warehouse needed · Ship from Turkey directly</span><span>·</span>
+  <span>🤝 Partner Programme</span><span>·</span>
+  <span>Earn 10–25% commission · No warehouse needed · Ship from Turkey directly</span><span>·</span>
+</div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="hdr-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span class="logo-main">WorldKidsFashion™</span>
+        <span class="logo-sub">Wholesale Only</span>
+      </div>
+    </a>
+    <nav class="nav-main">
+      <a href="catalog.html" class="nav-item"><span data-i18n="nav_catalog">Catalog</span</a>
+      <a href="services.html" class="nav-item"><span data-i18n="nav_services">Services</span</a>
+      <a href="about.html" class="nav-item"><span data-i18n="nav_about">About</span</a>
+      <a href="parents.html" class="nav-item" style="color:var(--red)"><span data-i18n="nav_parents">For Parents</span</a>
+    </nav>
+    <div class="hdr-right">
+      <a href="cart.html" class="hdr-icon">🛒 <span id="cartCount">0</span></a>
+      <a href="account.html" class="hdr-icon">👤</a>
+    </div>
+  </div>
+      
+</section>
+
+<!-- TIERS -->
+<section class="partner-tiers">
+  <div class="container">
+    <h2>Partner Tiers</h2>
+    <p style="color:var(--stone);text-align:center">Your commission grows as your sales grow. No caps.</p>
+    <div class="tiers-grid">
+
+      <div class="tier-card">
+        <div class="tier-icon">🌱</div>
+        <div class="tier-name">Starter</div>
+        <div class="tier-min">$0 — $999 / month sales</div>
+        <div class="tier-commission">10%</div>
+        <ul class="tier-features">
+          <li>✓ Personal referral link</li>
+          <li>✓ Access to full catalogue</li>
+          <li>✓ Marketing materials</li>
+          <li>✓ Monthly payout</li>
+        </ul>
+      </div>
+
+      <div class="tier-card featured">
+        <div class="tier-badge">Most Popular</div>
+        <div class="tier-icon">🌟</div>
+        <div class="tier-name">Active Partner</div>
+        <div class="tier-min">$1,000 — $4,999 / month</div>
+        <div class="tier-commission">15%</div>
+        <ul class="tier-features">
+          <li>✓ Everything in Starter</li>
+          <li>✓ Priority support</li>
+          <li>✓ Custom product pages</li>
+          <li>✓ Early access to new arrivals</li>
+          <li>✓ Weekly payout option</li>
+        </ul>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-icon">💎</div>
+        <div class="tier-name">Elite</div>
+        <div class="tier-min">$5,000+ / month sales</div>
+        <div class="tier-commission">25%</div>
+        <ul class="tier-features">
+          <li>✓ Everything in Active</li>
+          <li>✓ Dedicated account manager</li>
+          <li>✓ Private label option</li>
+          <li>✓ Co-branded materials</li>
+          <li>✓ Instant payout</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM -->
+<section class="partner-form" id="apply">
+  <div class="container">
+    <h2>Apply to Become a Partner</h2>
+    <p class="sub">Free. Takes 2 minutes. We reply within 24 hours.</p>
+
+    <div class="pform" id="partnerFormWrap">
+      <div class="pform-row">
+        <div class="pform-group">
+          <label>First Name *</label>
+          <input type="text" id="pf-first" placeholder="Your first name" required>
+        </div>
+        <div class="pform-group">
+          <label>Last Name *</label>
+          <input type="text" id="pf-last" placeholder="Your last name" required>
+        </div>
+      </div>
+      <div class="pform-group">
+        <label>Email *</label>
+        <input type="email" id="pf-email" placeholder="your@email.com" required>
+      </div>
+      <div class="pform-group">
+        <label>WhatsApp / Phone</label>
+        <input type="tel" id="pf-phone" placeholder="+1 234 567 8900">
+      </div>
+      <div class="pform-group">
+        <label>Country *</label>
+        <select id="pf-country">
+          <option value="">Select your country</option>
+          <option>Russia</option><option>Ukraine</option><option>Georgia</option>
+          <option>Germany</option><option>France</option><option>United Kingdom</option>
+          <option>United States</option><option>Poland</option><option>Netherlands</option>
+          <option>Norway</option><option>Sweden</option><option>Turkey</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="pform-group">
+        <label>How will you sell?</label>
+        <select id="pf-channel">
+          <option value="">Select main channel</option>
+          <option>Instagram / Social Media</option>
+          <option>WhatsApp Groups</option>
+          <option>My own website / online store</option>
+          <option>Physical boutique</option>
+          <option>Amazon / eBay / Etsy</option>
+          <option>Word of mouth / friends & family</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="pform-group">
+        <label>Tell us about yourself (optional)</label>
+        <textarea id="pf-about" placeholder="e.g. I'm a mum of 3 in France with 2,000 Instagram followers interested in kids fashion..."></textarea>
+      </div>
+      <button class="pform-submit" onclick="submitPartnerForm()">Apply Now — It's Free →</button>
+    </div>
+
+    <div class="success-msg" id="partnerSuccess">
+      <div style="font-size:3rem;margin-bottom:12px">🎉</div>
+      <h3>Application Received!</h3>
+      <p>Thank you for applying. Our team will review your application and contact you at the email provided within 24 hours.<br><br>
+      For faster response, message us on WhatsApp: <a href="https://wa.me/995598146418" style="color:var(--red)">+995 598 146 418</a></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div>
+          <div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion™</span><span class="logo-sub">Wholesale Only</span></div>
+        </a>
+        <p class="ft-brand-text">The world's largest wholesale marketplace for Turkish kids & baby clothing.</p>
+      </div>
+      <div class="ft-col">
+        <h4>For Parents</h4>
+        <a href="retail.html">Retail Shop</a>
+        <a href="blog.html">Parent's Guide</a>
+        <a href="lookbook.html">Lookbook</a>
+        <a href="partner.html">Become a Partner</a>
+      </div>
+      <div class="ft-col"><h4>Support</h4>
+        <a href="mailto:info@worldkidsfashion.org">📧 info@worldkidsfashion.org</a>
+        <a href="https://wa.me/995598146418">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2025 WorldKidsFashion™ · Istanbul, Turkey</div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="app.js"></script>
+<script>wkfInitLang();</script>
+<script src="i18n.js"></script>
+<script>
+function submitPartnerForm() {
+  const first = document.getElementById('pf-first').value.trim();
+  const last  = document.getElementById('pf-last').value.trim();
+  const email = document.getElementById('pf-email').value.trim();
+  const country = document.getElementById('pf-country').value;
+
+  if (!first || !last || !email || !country) {
+    alert('Please fill in all required fields (marked with *)');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address');
+    return;
+  }
+
+  // Save locally (in real system — this would POST to a server)
+  const application = {
+    name: first + ' ' + last,
+    email,
+    phone: document.getElementById('pf-phone').value,
+    country,
+    channel: document.getElementById('pf-channel').value,
+    about: document.getElementById('pf-about').value,
+    date: new Date().toISOString()
+  };
+
+  const apps = JSON.parse(localStorage.getItem('wkf_partner_apps') || '[]');
+  apps.push(application);
+  localStorage.setItem('wkf_partner_apps', JSON.stringify(apps));
+
+  document.getElementById('partnerFormWrap').style.display = 'none';
+  document.getElementById('partnerSuccess').style.display = 'block';
+}
+</script>
+</body>
+</html>

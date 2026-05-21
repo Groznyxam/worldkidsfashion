@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — WorldKidsFashion™ Wholesale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-box">
+    <div class="auth-icon"></div>
+    <h1 class="auth-title">Welcome Back</h1>
+    <p class="auth-sub">Log in to your wholesale account to see prices</p>
+    <form id="loginForm">
+      <div class="fg"><label>Email Address</label><input type="email" id="loginEmail" placeholder="your@business.com" required></div>
+      <div class="fg"><label>Password</label><input type="password" id="loginPass" placeholder="Your password" required></div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><a href="#" style="font-size:13px;color:var(--red)">Forgot password?</a></div>
+      <button type="submit" class="btn-primary auth-submit">Login to Account</button>
+    </form>
+    <div class="auth-switch">Don't have an account? <a href="register.html">Register as Reseller</a></div>
+    <a href="index.html" class="auth-back">← Back to Homepage</a>
+  </div>
+</div>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+<script>wkfInitLang();</script>
+</body></html>

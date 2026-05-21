@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WKF Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#0e0e0f;color:#f4f3f0;min-height:100vh}
+.admin-layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+.sidebar{background:#141416;border-right:1px solid rgba(255,255,255,.06);padding:24px 0;position:sticky;top:0;height:100vh}
+.sidebar-logo{padding:0 20px 24px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:16px}
+.sidebar-logo span{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff}
+.sidebar-logo small{display:block;font-size:.7rem;color:#6b6b72;text-transform:uppercase;letter-spacing:.08em}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;color:#a8a8b0;font-size:.85rem;cursor:pointer;transition:all .15s;border-left:3px solid transparent}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,.04)}
+.nav-item.active{color:#fff;background:rgba(255,255,255,.06);border-left-color:#c9a84c}
+.nav-section{padding:16px 20px 8px;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#4a4a52}
+.main{padding:32px;overflow-y:auto}
+.page{display:none}
+.page.active{display:block}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:6px}
+.page-sub{color:#6b6b72;font-size:.88rem;margin-bottom:32px}
+.card{background:#1c1c1e;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;margin-bottom:20px}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:6px;color:#fff}
+.card p{font-size:.85rem;color:#6b6b72;margin-bottom:20px}
+label{display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#a8a8b0;margin-bottom:6px}
+input[type=number],input[type=text],input[type=password],select{background:#141416;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:10px 14px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;width:100%;transition:border .2s}
+input[type=number]:focus,input[type=text]:focus,input[type=password]:focus,select:focus{outline:none;border-color:#c9a84c}
+.input-group{position:relative;margin-bottom:16px}
+.input-suffix{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#6b6b72;font-size:.85rem}
+.price-preview{background:#141416;border-radius:8px;padding:16px;margin:16px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center}
+.pp-col label{font-size:.7rem;margin-bottom:4px}
+.pp-col .val{font-family:'DM Mono',monospace;font-size:1.3rem;color:#c9a84c}
+.btn{padding:10px 24px;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-gold{background:#c9a84c;color:#0e0e0f}
+.btn-gold:hover{background:#e8c96b}
+.btn-red{background:#b5291c;color:#fff}
+.btn-red:hover{background:#d63826}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:#a8a8b0}
+.btn-ghost:hover{border-color:#fff;color:#fff}
+.btn-green{background:#166534;color:#fff}
+.btn-green:hover{background:#15803d}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px}
+.stat-card{background:#1c1c1e;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px}
+.stat-card .num{font-family:'DM Mono',monospace;font-size:1.8rem;color:#c9a84c;margin-bottom:4px}
+.stat-card .lbl{font-size:.78rem;color:#6b6b72;text-transform:uppercase;letter-spacing:.06em}
+
+/* Import area */
+.import-zone{border:2px dashed rgba(255,255,255,.15);border-radius:10px;padding:40px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:20px}
+.import-zone:hover,.import-zone.drag{border-color:#c9a84c;background:rgba(201,168,76,.05)}
+.import-zone input{display:none}
+.import-zone-icon{font-size:2.5rem;margin-bottom:12px}
+.import-zone h4{font-size:1rem;margin-bottom:6px}
+.import-zone p{font-size:.82rem;color:#6b6b72}
+.progress-bar{height:6px;background:rgba(255,255,255,.06);border-radius:3px;margin:16px 0;overflow:hidden}
+.progress-fill{height:100%;background:#c9a84c;border-radius:3px;transition:width .3s;width:0}
+
+/* Products table */
+.prod-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.prod-table th{padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:#6b6b72;border-bottom:1px solid rgba(255,255,255,.06)}
+.prod-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:#a8a8b0}
+.prod-table td:first-child{color:#fff}
+.prod-table tr:hover td{background:rgba(255,255,255,.02)}
+.price-cell{font-family:'DM Mono',monospace;color:#c9a84c}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.72rem;font-weight:600}
+.badge-green{background:rgba(22,101,52,.4);color:#86efac}
+.badge-blue{background:rgba(30,58,138,.4);color:#93c5fd}
+.badge-orange{background:rgba(154,52,18,.4);color:#fed7aa}
+.alert{padding:12px 16px;border-radius:8px;font-size:.85rem;margin-bottom:16px}
+.alert-success{background:rgba(22,101,52,.2);border:1px solid rgba(134,239,172,.2);color:#86efac}
+.alert-warning{background:rgba(133,77,14,.2);border:1px solid rgba(253,224,71,.2);color:#fde047}
+.alert-error{background:rgba(153,27,27,.2);border:1px solid rgba(252,165,165,.2);color:#fca5a5}
+.partner-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.partner-row:last-child{border:none}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0e0e0f">
+  <div style="width:360px;text-align:center">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:4px">WorldKidsFashion™</div>
+    <div style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#6b6b72;margin-bottom:36px">Admin Panel</div>
+    <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:32px;text-align:left">
+      <div style="margin-bottom:16px">
+        <label>Username</label>
+        <input type="text" id="loginUser" placeholder="admin" value="admin">
+      </div>
+      <div style="margin-bottom:24px">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <button class="btn btn-gold" style="width:100%" onclick="doLogin()">Sign In →</button>
+      <div id="loginErr" style="color:#fca5a5;font-size:.82rem;margin-top:12px;display:none">Invalid credentials</div>
+    </div>
+    <div style="margin-top:16px;font-size:.78rem;color:#4a4a52">
+      Default: admin / wkf2025admin
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" style="display:none">
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span>WKF Admin</span>
+      <small>WorldKidsFashion™</small>
+    </div>
+    <div class="nav-section">Overview</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)">📊 Dashboard</div>
+    <div class="nav-section">Pricing</div>
+    <div class="nav-item" onclick="showPage('pricing',this)">💰 Price Settings</div>
+    <div class="nav-item" onclick="showPage('import',this)">📦 Import Catalog</div>
+    <div class="nav-item" onclick="showPage('products',this)">🗂 Products</div>
+    <div class="nav-section">Sales</div>
+    <div class="nav-item" onclick="showPage('partners',this)">🤝 Partner Applications</div>
+    <div class="nav-section">Settings</div>
+    <div class="nav-item" onclick="showPage('settings',this)">⚙️ Admin Settings</div>
+    <div style="position:absolute;bottom:20px;left:0;right:0;padding:0 20px">
+      <button class="btn btn-ghost" style="width:100%;font-size:.8rem" onclick="doLogout()">Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-title">Dashboard</div>
+      <div class="page-sub">WorldKidsFashion™ — Admin Overview</div>
+
+      <div class="stat-cards">
+        <div class="stat-card"><div class="num" id="stat-products">0</div><div class="lbl">Products</div></div>
+        <div class="stat-card"><div class="num" id="stat-partners">0</div><div class="lbl">Partner Applications</div></div>
+        <div class="stat-card"><div class="num" id="stat-wholesale">10%</div><div class="lbl">Wholesale Markup</div></div>
+        <div class="stat-card"><div class="num" id="stat-retail">15%</div><div class="lbl">Retail Markup</div></div>
+      </div>
+
+      <div class="card">
+        <h3>Quick Actions</h3>
+        <p>Common tasks</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-gold" onclick="showPage('import',document.querySelector('[onclick*=import]'))">📦 Import New Catalog</button>
+          <button class="btn btn-ghost" onclick="showPage('pricing',document.querySelector('[onclick*=pricing]'))">💰 Update Prices</button>
+          <button class="btn btn-ghost" onclick="showPage('partners',document.querySelector('[onclick*=partners]'))">🤝 View Applications</button>
+          <a href="index.html" target="_blank"><button class="btn btn-ghost">🌐 View Website</button></a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Current Price Formula</h3>
+        <p>Applied to all products on import</p>
+        <div class="price-preview">
+          <div class="pp-col"><label>Supplier Price</label><div class="val">$20.00</div></div>
+          <div class="pp-col"><label>Wholesale (+<span id="dash-wm">10</span>%)</label><div class="val" id="dash-wp">$22.00</div></div>
+          <div class="pp-col"><label>Retail (+<span id="dash-rm">15</span>%)</label><div class="val" id="dash-rp">$25.30</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="page" id="page-pricing">
+      <div class="page-title">Price Settings</div>
+      <div class="page-sub">Set markup percentages. Changes apply to all new imports and recalculate existing products.</div>
+
+      <div class="card">
+        <h3>Markup Configuration</h3>
+        <p>Formula: Supplier Price → ×(1 + wholesale%) = Wholesale → ×(1 + retail%) = Retail</p>
+
+        <div class="row2">
+          <div>
+            <label>Wholesale Markup (%)</label>
+            <div class="input-group">
+              <input type="number" id="wholesale_markup" min="0" max="200" step="0.5" value="10" oninput="updatePreview()">
+              <span class="input-suffix">%</span>
+            </div>
+            <div style="font-size:.78rem;color:#6b6b72">Added to supplier price to get wholesale (B2B) price</div>
+          </div>
+          <div>
+            <label>Retail Markup (%)</label>
+            <div class="input-group">
+              <input type="number" id="retail_markup" min="0" max="500" step="0.5" value="15" oninput="updatePreview()">
+              <span class="input-suffix">%</span>
+            </div>
+            <div style="font-size:.78rem;color:#6b6b72">Added to wholesale price to get retail (B2C / parents) price</div>
+          </div>
+        </div>
+
+        <label style="margin-top:16px">Live Preview (based on $20.00 supplier price)</label>
+        <div class="price-preview">
+          <div class="pp-col"><label>Supplier Price</label><div class="val">$20.00</div></div>
+          <div class="pp-col"><label>Wholesale</label><div class="val" id="prev-wholesale">$22.00</div></div>
+          <div class="pp-col"><label>Retail</label><div class="val" id="prev-retail">$25.30</div></div>
+        </div>
+
+        <div style="margin-top:8px">
+          <button class="btn btn-gold" onclick="savePricing()">Save Price Settings</button>
+          <span id="pricing-saved" style="margin-left:12px;color:#86efac;font-size:.85rem;display:none">✓ Saved!</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Recalculate Existing Products</h3>
+        <p>After changing markup percentages, apply new prices to all imported products.</p>
+        <button class="btn btn-ghost" onclick="recalcProducts()">🔄 Recalculate All Products</button>
+        <span id="recalc-done" style="margin-left:12px;color:#86efac;font-size:.85rem;display:none">✓ Done!</span>
+      </div>
+    </div>
+
+    <!-- IMPORT -->
+    <div class="page" id="page-import">
+      <div class="page-title">Import Catalog</div>
+      <div class="page-sub">Upload supplier price list in CSV or Excel format. Prices are calculated automatically.</div>
+
+      <div class="card">
+        <h3>Upload Supplier File</h3>
+        <p>Supported formats: <strong>CSV</strong>, <strong>Excel (.xlsx)</strong>. The file must have columns: <code style="color:#c9a84c">name, supplier_price</code>. Optional: <code style="color:#c9a84c">brand, category, description, age</code></p>
+
+        <div class="import-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" onchange="handleFile(this.files[0])">
+          <div class="import-zone-icon">📂</div>
+          <h4>Drop file here or click to browse</h4>
+          <p>CSV or Excel · Max 10MB</p>
+        </div>
+
+        <div id="importPreview" style="display:none">
+          <div class="alert alert-success" id="importAlert"></div>
+          <div class="progress-bar"><div class="progress-fill" id="importProgress"></div></div>
+          <div style="overflow-x:auto">
+            <table class="prod-table" id="previewTable">
+              <thead><tr>
+                <th>Name</th><th>Brand</th><th>Category</th><th>Supplier $</th>
+                <th>Wholesale $</th><th>Retail $</th><th>Status</th>
+              </tr></thead>
+              <tbody id="previewBody"></tbody>
+            </table>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:12px">
+            <button class="btn btn-gold" onclick="confirmImport()">✓ Import All Products</button>
+            <button class="btn btn-ghost" onclick="cancelImport()">Cancel</button>
+          </div>
+        </div>
+
+        <div id="importSuccess" style="display:none" class="alert alert-success"></div>
+      </div>
+
+      <div class="card">
+        <h3>CSV Template</h3>
+        <p>Download this template, fill in your supplier's products, then upload above.</p>
+        <button class="btn btn-ghost" onclick="downloadTemplate()">⬇ Download CSV Template</button>
+        <pre style="background:#141416;padding:16px;border-radius:8px;margin-top:16px;font-size:.78rem;color:#a8a8b0;overflow-x:auto">name,supplier_price,brand,category,description,age
+Baby Cotton Romper,8.50,BabyCosy,newborn,Soft organic cotton romper,0-6m
+Girls Summer Dress,14.00,LittlePrincess,girls,Floral print summer dress,2-8y
+Boys Tracksuit,16.50,ActiveKids,boys,Cotton fleece tracksuit,4-10y</pre>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="page" id="page-products">
+      <div class="page-title">Products</div>
+      <div class="page-sub">All imported products with calculated prices.</div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <h3 style="margin-bottom:0">Product List</h3>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-ghost" onclick="clearProducts()">🗑 Clear All</button>
+            <button class="btn btn-gold" onclick="showPage('import',document.querySelector('[onclick*=import]'))">+ Import More</button>
+          </div>
+        </div>
+        <div style="overflow-x:auto;padding:0 24px 24px">
+          <table class="prod-table">
+            <thead><tr>
+              <th>Name</th><th>Brand</th><th>Category</th><th>Age</th>
+              <th>Supplier $</th><th>Wholesale $</th><th>Retail $</th>
+            </tr></thead>
+            <tbody id="productsBody">
+              <tr><td colspan="7" style="text-align:center;padding:32px;color:#4a4a52">No products imported yet. <a href="#" onclick="showPage('import',document.querySelector('[onclick*=import]'));return false" style="color:#c9a84c">Import your first catalog →</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNERS -->
+    <div class="page" id="page-partners">
+      <div class="page-title">Partner Applications</div>
+      <div class="page-sub">Applications from the "Become a Partner" form on the website.</div>
+      <div class="card" id="partnersCard">
+        <div id="partnersList"></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="page" id="page-settings">
+      <div class="page-title">Admin Settings</div>
+      <div class="page-sub">Change admin credentials.</div>
+      <div class="card">
+        <h3>Change Password</h3>
+        <p>Update your admin login password.</p>
+        <div style="max-width:360px">
+          <div style="margin-bottom:14px"><label>Current Password</label><input type="password" id="set-curr"></div>
+          <div style="margin-bottom:14px"><label>New Password</label><input type="password" id="set-new"></div>
+          <div style="margin-bottom:20px"><label>Confirm New Password</label><input type="password" id="set-confirm"></div>
+          <button class="btn btn-gold" onclick="changePassword()">Update Password</button>
+          <span id="pw-msg" style="margin-left:12px;font-size:.85rem;display:none"></span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</div><!-- /adminPanel -->
+
+<script>
+// ── AUTH ──────────────────────────────────────────────────────
+const ADMIN_KEY = 'wkf_admin_pw';
+function getAdminPw() { return localStorage.getItem(ADMIN_KEY) || 'wkf2025admin'; }
+
+function doLogin() {
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  if (user === 'admin' && pass === getAdminPw()) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    loadAll();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+  }
+}
+
+function doLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('loginPass').value = '';
+}
+
+function changePassword() {
+  const curr = document.getElementById('set-curr').value;
+  const nw   = document.getElementById('set-new').value;
+  const conf = document.getElementById('set-confirm').value;
+  const msg  = document.getElementById('pw-msg');
+  if (curr !== getAdminPw()) { msg.style.display='inline';msg.style.color='#fca5a5';msg.textContent='Current password incorrect';return; }
+  if (nw !== conf)           { msg.style.display='inline';msg.style.color='#fca5a5';msg.textContent='Passwords do not match';return; }
+  if (nw.length < 6)        { msg.style.display='inline';msg.style.color='#fca5a5';msg.textContent='Min 6 characters';return; }
+  localStorage.setItem(ADMIN_KEY, nw);
+  msg.style.display='inline';msg.style.color='#86efac';msg.textContent='✓ Password updated';
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (el) el.classList.add('active');
+  if (id === 'products') renderProducts();
+  if (id === 'partners') renderPartners();
+}
+
+// ── PRICING ───────────────────────────────────────────────────
+function getPricing() {
+  return JSON.parse(localStorage.getItem('wkf_pricing') || JSON.stringify({wholesale_markup:10, retail_markup:15}));
+}
+
+function loadPricing() {
+  const p = getPricing();
+  document.getElementById('wholesale_markup').value = p.wholesale_markup;
+  document.getElementById('retail_markup').value    = p.retail_markup;
+  updatePreview();
+  // dashboard
+  document.getElementById('dash-wm').textContent = p.wholesale_markup;
+  document.getElementById('dash-rm').textContent = p.retail_markup;
+  const wh = (20 * (1 + p.wholesale_markup/100)).toFixed(2);
+  const rt = (wh * (1 + p.retail_markup/100)).toFixed(2);
+  document.getElementById('dash-wp').textContent = '$' + wh;
+  document.getElementById('dash-rp').textContent = '$' + rt;
+  document.getElementById('stat-wholesale').textContent = p.wholesale_markup + '%';
+  document.getElementById('stat-retail').textContent    = p.retail_markup + '%';
+}
+
+function updatePreview() {
+  const wm = parseFloat(document.getElementById('wholesale_markup').value) || 0;
+  const rm = parseFloat(document.getElementById('retail_markup').value)    || 0;
+  const wh = (20 * (1 + wm/100)).toFixed(2);
+  const rt = (parseFloat(wh) * (1 + rm/100)).toFixed(2);
+  document.getElementById('prev-wholesale').textContent = '$' + wh;
+  document.getElementById('prev-retail').textContent    = '$' + rt;
+}
+
+function savePricing() {
+  const pricing = {
+    wholesale_markup: parseFloat(document.getElementById('wholesale_markup').value) || 10,
+    retail_markup:    parseFloat(document.getElementById('retail_markup').value)    || 15
+  };
+  localStorage.setItem('wkf_pricing', JSON.stringify(pricing));
+  const el = document.getElementById('pricing-saved');
+  el.style.display = 'inline';
+  setTimeout(() => el.style.display = 'none', 2000);
+  loadPricing();
+}
+
+function recalcProducts() {
+  const pricing = getPricing();
+  const products = JSON.parse(localStorage.getItem('wkf_products') || '[]');
+  products.forEach(p => {
+    p.wholesale = Math.round(p.supplierPrice * (1 + pricing.wholesale_markup/100) * 100)/100;
+    p.retail    = Math.round(p.wholesale     * (1 + pricing.retail_markup/100)    * 100)/100;
+  });
+  localStorage.setItem('wkf_products', JSON.stringify(products));
+  const el = document.getElementById('recalc-done');
+  el.style.display = 'inline';
+  setTimeout(() => el.style.display = 'none', 2000);
+}
+
+// ── IMPORT ────────────────────────────────────────────────────
+let pendingImport = [];
+
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', e => {e.preventDefault();dropZone.classList.add('drag')});
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+dropZone.addEventListener('drop', e => {e.preventDefault();dropZone.classList.remove('drag');handleFile(e.dataTransfer.files[0])});
+
+function handleFile(file) {
+  if (!file) return;
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (!['csv','xlsx','xls'].includes(ext)) {
+    alert('Please upload a CSV or Excel file');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    let rows = [];
+    if (ext === 'csv') {
+      rows = parseCSV(e.target.result);
+    } else {
+      // For Excel — basic simulation (real xlsx needs SheetJS library)
+      // Show friendly message
+      alert('Excel import: for full Excel support, save your file as CSV first (File → Save As → CSV). The system will then process it automatically.');
+      return;
+    }
+    showPreview(rows, file.name);
+  };
+
+  if (ext === 'csv') reader.readAsText(file);
+  else reader.readAsArrayBuffer(file);
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g,''));
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const vals = lines[i].split(',').map(v => v.trim().replace(/"/g,''));
+    if (!vals[0]) continue;
+    const obj = {};
+    headers.forEach((h,idx) => obj[h] = vals[idx] || '');
+    rows.push(obj);
+  }
+  return rows;
+}
+
+function showPreview(rows, filename) {
+  const pricing = getPricing();
+  pendingImport = [];
+  const tbody = document.getElementById('previewBody');
+  tbody.innerHTML = '';
+
+  let valid = 0, skipped = 0;
+  rows.forEach(row => {
+    const name  = row['name'] || row['product'] || row['item'] || '';
+    const price = parseFloat(row['supplier_price'] || row['price'] || row['cost'] || 0);
+    if (!name || !price) { skipped++; return; }
+
+    const wholesale = Math.round(price * (1 + pricing.wholesale_markup/100) * 100)/100;
+    const retail    = Math.round(wholesale * (1 + pricing.retail_markup/100) * 100)/100;
+    const product   = {
+      id: 'imp_' + Date.now() + '_' + valid,
+      name,
+      brand:        row['brand'] || 'WKF',
+      category:     row['category'] || row['cat'] || 'general',
+      description:  row['description'] || row['desc'] || '',
+      age:          row['age'] || '0–14y',
+      supplierPrice: price,
+      wholesale, retail
+    };
+    pendingImport.push(product);
+    valid++;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${name}</td>
+      <td>${product.brand}</td>
+      <td><span class="badge badge-blue">${product.category}</span></td>
+      <td class="price-cell">$${price.toFixed(2)}</td>
+      <td class="price-cell">$${wholesale.toFixed(2)}</td>
+      <td class="price-cell">$${retail.toFixed(2)}</td>
+      <td><span class="badge badge-green">Ready</span></td>`;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('importAlert').textContent = `File: ${filename} — ${valid} products ready to import${skipped ? ', ' + skipped + ' rows skipped (missing name or price)' : ''}`;
+  document.getElementById('importProgress').style.width = '100%';
+  document.getElementById('importPreview').style.display = 'block';
+  document.getElementById('importSuccess').style.display = 'none';
+}
+
+function confirmImport() {
+  if (!pendingImport.length) return;
+  const existing = JSON.parse(localStorage.getItem('wkf_products') || '[]');
+  const merged   = [...existing, ...pendingImport];
+  localStorage.setItem('wkf_products', JSON.stringify(merged));
+
+  document.getElementById('importPreview').style.display = 'none';
+  const el = document.getElementById('importSuccess');
+  el.textContent = `✓ ${pendingImport.length} products imported successfully! Total products: ${merged.length}`;
+  el.style.display = 'block';
+  pendingImport = [];
+  updateStats();
+}
+
+function cancelImport() {
+  pendingImport = [];
+  document.getElementById('importPreview').style.display = 'none';
+  document.getElementById('fileInput').value = '';
+}
+
+function downloadTemplate() {
+  const csv = `name,supplier_price,brand,category,description,age
+Baby Cotton Romper,8.50,BabyCosy,newborn,Soft organic cotton romper,0-6m
+Girls Summer Dress,14.00,LittlePrincess,girls,Floral print summer dress,2-8y
+Boys Tracksuit,16.50,ActiveKids,boys,Cotton fleece tracksuit,4-10y
+Organic Bodysuit Set,12.00,PureOrganic,newborn,GOTS certified 3-piece set,0-3m`;
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'WKF_Catalog_Template.csv';
+  a.click();
+}
+
+// ── PRODUCTS ──────────────────────────────────────────────────
+function renderProducts() {
+  const products = JSON.parse(localStorage.getItem('wkf_products') || '[]');
+  const tbody    = document.getElementById('productsBody');
+  if (!products.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:32px;color:#4a4a52">No products yet. <a href="#" onclick="showPage(\'import\',document.querySelector(\'[onclick*=import]\'));return false" style="color:#c9a84c">Import catalog →</a></td></tr>';
+    return;
+  }
+  tbody.innerHTML = products.map(p => `
+    <tr>
+      <td>${p.name}</td>
+      <td>${p.brand || '—'}</td>
+      <td><span class="badge badge-blue">${p.category || '—'}</span></td>
+      <td>${p.age || '—'}</td>
+      <td class="price-cell">$${p.supplierPrice.toFixed(2)}</td>
+      <td class="price-cell">$${p.wholesale.toFixed(2)}</td>
+      <td class="price-cell">$${p.retail.toFixed(2)}</td>
+    </tr>`).join('');
+}
+
+function clearProducts() {
+  if (confirm('Delete all imported products?')) {
+    localStorage.removeItem('wkf_products');
+    renderProducts();
+    updateStats();
+  }
+}
+
+// ── PARTNERS ─────────────────────────────────────────────────
+function renderPartners() {
+  const apps = JSON.parse(localStorage.getItem('wkf_partner_apps') || '[]');
+  const el   = document.getElementById('partnersList');
+  if (!apps.length) {
+    el.innerHTML = '<p style="color:#6b6b72;text-align:center;padding:24px">No applications yet. The form on partner.html will send applications here.</p>';
+    return;
+  }
+  el.innerHTML = apps.map((a,i) => `
+    <div class="partner-row">
+      <div>
+        <div style="font-weight:600;color:#fff">${a.name}</div>
+        <div style="font-size:.78rem;color:#6b6b72">${a.email} · ${a.country}</div>
+      </div>
+      <div style="font-size:.82rem;color:#a8a8b0">${a.channel || '—'}</div>
+      <div style="font-size:.78rem;color:#4a4a52">${new Date(a.date).toLocaleDateString()}</div>
+      <div style="display:flex;gap:8px">
+        <a href="https://wa.me/${(a.phone||'').replace(/\D/g,'')}" target="_blank">
+          <button class="btn btn-green" style="font-size:.75rem;padding:6px 12px">WhatsApp</button>
+        </a>
+        <a href="mailto:${a.email}">
+          <button class="btn btn-ghost" style="font-size:.75rem;padding:6px 12px">Email</button>
+        </a>
+      </div>
+    </div>`).join('');
+  document.getElementById('stat-partners').textContent = apps.length;
+}
+
+// ── STATS ─────────────────────────────────────────────────────
+function updateStats() {
+  const products = JSON.parse(localStorage.getItem('wkf_products') || '[]');
+  const partners = JSON.parse(localStorage.getItem('wkf_partner_apps') || '[]');
+  document.getElementById('stat-products').textContent = products.length;
+  document.getElementById('stat-partners').textContent = partners.length;
+}
+
+function loadAll() {
+  loadPricing();
+  updateStats();
+}
+</script>
+</body>
+</html>
