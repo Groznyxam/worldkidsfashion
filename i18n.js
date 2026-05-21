@@ -330,7 +330,7 @@ function wkfSetLang(code) {
     if (t[key] !== undefined) el.placeholder = t[key];
   });
   const btn = document.getElementById('langBtn');
-  if (btn) btn.innerHTML = '🌐 ' + t.flag + ' <span style="font-size:.7rem;opacity:.7">' + code.toUpperCase() + '</span>';
+  const lc = document.getElementById("langCode"); if(lc) lc.textContent = code.toUpperCase();
   const dd = document.getElementById('langDropdown');
   if (dd) dd.style.display = 'none';
   document.querySelectorAll('.lang-opt').forEach(o => {
