@@ -69,7 +69,7 @@
       
       
       <div id="langWrap" style="position:relative;display:inline-block">
-        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode" style="color:var(--ink)">EN</span> ▾</button>
+        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode" style="color:var(--ink)">EN</span> ▾</button>
         <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
           <div style="padding:4px 10px 6px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#444;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px">Language</div>
           <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
@@ -183,7 +183,7 @@ document.getElementById('cartCount').textContent = savedCart.reduce((s,i)=>s+i.q
 
 <footer class="site-footer"><div class="container">
   <div class="ft-grid">
-    <div><a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div></a><p class="ft-brand-text">Wholesale kids and baby clothing from Istanbul, Turkey.</p></div>
+    <div><a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion</span><span class="logo-sub"><span data-i18n="logo_sub2">Wholesale B2B</span></div></a><p class="ft-brand-text">Wholesale kids and baby clothing from Istanbul, Turkey.</p></div>
     <div class="ft-col"><h4>Legal</h4><a href="terms.html">Terms &amp; Conditions</a><a href="privacy.html">Privacy Policy</a><a href="returns.html">Returns Policy</a><a href="impressum.html">Impressum</a></div>
     <div class="ft-col"><h4>Platform</h4><a href="catalog.html">Catalog</a><a href="trust.html">Trust Center</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
   </div>
