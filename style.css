@@ -944,3 +944,16 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
   .detail-layout { gap:32px; }
   .hero-offer { flex-direction:column; gap:12px; text-align:center; }
 }
+
+/* ── LANG SWITCHER ─────────────────────── */
+#langWrap button:first-child {
+  border-color: rgba(0,0,0,.2) !important;
+  color: var(--ink) !important;
+  background: rgba(0,0,0,.05) !important;
+}
+#langWrap button:first-child span#langCode {
+  color: var(--ink) !important;
+}
+#langWrap button:first-child:hover {
+  background: rgba(0,0,0,.1) !important;
+}

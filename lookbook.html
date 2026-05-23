@@ -4,51 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lookbook — WorldKidsFashion™</title>
-<meta name="description" content="Seasonal style inspiration for kids of all ages. Curated outfits, colour palettes and styling ideas from WorldKidsFashion.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 .lb-hero{background:linear-gradient(160deg,var(--ink) 0%,var(--ink2) 60%,#2a1a0a 100%);padding:80px 0 60px;text-align:center;color:var(--white)}
 .lb-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4.5rem);font-weight:300;letter-spacing:-.02em;margin-bottom:12px}
-.lb-hero h1 em{font-style:italic;color:var(--gold-light)}
+.lb-hero h1 em{font-style:italic;color:var(--gold-light,#e8c96b)}
 .lb-hero p{color:var(--mist);font-size:1rem;max-width:480px;margin:0 auto}
-.lb-seasons{display:flex;gap:12px;justify-content:center;margin:32px 0 48px;flex-wrap:wrap}
+.lb-seasons{display:flex;gap:12px;justify-content:center;margin:32px 0 0;flex-wrap:wrap}
 .lb-season-btn{padding:10px 24px;border:1px solid rgba(255,255,255,.2);border-radius:30px;background:transparent;color:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;transition:all .2s}
-.lb-season-btn.active,.lb-season-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.lb-season-btn.active,.lb-season-btn:hover{background:#c9a84c;border-color:#c9a84c;color:#000}
 .lb-section{padding:60px 0}
 .lb-section-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:8px;color:var(--ink)}
 .lb-section-title em{font-style:italic;color:var(--red)}
 .lb-section-sub{color:var(--stone);margin-bottom:36px;font-size:.9rem}
 .lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:16px}
-.lb-card{border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;background:var(--silk)}
-.lb-card-visual{height:320px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;background:linear-gradient(135deg,var(--silk) 0%,var(--cream) 100%)}
-.lb-card-visual.dark{background:linear-gradient(135deg,#1a1a1f,#2e2e32)}
-.lb-palette{position:absolute;bottom:12px;right:12px;display:flex;gap:4px}
-.lb-swatch{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.6)}
+.lb-card{border-radius:var(--r-lg);overflow:hidden;background:var(--silk)}
+.lb-card-visual{height:300px;display:flex;align-items:center;justify-content:center;font-size:5rem}
 .lb-card-info{padding:16px 20px}
 .lb-card-info h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:4px;color:var(--ink)}
 .lb-card-info p{font-size:.82rem;color:var(--stone);margin-bottom:10px}
 .lb-card-link{font-size:.82rem;color:var(--red);font-weight:600;text-decoration:none}
-.lb-featured{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-.lb-featured .lb-card-visual{height:420px}
-.lb-featured .lb-card-visual.tall{height:520px}
-@media(max-width:640px){.lb-featured{grid-template-columns:1fr}}
 .palette-section{background:var(--silk);border-radius:var(--r-lg);padding:32px;margin-bottom:48px}
 .palette-section h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;margin-bottom:20px;color:var(--ink)}
-.palette-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.palette-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px}
 .palette-item{text-align:center}
-.palette-color{height:80px;border-radius:var(--r);margin-bottom:8px;border:1px solid var(--border)}
-.palette-name{font-size:.78rem;color:var(--stone)}
+.palette-color{height:70px;border-radius:var(--r);margin-bottom:8px}
+.palette-name{font-size:.75rem;color:var(--stone)}
 </style>
 </head>
 <body>
 
-<div class="ticker-wrap"><div class="ticker-track">
-  <span>✨ Lookbook 2025</span><span>·</span>
-  <span>Spring · Summer · Autumn · Winter Collections</span><span>·</span>
-  <span>✨ Lookbook 2025</span><span>·</span>
-  <span>Spring · Summer · Autumn · Winter Collections</span><span>·</span>
+<div class="announce" aria-hidden="true"><div class="announce-track">
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span><span>·</span>
+  <span data-i18n="ann3">🌿 GOTS Certified Organic Available</span><span>·</span>
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span>
 </div></div>
 
 <header class="site-header" id="siteHeader">
@@ -57,190 +50,123 @@
       <div class="logo-icon"></div>
       <div class="logo-text">
         <span class="logo-main">WorldKidsFashion™</span>
-        <span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span>
+        <span class="logo-sub" data-i18n="logo_sub">Wholesale Only</span>
       </div>
     </a>
     <nav class="nav-main">
-      <a href="catalog.html" class="nav-item"><span data-i18n="nav_catalog">Catalog</span</a>
-      <a href="services.html" class="nav-item"><span data-i18n="nav_services"><span data-i18n="ft_services">Services</span>/span</a>
-      <a href="about.html" class="nav-item"><span data-i18n="nav_about">About</span</a>
-      <a href="parents.html" class="nav-item" style="color:var(--red)"><span data-i18n="nav_parents"><span data-i18n="ft_parents">For Parents</span>/span</a>
+      <a href="catalog.html" class="nav-item" data-i18n="nav_catalog">Catalog</a>
+      <a href="services.html" class="nav-item" data-i18n="nav_services">Services</a>
+      <a href="about.html" class="nav-item" data-i18n="nav_about">About</a>
+      <a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents">For Parents</a>
     </nav>
     <div class="hdr-right">
-      <a href="cart.html" class="hdr-icon">🛒 <span id="cartCount">0</span></a>
-      <a href="account.html" class="hdr-icon">👤</a>
-      
-      
-
-    <div class="lb-featured">
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#fef9f0,#f5d6c8);font-size:6rem">🌸</div>
-        <div class="lb-card-info">
-          <h4>Baby Girl Spring Set</h4>
-          <p>Peach cotton dress + matching bloomer. Ages 6–18m. GOTS organic.</p>
-          <a href="retail.html" class="lb-card-link">Shop this look →</a>
+      <a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a>
+      <a href="account.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <div id="langWrap" style="position:relative;display:inline-block">
+        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode" style="color:var(--ink)">EN</span> ▾</button>
+        <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
+          <div style="padding:4px 10px 6px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#666;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px" data-i18n="lang_choose">Language</div>
+          <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
+          <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
+          <button onclick="wkfSetLang('fr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇫🇷 Français</button>
+          <button onclick="wkfSetLang('de')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇩🇪 Deutsch</button>
+          <button onclick="wkfSetLang('tr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇹🇷 Türkçe</button>
+          <button onclick="wkfSetLang('no')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇳🇴 Norsk</button>
         </div>
       </div>
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#f0f9f4,#c8e6c9);font-size:6rem">🌿</div>
-        <div class="lb-card-info">
-          <h4>Newborn Organic Gift Set</h4>
-          <p>Mint & white organic cotton. 5-piece set. Perfect baby gift. Ages 0–3m.</p>
-          <a href="retail.html" class="lb-card-link">Shop this look →</a>
-        </div>
-      </div>
+      <a href="register.html" class="btn-primary btn-sm" data-i18n="btn_register">Register Free →</a>
     </div>
+  </div>
+</header>
 
-    <div class="lb-grid">
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#fdf0f8,#f8e1e7)">🎀<br style="display:block;margin:8px 0">
-          <span style="font-size:1rem;color:#888">Girls 2–5y</span>
-          <div class="lb-palette">
-            <div class="lb-swatch" style="background:#f8e1e7"></div>
-            <div class="lb-swatch" style="background:#e1d5f0"></div>
-            <div class="lb-swatch" style="background:#fff9e6"></div>
-          </div>
-        </div>
-        <div class="lb-card-info">
-          <h4>Little Princess Spring Dress</h4>
-          <p>Rose tulle dress with ribbon detail. Perfect for special occasions. Ages 2–5y.</p>
-          <a href="retail.html" class="lb-card-link">Shop →</a>
-        </div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#eef5ff,#dceefb)">⚽<br>
-          <span style="font-size:1rem;color:#888">Boys 4–8y</span></div>
-        <div class="lb-card-info">
-          <h4>Boys Spring Tracksuit</h4>
-          <p>Sky blue cotton tracksuit. Comfortable, machine washable. Ages 4–8y.</p>
-          <a href="retail.html" class="lb-card-link">Shop →</a>
-        </div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#fffbec,#fff9e6)">👶<br>
-          <span style="font-size:1rem;color:#888">Baby 3–12m</span></div>
-        <div class="lb-card-info">
-          <h4>Baby Butter Yellow Set</h4>
-          <p>Gender-neutral bodysuit + leggings in warm butter yellow. Ages 3–12m.</p>
-          <a href="retail.html" class="lb-card-link">Shop →</a>
-        </div>
-      </div>
+<section class="lb-hero">
+  <div class="container">
+    <h1 data-i18n="lb_h1">Style Your Child <em>Beautifully</em></h1>
+    <p data-i18n="lb_sub">Curated seasonal outfits from Turkey's finest kids clothing manufacturers.</p>
+    <div class="lb-seasons">
+      <button class="lb-season-btn active" onclick="setSeason('all',this)" data-i18n="all_seasons">All Seasons</button>
+      <button class="lb-season-btn" onclick="setSeason('spring',this)" data-i18n="lb_spring">🌸 Spring</button>
+      <button class="lb-season-btn" onclick="setSeason('summer',this)" data-i18n="lb_summer">☀️ Summer</button>
+      <button class="lb-season-btn" onclick="setSeason('autumn',this)" data-i18n="lb_autumn">🍂 Autumn</button>
+      <button class="lb-season-btn" onclick="setSeason('winter',this)" data-i18n="lb_winter">❄️ Winter</button>
     </div>
   </div>
 </section>
 
-<!-- SUMMER -->
+<section class="lb-section" id="season-spring">
+  <div class="container">
+    <div class="lb-section-title">🌸 <span data-i18n="lb_spring_title">Spring Collection 2025</span></div>
+    <div class="lb-section-sub" data-i18n="lb_spring_sub">Fresh pastels, light layers and floral details.</div>
+    <div class="palette-section">
+      <h3 data-i18n="lb_palette">Spring Palette 2025</h3>
+      <div class="palette-grid">
+        <div class="palette-item"><div class="palette-color" style="background:#f5d6c8"></div><div class="palette-name">Peach Bloom</div></div>
+        <div class="palette-item"><div class="palette-color" style="background:#c8e6c9"></div><div class="palette-name">Mint Leaf</div></div>
+        <div class="palette-item"><div class="palette-color" style="background:#e1d5f0"></div><div class="palette-name">Lavender</div></div>
+        <div class="palette-item"><div class="palette-color" style="background:#fff9e6"></div><div class="palette-name">Butter Yellow</div></div>
+        <div class="palette-item"><div class="palette-color" style="background:#f8e1e7"></div><div class="palette-name">Rose Petal</div></div>
+        <div class="palette-item"><div class="palette-color" style="background:#dceefb"></div><div class="palette-name">Sky Blue</div></div>
+      </div>
+    </div>
+    <div class="lb-grid">
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#fef9f0,#f5d6c8)">🌸</div><div class="lb-card-info"><h4 data-i18n="lb_s1_name">Baby Girl Spring Set</h4><p data-i18n="lb_s1_desc">Peach cotton dress + matching bloomer. Ages 6–18m. GOTS organic.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#f0f9f4,#c8e6c9)">🌿</div><div class="lb-card-info"><h4 data-i18n="lb_s2_name">Newborn Organic Gift Set</h4><p data-i18n="lb_s2_desc">Mint & white organic cotton. 5-piece set. Ages 0–3m.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#fdf0f8,#f8e1e7)">🎀</div><div class="lb-card-info"><h4 data-i18n="lb_s3_name">Little Princess Spring Dress</h4><p data-i18n="lb_s3_desc">Rose tulle dress with ribbon detail. Ages 2–5y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+    </div>
+  </div>
+</section>
+
 <section class="lb-section" id="season-summer" style="background:var(--silk)">
   <div class="container">
-    <div class="lb-section-title">☀️ Summer <em>Collection 2025</em></div>
-    <div class="lb-section-sub">Light fabrics, bold colours and prints that survive sand, ice cream and everything in between.</div>
-
-    <div class="palette-section" style="background:var(--white)">
-      <h3>Summer Palette 2025</h3>
-      <div class="palette-grid">
-        <div class="palette-item"><div class="palette-color" style="background:#ff6b35"></div><div class="palette-name">Tangerine</div></div>
-        <div class="palette-item"><div class="palette-color" style="background:#00b4d8"></div><div class="palette-name">Ocean Blue</div></div>
-        <div class="palette-item"><div class="palette-color" style="background:#f7c948"></div><div class="palette-name">Sunshine</div></div>
-        <div class="palette-item"><div class="palette-color" style="background:#06d6a0"></div><div class="palette-name">Sea Glass</div></div>
-        <div class="palette-item"><div class="palette-color" style="background:#fff1cc"></div><div class="palette-name">Sand</div></div>
-        <div class="palette-item"><div class="palette-color" style="background:#ef233c"></div><div class="palette-name">Watermelon</div></div>
-      </div>
-    </div>
-
+    <div class="lb-section-title">☀️ <span data-i18n="lb_summer_title">Summer Collection 2025</span></div>
+    <div class="lb-section-sub" data-i18n="lb_summer_sub">Light fabrics, bold colours and prints that survive sand and ice cream.</div>
     <div class="lb-grid">
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#e8f9ff,#c5eeff)">🏖️<br><span style="font-size:1rem;color:#888">All ages</span></div>
-        <div class="lb-card-info"><h4>Beach Day Set</h4><p>Quick-dry swim shorts + UPF 50 rashguard. Ages 12m–10y.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#fff8e1,#ffecb3)">🌻<br><span style="font-size:1rem;color:#888">Girls 3–8y</span></div>
-        <div class="lb-card-info"><h4>Sunflower Summer Dress</h4><p>Lightweight cotton dress with sunflower print. Ages 3–8y.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">🌴<br><span style="font-size:1rem;color:#888">Boys 2–6y</span></div>
-        <div class="lb-card-info"><h4>Tropical Print Set</h4><p>Palm print shorts + matching tee. Boys. Ages 2–6y.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#e8f9ff,#c5eeff)">🏖️</div><div class="lb-card-info"><h4 data-i18n="lb_su1_name">Beach Day Set</h4><p data-i18n="lb_su1_desc">Quick-dry swim shorts + UPF 50 rashguard. Ages 12m–10y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#fff8e1,#ffecb3)">🌻</div><div class="lb-card-info"><h4 data-i18n="lb_su2_name">Sunflower Summer Dress</h4><p data-i18n="lb_su2_desc">Lightweight cotton dress with sunflower print. Ages 3–8y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">🌴</div><div class="lb-card-info"><h4 data-i18n="lb_su3_name">Tropical Print Set</h4><p data-i18n="lb_su3_desc">Palm print shorts + matching tee. Boys. Ages 2–6y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
     </div>
   </div>
 </section>
 
-<!-- AUTUMN -->
 <section class="lb-section" id="season-autumn">
   <div class="container">
-    <div class="lb-section-title">🍂 Autumn <em>Collection 2025</em></div>
-    <div class="lb-section-sub">Rich earth tones, soft knitwear and layering pieces for the golden season.</div>
+    <div class="lb-section-title">🍂 <span data-i18n="lb_autumn_title">Autumn Collection 2025</span></div>
+    <div class="lb-section-sub" data-i18n="lb_autumn_sub">Rich earth tones, soft knitwear and layering pieces for the golden season.</div>
     <div class="lb-grid">
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#fef3e2,#f5c37a)">🍁<br><span style="font-size:1rem;color:#888">Girls 4–10y</span></div>
-        <div class="lb-card-info"><h4>Autumn Knit Set</h4><p>Rust-orange knit sweater + matching trousers. Ages 4–10y.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#f3ede3,#d4a96a)">🧶<br><span style="font-size:1rem;color:#888">Boys 6–12y</span></div>
-        <div class="lb-card-info"><h4>Boys Camel Hoodie Set</h4><p>Camel cotton fleece hoodie + joggers. Ages 6–12y.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual" style="background:linear-gradient(135deg,#fdf6ee,#e8c9a0)">🌰<br><span style="font-size:1rem;color:#888">Baby 6–24m</span></div>
-        <div class="lb-card-info"><h4>Baby Autumn Overall</h4><p>Warm cotton overall in hazelnut brown. Ages 6–24m.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#fef3e2,#f5c37a)">🍁</div><div class="lb-card-info"><h4 data-i18n="lb_a1_name">Autumn Knit Set</h4><p data-i18n="lb_a1_desc">Rust-orange knit sweater + matching trousers. Ages 4–10y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#f3ede3,#d4a96a)">🧶</div><div class="lb-card-info"><h4 data-i18n="lb_a2_name">Boys Camel Hoodie Set</h4><p data-i18n="lb_a2_desc">Camel cotton fleece hoodie + joggers. Ages 6–12y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card"><div class="lb-card-visual" style="background:linear-gradient(135deg,#fdf6ee,#e8c9a0)">🌰</div><div class="lb-card-info"><h4 data-i18n="lb_a3_name">Baby Autumn Overall</h4><p data-i18n="lb_a3_desc">Warm cotton overall in hazelnut brown. Ages 6–24m.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
     </div>
   </div>
 </section>
 
-<!-- WINTER -->
 <section class="lb-section" id="season-winter" style="background:var(--ink)">
   <div class="container">
-    <div class="lb-section-title" style="color:var(--white)">❄️ Winter <em>Collection 2025</em></div>
-    <div class="lb-section-sub" style="color:var(--mist)">Cosy layers, plush textures and festive pieces for the coldest months.</div>
+    <div class="lb-section-title" style="color:#fff">❄️ <span data-i18n="lb_winter_title" style="color:#fff">Winter Collection 2025</span></div>
+    <div class="lb-section-sub" style="color:var(--mist)" data-i18n="lb_winter_sub">Cosy layers, plush textures and festive pieces for the coldest months.</div>
     <div class="lb-grid">
-      <div class="lb-card">
-        <div class="lb-card-visual dark" style="font-size:5rem">🧥<br><span style="font-size:1rem;color:#aaa">Girls 2–8y</span></div>
-        <div class="lb-card-info"><h4>Girls Winter Parka</h4><p>Water-resistant parka with faux-fur trim. Warm to -10°C. Ages 2–8y.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual dark" style="font-size:5rem">🎄<br><span style="font-size:1rem;color:#aaa">All ages</span></div>
-        <div class="lb-card-info"><h4>Festive Christmas Set</h4><p>Red & green Christmas pyjama set. All ages 0–12y.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
-      <div class="lb-card">
-        <div class="lb-card-visual dark" style="font-size:5rem">🐻<br><span style="font-size:1rem;color:#aaa">Baby 0–18m</span></div>
-        <div class="lb-card-info"><h4>Baby Bear Snowsuit</h4><p>All-in-one fleece snowsuit with bear ears. Ages 0–18m.</p><a href="retail.html" class="lb-card-link">Shop →</a></div>
-      </div>
+      <div class="lb-card" style="background:#1c1c1e"><div class="lb-card-visual" style="background:linear-gradient(135deg,#1a1a1f,#2e2e32)">🧥</div><div class="lb-card-info"><h4 data-i18n="lb_w1_name" style="color:#fff">Girls Winter Parka</h4><p data-i18n="lb_w1_desc" style="color:var(--mist)">Water-resistant parka with faux-fur trim. Warm to -10°C. Ages 2–8y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card" style="background:#1c1c1e"><div class="lb-card-visual" style="background:linear-gradient(135deg,#1a1a1f,#2e2e32)">🎄</div><div class="lb-card-info"><h4 data-i18n="lb_w2_name" style="color:#fff">Festive Christmas Set</h4><p data-i18n="lb_w2_desc" style="color:var(--mist)">Red & green Christmas pyjama set. All ages 0–12y.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
+      <div class="lb-card" style="background:#1c1c1e"><div class="lb-card-visual" style="background:linear-gradient(135deg,#1a1a1f,#2e2e32)">🐻</div><div class="lb-card-info"><h4 data-i18n="lb_w3_name" style="color:#fff">Baby Bear Snowsuit</h4><p data-i18n="lb_w3_desc" style="color:var(--mist)">All-in-one fleece snowsuit with bear ears. Ages 0–18m.</p><a href="retail.html" class="lb-card-link" data-i18n="lb_shop">Shop this look →</a></div></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="ft-grid">
-      <div>
-        <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div>
-          <div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion™</span><span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span></div>
-        </a>
-        <p class="ft-brand-text">The world's largest wholesale marketplace for Turkish kids & baby clothing.</p>
-      </div>
-      <div class="ft-col">
-        <h4><span data-i18n="ft_parents">For Parents</span></h4>
-        <a href="retail.html"><span data-i18n="ft_retail">Retail Shop</span></a>
-        <a href="blog.html"><span data-i18n="ft_blog">Parent's Guide</span></a>
-        <a href="lookbook.html"><span data-i18n="ft_lookbook">Lookbook</span></a>
-        <a href="partner.html"><span data-i18n="ft_partner">Become a Partner</span></a>
-      </div>
-      <div class="ft-col"><h4><span data-i18n="ft_support">Support</span></h4>
-        <a href="mailto:info@worldkidsfashion.org">📧 info@worldkidsfashion.org</a>
-        <a href="https://wa.me/995598146418">💬 WhatsApp</a>
-      </div>
+      <div><a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion™</span><span class="logo-sub" data-i18n="logo_sub">Wholesale Only</span></div></a><p class="ft-brand-text" data-i18n="ft_brand">The world's largest wholesale marketplace for Turkish kids & baby clothing.</p></div>
+      <div class="ft-col"><h4 data-i18n="ft_parents">For Parents</h4><a href="retail.html" data-i18n="ft_retail">Retail Shop</a><a href="blog.html" data-i18n="ft_blog">Parent's Guide</a><a href="lookbook.html" data-i18n="ft_lookbook">Lookbook</a><a href="partner.html" data-i18n="ft_partner">Become a Partner</a></div>
+      <div class="ft-col"><h4 data-i18n="ft_support">Support</h4><a href="mailto:info@worldkidsfashion.org">📧 info@worldkidsfashion.org</a><a href="https://wa.me/995598146418" data-i18n="ft_whatsapp">💬 WhatsApp</a></div>
     </div>
-    <div class="ft-bottom">
-      <div class="ft-copy">© 2025 WorldKidsFashion™ · Istanbul, Turkey</div>
-    </div>
+    <div class="ft-bottom"><div class="ft-copy">© 2025 WorldKidsFashion™ · Istanbul, Turkey</div></div>
   </div>
 </footer>
 
-
-<script src="app.js"></script>
-<script>wkfInitLang();</script>
 <script src="i18n.js"></script>
+<script src="app.js"></script>
 <script>
+wkfInitLang();
 function setSeason(season, btn) {
   document.querySelectorAll('.lb-season-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');

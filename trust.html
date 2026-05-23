@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trust Center — WorldKidsFashion</title>
+<meta name="description" content="Company information, certificates, quality control process, shipping partners and buyer protection for WorldKidsFashion wholesale buyers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.trust-section{padding:48px 0;border-bottom:1px solid var(--border)}
+.trust-section:last-of-type{border-bottom:none}
+.trust-grid{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start}
+.trust-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--stone);font-weight:600;padding-top:4px}
+.info-row{display:flex;flex-direction:column;gap:12px}
+.info-item{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)}
+.info-item:last-child{border:none}
+.info-key{font-size:.85rem;color:var(--stone);font-weight:500}
+.info-val{font-size:.85rem;color:var(--ink)}
+.placeholder{background:var(--silk);border:1px dashed var(--border2);border-radius:var(--r);padding:12px 16px;font-size:.82rem;color:var(--stone);font-style:italic}
+.cert-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;display:flex;flex-direction:column;gap:8px}
+.cert-name{font-weight:600;font-size:.95rem}
+.cert-detail{font-size:.82rem;color:var(--stone)}
+.process-step{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.process-step:last-child{border:none}
+.step-num{width:32px;height:32px;background:var(--ink);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.claim-row{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 24px;display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="announce" aria-hidden="true"><div class="announce-track">
+  <span>📍 Istanbul, Turkey</span><span>·</span>
+  <span>Wholesale only</span><span>·</span>
+  <span>MOQ from 6 pcs</span><span>·</span>
+  <span>DHL · UPS · FedEx</span><span>·</span>
+  <span>info@worldkidsfashion.org</span><span>·</span>
+  <span>📍 Istanbul, Turkey</span><span>·</span>
+  <span>Wholesale only</span><span>·</span>
+  <span>MOQ from 6 pcs</span><span>·</span>
+  <span>DHL · UPS · FedEx</span>
+</div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="hdr-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon"></div>
+      <div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div>
+    </a>
+    <nav class="nav-main">
+      <a href="catalog.html" class="nav-item">Catalog</a>
+      <a href="how-it-works.html" class="nav-item">How It Works</a>
+      <a href="private-label.html" class="nav-item">Private Label</a>
+      <a href="shipping.html" class="nav-item">Shipping</a>
+      <a href="trust.html" class="nav-item" style="color:var(--red)">Trust Center</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="contact.html" class="nav-item">Contact</a>
+    </nav>
+    <div class="hdr-right">
+      <a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a>
+      <a href="account.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <div id="langWrap" style="position:relative;display:inline-block">
+        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
+        <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
+          <div style="padding:4px 10px 6px;font-size:.68rem;color:#666;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px">Language</div>
+          <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
+          <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
+          <button onclick="wkfSetLang('fr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇫🇷 Français</button>
+          <button onclick="wkfSetLang('de')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇩🇪 Deutsch</button>
+          <button onclick="wkfSetLang('tr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇹🇷 Türkçe</button>
+          <button onclick="wkfSetLang('no')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇳🇴 Norsk</button>
+        </div>
+      </div>
+      <a href="register.html" class="hdr-cta">Register Free →</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div style="background:var(--silk);border-bottom:1px solid var(--border);padding:12px 0">
+  <div class="container" style="font-size:.82rem;color:var(--stone)">
+    <a href="index.html" style="color:var(--stone)">Home</a> › Trust Center
+  </div>
+</div>
+
+<!-- HERO -->
+<div style="background:var(--ink);color:#fff;padding:60px 0">
+  <div class="container" style="max-width:800px">
+    <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4)">Trust & Transparency</span>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin:12px 0 16px">Trust Center</h1>
+    <p style="color:rgba(255,255,255,.6);font-size:1rem;line-height:1.8;max-width:600px">
+      This page provides verifiable information about our company, processes, certifications and buyer protection. We believe buyers should be able to verify who they are working with before sending money.
+    </p>
+  </div>
+</div>
+
+<div class="container" style="max-width:960px;padding-top:0;padding-bottom:80px">
+
+  <!-- 1. COMPANY INFORMATION -->
+  <div class="trust-section">
+    <div class="trust-grid">
+      <div class="trust-label">Company Information</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Legal Entity</h2>
+        <div class="info-row">
+          <div class="info-item">
+            <div class="info-key">Legal company name</div>
+            <div class="info-val placeholder">[Company name to be added — e.g. Globality Mobile Ltd.]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Registration number</div>
+            <div class="info-val placeholder">[Company registration number]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Tax / VAT number</div>
+            <div class="info-val placeholder">[Tax identification number]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Registered address</div>
+            <div class="info-val placeholder">[Registered legal address — Istanbul, Turkey]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Operating address</div>
+            <div class="info-val">Istanbul, Turkey</div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Email</div>
+            <div class="info-val"><a href="mailto:info@worldkidsfashion.org" style="color:var(--red)">info@worldkidsfashion.org</a></div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">WhatsApp / Phone</div>
+            <div class="info-val"><a href="https://wa.me/995598146418" style="color:var(--red)">+995 598 146 418</a></div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Office phone</div>
+            <div class="info-val">+33 6 95 61 12 93</div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Working hours</div>
+            <div class="info-val">Monday – Friday, 09:00 – 18:00 GMT+3 (Istanbul time)</div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">Languages</div>
+            <div class="info-val">English, Russian, Turkish, French</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. QUALITY CONTROL -->
+  <div class="trust-section">
+    <div class="trust-grid">
+      <div class="trust-label">Quality Control</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Pre-Shipment Quality Check</h2>
+        <p style="color:var(--stone);font-size:.9rem;margin-bottom:24px;line-height:1.8">Every wholesale order is checked before packing and dispatch. The following steps apply to standard stock orders:</p>
+        <div class="info-row">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Quantity verification</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">All items are counted against the confirmed order. Quantities are verified before packing.</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Size and label check</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">Size breakdown is verified against the order confirmation. Labels and hangtags are checked if applicable.</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Visible defect inspection</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">Products are inspected for visible manufacturing defects, stains, damaged stitching or printing issues.</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Packing and documentation</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">Order is packed, packing list is prepared, commercial invoice and export documents are issued.</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">5</div>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Photo confirmation (on request)</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">For orders above a certain value or on buyer request, packing photos are provided before dispatch.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:20px" class="placeholder">
+          Warehouse and packing process photos will be added here.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. CERTIFICATIONS -->
+  <div class="trust-section">
+    <div class="trust-grid">
+      <div class="trust-label">Certifications</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:12px">Product Certifications</h2>
+        <p style="color:var(--stone);font-size:.9rem;margin-bottom:24px;line-height:1.8">
+          Certification availability varies by product and manufacturer. We do not claim blanket certification across our entire range. Certificate documents are available on request for products where certification applies.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="cert-card">
+            <div style="font-size:1.6rem">🌿</div>
+            <div class="cert-name">GOTS (Global Organic Textile Standard)</div>
+            <div class="cert-detail">Available for selected products where the manufacturer holds current GOTS certification.</div>
+            <div class="cert-detail" style="margin-top:4px">
+              <span style="font-weight:600">Certificate number:</span>
+              <span class="placeholder" style="display:inline;padding:2px 8px">Available on request per product</span>
+            </div>
+            <div class="cert-detail">
+              <span style="font-weight:600">Scope:</span> Per product / per manufacturer
+            </div>
+            <div style="margin-top:8px;font-size:.78rem;color:var(--red)">Request certificate for specific product →</div>
+          </div>
+          <div class="cert-card">
+            <div style="font-size:1.6rem">🔬</div>
+            <div class="cert-name">OEKO-TEX Standard 100</div>
+            <div class="cert-detail">Available for selected products. Confirms no harmful substances above legal limits.</div>
+            <div class="cert-detail" style="margin-top:4px">
+              <span style="font-weight:600">Certificate number:</span>
+              <span class="placeholder" style="display:inline;padding:2px 8px">Available on request per product</span>
+            </div>
+            <div class="cert-detail">
+              <span style="font-weight:600">Scope:</span> Per product / per manufacturer
+            </div>
+            <div style="margin-top:8px;font-size:.78rem;color:var(--red)">Request certificate for specific product →</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:14px 16px;background:#fff3cd;border:1px solid #ffc107;border-radius:var(--r);font-size:.85rem;color:#856404">
+          <strong>Important:</strong> Always request the specific certificate document before placing an order if certification is a purchasing requirement for your market.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. SHIPPING PARTNERS -->
+  <div class="trust-section">
+    <div class="trust-grid">
+      <div class="trust-label">Shipping Partners</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Logistics Partners</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">✈️</div>
+            <div style="font-weight:600;margin-bottom:4px">DHL Express</div>
+            <div style="font-size:.78rem;color:var(--stone)">2–5 business days to most countries. Full tracking.</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">📦</div>
+            <div style="font-weight:600;margin-bottom:4px">UPS</div>
+            <div style="font-size:.78rem;color:var(--stone)">Available for most international destinations.</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">🚀</div>
+            <div style="font-weight:600;margin-bottom:4px">FedEx</div>
+            <div style="font-size:.78rem;color:var(--stone)">Available on request for selected routes.</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">🚢</div>
+            <div style="font-weight:600;margin-bottom:4px">Air Cargo</div>
+            <div style="font-size:.78rem;color:var(--stone)">For larger volume orders. Cost-effective for heavy shipments.</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">🚛</div>
+            <div style="font-weight:600;margin-bottom:4px">Road Cargo</div>
+            <div style="font-size:.78rem;color:var(--stone)">For European destinations. Larger volumes.</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center;opacity:.6">
+            <div style="font-size:2rem;margin-bottom:8px">📋</div>
+            <div style="font-weight:600;margin-bottom:4px">Custom arrangements</div>
+            <div style="font-size:.78rem;color:var(--stone)">Buyer's own freight forwarder accepted for large orders.</div>
+          </div>
+        </div>
+        <p style="margin-top:16px;font-size:.85rem;color:var(--stone)">
+          Shipping cost is calculated based on destination, weight, volume and delivery method. A shipping quote is included in the proforma invoice.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PAYMENT SAFETY -->
+  <div class="trust-section">
+    <div class="trust-grid">
+      <div class="trust-label">Payment Safety</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">How We Handle Payments</h2>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:12px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
+            <span style="font-size:1.2rem;flex-shrink:0">📋</span>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Proforma invoice before every payment</div>
+              <div style="font-size:.85rem;color:var(--stone)">You receive a detailed proforma invoice before making any payment. The invoice includes product list, quantities, prices, shipping cost and payment details.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
+            <span style="font-size:1.2rem;flex-shrink:0">🏦</span>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Verified bank account details</div>
+              <div class="placeholder">Bank account name, IBAN/SWIFT and correspondent bank details will be displayed here.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
+            <span style="font-size:1.2rem;flex-shrink:0">📧</span>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Payment confirmation</div>
+              <div style="font-size:.85rem;color:var(--stone)">We confirm receipt of payment by email before starting production or dispatch.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;padding:16px;background:#fff3cd;border:1px solid #ffc107;border-radius:var(--r-lg)">
+            <span style="font-size:1.2rem;flex-shrink:0">⚠️</span>
+            <div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Verify payment details carefully</div>
+              <div style="font-size:.85rem;color:#856404">Always verify bank account details directly with our team before making any transfer. We will never ask you to change payment details by email without phone confirmation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. BUYER PROTECTION -->
+  <div class="trust-section">
+    <div class="trust-grid">
+      <div class="trust-label">Buyer Protection</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Claim &amp; Dispute Process</h2>
+
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px">How to file a claim</h3>
+        <div class="claim-row">
+          <div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 1: Contact us within 3 business days</div>
+            <div style="font-size:.82rem;color:var(--stone)">Email info@worldkidsfashion.org or WhatsApp. Include your order number.</div>
+          </div>
+          <div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 2: Provide documentation</div>
+            <div style="font-size:.82rem;color:var(--stone)">Photos or video of the issue. Keep original packaging where possible.</div>
+          </div>
+        </div>
+        <div class="claim-row">
+          <div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 3: We review</div>
+            <div style="font-size:.82rem;color:var(--stone)">Our team reviews the claim within 3–5 business days and proposes a resolution.</div>
+          </div>
+          <div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 4: Resolution</div>
+            <div style="font-size:.82rem;color:var(--stone)">Replacement, store credit or agreed refund depending on the nature of the claim.</div>
+          </div>
+        </div>
+
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px">Valid claims cover</h3>
+        <ul style="display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--stone)">
+          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Wrong item delivered</li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Wrong size delivered</li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Missing quantity</li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Visible manufacturing defect</li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Damage caused before dispatch</li>
+        </ul>
+
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px">Claims do not cover</h3>
+        <ul style="display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--stone)">
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Unsold inventory</li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Change of mind after shipment</li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Incorrect size selection by buyer</li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Customs delays or import refusal</li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Local import charges</li>
+        </ul>
+
+        <div style="margin-top:24px">
+          <a href="returns.html" style="color:var(--red);font-size:.88rem;font-weight:600">Full Return &amp; Refund Policy →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. LEGAL DOCS -->
+  <div class="trust-section">
+    <div class="trust-grid">
+      <div class="trust-label">Legal Documents</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Policies &amp; Terms</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <a href="terms.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
+            <span style="font-size:1.4rem">📄</span>
+            <div><div style="font-weight:600;font-size:.9rem">Terms &amp; Conditions</div><div style="font-size:.78rem;color:var(--stone)">B2B purchase terms</div></div>
+          </a>
+          <a href="privacy.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
+            <span style="font-size:1.4rem">🔒</span>
+            <div><div style="font-weight:600;font-size:.9rem">Privacy Policy</div><div style="font-size:.78rem;color:var(--stone)">How we handle data (GDPR)</div></div>
+          </a>
+          <a href="shipping.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
+            <span style="font-size:1.4rem">🚚</span>
+            <div><div style="font-weight:600;font-size:.9rem">Shipping Policy</div><div style="font-size:.78rem;color:var(--stone)">Carriers, costs, customs</div></div>
+          </a>
+          <a href="returns.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
+            <span style="font-size:1.4rem">↩️</span>
+            <div><div style="font-weight:600;font-size:.9rem">Return &amp; Refund Policy</div><div style="font-size:.78rem;color:var(--stone)">Claims and defect process</div></div>
+          </a>
+          <a href="cookies.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
+            <span style="font-size:1.4rem">🍪</span>
+            <div><div style="font-weight:600;font-size:.9rem">Cookie Policy</div><div style="font-size:.78rem;color:var(--stone)">Cookies and tracking</div></div>
+          </a>
+          <a href="impressum.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
+            <span style="font-size:1.4rem">🏢</span>
+            <div><div style="font-weight:600;font-size:.9rem">Impressum</div><div style="font-size:.78rem;color:var(--stone)">Legal company information</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div></a>
+        <p class="ft-brand-text">Wholesale kids and baby clothing from Istanbul, Turkey. Not for retail consumers.</p>
+        <div style="margin-top:12px;font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.8">
+          <div>📧 info@worldkidsfashion.org</div>
+          <div>💬 +995 598 146 418</div>
+          <div>📍 Istanbul, Turkey</div>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Wholesale</h4>
+        <a href="catalog.html">Catalog</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="private-label.html">Private Label</a>
+        <a href="shipping.html">Shipping</a>
+      </div>
+      <div class="ft-col">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+        <a href="shipping.html">Shipping Policy</a>
+        <a href="returns.html">Return &amp; Refund Policy</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="trust.html">Trust Center</a>
+        <a href="contact.html">Contact</a>
+        <a href="register.html">Register</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2025 WorldKidsFashion · Globality Mobile · Istanbul, Turkey · Wholesale only</div>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+<script>wkfInitLang();</script>
+</body>
+</html>

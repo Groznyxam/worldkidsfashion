@@ -39,14 +39,13 @@
 </head>
 <body>
 
-<div class="ticker-wrap"><div class="ticker-track">
-  <span>🛍️ Retail Shop for Parents</span><span>·</span>
-  <span>🚚 Free Shipping on orders $100+</span><span>·</span>
-  <span>🌿 GOTS Organic Available</span><span>·</span>
-  <span>📦 Ships in 3–7 days</span><span>·</span>
-  <span>↩️ 30-day returns</span><span>·</span>
-  <span>🛍️ Retail Shop for Parents</span><span>·</span>
-  <span>🚚 Free Shipping on orders $100+</span><span>·</span>
+<div class="announce" aria-hidden="true"><div class="announce-track">
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span><span>·</span>
+  <span data-i18n="ann3">🌿 GOTS Certified Organic Available</span><span>·</span>
+  <span data-i18n="ann4">📦 Low MOQ · No Middleman · No Commission</span><span>·</span>
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span>
 </div></div>
 
 <header class="site-header" id="siteHeader">
@@ -55,14 +54,14 @@
       <div class="logo-icon"></div>
       <div class="logo-text">
         <span class="logo-main">WorldKidsFashion™</span>
-        <span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span>
+        <span class="logo-sub" data-i18n="logo_sub">Wholesale Only</span>
       </div>
     </a>
     <nav class="nav-main">
-      <a href="catalog.html" class="nav-item"><span data-i18n="nav_catalog">Catalog</span</a>
-      <a href="services.html" class="nav-item"><span data-i18n="nav_services"><span data-i18n="ft_services">Services</span>/span</a>
-      <a href="about.html" class="nav-item"><span data-i18n="nav_about">About</span</a>
-      <a href="parents.html" class="nav-item" style="color:var(--red)"><span data-i18n="nav_parents"><span data-i18n="ft_parents">For Parents</span>/span</a>
+      <a href="catalog.html" class="nav-item"><span data-i18n="nav_catalog">Catalog</span></a>
+      <a href="services.html" class="nav-item"><span data-i18n="nav_services">Services</span></a>
+      <a href="about.html" class="nav-item"><span data-i18n="nav_about">About</span></a>
+      <a href="parents.html" class="nav-item" style="color:var(--red)"><span data-i18n="nav_parents">For Parents</span></a>
     </nav>
     <div class="hdr-right">
       <a href="cart.html" class="hdr-icon">🛒 <span id="cartCount">0</span></a>
@@ -70,7 +69,7 @@
       
       
       <div id="langWrap" style="position:relative;display:inline-block">
-        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
+        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode" style="color:var(--ink)">EN</span> ▾</button>
         <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
           <div style="padding:4px 10px 6px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#444;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px">Language</div>
           <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
@@ -86,11 +85,9 @@
   </div>
       
 </footer>
-
-
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 <script>wkfInitLang();</script>
-<script src="i18n.js"></script>
 <script>
 // ── PRICING ENGINE ──────────────────────────────────────────
 // Settings loaded from wkf_pricing (set in admin panel)
@@ -183,5 +180,14 @@ renderProducts();
 const savedCart = JSON.parse(localStorage.getItem('wkf_cart') || '[]');
 document.getElementById('cartCount').textContent = savedCart.reduce((s,i)=>s+i.qty,0);
 </script>
+
+<footer class="site-footer"><div class="container">
+  <div class="ft-grid">
+    <div><a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div></a><p class="ft-brand-text">Wholesale kids and baby clothing from Istanbul, Turkey.</p></div>
+    <div class="ft-col"><h4>Legal</h4><a href="terms.html">Terms &amp; Conditions</a><a href="privacy.html">Privacy Policy</a><a href="returns.html">Returns Policy</a><a href="impressum.html">Impressum</a></div>
+    <div class="ft-col"><h4>Platform</h4><a href="catalog.html">Catalog</a><a href="trust.html">Trust Center</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="ft-bottom"><div class="ft-copy">© 2025 WorldKidsFashion · Istanbul, Turkey · Wholesale only</div></div>
+</div></footer>
 </body>
 </html>

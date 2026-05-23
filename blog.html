@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parent's Guide — WorldKidsFashion™</title>
-<meta name="description" content="Size guides, care tips, seasonal advice and honest reviews to help parents choose quality children's clothing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -23,8 +22,6 @@
 .blog-card p{font-size:.88rem;color:var(--stone);line-height:1.6;margin-bottom:16px}
 .blog-meta{font-size:.78rem;color:var(--mist);display:flex;gap:16px}
 .blog-read{font-size:.82rem;color:var(--red);font-weight:600;text-decoration:none;border:none;background:none;cursor:pointer;padding:0}
-
-/* Article overlay */
 .article-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:20px}
 .article-overlay.open{display:flex}
 .article-box{background:var(--white);border-radius:var(--r-lg);max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:40px;position:relative}
@@ -40,11 +37,13 @@
 </head>
 <body>
 
-<div class="ticker-wrap"><div class="ticker-track">
-  <span>📖 Parent's Guide</span><span>·</span>
-  <span>Size Charts · Care Tips · Seasonal Guides</span><span>·</span>
-  <span>📖 Parent's Guide</span><span>·</span>
-  <span>Size Charts · Care Tips · Seasonal Guides</span><span>·</span>
+<div class="announce" aria-hidden="true"><div class="announce-track">
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span><span>·</span>
+  <span data-i18n="ann3">🌿 GOTS Certified Organic Available</span><span>·</span>
+  <span data-i18n="ann4">📦 Low MOQ · No Middleman · No Commission</span><span>·</span>
+  <span data-i18n="ann1">🇹🇷 Direct from Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span>
 </div></div>
 
 <header class="site-header" id="siteHeader">
@@ -53,22 +52,110 @@
       <div class="logo-icon"></div>
       <div class="logo-text">
         <span class="logo-main">WorldKidsFashion™</span>
-        <span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span>
+        <span class="logo-sub" data-i18n="logo_sub">Wholesale Only</span>
       </div>
     </a>
     <nav class="nav-main">
-      <a href="catalog.html" class="nav-item"><span data-i18n="nav_catalog">Catalog</span</a>
-      <a href="services.html" class="nav-item"><span data-i18n="nav_services"><span data-i18n="ft_services">Services</span>/span</a>
-      <a href="about.html" class="nav-item"><span data-i18n="nav_about">About</span</a>
-      <a href="parents.html" class="nav-item" style="color:var(--red)"><span data-i18n="nav_parents"><span data-i18n="ft_parents">For Parents</span>/span</a>
+      <a href="catalog.html" class="nav-item" data-i18n="nav_catalog">Catalog</a>
+      <a href="services.html" class="nav-item" data-i18n="nav_services">Services</a>
+      <a href="about.html" class="nav-item" data-i18n="nav_about">About</a>
+      <a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents">For Parents</a>
     </nav>
     <div class="hdr-right">
-      <a href="cart.html" class="hdr-icon">🛒 <span id="cartCount">0</span></a>
-      <a href="account.html" class="hdr-icon">👤</a>
-      
-      
+      <a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a>
+      <a href="account.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <div id="langWrap" style="position:relative;display:inline-block">
+        <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode" style="color:var(--ink)">EN</span> ▾</button>
+        <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
+          <div style="padding:4px 10px 6px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#666;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px" data-i18n="lang_choose">Language</div>
+          <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
+          <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
+          <button onclick="wkfSetLang('fr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇫🇷 Français</button>
+          <button onclick="wkfSetLang('de')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇩🇪 Deutsch</button>
+          <button onclick="wkfSetLang('tr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇹🇷 Türkçe</button>
+          <button onclick="wkfSetLang('no')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇳🇴 Norsk</button>
+        </div>
+      </div>
+      <a href="register.html" class="btn-primary btn-sm" data-i18n="btn_register">Register Free →</a>
+    </div>
+  </div>
+</header>
 
-<!-- ARTICLE OVERLAY -->
+<section class="blog-hero">
+  <div class="container">
+    <p style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--stone);margin-bottom:8px">
+      <a href="parents.html" style="color:var(--stone)" data-i18n="nav_parents">For Parents</a> →
+    </p>
+    <h1><span data-i18n="blog_h1">The Parent's <em>Guide</em></span></h1>
+    <p data-i18n="blog_sub">Honest advice, size charts and care tips from the people who supply 20,000 boutiques worldwide.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="blog-grid">
+    <div class="blog-card" onclick="openArticle('sizes')">
+      <div class="blog-card-img">📏</div>
+      <div class="blog-card-body">
+        <div class="blog-tag" data-i18n="blog_tag1">Size Guide</div>
+        <h3 data-i18n="blog_title1">How to Choose the Right Size for Turkish Kids Clothing</h3>
+        <p data-i18n="blog_desc1">Turkish children's clothing sizes run slightly differently from EU and US standards. This guide explains exactly how to measure and convert.</p>
+        <div class="blog-meta"><span data-i18n="blog_read1">5 min read</span><span>· Size Charts Included</span></div>
+        <br><button class="blog-read" data-i18n="read_guide">Read Guide →</button>
+      </div>
+    </div>
+    <div class="blog-card" onclick="openArticle('care')">
+      <div class="blog-card-img">🧺</div>
+      <div class="blog-card-body">
+        <div class="blog-tag" data-i18n="blog_tag2">Care & Maintenance</div>
+        <h3 data-i18n="blog_title2">How to Wash Kids Clothing to Keep It Like New</h3>
+        <p data-i18n="blog_desc2">Quality Turkish cotton needs specific care. Follow these simple rules and your children's clothes will last twice as long.</p>
+        <div class="blog-meta"><span>4 min read</span></div>
+        <br><button class="blog-read" data-i18n="read_guide">Read Guide →</button>
+      </div>
+    </div>
+    <div class="blog-card" onclick="openArticle('organic')">
+      <div class="blog-card-img">🌿</div>
+      <div class="blog-card-body">
+        <div class="blog-tag" data-i18n="blog_tag3">Organic & Safety</div>
+        <h3 data-i18n="blog_title3">Why GOTS Organic Matters for Your Baby's Skin</h3>
+        <p data-i18n="blog_desc3">The Global Organic Textile Standard (GOTS) is the world's strictest certification. Here's what it means for your newborn.</p>
+        <div class="blog-meta"><span>6 min read</span></div>
+        <br><button class="blog-read" data-i18n="read_guide">Read Guide →</button>
+      </div>
+    </div>
+    <div class="blog-card" onclick="openArticle('seasonal')">
+      <div class="blog-card-img">🍂</div>
+      <div class="blog-card-body">
+        <div class="blog-tag" data-i18n="blog_tag4">Seasonal Guide</div>
+        <h3 data-i18n="blog_title4">Building a Smart Kids Wardrobe for Each Season</h3>
+        <p data-i18n="blog_desc4">A practical guide on how many pieces you need per season, what to prioritise, and how to layer for unpredictable weather.</p>
+        <div class="blog-meta"><span>7 min read</span></div>
+        <br><button class="blog-read" data-i18n="read_guide">Read Guide →</button>
+      </div>
+    </div>
+    <div class="blog-card" onclick="openArticle('quality')">
+      <div class="blog-card-img">🔍</div>
+      <div class="blog-card-body">
+        <div class="blog-tag" data-i18n="blog_tag5">Quality Tips</div>
+        <h3 data-i18n="blog_title5">How to Spot Quality Children's Clothing at a Glance</h3>
+        <p data-i18n="blog_desc5">Thread count, stitching, fabric weight — professional buyers check these automatically. We teach you to do the same.</p>
+        <div class="blog-meta"><span>5 min read</span></div>
+        <br><button class="blog-read" data-i18n="read_guide">Read Guide →</button>
+      </div>
+    </div>
+    <div class="blog-card" onclick="openArticle('turkey')">
+      <div class="blog-card-img">🇹🇷</div>
+      <div class="blog-card-body">
+        <div class="blog-tag" data-i18n="blog_tag6">About Turkish Fashion</div>
+        <h3 data-i18n="blog_title6">Why Turkish Kids Clothing is Loved in 120 Countries</h3>
+        <p data-i18n="blog_desc6">Turkey is the world's 4th largest textile exporter. Here's why Turkish children's clothing consistently outperforms alternatives.</p>
+        <div class="blog-meta"><span>6 min read</span></div>
+        <br><button class="blog-read" data-i18n="read_guide">Read Guide →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="article-overlay" id="articleOverlay">
   <div class="article-box">
     <button class="article-close" onclick="closeArticle()">✕</button>
@@ -76,27 +163,24 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="ft-grid">
       <div>
-        <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div>
-          <div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion™</span><span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span></div>
-        </a>
-        <p class="ft-brand-text">The world's largest wholesale marketplace for Turkish kids & baby clothing.</p>
+        <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion™</span><span class="logo-sub" data-i18n="logo_sub">Wholesale Only</span></div></a>
+        <p class="ft-brand-text" data-i18n="ft_brand">The world's largest wholesale marketplace for Turkish kids & baby clothing.</p>
       </div>
       <div class="ft-col">
-        <h4><span data-i18n="ft_parents">For Parents</span></h4>
-        <a href="retail.html"><span data-i18n="ft_retail">Retail Shop</span></a>
-        <a href="blog.html"><span data-i18n="ft_blog">Parent's Guide</span></a>
-        <a href="lookbook.html"><span data-i18n="ft_lookbook">Lookbook</span></a>
-        <a href="partner.html"><span data-i18n="ft_partner">Become a Partner</span></a>
+        <h4 data-i18n="ft_parents">For Parents</h4>
+        <a href="retail.html" data-i18n="ft_retail">Retail Shop</a>
+        <a href="blog.html" data-i18n="ft_blog">Parent's Guide</a>
+        <a href="lookbook.html" data-i18n="ft_lookbook">Lookbook</a>
+        <a href="partner.html" data-i18n="ft_partner">Become a Partner</a>
       </div>
       <div class="ft-col">
-        <h4><span data-i18n="ft_support">Support</span></h4>
+        <h4 data-i18n="ft_support">Support</h4>
         <a href="mailto:info@worldkidsfashion.org">📧 info@worldkidsfashion.org</a>
-        <a href="https://wa.me/995598146418">💬 WhatsApp</a>
+        <a href="https://wa.me/995598146418" data-i18n="ft_whatsapp">💬 WhatsApp</a>
       </div>
     </div>
     <div class="ft-bottom">
@@ -105,118 +189,21 @@
   </div>
 </footer>
 
-
-<script src="app.js"></script>
-<script>wkfInitLang();</script>
 <script src="i18n.js"></script>
+<script src="app.js"></script>
 <script>
+wkfInitLang();
 const ARTICLES = {
-  sizes: `
-    <h2>How to Choose the Right Size for Turkish Kids Clothing</h2>
-    <p>Turkish sizing follows European standards but brands vary. Always measure your child fresh — kids grow fast and a 2-month-old measurement can be outdated by the time clothes arrive.</p>
-    <h3>How to Measure</h3>
-    <p><strong>Height:</strong> Stand child against a wall, mark the top of head. <strong>Chest:</strong> Measure around the widest part under the arms. <strong>Waist:</strong> Natural waist, relaxed. <strong>Hip:</strong> Widest part of hips/bottom.</p>
-    <h3>WKF Size Chart — Babies</h3>
-    <table class="size-table">
-      <tr><th>Age</th><th>Height (cm)</th><th>Weight (kg)</th><th>Chest (cm)</th></tr>
-      <tr><td>0–3m</td><td>50–62</td><td>3–6</td><td>40–44</td></tr>
-      <tr><td>3–6m</td><td>62–68</td><td>6–8</td><td>44–46</td></tr>
-      <tr><td>6–12m</td><td>68–80</td><td>8–10</td><td>46–48</td></tr>
-      <tr><td>12–18m</td><td>80–86</td><td>10–12</td><td>48–50</td></tr>
-      <tr><td>18–24m</td><td>86–92</td><td>12–14</td><td>50–52</td></tr>
-    </table>
-    <h3>WKF Size Chart — Children</h3>
-    <table class="size-table">
-      <tr><th>Age</th><th>Height (cm)</th><th>EU Size</th><th>UK Size</th></tr>
-      <tr><td>2–3y</td><td>92–98</td><td>92/98</td><td>2–3Y</td></tr>
-      <tr><td>4–5y</td><td>104–110</td><td>104/110</td><td>4–5Y</td></tr>
-      <tr><td>6–7y</td><td>116–122</td><td>116/122</td><td>6–7Y</td></tr>
-      <tr><td>8–9y</td><td>128–134</td><td>128/134</td><td>8–9Y</td></tr>
-      <tr><td>10–11y</td><td>140–146</td><td>140/146</td><td>10–11Y</td></tr>
-      <tr><td>12–14y</td><td>152–164</td><td>152/164</td><td>12–14Y</td></tr>
-    </table>
-    <p><strong>Tip:</strong> When in doubt, size up. Turkish kids clothing is cut generously and children grow into it quickly. If your child is between sizes, choose the larger one.</p>
-  `,
-  care: `
-    <h2>How to Wash Kids Clothing to Keep It Like New</h2>
-    <p>Turkish cotton is dense and durable, but improper washing is the #1 reason quality kids clothing deteriorates. Follow these rules.</p>
-    <h3>Cotton & Jersey (most common)</h3>
-    <p>Wash at 30–40°C. Higher temperatures cause shrinkage and colour fading. Turn garments inside out before washing to protect prints and embroidery. Avoid tumble drying — air dry flat or hanging.</p>
-    <h3>Organic GOTS Cotton</h3>
-    <p>Use only dye-free, fragrance-free detergents. 30°C max. No fabric softener — it coats organic fibres and reduces breathability. This is especially important for newborn skin.</p>
-    <h3>Knitwear & Sets</h3>
-    <p>Hand wash or delicate machine cycle, 30°C. Lay flat to dry — never hang knitwear as it stretches under its own weight.</p>
-    <h3>Embroidered & Printed Pieces</h3>
-    <p>Always inside out. Cold wash only. Never iron directly on prints — use a pressing cloth or iron on the reverse side.</p>
-    <h3>Storage Tips</h3>
-    <p>Store clean only — even invisible food residues attract moths. Fold knitwear, hang structured pieces. Use cedar blocks instead of chemical moth repellent for baby clothes.</p>
-  `,
-  organic: `
-    <h2>Why GOTS Organic Matters for Your Baby's Skin</h2>
-    <p>A newborn's skin is 5x thinner than adult skin and absorbs up to 60% of what touches it. This is why the fabric your baby wears matters enormously.</p>
-    <h3>What is GOTS?</h3>
-    <p>The Global Organic Textile Standard (GOTS) is the world's leading standard for organic textiles. It covers every step — from the cotton field to the finished garment — including dyeing, printing, and manufacturing conditions.</p>
-    <h3>What GOTS Prohibits</h3>
-    <p>Formaldehyde (common in conventional wrinkle-free fabrics), heavy metals in dyes, chlorine bleach, synthetic fragrances, PVC, and over 100 other harmful substances that are commonly found in conventional kids clothing.</p>
-    <h3>Why Turkish GOTS is Reliable</h3>
-    <p>Turkey is one of the world's top GOTS-certified producers. Turkish manufacturers are regularly audited and the certification is issued by independent third-party bodies — not self-declared.</p>
-    <h3>Our GOTS Collection</h3>
-    <p>All products marked 🌿 in our catalogue are GOTS certified. Certificates are available on request. Particularly recommended for newborns, babies with eczema, or sensitive skin.</p>
-  `,
-  seasonal: `
-    <h2>Building a Smart Kids Wardrobe for Each Season</h2>
-    <p>The biggest mistake parents make is buying too much of the wrong things. Here's a practical framework built from what 20,000 resellers know sells.</p>
-    <h3>Newborn Essentials (0–3 months)</h3>
-    <p>Buy minimum — newborns grow out of clothes in 6–8 weeks. 6–8 bodysuits, 4–5 sleep suits, 3–4 vests, 2 warm layers, 1 going-out outfit. That's it.</p>
-    <h3>Baby (3–24 months)</h3>
-    <p>Per season: 5–7 day outfits, 3–4 sleep outfits, 2 warmer layers (cardigan/hoodie), 1–2 outerwear pieces. Prioritise easy-on, easy-off fastenings — poppers at the bottom are essential.</p>
-    <h3>Children (2–14 years)</h3>
-    <p>The layering system works best: 3–4 base layers, 3–4 mid layers, 1–2 outer layers. Quality over quantity — 8 items that mix and match beats 20 that don't coordinate.</p>
-    <h3>The Capsule Principle</h3>
-    <p>Choose a 2–3 colour palette per season (neutrals + one accent). Everything should work with everything else. This is exactly how professional buyers build boutique collections.</p>
-  `,
-  quality: `
-    <h2>How to Spot Quality Children's Clothing at a Glance</h2>
-    <p>Professional buyers inspect thousands of garments. These are the checks they do automatically — and now you can too.</p>
-    <h3>The Fabric Test</h3>
-    <p>Hold the fabric up to light. Quality cotton should be dense with no thin patches. Pinch and release — it should spring back immediately. If it stays creased when cold, it may contain synthetic fillers.</p>
-    <h3>Stitching Check</h3>
-    <p>Count stitches per centimetre on seams. 8–12 stitches/cm is standard quality. Less than 6 will unravel quickly. Check that seam allowances are generous (at least 1cm) and that raw edges are overlocked, not just cut.</p>
-    <h3>Labels & Hardware</h3>
-    <p>Check that labels are soft and won't scratch. Metal hardware (zips, buttons, snaps) should have no sharp edges and should close smoothly. Press studs should click firmly shut and require deliberate force to open.</p>
-    <h3>Prints & Embroidery</h3>
-    <p>Scratch a print lightly with your fingernail — quality prints don't flake. Embroidery should lie flat with no puckering of the base fabric. Check the reverse side — messy backing usually means poor front quality too.</p>
-    <h3>The WKF Standard</h3>
-    <p>Every product in our catalogue goes through a 12-point quality control inspection before listing. We work only with factories that meet EU export standards.</p>
-  `,
-  turkey: `
-    <h2>Why Turkish Kids Clothing is Loved in 120 Countries</h2>
-    <p>Turkey is the world's 4th largest textile and apparel exporter, shipping over $22 billion worth of clothing annually. Children's clothing is one of its fastest-growing categories.</p>
-    <h3>The Raw Material Advantage</h3>
-    <p>Turkey grows its own cotton — primarily in the Aegean region — giving manufacturers direct control over fibre quality from field to garment. Turkish cotton is known for its long staple length, which produces softer, more durable fabric.</p>
-    <h3>Manufacturing Tradition</h3>
-    <p>Textile manufacturing in Turkey spans three generations. Skills are passed down through family-owned factories in Bursa, Istanbul, and Denizli. The result is craftsmanship that mass-production facilities in other countries cannot replicate.</p>
-    <h3>EU Compliance</h3>
-    <p>As a candidate EU member and major EU trading partner, Turkish manufacturers routinely comply with REACH, OEKO-TEX, and GOTS standards. This makes Turkish children's clothing among the safest in the world for chemical content.</p>
-    <h3>Value Proposition</h3>
-    <p>Turkish kids clothing sits in a unique position: quality equivalent to or better than European brands, at prices 40–70% lower. This is why boutiques across Norway, Germany, the USA and Australia buy from Turkey exclusively.</p>
-  `
+  sizes:`<h2>How to Choose the Right Size for Turkish Kids Clothing</h2><p>Turkish sizing follows European standards but brands vary. Always measure your child fresh.</p><h3>WKF Size Chart — Babies</h3><table class="size-table"><tr><th>Age</th><th>Height (cm)</th><th>Weight (kg)</th></tr><tr><td>0–3m</td><td>50–62</td><td>3–6</td></tr><tr><td>3–6m</td><td>62–68</td><td>6–8</td></tr><tr><td>6–12m</td><td>68–80</td><td>8–10</td></tr><tr><td>12–18m</td><td>80–86</td><td>10–12</td></tr><tr><td>18–24m</td><td>86–92</td><td>12–14</td></tr></table><h3>Children</h3><table class="size-table"><tr><th>Age</th><th>Height (cm)</th><th>EU Size</th></tr><tr><td>2–3y</td><td>92–98</td><td>92/98</td></tr><tr><td>4–5y</td><td>104–110</td><td>104/110</td></tr><tr><td>6–7y</td><td>116–122</td><td>116/122</td></tr><tr><td>8–9y</td><td>128–134</td><td>128/134</td></tr><tr><td>10–11y</td><td>140–146</td><td>140/146</td></tr></table><p><strong>Tip:</strong> When in doubt, size up. Turkish kids clothing is cut generously.</p>`,
+  care:`<h2>How to Wash Kids Clothing to Keep It Like New</h2><p>Improper washing is the #1 reason quality kids clothing deteriorates.</p><h3>Cotton & Jersey</h3><p>Wash at 30–40°C. Turn inside out before washing to protect prints. Air dry flat — avoid tumble drying.</p><h3>Organic GOTS Cotton</h3><p>Use dye-free, fragrance-free detergents. 30°C max. No fabric softener.</p><h3>Knitwear</h3><p>Hand wash or delicate cycle, 30°C. Lay flat to dry — never hang knitwear.</p><h3>Embroidered Pieces</h3><p>Always inside out. Cold wash only. Iron on the reverse side only.</p>`,
+  organic:`<h2>Why GOTS Organic Matters for Your Baby's Skin</h2><p>A newborn's skin is 5x thinner than adult skin and absorbs up to 60% of what touches it.</p><h3>What is GOTS?</h3><p>The Global Organic Textile Standard covers every step — from the cotton field to the finished garment — including dyeing and manufacturing.</p><h3>What GOTS Prohibits</h3><p>Formaldehyde, heavy metals in dyes, chlorine bleach, synthetic fragrances, PVC, and 100+ harmful substances found in conventional kids clothing.</p><h3>Our GOTS Collection</h3><p>All products marked 🌿 in our catalogue are GOTS certified. Certificates available on request.</p>`,
+  seasonal:`<h2>Building a Smart Kids Wardrobe for Each Season</h2><h3>Newborn (0–3 months)</h3><p>Buy minimum — newborns grow out of clothes in 6–8 weeks. 6–8 bodysuits, 4–5 sleep suits, 2 warm layers. That's it.</p><h3>Baby (3–24 months)</h3><p>Per season: 5–7 day outfits, 3–4 sleep outfits, 2 warmer layers, 1–2 outerwear pieces.</p><h3>Children (2–14 years)</h3><p>The layering system: 3–4 base layers, 3–4 mid layers, 1–2 outer layers. Quality over quantity.</p>`,
+  quality:`<h2>How to Spot Quality Children's Clothing at a Glance</h2><h3>The Fabric Test</h3><p>Hold the fabric up to light. Quality cotton should be dense. Pinch and release — it should spring back immediately.</p><h3>Stitching Check</h3><p>Count stitches per centimetre. 8–12 stitches/cm is standard. Less than 6 will unravel quickly.</p><h3>Labels & Hardware</h3><p>Labels should be soft. Metal hardware should close smoothly. Press studs should click firmly.</p>`,
+  turkey:`<h2>Why Turkish Kids Clothing is Loved in 120 Countries</h2><p>Turkey is the world's 4th largest textile exporter, shipping over $22 billion annually.</p><h3>The Raw Material Advantage</h3><p>Turkey grows its own cotton — primarily in the Aegean region — giving manufacturers direct control over fibre quality from field to garment.</p><h3>EU Compliance</h3><p>Turkish manufacturers routinely comply with REACH, OEKO-TEX, and GOTS standards — making Turkish kids clothing among the safest in the world.</p>`
 };
-
-function openArticle(key) {
-  document.getElementById('articleContent').innerHTML = ARTICLES[key] || '<p>Article not found.</p>';
-  document.getElementById('articleOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeArticle() {
-  document.getElementById('articleOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('articleOverlay').addEventListener('click', function(e) {
-  if (e.target === this) closeArticle();
-});
+function openArticle(key){document.getElementById('articleContent').innerHTML=ARTICLES[key]||'';document.getElementById('articleOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeArticle(){document.getElementById('articleOverlay').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('articleOverlay').addEventListener('click',function(e){if(e.target===this)closeArticle();});
 </script>
 </body>
 </html>

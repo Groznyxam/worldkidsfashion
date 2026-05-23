@@ -1,45 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register as Reseller — WorldKidsFashion™</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Wholesale Account — WorldKidsFashion</title>
+<meta name="description" content="Register free to access wholesale prices, stock availability and ordering options. WorldKidsFashion is a wholesale-only B2B platform.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.reg-wrap{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:start;padding:60px 0 80px}
+.reg-form{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px}
+.reg-label{display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px}
+.reg-input{width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.92rem;background:var(--white);color:var(--ink);transition:border .2s;box-sizing:border-box}
+.reg-input:focus{outline:none;border-color:var(--ink)}
+.reg-group{margin-bottom:18px}
+.reg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.reg-submit{width:100%;padding:15px;background:var(--ink);color:var(--white);border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:background .2s;margin-top:4px}
+.reg-submit:hover{background:var(--red)}
+.reg-submit:disabled{background:var(--stone);cursor:not-allowed}
+.checkbox-group{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+.checkbox-group input[type=checkbox]{margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--ink)}
+.checkbox-group label{font-size:.85rem;color:var(--stone);line-height:1.6}
+.checkbox-group a{color:var(--red);text-decoration:underline}
+.what-happens{background:var(--silk);border-radius:var(--r-lg);padding:24px;margin-bottom:28px}
+.what-happens h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;color:var(--stone)}
+.benefit-item{display:flex;gap:10px;margin-bottom:10px;font-size:.88rem;color:var(--stone)}
+.divider{height:1px;background:var(--border);margin:24px 0}
+.privacy-note{background:#f0f9ff;border:1px solid #bae6fd;border-radius:var(--r);padding:14px 16px;font-size:.82rem;color:#0369a1;margin-bottom:20px;line-height:1.6}
+</style>
 </head>
 <body>
-<div class="auth-wrap">
-  <div class="auth-box" style="max-width:540px">
-    <div class="auth-icon"></div>
-    <h1 class="auth-title">Become a Reseller</h1>
-    <p class="auth-sub">Join 20,000+ wholesale buyers worldwide. Free registration — instant access to all prices.</p>
-    <form id="registerForm">
-      <div class="fg-2">
-        <div class="fg"><label>First Name</label><input type="text" placeholder="John" required></div>
-        <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
-      </div>
-      <div class="fg"><label>Business / Full Name</label><input type="text" id="regName" placeholder="Your name or company name" required></div>
-      <div class="fg"><label>Business Email</label><input type="email" id="regEmail" placeholder="your@business.com" required></div>
-      <div class="fg"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 234 567 8900"></div>
-      <div class="fg"><label>Country</label>
-        <select id="regCountry" required>
-          <option value="">Select your country…</option>
-          <option>United States</option><option>United Kingdom</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Russia</option><option>Kazakhstan</option><option>UAE</option><option>Saudi Arabia</option><option>Poland</option><option>Spain</option><option>Italy</option><option>Australia</option><option>Canada</option><option>South Africa</option><option>Lithuania</option><option>North Macedonia</option><option>Other</option>
-        </select>
-      </div>
-      <div class="fg"><label>Business Type</label>
-        <select>
-          <option>Online Store / E-commerce</option><option>Boutique / Retail Shop</option><option>Wholesaler / Distributor</option><option>Marketplace Seller (Amazon, eBay…)</option><option>Other</option>
-        </select>
-      </div>
-      <div class="fg"><label>Password</label><input type="password" placeholder="Create a password" required></div>
-      <div class="auth-check"><input type="checkbox" required><span>I agree to the <a href="#" style="color:var(--red)">Terms & Conditions</a> and confirm this is a business account for wholesale purchasing.</span></div>
-      <button type="submit" class="btn-primary auth-submit">Create Wholesale Account →</button>
-    </form>
-    <div class="auth-switch">Already have an account? <a href="login.html">Login</a></div>
-    <a href="index.html" class="auth-back">← Back to Homepage</a>
+
+<div class="announce" aria-hidden="true"><div class="announce-track">
+  <span>📍 Istanbul, Turkey</span><span>·</span>
+  <span>Wholesale only</span><span>·</span>
+  <span>MOQ from 6 pcs</span><span>·</span>
+  <span>Register free — access prices immediately</span><span>·</span>
+  <span>📍 Istanbul, Turkey</span><span>·</span>
+  <span>Wholesale only</span><span>·</span>
+  <span>MOQ from 6 pcs</span><span>·</span>
+  <span>Register free — access prices immediately</span>
+</div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="hdr-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon"></div>
+      <div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div>
+    </a>
+    <nav class="nav-main">
+      <a href="catalog.html" class="nav-item">Catalog</a>
+      <a href="how-it-works.html" class="nav-item">How It Works</a>
+      <a href="private-label.html" class="nav-item">Private Label</a>
+      <a href="shipping.html" class="nav-item">Shipping</a>
+      <a href="trust.html" class="nav-item">Trust Center</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="contact.html" class="nav-item">Contact</a>
+    </nav>
+    <div class="hdr-right">
+      <a href="login.html" class="hdr-icon" style="font-size:.85rem;color:var(--stone)">Sign In</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div style="background:var(--silk);border-bottom:1px solid var(--border);padding:12px 0">
+  <div class="container" style="font-size:.82rem;color:var(--stone)">
+    <a href="index.html" style="color:var(--stone)">Home</a> › Create Wholesale Account
   </div>
 </div>
+
+<div class="container">
+  <div class="reg-wrap">
+
+    <!-- LEFT: INFO -->
+    <div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:300;margin-bottom:16px;line-height:1.2">Create Your<br><em style="font-style:italic;color:var(--red)">Wholesale Account</em></h1>
+      <p style="color:var(--stone);font-size:1rem;line-height:1.8;margin-bottom:32px">
+        Register free to access wholesale prices, stock availability and ordering options.
+      </p>
+
+      <!-- WHY WE REQUIRE BUSINESS DETAILS -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:28px">
+        <h3 style="font-size:.9rem;font-weight:600;margin-bottom:12px">Why we ask for business details</h3>
+        <p style="font-size:.85rem;color:var(--stone);line-height:1.8">
+          WorldKidsFashion is a wholesale-only platform. We require business information to protect supplier pricing and ensure the catalog is available only to resellers, boutiques, distributors and online stores — not private retail buyers.
+        </p>
+        <p style="font-size:.85rem;color:var(--stone);line-height:1.8;margin-top:10px">
+          Your information is not shared with third parties and is only used to verify your business purpose and provide order-related support.
+        </p>
+      </div>
+
+      <!-- WHAT HAPPENS AFTER -->
+      <div class="what-happens">
+        <h4>After registration you can:</h4>
+        <div class="benefit-item"><span style="color:#16a34a;font-weight:700">✓</span><span>View wholesale prices and MOQ for all products</span></div>
+        <div class="benefit-item"><span style="color:#16a34a;font-weight:700">✓</span><span>Check real-time stock availability</span></div>
+        <div class="benefit-item"><span style="color:#16a34a;font-weight:700">✓</span><span>Build an inquiry list and request a proforma invoice</span></div>
+        <div class="benefit-item"><span style="color:#16a34a;font-weight:700">✓</span><span>Contact our team for private label or custom production</span></div>
+        <div class="benefit-item"><span style="color:#16a34a;font-weight:700">✓</span><span>Request sample orders before committing to full volume</span></div>
+      </div>
+
+      <!-- SAMPLE PRICE RANGES -->
+      <div style="background:var(--ink);color:#fff;border-radius:var(--r-lg);padding:24px 28px;margin-bottom:28px">
+        <h4 style="font-size:.85rem;font-weight:600;margin-bottom:14px;color:rgba(255,255,255,.5)">Indicative wholesale price ranges</h4>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07)">
+            <span style="color:rgba(255,255,255,.6)">Newborn bodysuits &amp; sets</span>
+            <span style="font-family:'DM Mono',monospace;color:var(--gold-light)">from $4.90 / pc</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07)">
+            <span style="color:rgba(255,255,255,.6)">Baby dresses &amp; rompers</span>
+            <span style="font-family:'DM Mono',monospace;color:var(--gold-light)">from $6.50 / pc</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07)">
+            <span style="color:rgba(255,255,255,.6)">Girls dresses 2–8y</span>
+            <span style="font-family:'DM Mono',monospace;color:var(--gold-light)">from $7.90 / pc</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem">
+            <span style="color:rgba(255,255,255,.6)">Tracksuits &amp; sets</span>
+            <span style="font-family:'DM Mono',monospace;color:var(--gold-light)">from $9.50 / pc</span>
+          </div>
+        </div>
+        <p style="font-size:.75rem;color:rgba(255,255,255,.25);margin-top:14px">Exact prices depend on quantity, style and season. Register to view full price list.</p>
+      </div>
+
+      <!-- WHATSAPP NOTE -->
+      <div style="border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 24px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:1.4rem">💬</span>
+          <div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:6px">About WhatsApp communication</div>
+            <div style="font-size:.82rem;color:var(--stone);line-height:1.7">If you provide a WhatsApp number, our team may contact you via WhatsApp only for order-related support — confirming order details, shipping updates or answering product questions. We do not use WhatsApp for marketing or share your number with third parties.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div>
+      <div class="reg-form">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:6px">Create Account</h2>
+        <p style="font-size:.82rem;color:var(--stone);margin-bottom:28px">All fields marked * are required</p>
+
+        <div id="regForm">
+
+          <div class="divider" style="margin-top:0"></div>
+          <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--stone);margin-bottom:16px">Personal Details</div>
+
+          <div class="reg-row">
+            <div class="reg-group">
+              <label class="reg-label" for="reg-first">First Name *</label>
+              <input class="reg-input" type="text" id="reg-first" autocomplete="given-name" required>
+            </div>
+            <div class="reg-group">
+              <label class="reg-label" for="reg-last">Last Name *</label>
+              <input class="reg-input" type="text" id="reg-last" autocomplete="family-name" required>
+            </div>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label" for="reg-email">Business Email *</label>
+            <input class="reg-input" type="email" id="reg-email" autocomplete="email" required>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label" for="reg-pass">Password *</label>
+            <input class="reg-input" type="password" id="reg-pass" autocomplete="new-password" minlength="8" required>
+            <div style="font-size:.75rem;color:var(--mist);margin-top:4px">Minimum 8 characters</div>
+          </div>
+
+          <div class="divider"></div>
+          <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--stone);margin-bottom:16px">Business Details</div>
+
+          <div class="reg-group">
+            <label class="reg-label" for="reg-company">Company / Business Name *</label>
+            <input class="reg-input" type="text" id="reg-company" autocomplete="organization" required>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label" for="reg-type">Business Type *</label>
+            <select class="reg-input" id="reg-type" required>
+              <option value="">Select your business type</option>
+              <option value="boutique">Physical boutique / retail store</option>
+              <option value="online">Online store / e-commerce</option>
+              <option value="marketplace">Marketplace seller (Amazon, eBay, Etsy…)</option>
+              <option value="distributor">Distributor / wholesaler</option>
+              <option value="brand">Private label brand</option>
+              <option value="other">Other wholesale buyer</option>
+            </select>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label" for="reg-country">Country *</label>
+            <select class="reg-input" id="reg-country" required>
+              <option value="">Select country</option>
+              <option>France</option><option>Germany</option><option>Norway</option>
+              <option>Sweden</option><option>Netherlands</option><option>Belgium</option>
+              <option>United Kingdom</option><option>Poland</option><option>Russia</option>
+              <option>Ukraine</option><option>Georgia</option><option>United States</option>
+              <option>Canada</option><option>Australia</option><option>UAE</option>
+              <option>Turkey</option><option>Other</option>
+            </select>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label" for="reg-phone">WhatsApp / Phone (optional)</label>
+            <input class="reg-input" type="tel" id="reg-phone" placeholder="+1 234 567 8900" autocomplete="tel">
+            <div style="font-size:.75rem;color:var(--mist);margin-top:4px">Only used for order-related support. Not for marketing.</div>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label" for="reg-website">Website / Social media (optional)</label>
+            <input class="reg-input" type="url" id="reg-website" placeholder="https://" autocomplete="url">
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- PRIVACY NOTE -->
+          <div class="privacy-note">
+            🔒 Your data is processed in accordance with our <a href="privacy.html" style="color:inherit;font-weight:600">Privacy Policy</a>. We do not share your information with third parties except where required for order fulfilment (e.g. shipping carriers). You can request deletion of your data at any time by emailing info@worldkidsfashion.org.
+          </div>
+
+          <!-- CHECKBOXES -->
+          <div class="checkbox-group">
+            <input type="checkbox" id="chk-terms" required>
+            <label for="chk-terms">
+              I agree to the <a href="terms.html" target="_blank">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank">Privacy Policy</a> and confirm that I am registering for wholesale business purchasing purposes. *
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="chk-wholesale">
+            <label for="chk-wholesale">
+              I confirm that I am a business buyer (reseller, boutique, distributor or online store) and understand that WorldKidsFashion is a wholesale-only platform not available for private retail purchases.
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="chk-gdpr">
+            <label for="chk-gdpr">
+              I consent to WorldKidsFashion storing and processing my business information for the purpose of providing wholesale access and order support, as described in the <a href="privacy.html" target="_blank">Privacy Policy</a>.
+            </label>
+          </div>
+
+          <button class="reg-submit" id="regSubmitBtn" onclick="handleRegister()">
+            Create Wholesale Account →
+          </button>
+
+          <div style="margin-top:16px;text-align:center;font-size:.82rem;color:var(--stone)">
+            Already have an account? <a href="login.html" style="color:var(--red);font-weight:600">Sign in</a>
+          </div>
+
+        </div><!-- /regForm -->
+
+        <!-- SUCCESS STATE -->
+        <div id="regSuccess" style="display:none;text-align:center;padding:20px 0">
+          <div style="font-size:3rem;margin-bottom:16px">✅</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:12px">Account Created!</h3>
+          <p style="color:var(--stone);font-size:.9rem;line-height:1.8;margin-bottom:20px">
+            Check your email for a confirmation link. Once confirmed, you will have full access to wholesale prices, stock and ordering.
+          </p>
+          <a href="catalog.html" class="btn-primary">Browse Catalog →</a>
+        </div>
+
+      </div><!-- /reg-form -->
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div></a>
+        <p class="ft-brand-text">Wholesale kids and baby clothing from Istanbul, Turkey.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+      <div class="ft-col">
+        <h4>Help</h4>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="shipping.html">Shipping Policy</a>
+        <a href="returns.html">Returns &amp; Claims</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2025 WorldKidsFashion · Istanbul, Turkey · Wholesale only</div>
+    </div>
+  </div>
+</footer>
+
 <script src="i18n.js"></script>
 <script src="app.js"></script>
-<script>wkfInitLang();</script></body></html>
+<script>
+wkfInitLang();
+
+function handleRegister() {
+  const first    = document.getElementById('reg-first').value.trim();
+  const last     = document.getElementById('reg-last').value.trim();
+  const email    = document.getElementById('reg-email').value.trim();
+  const pass     = document.getElementById('reg-pass').value;
+  const company  = document.getElementById('reg-company').value.trim();
+  const type     = document.getElementById('reg-type').value;
+  const country  = document.getElementById('reg-country').value;
+  const terms    = document.getElementById('chk-terms').checked;
+
+  if (!first || !last || !email || !pass || !company || !type || !country) {
+    alert('Please fill in all required fields (marked with *).');
+    return;
+  }
+  if (!email.includes('@') || !email.includes('.')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  if (pass.length < 8) {
+    alert('Password must be at least 8 characters.');
+    return;
+  }
+  if (!terms) {
+    alert('Please agree to the Terms & Conditions and Privacy Policy to continue.');
+    return;
+  }
+
+  // Save to localStorage (demo — in production this POSTs to backend)
+  const user = { first, last, email, company, type, country,
+    phone: document.getElementById('reg-phone').value,
+    website: document.getElementById('reg-website').value,
+    registered: new Date().toISOString()
+  };
+  const users = JSON.parse(localStorage.getItem('wkf_users') || '[]');
+  users.push(user);
+  localStorage.setItem('wkf_users', JSON.stringify(users));
+  localStorage.setItem('wkf_current_user', JSON.stringify(user));
+
+  document.getElementById('regForm').style.display = 'none';
+  document.getElementById('regSuccess').style.display = 'block';
+}
+</script>
+</body>
+</html>
