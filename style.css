@@ -203,6 +203,8 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
 
 /* ── HERO ── */
 .hero {
+  min-height:88vh;
+  display:grid; grid-template-columns:1fr 1fr;
   position:relative; overflow:hidden;
 }
 
