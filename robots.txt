@@ -1,0 +1,11 @@
+# WorldKidsFashion — robots.txt
+User-agent: *
+Allow: /
+
+# Закрытые от индексации страницы (личный кабинет, корзина, админка)
+Disallow: /admin.html
+Disallow: /account.html
+Disallow: /cart.html
+Disallow: /login.html
+
+Sitemap: https://worldkidsfashion.org/sitemap.xml
