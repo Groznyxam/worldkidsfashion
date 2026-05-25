@@ -27,14 +27,10 @@
   </nav>
   <div class="hdr-right">
     <div id="langWrap" style="position:relative;display:inline-block">
-      <button onclick="wkfToggleLang()" style="padding:6px 14px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
+      <button onclick="wkfToggleLang(event)" style="padding:6px 14px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
       <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
         <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
         <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
-        <button onclick="wkfSetLang('fr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇫🇷 Français</button>
-        <button onclick="wkfSetLang('de')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇩🇪 Deutsch</button>
-        <button onclick="wkfSetLang('tr')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇹🇷 Türkçe</button>
-        <button onclick="wkfSetLang('no')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇳🇴 Norsk</button>
       </div>
     </div>
     <a href="register.html" class="hdr-cta"><span data-i18n="btn_register">Register Free →</span></a>
@@ -46,8 +42,8 @@
   <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
     <div>
       <span class="sec-eye">Private Label Production</span>
-      <h1 class="sec-h2">Private Label Kidswear<br>from Turkey</h1>
-      <p style="color:var(--stone);font-size:1rem;line-height:1.9;margin-bottom:28px">Launch or expand your kidswear brand with private label production from Istanbul manufacturers. Your brand, our production expertise.</p>
+      <h1 class="sec-h2"><span data-i18n="pl_h1">Private Label Kidswear from Turkey</span></h1>
+      <p style="color:var(--stone);font-size:1rem;line-height:1.9;margin-bottom:28px"><span data-i18n="pl_sub">Launch or expand your kidswear brand with private label production from Istanbul manufacturers. Your brand, our production expertise.</span></p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="contact.html" class="btn-primary">Request Information →</a>
         <a href="register.html" class="btn-outline">Create Account</a>
@@ -67,23 +63,23 @@
 
 <section class="sec sec-alt">
   <div class="container">
-    <span class="sec-eye">What's Included</span>
-    <h2 class="sec-h2">Available Branding Options</h2>
+    <span class="sec-eye"><span data-i18n="pl_eye">What's Included</span></span>
+    <h2 class="sec-h2"><span data-i18n="pl_options_h">Available Branding Options</span></h2>
     <div class="svc-grid" style="margin-top:32px">
-      <div class="svc-card"><div class="svc-icon">🏷️</div><h3>Neck Labels</h3><p>Custom woven or printed neck labels with your brand name, size and care instructions.</p></div>
-      <div class="svc-card"><div class="svc-icon">🎫</div><h3>Hang Tags</h3><p>Custom cardboard or recycled paper hang tags with your logo, barcode and product information.</p></div>
-      <div class="svc-card"><div class="svc-icon">📦</div><h3>Packaging</h3><p>Custom polybags, boxes or tissue paper with your brand design. Minimum quantities apply.</p></div>
-      <div class="svc-card"><div class="svc-icon">📋</div><h3>Size Labels</h3><p>Custom size labels in your preferred sizing system (EU, UK, US or own).</p></div>
-      <div class="svc-card"><div class="svc-icon">🧵</div><h3>Care Labels</h3><p>Custom care instruction labels compliant with your destination market requirements.</p></div>
-      <div class="svc-card"><div class="svc-icon">✏️</div><h3>Model Customisation</h3><p>Selected model changes such as colour, trim or detail modifications on available models. Confirmed per product.</p></div>
+      <div class="svc-card"><div class="svc-icon">🏷️</div><h3><span data-i18n="pl1_h">Neck Labels</span></h3><p><span data-i18n="pl1_p">Custom woven or printed neck labels with your brand name, size and care instructions.</span></p></div>
+      <div class="svc-card"><div class="svc-icon">🎫</div><h3><span data-i18n="pl2_h">Hang Tags</span></h3><p>Custom cardboard or recycled paper hang tags with your logo, barcode and product information.</p></div>
+      <div class="svc-card"><div class="svc-icon">📦</div><h3><span data-i18n="pl3_h">Packaging</span></h3><p>Custom polybags, boxes or tissue paper with your brand design. Minimum quantities apply.</p></div>
+      <div class="svc-card"><div class="svc-icon">📋</div><h3><span data-i18n="pl4_h">Size Labels</span></h3><p>Custom size labels in your preferred sizing system (EU, UK, US or own).</p></div>
+      <div class="svc-card"><div class="svc-icon">🧵</div><h3><span data-i18n="pl5_h">Care Labels</span></h3><p>Custom care instruction labels compliant with your destination market requirements.</p></div>
+      <div class="svc-card"><div class="svc-icon">✏️</div><h3><span data-i18n="pl6_h">Model Customisation</span></h3><p>Selected model changes such as colour, trim or detail modifications on available models. Confirmed per product.</p></div>
     </div>
   </div>
 </section>
 
 <section class="sec sec-dark">
   <div class="container" style="max-width:800px">
-    <span class="sec-eye" style="color:var(--gold)">Process</span>
-    <h2 class="sec-h2">Private Label Step by Step</h2>
+    <span class="sec-eye" style="color:var(--gold)"><span data-i18n="pl_process_eye">Process</span></span>
+    <h2 class="sec-h2"><span data-i18n="pl_process_h">Private Label Step by Step</span></h2>
     <div style="display:flex;flex-direction:column;gap:0;margin-top:40px">
       <div style="display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.06)">
         <div style="width:40px;height:40px;background:var(--gold);color:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">1</div>
@@ -118,9 +114,9 @@
 </section>
 
 <section class="cta-sec"><div class="container"><div class="cta-inner">
-  <div><h2 class="cta-h2">Interested in Private Label?</h2><p class="cta-sub">Contact us to discuss your requirements, MOQ and timeline.</p></div>
+  <div><h2 class="cta-h2"><span data-i18n="pl_cta_h">Interested in Private Label?</span></h2><p class="cta-sub"><span data-i18n="pl_cta_p">Contact us to discuss your requirements, MOQ and timeline.</span></p></div>
   <div class="cta-right">
-    <a href="contact.html" class="btn-cta-white">Request Information</a>
+    <a href="contact.html" class="btn-cta-white"><span data-i18n="pl_request">Request Information</span></a>
     <a href="https://wa.me/995598146418" target="_blank" style="color:rgba(255,255,255,.5);font-size:.85rem;margin-top:10px;display:block">💬 WhatsApp: +995 598 146 418</a>
   </div>
 </div></div></section>

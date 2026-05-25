@@ -521,16 +521,7 @@ function handleLogin(e) {
   setTimeout(() => location.href = redirect || 'account.html', 700);
 }
 
-function handleRegister(e) {
-  e.preventDefault();
-  const email   = document.getElementById('regEmail')?.value;
-  const name    = document.getElementById('regName')?.value;
-  const country = document.getElementById('regCountry')?.value;
-  if (!email || !name || !country) { showToast('Please fill all required fields', 'error'); return; }
-  saveUser({ email, name, country, joined: new Date().getFullYear() });
-  showToast('Welcome to WKF Wholesale! Prices are now visible.', 'success');
-  setTimeout(() => location.href = 'account.html', 900);
-}
+// handleRegister moved to register.html (uses Supabase)
 
 function handleLogout() {
   localStorage.removeItem('wkf_user');
@@ -586,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Auth forms
   document.getElementById('loginForm')?.addEventListener('submit', handleLogin);
-  document.getElementById('registerForm')?.addEventListener('submit', handleRegister);
+  // registerForm listener removed - register.html handles its own submit
   document.getElementById('logoutBtn')?.addEventListener('click', handleLogout);
 
   // Newsletter
