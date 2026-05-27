@@ -106,6 +106,7 @@ textarea { min-height: 80px; resize: vertical; }
       <button class="tab" onclick="switchTab('verified')">Verified Users</button>
       <button class="tab" onclick="switchTab('all')">All Users</button>
       <button class="tab" onclick="switchTab('inquiries')">Inquiries <span class="tab-count" id="countInquiries">0</span></button>
+      <button class="tab" onclick="switchTab('factories')">Factories <span class="tab-count" id="countFactories">0</span></button>
     </div>
 
     <!-- Pending users -->
@@ -143,6 +144,46 @@ textarea { min-height: 80px; resize: vertical; }
         <tbody id="inquiriesTable"><tr><td colspan="6" class="loading">Loading…</td></tr></tbody>
       </table>
     </div>
+
+    <!-- Factories -->
+    <div id="tab-factories" class="tab-content section" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+        <h2 style="margin:0">Manufacturer Partners</h2>
+        <button onclick="showInviteForm()" style="background:#16a34a;color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;font-size:13px">+ Send Factory Invite</button>
+      </div>
+
+      <div id="inviteForm" style="display:none;background:#faf9f6;border:1px solid #e8e6e0;border-radius:8px;padding:20px;margin-bottom:20px">
+        <h3 style="margin:0 0 12px;font-size:16px">Send Invite to Factory</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div>
+            <label style="display:block;font-size:12px;color:#5a5550;margin-bottom:4px">Factory Name *</label>
+            <input type="text" id="inviteFactoryName" placeholder="e.g. Acme Textile Ltd" style="width:100%;padding:8px 10px;border:1px solid #e8e6e0;border-radius:6px;font-family:inherit;font-size:14px">
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;color:#5a5550;margin-bottom:4px">Contact Email *</label>
+            <input type="email" id="inviteEmail" placeholder="contact@factory.com" style="width:100%;padding:8px 10px;border:1px solid #e8e6e0;border-radius:6px;font-family:inherit;font-size:14px">
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button onclick="createInvite()" class="btn-approve">Generate Invite Link</button>
+          <button onclick="hideInviteForm()" class="modal-close">Cancel</button>
+        </div>
+        <div id="inviteResult" style="margin-top:16px;display:none"></div>
+      </div>
+
+      <h3 style="font-size:14px;color:#5a5550;margin-bottom:8px">Registered Factories</h3>
+      <table>
+        <thead><tr><th>Factory</th><th>Email</th><th>City</th><th>Capacity</th><th>Joined</th><th>Actions</th></tr></thead>
+        <tbody id="factoriesTable"><tr><td colspan="6" class="loading">Loading…</td></tr></tbody>
+      </table>
+
+      <h3 style="font-size:14px;color:#5a5550;margin:24px 0 8px">Pending Invites</h3>
+      <table>
+        <thead><tr><th>Factory Name</th><th>Email</th><th>Link</th><th>Sent</th><th>Status</th></tr></thead>
+        <tbody id="invitesTable"><tr><td colspan="5" class="loading">Loading…</td></tr></tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 
@@ -246,6 +287,10 @@ async function loadStats() {
   const inqCount = inqData ? inqData.length : 0;
   document.getElementById('statInquiries').textContent = inqCount;
   document.getElementById('countInquiries').textContent = inqCount;
+
+  // Factories count
+  const { data: factData } = await supa.from('factories').select('id');
+  document.getElementById('countFactories').textContent = factData ? factData.length : 0;
 }
 
 async function loadPending() {
@@ -516,11 +561,157 @@ function switchTab(name) {
   if (name === 'verified') loadVerified();
   if (name === 'all') loadAll();
   if (name === 'inquiries') loadInquiries();
+  if (name === 'factories') loadFactories();
 }
 
 async function handleLogout() {
   await supa.auth.signOut();
   window.location.href = 'login.html';
+}
+
+
+// === FACTORIES ===
+
+async function loadFactories() {
+  // Load factories
+  const { data: factories, error: fErr } = await supa
+    .from('factories')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const tbody = document.getElementById('factoriesTable');
+  if (fErr) { tbody.innerHTML = '<tr><td colspan="6" class="empty-row">Error: ' + fErr.message + '</td></tr>'; }
+  else if (!factories || factories.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty-row">No factories registered yet. Send your first invite above.</td></tr>';
+  } else {
+    tbody.innerHTML = factories.map(f => `
+      <tr>
+        <td><strong>${f.factory_name}</strong></td>
+        <td>${f.email}</td>
+        <td>${f.city || '—'}, ${f.country || '—'}</td>
+        <td>${f.monthly_capacity ? f.monthly_capacity + ' pcs/mo' : '—'}</td>
+        <td>${new Date(f.created_at).toLocaleDateString()}</td>
+        <td><button class="btn-view" onclick="showFactoryDetail('${f.id}')">View</button></td>
+      </tr>
+    `).join('');
+  }
+  document.getElementById('countFactories').textContent = factories ? factories.length : 0;
+
+  // Load pending invites
+  const { data: invites, error: iErr } = await supa
+    .from('factory_invites')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const invTbody = document.getElementById('invitesTable');
+  if (iErr) { invTbody.innerHTML = '<tr><td colspan="5" class="empty-row">Error</td></tr>'; }
+  else if (!invites || invites.length === 0) {
+    invTbody.innerHTML = '<tr><td colspan="5" class="empty-row">No invites sent yet.</td></tr>';
+  } else {
+    invTbody.innerHTML = invites.map(inv => {
+      const link = window.location.origin + '/factory-signup.html?token=' + inv.token;
+      const expired = new Date(inv.expires_at) < new Date();
+      const status = inv.used ? '<span class="status-badge status-verified">USED</span>' :
+                     expired ? '<span class="status-badge status-rejected">EXPIRED</span>' :
+                     '<span class="status-badge status-pending">PENDING</span>';
+      return `
+        <tr>
+          <td><strong>${inv.factory_name}</strong></td>
+          <td>${inv.email}</td>
+          <td><button onclick="copyLink('${link}')" style="background:transparent;border:1px solid #e8e6e0;padding:4px 10px;border-radius:4px;cursor:pointer;font-size:11px">Copy link</button></td>
+          <td>${new Date(inv.created_at).toLocaleDateString()}</td>
+          <td>${status}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+}
+
+function showInviteForm() {
+  document.getElementById('inviteForm').style.display = 'block';
+  document.getElementById('inviteResult').style.display = 'none';
+  document.getElementById('inviteFactoryName').value = '';
+  document.getElementById('inviteEmail').value = '';
+}
+
+function hideInviteForm() {
+  document.getElementById('inviteForm').style.display = 'none';
+}
+
+function generateToken() {
+  return Array.from(crypto.getRandomValues(new Uint8Array(24)))
+    .map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function createInvite() {
+  const name = document.getElementById('inviteFactoryName').value.trim();
+  const email = document.getElementById('inviteEmail').value.trim().toLowerCase();
+
+  if (!name || !email) { alert('Please fill factory name and email.'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Invalid email.'); return; }
+
+  const token = generateToken();
+  const { error } = await supa.from('factory_invites').insert({
+    token: token,
+    email: email,
+    factory_name: name,
+    created_by: currentUser.id
+  });
+
+  if (error) { alert('Error: ' + error.message); return; }
+
+  const link = window.location.origin + '/factory-signup.html?token=' + token;
+  document.getElementById('inviteResult').style.display = 'block';
+  document.getElementById('inviteResult').innerHTML = `
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px">
+      <strong>✓ Invite created. Send this link to the factory:</strong>
+      <div style="background:#fff;border:1px solid #e8e6e0;padding:10px;border-radius:6px;margin-top:8px;word-break:break-all;font-size:13px;font-family:monospace">${link}</div>
+      <button onclick="copyLink('${link}')" class="btn-approve" style="margin-top:8px">Copy Link</button>
+      <div style="font-size:12px;color:#5a5550;margin-top:8px">Link expires in 30 days. One-time use.</div>
+    </div>
+  `;
+  await loadFactories();
+}
+
+function copyLink(link) {
+  navigator.clipboard.writeText(link).then(() => alert('Link copied to clipboard!'));
+}
+
+async function showFactoryDetail(id) {
+  const { data, error } = await supa.from('factories').select('*').eq('id', id).single();
+  if (error || !data) { alert('Error'); return; }
+
+  const fields = {
+    'Factory Name': data.factory_name,
+    'Contact Person': data.contact_person || '—',
+    'Email': data.email,
+    'Phone': data.phone || '—',
+    'WhatsApp': data.whatsapp || '—',
+    'Address': data.address || '—',
+    'City': data.city || '—',
+    'Country': data.country || '—',
+    'Website': data.website || '—',
+    'Tax Number': data.tax_number || '—',
+    'Registration #': data.registration_number || '—',
+    'Specialization': (data.specialization || []).join(', ') || '—',
+    'Monthly Capacity': data.monthly_capacity ? data.monthly_capacity + ' pcs' : '—',
+    'Lead Time': data.lead_time_days ? data.lead_time_days + ' days' : '—',
+    'MOQ per Model': data.moq_per_model || '—',
+    'Bank Name': data.bank_name || '—',
+    'IBAN': data.bank_iban || '—',
+    'SWIFT': data.bank_swift || '—',
+    'Certifications': (data.certifications || []).join(', ') || '—',
+    'Status': data.status,
+    'Joined': new Date(data.created_at).toLocaleString()
+  };
+
+  document.getElementById('modalTitle').textContent = 'Factory: ' + data.factory_name;
+  document.getElementById('modalContent').innerHTML = Object.entries(fields).map(([k, v]) =>
+    `<div class="modal-row"><span class="modal-label">${k}:</span><span class="modal-value">${v}</span></div>`
+  ).join('');
+
+  document.getElementById('modalActions').innerHTML = `<button class="modal-close" onclick="closeModal()">Close</button>`;
+  document.getElementById('userModal').classList.add('active');
 }
 
 // Close modal on backdrop click

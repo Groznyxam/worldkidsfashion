@@ -69,7 +69,11 @@ const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       // Show a message instead of redirecting automatically
       const box = document.querySelector('.auth-box');
       if (box) {
-        const target = (profile && (profile.role === 'admin' || profile.role === 'manager')) ? 'admin.html' : 'account.html';
+        let target = 'account.html';
+        if (profile) {
+          if (profile.role === 'admin' || profile.role === 'manager') target = 'admin.html';
+          else if (profile.role === 'factory') target = 'factory-dashboard.html';
+        }
         const existingMsg = document.getElementById('alreadyLoggedIn');
         if (!existingMsg) {
           const msg = document.createElement('div');
@@ -166,6 +170,8 @@ async function handleLogin(e) {
 
       if (profile.role === 'admin' || profile.role === 'manager') {
         window.location.href = 'admin.html';
+      } else if (profile.role === 'factory') {
+        window.location.href = 'factory-dashboard.html';
       } else {
         window.location.href = 'account.html';
       }

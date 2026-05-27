@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manufacturer Registration — WorldKidsFashion</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; min-height: 100vh; }
+
+.header { background: #1a1a1a; color: #fff; padding: 20px 32px; text-align: center; }
+.header h1 { font-size: 22px; font-weight: 600; font-family: 'Cormorant Garamond', serif; }
+.header p { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+
+.wrap { max-width: 720px; margin: 32px auto; padding: 0 24px; }
+
+.lang-switch { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+.lang-btn { padding: 6px 14px; background: #fff; border: 1px solid #e8e6e0; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; }
+.lang-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+.welcome-card { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 32px; margin-bottom: 24px; }
+.welcome-card h2 { font-size: 26px; font-family: 'Cormorant Garamond', serif; margin-bottom: 12px; }
+.invitee-line { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; }
+.welcome-text { color: #5a5550; line-height: 1.7; font-size: 15px; }
+
+.form-card { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 32px; }
+.form-card h3 { font-size: 18px; margin-bottom: 20px; }
+.fg { margin-bottom: 16px; }
+.fg label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #5a5550; }
+.fg label.required::after { content: ' *'; color: #dc2626; }
+.fg input, .fg select, .fg textarea { width: 100%; padding: 10px 12px; border: 1px solid #e8e6e0; border-radius: 6px; font-family: inherit; font-size: 14px; }
+.fg textarea { min-height: 70px; resize: vertical; }
+.fg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .fg-grid { grid-template-columns: 1fr; } }
+
+.checkbox-row { display: flex; align-items: start; gap: 8px; margin: 16px 0; font-size: 13px; color: #5a5550; line-height: 1.5; }
+.checkbox-row input { margin-top: 3px; }
+
+.btn-submit { width: 100%; padding: 14px 24px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 600; }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.error-box { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 12px 16px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; display: none; }
+.invalid-card { text-align: center; padding: 60px 40px; }
+.invalid-card .icon { font-size: 48px; margin-bottom: 16px; }
+.invalid-card h2 { font-size: 22px; margin-bottom: 12px; }
+.invalid-card p { color: #5a5550; }
+.success-card { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 40px; text-align: center; }
+.success-card .icon { font-size: 48px; margin-bottom: 16px; }
+.success-card h2 { color: #15803d; margin-bottom: 12px; }
+.success-card p { color: #5a5550; margin-bottom: 20px; }
+.success-card a { display: inline-block; padding: 12px 24px; background: #1a1a1a; color: #fff; text-decoration: none; border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>WorldKidsFashion</h1>
+  <p data-i18n="hdr_sub">Manufacturer Partnership Portal</p>
+</div>
+
+<div class="wrap">
+
+  <div class="lang-switch">
+    <button class="lang-btn active" id="lang-en" onclick="setLang('en')">English</button>
+    <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">Türkçe</button>
+    <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">Русский</button>
+  </div>
+
+  <div id="loadingState" style="text-align:center;padding:40px;color:#8a8580">Validating invitation…</div>
+
+  <!-- Invalid invite -->
+  <div id="invalidInvite" class="welcome-card invalid-card" style="display:none">
+    <div class="icon">⊘</div>
+    <h2 data-i18n="invalid_h">Invalid or expired invitation</h2>
+    <p data-i18n="invalid_p">This invitation link is not valid. It may have been used already or expired. Please contact us at info@worldkidsfashion.org if you believe this is an error.</p>
+  </div>
+
+  <!-- Main signup -->
+  <div id="signupContent" style="display:none">
+
+    <div class="welcome-card">
+      <h2 data-i18n="welcome_h">Welcome to WorldKidsFashion</h2>
+      <div class="invitee-line">
+        <strong data-i18n="invited_label">You have been invited as:</strong>
+        <span id="inviteeName"></span> · <span id="inviteeEmail"></span>
+      </div>
+      <p class="welcome-text" data-i18n="welcome_p">We are inviting you to join our manufacturer partner network. Complete the registration below to gain access to your dedicated portal, where you can upload catalogs, manage your factory profile and receive orders from our verified international wholesale buyers.</p>
+    </div>
+
+    <div class="form-card">
+      <h3 data-i18n="form_h">Factory Registration</h3>
+
+      <div id="errorBox" class="error-box"></div>
+
+      <div class="fg">
+        <label class="required" data-i18n="f_name">Factory Name</label>
+        <input type="text" id="factoryName" required>
+      </div>
+
+      <div class="fg-grid">
+        <div class="fg">
+          <label class="required" data-i18n="f_contact">Contact Person</label>
+          <input type="text" id="contactPerson" placeholder="Full name" required>
+        </div>
+        <div class="fg">
+          <label class="required" data-i18n="f_phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" placeholder="+90 ..." required>
+        </div>
+      </div>
+
+      <div class="fg">
+        <label data-i18n="f_pass">Choose Password</label>
+        <input type="password" id="password" placeholder="Min 8 characters" minlength="8" required>
+      </div>
+
+      <h3 style="font-size:15px;margin:24px 0 12px;color:#5a5550" data-i18n="f_business">Business Details</h3>
+
+      <div class="fg-grid">
+        <div class="fg">
+          <label data-i18n="f_city">City</label>
+          <input type="text" id="city" value="Istanbul">
+        </div>
+        <div class="fg">
+          <label data-i18n="f_country">Country</label>
+          <input type="text" id="country" value="Turkey">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label data-i18n="f_address">Address</label>
+        <input type="text" id="address" placeholder="Factory address">
+      </div>
+
+      <div class="fg-grid">
+        <div class="fg">
+          <label data-i18n="f_tax">Tax Number</label>
+          <input type="text" id="taxNumber">
+        </div>
+        <div class="fg">
+          <label data-i18n="f_reg">Registration Number</label>
+          <input type="text" id="registrationNumber">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label data-i18n="f_website">Website</label>
+        <input type="url" id="website" placeholder="https://">
+      </div>
+
+      <h3 style="font-size:15px;margin:24px 0 12px;color:#5a5550" data-i18n="f_production">Production Capacity</h3>
+
+      <div class="fg-grid">
+        <div class="fg">
+          <label data-i18n="f_capacity">Monthly Capacity (pcs)</label>
+          <input type="number" id="capacity" placeholder="e.g. 5000">
+        </div>
+        <div class="fg">
+          <label data-i18n="f_lead">Lead Time (days)</label>
+          <input type="number" id="leadTime" placeholder="e.g. 30">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label data-i18n="f_moq">Minimum Order Quantity per Model</label>
+        <input type="number" id="moq" placeholder="e.g. 100">
+      </div>
+
+      <div class="fg">
+        <label data-i18n="f_specialization">Specialization (comma-separated)</label>
+        <input type="text" id="specialization" placeholder="e.g. newborn, organic, knitwear">
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="agree" required>
+        <label for="agree" data-i18n="f_agree">I confirm that the information above is accurate and I agree to the partnership terms.</label>
+      </div>
+
+      <button class="btn-submit" id="submitBtn" onclick="handleSignup()" data-i18n="f_submit">Complete Registration</button>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div id="successScreen" class="success-card" style="display:none">
+    <div class="icon">✓</div>
+    <h2 data-i18n="success_h">Registration Complete</h2>
+    <p data-i18n="success_p">Your factory account has been created. Please check your email to confirm your address, then sign in to access your partnership portal.</p>
+    <a href="login.html" data-i18n="success_btn">Go to Sign In</a>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const TR = {
+  en: {
+    hdr_sub: 'Manufacturer Partnership Portal',
+    invalid_h: 'Invalid or expired invitation',
+    invalid_p: 'This invitation link is not valid. It may have been used already or expired. Please contact us at info@worldkidsfashion.org if you believe this is an error.',
+    welcome_h: 'Welcome to WorldKidsFashion',
+    invited_label: 'You have been invited as:',
+    welcome_p: 'We are inviting you to join our manufacturer partner network. Complete the registration below to gain access to your dedicated portal, where you can upload catalogs, manage your factory profile and receive orders from our verified international wholesale buyers.',
+    form_h: 'Factory Registration',
+    f_name: 'Factory Name',
+    f_contact: 'Contact Person',
+    f_phone: 'Phone / WhatsApp',
+    f_pass: 'Choose Password',
+    f_business: 'Business Details',
+    f_city: 'City',
+    f_country: 'Country',
+    f_address: 'Address',
+    f_tax: 'Tax Number',
+    f_reg: 'Registration Number',
+    f_website: 'Website',
+    f_production: 'Production Capacity',
+    f_capacity: 'Monthly Capacity (pcs)',
+    f_lead: 'Lead Time (days)',
+    f_moq: 'Minimum Order Quantity per Model',
+    f_specialization: 'Specialization (comma-separated)',
+    f_agree: 'I confirm that the information above is accurate and I agree to the partnership terms.',
+    f_submit: 'Complete Registration',
+    success_h: 'Registration Complete',
+    success_p: 'Your factory account has been created. Please check your email to confirm your address, then sign in to access your partnership portal.',
+    success_btn: 'Go to Sign In'
+  },
+  tr: {
+    hdr_sub: 'Üretici Ortaklık Portalı',
+    invalid_h: 'Geçersiz veya süresi dolmuş davet',
+    invalid_p: 'Bu davet bağlantısı geçerli değil. Kullanılmış veya süresi dolmuş olabilir. Lütfen info@worldkidsfashion.org adresinden bizimle iletişime geçin.',
+    welcome_h: 'WorldKidsFashion ailesine hoş geldiniz',
+    invited_label: 'Davet edildiniz:',
+    welcome_p: 'Sizi üretici ortak ağımıza katılmaya davet ediyoruz. Aşağıdaki kaydı tamamlayarak fabrika portalınıza erişin: katalog yükleyebilir, profilinizi yönetebilir ve doğrulanmış uluslararası toptan alıcılarımızdan siparişler alabilirsiniz.',
+    form_h: 'Fabrika Kaydı',
+    f_name: 'Fabrika Adı',
+    f_contact: 'İletişim Kişisi',
+    f_phone: 'Telefon / WhatsApp',
+    f_pass: 'Şifre Belirleyin',
+    f_business: 'İşletme Bilgileri',
+    f_city: 'Şehir',
+    f_country: 'Ülke',
+    f_address: 'Adres',
+    f_tax: 'Vergi Numarası',
+    f_reg: 'Tescil Numarası',
+    f_website: 'Web Sitesi',
+    f_production: 'Üretim Kapasitesi',
+    f_capacity: 'Aylık Kapasite (adet)',
+    f_lead: 'Teslim Süresi (gün)',
+    f_moq: 'Model Başına Minimum Sipariş Miktarı',
+    f_specialization: 'Uzmanlık (virgülle ayırın)',
+    f_agree: 'Yukarıdaki bilgilerin doğru olduğunu onaylıyor ve ortaklık koşullarını kabul ediyorum.',
+    f_submit: 'Kaydı Tamamla',
+    success_h: 'Kayıt Tamamlandı',
+    success_p: 'Fabrika hesabınız oluşturuldu. Lütfen e-posta adresinizi doğrulayın, ardından ortaklık portalınıza erişmek için giriş yapın.',
+    success_btn: 'Giriş Yap'
+  },
+  ru: {
+    hdr_sub: 'Портал партнёров-производителей',
+    invalid_h: 'Недействительное или истёкшее приглашение',
+    invalid_p: 'Эта ссылка-приглашение недействительна. Возможно она уже использована или истекла. Свяжитесь с нами по адресу info@worldkidsfashion.org если считаете что это ошибка.',
+    welcome_h: 'Добро пожаловать в WorldKidsFashion',
+    invited_label: 'Вы приглашены как:',
+    welcome_p: 'Мы приглашаем вас присоединиться к нашей партнёрской сети производителей. Заполните регистрацию ниже чтобы получить доступ к личному кабинету фабрики, где вы сможете загружать каталоги, управлять профилем и получать заказы от наших проверенных международных оптовых покупателей.',
+    form_h: 'Регистрация фабрики',
+    f_name: 'Название фабрики',
+    f_contact: 'Контактное лицо',
+    f_phone: 'Телефон / WhatsApp',
+    f_pass: 'Придумайте пароль',
+    f_business: 'Данные компании',
+    f_city: 'Город',
+    f_country: 'Страна',
+    f_address: 'Адрес',
+    f_tax: 'Налоговый номер',
+    f_reg: 'Регистрационный номер',
+    f_website: 'Сайт',
+    f_production: 'Производственные мощности',
+    f_capacity: 'Месячная мощность (шт)',
+    f_lead: 'Срок производства (дни)',
+    f_moq: 'Минимум на модель',
+    f_specialization: 'Специализация (через запятую)',
+    f_agree: 'Подтверждаю что указанная информация верна и принимаю условия партнёрства.',
+    f_submit: 'Завершить регистрацию',
+    success_h: 'Регистрация завершена',
+    success_p: 'Аккаунт фабрики создан. Подтвердите email по ссылке в письме, затем войдите в личный кабинет.',
+    success_btn: 'Войти'
+  }
+};
+
+let inviteData = null;
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  const t = TR[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k]) el.textContent = t[k];
+  });
+}
+
+(async () => {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+
+  if (!token) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('invalidInvite').style.display = 'block';
+    return;
+  }
+
+  const { data, error } = await supa
+    .from('factory_invites')
+    .select('*')
+    .eq('token', token)
+    .eq('used', false)
+    .single();
+
+  document.getElementById('loadingState').style.display = 'none';
+
+  if (error || !data || new Date(data.expires_at) < new Date()) {
+    document.getElementById('invalidInvite').style.display = 'block';
+    return;
+  }
+
+  inviteData = data;
+  document.getElementById('inviteeName').textContent = data.factory_name;
+  document.getElementById('inviteeEmail').textContent = data.email;
+  document.getElementById('factoryName').value = data.factory_name;
+  document.getElementById('signupContent').style.display = 'block';
+})();
+
+function showError(msg) {
+  const box = document.getElementById('errorBox');
+  box.textContent = msg;
+  box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+async function handleSignup() {
+  document.getElementById('errorBox').style.display = 'none';
+
+  const name = document.getElementById('factoryName').value.trim();
+  const contact = document.getElementById('contactPerson').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const pass = document.getElementById('password').value;
+  const agree = document.getElementById('agree').checked;
+
+  if (!name || !contact || !phone || !pass) { showError('Please fill all required fields.'); return; }
+  if (pass.length < 8) { showError('Password must be at least 8 characters.'); return; }
+  if (!agree) { showError('Please confirm the partnership terms.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  const original = btn.textContent;
+  btn.textContent = 'Creating account…';
+
+  try {
+    // 1. Create auth user
+    const { data: authData, error: authError } = await supa.auth.signUp({
+      email: inviteData.email,
+      password: pass,
+      options: {
+        data: {
+          factory_name: name,
+          contact_person: contact,
+          phone: phone,
+          role: 'factory'
+        },
+        emailRedirectTo: window.location.origin + '/login.html'
+      }
+    });
+
+    if (authError) {
+      btn.disabled = false;
+      btn.textContent = original;
+      if (authError.message.includes('already registered')) {
+        showError('This email is already registered. Please sign in.');
+      } else {
+        showError('Registration error: ' + authError.message);
+      }
+      return;
+    }
+
+    if (!authData.user) {
+      btn.disabled = false;
+      btn.textContent = original;
+      showError('Account creation failed. Please try again.');
+      return;
+    }
+
+    // 2. Wait briefly for trigger to create profile
+    await new Promise(r => setTimeout(r, 1500));
+
+    // 3. Update profile role to factory
+    await supa.from('profiles').update({ role: 'factory', status: 'verified' }).eq('id', authData.user.id);
+
+    // 4. Create factory record
+    const specStr = document.getElementById('specialization').value.trim();
+    const spec = specStr ? specStr.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+    await supa.from('factories').insert({
+      id: authData.user.id,
+      factory_name: name,
+      contact_person: contact,
+      email: inviteData.email,
+      phone: phone,
+      whatsapp: phone,
+      city: document.getElementById('city').value.trim() || 'Istanbul',
+      country: document.getElementById('country').value.trim() || 'Turkey',
+      address: document.getElementById('address').value.trim() || null,
+      tax_number: document.getElementById('taxNumber').value.trim() || null,
+      registration_number: document.getElementById('registrationNumber').value.trim() || null,
+      website: document.getElementById('website').value.trim() || null,
+      monthly_capacity: parseInt(document.getElementById('capacity').value) || null,
+      lead_time_days: parseInt(document.getElementById('leadTime').value) || null,
+      moq_per_model: parseInt(document.getElementById('moq').value) || null,
+      specialization: spec.length > 0 ? spec : null
+    });
+
+    // 5. Mark invite as used
+    await supa.from('factory_invites').update({
+      used: true,
+      used_at: new Date().toISOString(),
+      used_by: authData.user.id
+    }).eq('id', inviteData.id);
+
+    // 6. Show success
+    document.getElementById('signupContent').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = original;
+    showError('Error: ' + err.message);
+    console.error(err);
+  }
+}
+</script>
+</body>
+</html>
