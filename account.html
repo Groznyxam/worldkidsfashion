@@ -2,150 +2,230 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Account — WorldKidsFashion™</title>
+<title>My Account — WorldKidsFashion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.acc-wrap { max-width: 1100px; margin: 32px auto; padding: 0 24px; }
+.acc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+.acc-header h1 { font-size: 28px; margin: 0; }
+.btn-signout { padding: 10px 20px; background: transparent; color: #1a1a1a; border: 1px solid #e8e6e0; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; }
+
+.status-banner { padding: 20px 24px; border-radius: 12px; margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }
+.status-pending { background: #fff7ed; border: 1px solid #fed7aa; }
+.status-verified { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.status-rejected { background: #fef2f2; border: 1px solid #fecaca; }
+.status-icon { font-size: 32px; flex-shrink: 0; }
+.status-text strong { display: block; font-size: 16px; margin-bottom: 4px; }
+.status-text { font-size: 14px; color: #5a5550; line-height: 1.5; }
+
+.acc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 768px) { .acc-grid { grid-template-columns: 1fr; } }
+
+.acc-card { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 24px; }
+.acc-card h2 { font-size: 18px; margin: 0 0 16px; }
+.acc-row { padding: 10px 0; border-bottom: 1px solid #f0eee8; display: flex; justify-content: space-between; }
+.acc-row:last-child { border-bottom: none; }
+.acc-label { color: #8a8580; font-size: 13px; }
+.acc-value { color: #1a1a1a; font-size: 14px; font-weight: 500; }
+
+.btn-primary-sm { padding: 10px 18px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; text-decoration: none; display: inline-block; }
+.btn-secondary-sm { padding: 10px 18px; background: transparent; color: #1a1a1a; border: 1px solid #1a1a1a; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; text-decoration: none; display: inline-block; }
+
+.inquiries-section { margin-top: 24px; }
+.inquiries-table { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: #faf9f6; text-align: left; padding: 12px; font-weight: 600; font-size: 13px; color: #5a5550; }
+td { padding: 12px; border-top: 1px solid #f0eee8; }
+.empty { padding: 32px; text-align: center; color: #8a8580; }
+
+.badge { display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.badge-new { background: #fff7ed; color: #ea580c; }
+.badge-reviewing { background: #eff6ff; color: #2563eb; }
+.badge-quoted { background: #f0fdf4; color: #15803d; }
+.badge-completed { background: #f3f4f6; color: #4b5563; }
+
+.loading { padding: 32px; text-align: center; color: #8a8580; }
+</style>
 </head>
 <body>
-<div class="announce" aria-hidden="true"><div class="announce-track"><span><span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span><</span><span>·</span><span>🌿 GOTS Organic</span><span>·</span><span>📦 Low MOQ</span><span>·</span><span><span data-i18n="ann2">🚚 Free Shipping EU/UK/USA on orders $300+</span><</span><span>·</span><span>🌿 GOTS Organic</span><span>·</span><span>📦 Low MOQ</span></div></div>
-<header class="site-header"><div class="hdr-inner">
-  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion™</span><span class="logo-sub"><span data-i18n="logo_sub">Wholesale Only</span></div></a>
-  <nav class="nav-main"><a href="catalog.html" class="nav-item" data-i18n="nav_catalog">All Products</a><a href="catalog.html?cat=baby" class="nav-item">Baby</a><a href="catalog.html?cat=girls" class="nav-item">Girls</a><a href="catalog.html?cat=boys" class="nav-item">Boys</a><a href="parents.html" class="nav-item" style="color:var(--red)" data-i18n="nav_parents">For Parents</a>
-    </nav>
-  <div class="hdr-right"><a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a><button id="logoutBtn" style="background:none;border:1px solid var(--border);padding:7px 16px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;color:var(--stone)">Logout</button><div id="langWrap" style="position:relative;display:inline-block"><button onclick="wkfToggleLang(event)" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode" style="color:var(--ink)">EN</span> ▾</button><div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999"><div style="padding:4px 10px 6px;font-size:.68rem;color:#666;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px" data-i18n="lang_choose">Language</div><button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button><button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button></div></div></div>
+
+<header class="site-header" id="siteHeader"><div class="hdr-inner">
+  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub" data-i18n="logo_sub2">Wholesale B2B</span></div></a>
+  <nav class="hdr-nav">
+    <a href="catalog.html" data-i18n="nav_catalog">Catalog</a>
+    <a href="how-it-works.html" data-i18n="nav_how_it">How It Works</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
+  </nav>
 </div></header>
 
+<div class="acc-wrap" id="accWrap" style="display:none">
+  <div class="acc-header">
+    <h1 data-i18n="acc_h">My Account</h1>
+    <button class="btn-signout" onclick="handleSignOut()" data-i18n="acc_signout">Sign Out</button>
+  </div>
 
-<div class="page-hero" style="padding:40px 0"><div class="container"><div class="ph-inner">
-  <div class="breadcrumb"><a href="index.html">Home</a> › My Account</div>
-  <h1 class="page-h1" style="font-size:40px">Welcome, <span id="accountName">Reseller</span> 👋</h1>
-  <p class="page-sub" id="accountEmail"></p>
-</div></div></div>
+  <!-- Status Banner -->
+  <div id="statusBanner"></div>
 
-<div class="container"><div class="account-layout">
-  <aside>
-    <nav class="acc-menu">
-      <a href="#" class="acc-link" onclick="showAccSection('dashboard',this)"><span class="ico">📊</span> Dashboard</a>
-      <a href="#" class="acc-link" onclick="showAccSection('orders',this)"><span class="ico">📦</span> My Orders</a>
-      <a href="#" class="acc-link" onclick="showAccSection('wishlist',this)"><span class="ico">❤️</span> Wishlist</a>
-      <a href="#" class="acc-link" onclick="showAccSection('profile',this)"><span class="ico">👤</span> Profile</a>
-      <a href="#" class="acc-link" onclick="showAccSection('invoices',this)"><span class="ico">🧾</span> Invoices</a>
-      <a href="#" class="acc-link" onclick="showAccSection('support',this)"><span class="ico">💬</span> Support</a>
-    </nav>
-  </aside>
-  <main>
-    <!-- DASHBOARD -->
-    <div id="acc-dashboard" class="acc-panel">
-      <div class="stat-boxes">
-        <div class="stat-box"><div class="sb-val">3</div><div class="sb-lbl">Total Orders</div></div>
-        <div class="stat-box"><div class="sb-val">$1,240</div><div class="sb-lbl">Total Spent</div></div>
-        <div class="stat-box"><div class="sb-val">Gold</div><div class="sb-lbl">Reseller Tier</div></div>
-      </div>
-      <div class="acc-section">
-        <div class="acc-section-title">Recent Orders</div>
-        <table class="orders-tbl">
-          <thead><tr><th>Order #</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th></th></tr></thead>
-          <tbody>
-            <tr><td><strong>WKF-2024-0891</strong></td><td>Dec 12, 2024</td><td>24 pcs</td><td><strong>$312.00</strong></td><td><span class="status status-delivered">Delivered</span></td><td><a href="#" style="color:var(--red);font-size:13px">View</a></td></tr>
-            <tr><td><strong>WKF-2024-0754</strong></td><td>Nov 03, 2024</td><td>36 pcs</td><td><strong>$486.00</strong></td><td><span class="status status-delivered">Delivered</span></td><td><a href="#" style="color:var(--red);font-size:13px">View</a></td></tr>
-            <tr><td><strong>WKF-2025-0012</strong></td><td>Jan 08, 2025</td><td>48 pcs</td><td><strong>$442.00</strong></td><td><span class="status status-processing">Processing</span></td><td><a href="#" style="color:var(--red);font-size:13px">Track</a></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="acc-section">
-        <div class="acc-section-title">Quick Actions</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="catalog.html" class="btn-primary">🛍️ Browse New Arrivals</a>
-          <button onclick="showAccSection('support',document.querySelector('[onclick*=support]'))" style="padding:12px 20px;border:1px solid var(--border);border-radius:var(--r);background:var(--white);cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif">💬 Contact Support</button>
-        </div>
-      </div>
+  <!-- Profile Cards -->
+  <div class="acc-grid">
+
+    <div class="acc-card">
+      <h2 data-i18n="acc_personal">Personal Info</h2>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_email">Email</span><span class="acc-value" id="userEmail">—</span></div>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_name">Name</span><span class="acc-value" id="userName">—</span></div>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_phone">Phone</span><span class="acc-value" id="userPhone">—</span></div>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_registered">Registered</span><span class="acc-value" id="userRegistered">—</span></div>
     </div>
 
-    <!-- ORDERS -->
-    <div id="acc-orders" class="acc-panel" style="display:none">
-      <div class="acc-section">
-        <div class="acc-section-title">All Orders</div>
-        <table class="orders-tbl">
-          <thead><tr><th>Order #</th><th>Date</th><th><span data-i18n="ft_products">Products</span>/th><th>Total</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td><strong>WKF-2024-0891</strong></td><td>Dec 12, 2024</td><td>Baby Dino Set ×12, Floral Dress ×12</td><td><strong>$312.00</strong></td><td><span class="status status-delivered">Delivered</span></td></tr>
-            <tr><td><strong>WKF-2024-0754</strong></td><td>Nov 03, 2024</td><td>Newborn Set ×6, Sport Set ×12, Romper ×18</td><td><strong>$486.00</strong></td><td><span class="status status-delivered">Delivered</span></td></tr>
-            <tr><td><strong>WKF-2025-0012</strong></td><td>Jan 08, 2025</td><td>Party Dress ×12, Winter Jacket ×6, Swaddle ×30</td><td><strong>$442.00</strong></td><td><span class="status status-processing">Processing</span></td></tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="acc-card">
+      <h2 data-i18n="acc_business">Business Info</h2>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_company">Company</span><span class="acc-value" id="userCompany">—</span></div>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_type">Type</span><span class="acc-value" id="userType">—</span></div>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_country">Country</span><span class="acc-value" id="userCountry">—</span></div>
+      <div class="acc-row"><span class="acc-label" data-i18n="acc_website">Website</span><span class="acc-value" id="userWebsite">—</span></div>
     </div>
 
-    <!-- WISHLIST -->
-    <div id="acc-wishlist" class="acc-panel" style="display:none">
-      <div class="acc-section">
-        <div class="acc-section-title">Saved Products</div>
-        <div class="pgrid" id="wishlistGrid" style="grid-template-columns:repeat(3,1fr)"><p style="color:var(--mist);grid-column:1/-1">No saved products yet. <a href="catalog.html" style="color:var(--red)">Browse catalog →</a></p></div>
-      </div>
-    </div>
+  </div>
 
-    <!-- PROFILE -->
-    <div id="acc-profile" class="acc-panel" style="display:none">
-      <div class="acc-section">
-        <div class="acc-section-title">Profile Information</div>
-        <div class="fg-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <div class="fg"><label>First Name</label><input type="text" value="John"></div>
-          <div class="fg"><label>Last Name</label><input type="text" value="Smith"></div>
-        </div>
-        <div class="fg"><label>Email</label><input type="email" id="profileEmail"></div>
-        <div class="fg"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 234 567 8900"></div>
-        <div class="fg"><label>Company Name</label><input type="text" placeholder="Your business name"></div>
-        <button class="btn-primary" onclick="showToast('Profile saved!','success')" style="margin-top:8px">Save Changes</button>
-      </div>
+  <!-- Inquiries -->
+  <div class="inquiries-section">
+    <h2 style="margin-bottom:16px" data-i18n="acc_inquiries">My Inquiries</h2>
+    <div class="inquiries-table">
+      <table>
+        <thead><tr>
+          <th data-i18n="acc_inq_date">Date</th>
+          <th data-i18n="acc_inq_items">Items</th>
+          <th data-i18n="acc_inq_delivery">Delivery</th>
+          <th data-i18n="acc_inq_status">Status</th>
+        </tr></thead>
+        <tbody id="inquiriesTable"><tr><td colspan="4" class="loading">Loading…</td></tr></tbody>
+      </table>
     </div>
+  </div>
 
-    <!-- INVOICES -->
-    <div id="acc-invoices" class="acc-panel" style="display:none">
-      <div class="acc-section">
-        <div class="acc-section-title">Invoices</div>
-        <table class="orders-tbl">
-          <thead><tr><th>Invoice #</th><th>Date</th><th>Amount</th><th>Download</th></tr></thead>
-          <tbody>
-            <tr><td>WKF-INV-2024-891</td><td>Dec 12, 2024</td><td>$312.00</td><td><a href="#" style="color:var(--red)">📄 PDF</a></td></tr>
-            <tr><td>WKF-INV-2024-754</td><td>Nov 03, 2024</td><td>$486.00</td><td><a href="#" style="color:var(--red)">📄 PDF</a></td></tr>
-            <tr><td>WKF-INV-2025-012</td><td>Jan 08, 2025</td><td>$442.00</td><td><a href="#" style="color:var(--red)">📄 PDF</a></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+</div>
 
-    <!-- SUPPORT -->
-    <div id="acc-support" class="acc-panel" style="display:none">
-      <div class="acc-section">
-        <div class="acc-section-title">Contact Support</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
-          <div style="background:var(--silk);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:32px;margin-bottom:8px">💬</div><h4 style="margin-bottom:6px">WhatsApp</h4><p style="font-size:13px;color:var(--mist);margin-bottom:12px">Mon–Fri 9–18 GMT+3</p><a href="#" class="btn-primary" style="font-size:13px;padding:8px 18px">Open WhatsApp</a></div>
-          <div style="background:var(--silk);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:32px;margin-bottom:8px">📧</div><h4 style="margin-bottom:6px">Email</h4><p style="font-size:13px;color:var(--mist);margin-bottom:12px">Reply within 24h</p><a href="mailto:info@worldkidsfashion.org" class="btn-primary" style="font-size:13px;padding:8px 18px">Send Email</a></div>
-        </div>
-        <div class="fg"><label>Subject</label><select><option>Order Issue</option><option>Shipping</option><option>Product Quality</option><option>Payment</option><option>Other</option></select></div>
-        <div class="fg"><label>Message</label><textarea style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;min-height:100px;resize:vertical" placeholder="Describe your issue…"></textarea></div>
-        <button class="btn-primary" onclick="showToast('Ticket submitted! We\'ll reply within 24h.','success')">Submit Ticket</button>
-      </div>
-    </div>
-  </main>
-</div></div>
+<!-- Loading -->
+<div id="loadingScreen" style="text-align:center;padding:80px 20px;color:#8a8580">Loading your account…</div>
 
-<footer class="site-footer" style="padding:24px 0 0"><div class="container"><div class="ft-bottom" style="border-top:none"><div class="ft-copy">© 2025 WorldKidsFashion™</div></div></div></footer>
-<script src="i18n.js"></script>
-<script src="app.js"></script>
-<script>wkfInitLang();</script><script>
-document.addEventListener('DOMContentLoaded', () => {
-  renderAccount();
-  const prof = document.getElementById('profileEmail');
-  const u = JSON.parse(localStorage.getItem('wkf_user') || 'null');
-  if (prof && u) prof.value = u.email || '';
-  // wishlist panel
-  const wg = document.getElementById('wishlistGrid');
-  if (wg && wishlist && wishlist.length) {
-    const prods = PRODUCTS.filter(p => wishlist.includes(p.id));
-    wg.innerHTML = prods.map(renderCard).join('');
+<!-- Access screens (no session, etc) -->
+<div id="loginNeeded" style="display:none;max-width:500px;margin:80px auto;text-align:center;padding:40px;background:#fff;border-radius:12px;border:1px solid #e8e6e0">
+  <h2 style="margin-bottom:12px">Sign in required</h2>
+  <p style="color:#5a5550;margin-bottom:24px">Please sign in to view your account.</p>
+  <a href="login.html" style="display:inline-block;padding:12px 24px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:8px">Sign In</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+
+(async () => {
+  try {
+    const { data: { session } } = await supa.auth.getSession();
+
+    if (!session) {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('loginNeeded').style.display = 'block';
+      return;
+    }
+
+    currentUser = session.user;
+
+    // Load profile
+    const { data: profile, error } = await supa
+      .from('profiles')
+      .select('*')
+      .eq('id', currentUser.id)
+      .single();
+
+    if (error || !profile) {
+      document.getElementById('loadingScreen').innerHTML = 'Error loading profile: ' + (error ? error.message : 'Not found');
+      return;
+    }
+
+    // Render
+    renderProfile(profile);
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('accWrap').style.display = 'block';
+
+    // Load inquiries
+    await loadInquiries();
+
+  } catch (err) {
+    document.getElementById('loadingScreen').innerHTML = 'Error: ' + err.message;
+    console.error(err);
   }
-});
+})();
+
+function renderProfile(p) {
+  // Status banner
+  const banner = document.getElementById('statusBanner');
+  if (p.status === 'pending') {
+    banner.className = 'status-banner status-pending';
+    banner.innerHTML = `<div class="status-icon">⏳</div><div class="status-text"><strong>Account pending verification</strong>Our team is reviewing your business details. You will get access to wholesale prices and inquiry submission after approval. This usually takes 1-2 business days.</div>`;
+  } else if (p.status === 'verified') {
+    banner.className = 'status-banner status-verified';
+    banner.innerHTML = `<div class="status-icon">✓</div><div class="status-text"><strong>Account verified</strong>You have full access to wholesale catalog and inquiry submission. <a href="catalog.html" style="color:#15803d;font-weight:600;text-decoration:underline">Browse catalog →</a></div>`;
+  } else if (p.status === 'rejected') {
+    banner.className = 'status-banner status-rejected';
+    banner.innerHTML = `<div class="status-icon">✕</div><div class="status-text"><strong>Account not verified</strong>${p.rejection_reason || 'We could not verify your business credentials.'} Please contact info@worldkidsfashion.org if you have questions.</div>`;
+  } else if (p.status === 'suspended') {
+    banner.className = 'status-banner status-rejected';
+    banner.innerHTML = `<div class="status-icon">⊘</div><div class="status-text"><strong>Account suspended</strong>Your account has been suspended. Please contact info@worldkidsfashion.org.</div>`;
+  }
+
+  // Fill fields
+  document.getElementById('userEmail').textContent = p.email || '—';
+  document.getElementById('userName').textContent = (p.first_name || '') + ' ' + (p.last_name || '');
+  document.getElementById('userPhone').textContent = p.phone || '—';
+  document.getElementById('userRegistered').textContent = new Date(p.created_at).toLocaleDateString();
+  document.getElementById('userCompany').textContent = p.company || '—';
+  document.getElementById('userType').textContent = p.business_type || '—';
+  document.getElementById('userCountry').textContent = p.country || '—';
+  document.getElementById('userWebsite').textContent = p.website || '—';
+}
+
+async function loadInquiries() {
+  const { data, error } = await supa
+    .from('inquiries')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .order('created_at', { ascending: false });
+
+  const tbody = document.getElementById('inquiriesTable');
+  if (error) { tbody.innerHTML = `<tr><td colspan="4" class="empty">Error: ${error.message}</td></tr>`; return; }
+  if (!data || data.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" class="empty">No inquiries yet. <a href="catalog.html" style="color:#1a1a1a;font-weight:600">Browse catalog</a> to make your first request.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = data.map(i => {
+    const items = Array.isArray(i.items) ? i.items : [];
+    const itemCount = items.length;
+    return `
+      <tr>
+        <td>${new Date(i.created_at).toLocaleDateString()}</td>
+        <td>${itemCount} item${itemCount !== 1 ? 's' : ''}</td>
+        <td>${i.delivery_country || '—'}</td>
+        <td><span class="badge badge-${i.status}">${i.status}</span></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function handleSignOut() {
+  await supa.auth.signOut();
+  window.location.href = 'login.html';
+}
 </script>
-</body></html>
+<script src="i18n.js"></script>
+<script>wkfInitLang();</script>
+</body>
+</html>

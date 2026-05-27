@@ -3,31 +3,217 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login — WorldKidsFashion™ Wholesale</title>
+<meta name="description" content="Login to your wholesale account to access B2B prices, place inquiries and manage orders.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="site-header" id="siteHeader"><div class="hdr-inner">
-  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub"><span data-i18n="logo_sub2">Wholesale B2B</span></div></a>
+  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub"><span data-i18n="logo_sub2">Wholesale B2B</span></span></div></a>
   <div class="hdr-right"><a href="register.html" class="hdr-cta"><span data-i18n="btn_register">Register Free →</span></a></div>
 </div></header>
 
 <div class="auth-wrap">
   <div class="auth-box">
     <div class="auth-icon"></div>
-    <h1 class="auth-title">Welcome Back</h1>
-    <p class="auth-sub">Log in to your wholesale account to see prices</p>
-    <form id="loginForm">
-      <div class="fg"><label>Email Address</label><input type="email" id="loginEmail" placeholder="your@business.com" required></div>
-      <div class="fg"><label>Password</label><input type="password" id="loginPass" placeholder="Your password" required></div>
-      <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><a href="#" style="font-size:13px;color:var(--red)">Forgot password?</a></div>
-      <button type="submit" class="btn-primary auth-submit">Login to Account</button>
+    <h1 class="auth-title" data-i18n="login_h">Welcome Back</h1>
+    <p class="auth-sub" data-i18n="login_sub">Sign in to your wholesale account</p>
+
+    <!-- Error message -->
+    <div id="loginError" style="display:none;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:12px 16px;border-radius:8px;font-size:14px;margin-bottom:16px"></div>
+
+    <!-- Success message (for password reset confirmations etc) -->
+    <div id="loginSuccess" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;padding:12px 16px;border-radius:8px;font-size:14px;margin-bottom:16px"></div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="fg">
+        <label data-i18n="login_email">Email Address</label>
+        <input type="email" id="loginEmail" placeholder="your@business.com" required autocomplete="email">
+      </div>
+      <div class="fg">
+        <label data-i18n="login_pass">Password</label>
+        <input type="password" id="loginPass" placeholder="Your password" required autocomplete="current-password">
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+        <a href="#" onclick="handleForgotPassword(event)" style="font-size:13px;color:var(--red)" data-i18n="login_forgot">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn-primary auth-submit" id="loginBtn" data-i18n="login_submit">Sign In</button>
     </form>
-    <div class="auth-switch">Don't have an account? <a href="register.html">Register as Reseller</a></div>
-    <a href="index.html" class="auth-back">← Back to Homepage</a>
+
+    <div class="auth-switch">
+      <span data-i18n="login_no_account">Don't have an account?</span>
+      <a href="register.html" data-i18n="login_register_link">Register as Wholesale Buyer</a>
+    </div>
+    <a href="index.html" class="auth-back" data-i18n="login_back">← Back to Homepage</a>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// If already logged in — show "continue as X" instead of auto-redirect (avoids loops)
+(async () => {
+  try {
+    const { data: { session } } = await supa.auth.getSession();
+    if (session && session.user) {
+      const { data: profile } = await supa
+        .from('profiles')
+        .select('role, status')
+        .eq('id', session.user.id)
+        .single();
+
+      // Show a message instead of redirecting automatically
+      const box = document.querySelector('.auth-box');
+      if (box) {
+        const target = (profile && (profile.role === 'admin' || profile.role === 'manager')) ? 'admin.html' : 'account.html';
+        const existingMsg = document.getElementById('alreadyLoggedIn');
+        if (!existingMsg) {
+          const msg = document.createElement('div');
+          msg.id = 'alreadyLoggedIn';
+          msg.style.cssText = 'background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;padding:16px;border-radius:8px;margin-bottom:20px;text-align:center';
+          msg.innerHTML = 'You are already signed in as <strong>' + session.user.email + '</strong>.<br><br>' +
+            '<a href="' + target + '" style="display:inline-block;padding:10px 20px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:6px;margin-right:8px">Continue</a>' +
+            '<button onclick="handleSignOutFirst()" style="padding:10px 20px;background:transparent;color:#1a1a1a;border:1px solid #1a1a1a;border-radius:6px;cursor:pointer;font-family:inherit">Sign out</button>';
+          box.insertBefore(msg, box.querySelector('form'));
+          box.querySelector('form').style.display = 'none';
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Session check error:', err);
+  }
+})();
+
+async function handleSignOutFirst() {
+  await supa.auth.signOut();
+  location.reload();
+}
+
+function showError(msg) {
+  const box = document.getElementById('loginError');
+  box.textContent = msg;
+  box.style.display = 'block';
+  document.getElementById('loginSuccess').style.display = 'none';
+}
+
+function showSuccess(msg) {
+  const box = document.getElementById('loginSuccess');
+  box.textContent = msg;
+  box.style.display = 'block';
+  document.getElementById('loginError').style.display = 'none';
+}
+
+function clearMessages() {
+  document.getElementById('loginError').style.display = 'none';
+  document.getElementById('loginSuccess').style.display = 'none';
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  clearMessages();
+
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPass').value;
+  const btn = document.getElementById('loginBtn');
+
+  if (!email || !pass) {
+    showError('Please enter your email and password.');
+    return;
+  }
+
+  btn.disabled = true;
+  const originalText = btn.textContent;
+  btn.textContent = 'Signing in…';
+
+  try {
+    const { data, error } = await supa.auth.signInWithPassword({
+      email: email,
+      password: pass
+    });
+
+    if (error) {
+      btn.disabled = false;
+      btn.textContent = originalText;
+      if (error.message.includes('Invalid login credentials')) {
+        showError('Wrong email or password. Please try again.');
+      } else if (error.message.includes('Email not confirmed')) {
+        showError('Please confirm your email first. Check your inbox for the confirmation link.');
+      } else if (error.message.includes('rate limit') || error.message.includes('too many')) {
+        showError('Too many login attempts. Please wait a few minutes and try again.');
+      } else {
+        showError('Login failed: ' + error.message);
+      }
+      return;
+    }
+
+    if (data && data.user) {
+      // Check role to decide redirect
+      const { data: profile, error: profileError } = await supa
+        .from('profiles')
+        .select('role, status')
+        .eq('id', data.user.id)
+        .single();
+
+      if (profileError || !profile) {
+        // Profile not found — shouldn't happen but redirect to account anyway
+        window.location.href = 'account.html';
+        return;
+      }
+
+      if (profile.role === 'admin' || profile.role === 'manager') {
+        window.location.href = 'admin.html';
+      } else {
+        window.location.href = 'account.html';
+      }
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = originalText;
+    showError('Network error. Please check your connection and try again.');
+    console.error('Login error:', err);
+  }
+}
+
+async function handleForgotPassword(e) {
+  e.preventDefault();
+  clearMessages();
+
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  if (!email) {
+    showError('Please enter your email above first, then click "Forgot password".');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showError('Please enter a valid email address.');
+    return;
+  }
+
+  try {
+    const { error } = await supa.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/account.html?reset=true'
+    });
+
+    if (error) {
+      showError('Could not send reset link: ' + error.message);
+      return;
+    }
+
+    showSuccess('Password reset link sent to ' + email + '. Please check your inbox (and spam folder).');
+  } catch (err) {
+    showError('Network error. Please try again.');
+    console.error(err);
+  }
+}
+
+// Clear errors when user types
+document.getElementById('loginEmail').addEventListener('input', clearMessages);
+document.getElementById('loginPass').addEventListener('input', clearMessages);
+</script>
 <script src="i18n.js"></script>
-<script src="app.js"></script>
-<script>wkfInitLang();</script></body></html>
+<script>wkfInitLang();</script>
+</body>
+</html>

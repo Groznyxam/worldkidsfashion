@@ -1,622 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WKF Admin Panel</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — WorldKidsFashion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',sans-serif;background:#0e0e0f;color:#f4f3f0;min-height:100vh}
-.admin-layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
-.sidebar{background:#141416;border-right:1px solid rgba(255,255,255,.06);padding:24px 0;position:sticky;top:0;height:100vh}
-.sidebar-logo{padding:0 20px 24px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:16px}
-.sidebar-logo span{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff}
-.sidebar-logo small{display:block;font-size:.7rem;color:#6b6b72;text-transform:uppercase;letter-spacing:.08em}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;color:#a8a8b0;font-size:.85rem;cursor:pointer;transition:all .15s;border-left:3px solid transparent}
-.nav-item:hover{color:#fff;background:rgba(255,255,255,.04)}
-.nav-item.active{color:#fff;background:rgba(255,255,255,.06);border-left-color:#c9a84c}
-.nav-section{padding:16px 20px 8px;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#4a4a52}
-.main{padding:32px;overflow-y:auto}
-.page{display:none}
-.page.active{display:block}
-.page-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:6px}
-.page-sub{color:#6b6b72;font-size:.88rem;margin-bottom:32px}
-.card{background:#1c1c1e;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;margin-bottom:20px}
-.card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:6px;color:#fff}
-.card p{font-size:.85rem;color:#6b6b72;margin-bottom:20px}
-label{display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#a8a8b0;margin-bottom:6px}
-input[type=number],input[type=text],input[type=password],select{background:#141416;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:10px 14px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;width:100%;transition:border .2s}
-input[type=number]:focus,input[type=text]:focus,input[type=password]:focus,select:focus{outline:none;border-color:#c9a84c}
-.input-group{position:relative;margin-bottom:16px}
-.input-suffix{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#6b6b72;font-size:.85rem}
-.price-preview{background:#141416;border-radius:8px;padding:16px;margin:16px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center}
-.pp-col label{font-size:.7rem;margin-bottom:4px}
-.pp-col .val{font-family:'DM Mono',monospace;font-size:1.3rem;color:#c9a84c}
-.btn{padding:10px 24px;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-gold{background:#c9a84c;color:#0e0e0f}
-.btn-gold:hover{background:#e8c96b}
-.btn-red{background:#b5291c;color:#fff}
-.btn-red:hover{background:#d63826}
-.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:#a8a8b0}
-.btn-ghost:hover{border-color:#fff;color:#fff}
-.btn-green{background:#166534;color:#fff}
-.btn-green:hover{background:#15803d}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px}
-.stat-card{background:#1c1c1e;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px}
-.stat-card .num{font-family:'DM Mono',monospace;font-size:1.8rem;color:#c9a84c;margin-bottom:4px}
-.stat-card .lbl{font-size:.78rem;color:#6b6b72;text-transform:uppercase;letter-spacing:.06em}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; min-height: 100vh; }
+.admin-header { background: #1a1a1a; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+.admin-header h1 { font-size: 18px; font-weight: 600; }
+.admin-header .user-info { font-size: 13px; opacity: 0.8; }
+.admin-header button { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; margin-left: 12px; }
+.admin-header button:hover { background: rgba(255,255,255,0.1); }
 
-/* Import area */
-.import-zone{border:2px dashed rgba(255,255,255,.15);border-radius:10px;padding:40px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:20px}
-.import-zone:hover,.import-zone.drag{border-color:#c9a84c;background:rgba(201,168,76,.05)}
-.import-zone input{display:none}
-.import-zone-icon{font-size:2.5rem;margin-bottom:12px}
-.import-zone h4{font-size:1rem;margin-bottom:6px}
-.import-zone p{font-size:.82rem;color:#6b6b72}
-.progress-bar{height:6px;background:rgba(255,255,255,.06);border-radius:3px;margin:16px 0;overflow:hidden}
-.progress-fill{height:100%;background:#c9a84c;border-radius:3px;transition:width .3s;width:0}
+.admin-container { max-width: 1400px; margin: 32px auto; padding: 0 32px; }
+.tabs { display: flex; gap: 4px; border-bottom: 2px solid #e8e6e0; margin-bottom: 24px; }
+.tab { padding: 12px 20px; background: transparent; border: none; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; color: #5a5550; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.tab.active { color: #1a1a1a; border-bottom-color: #1a1a1a; font-weight: 600; }
+.tab-count { display: inline-block; background: #fef2f2; color: #b91c1c; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 600; }
 
-/* Products table */
-.prod-table{width:100%;border-collapse:collapse;font-size:.85rem}
-.prod-table th{padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:#6b6b72;border-bottom:1px solid rgba(255,255,255,.06)}
-.prod-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:#a8a8b0}
-.prod-table td:first-child{color:#fff}
-.prod-table tr:hover td{background:rgba(255,255,255,.02)}
-.price-cell{font-family:'DM Mono',monospace;color:#c9a84c}
-.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.72rem;font-weight:600}
-.badge-green{background:rgba(22,101,52,.4);color:#86efac}
-.badge-blue{background:rgba(30,58,138,.4);color:#93c5fd}
-.badge-orange{background:rgba(154,52,18,.4);color:#fed7aa}
-.alert{padding:12px 16px;border-radius:8px;font-size:.85rem;margin-bottom:16px}
-.alert-success{background:rgba(22,101,52,.2);border:1px solid rgba(134,239,172,.2);color:#86efac}
-.alert-warning{background:rgba(133,77,14,.2);border:1px solid rgba(253,224,71,.2);color:#fde047}
-.alert-error{background:rgba(153,27,27,.2);border:1px solid rgba(252,165,165,.2);color:#fca5a5}
-.partner-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
-.partner-row:last-child{border:none}
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.stat-card { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 20px; }
+.stat-label { font-size: 12px; color: #8a8580; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.stat-value { font-size: 32px; font-weight: 600; }
+.stat-value.pending { color: #ea580c; }
+.stat-value.verified { color: #16a34a; }
+.stat-value.rejected { color: #dc2626; }
+
+.section { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+.section h2 { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: #faf9f6; text-align: left; padding: 12px; font-weight: 600; font-size: 13px; color: #5a5550; border-bottom: 1px solid #e8e6e0; }
+td { padding: 12px; border-bottom: 1px solid #f0eee8; vertical-align: middle; }
+tr:hover td { background: #fafaf8; }
+.empty-row { text-align: center; color: #8a8580; padding: 40px !important; }
+
+.status-badge { display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.status-pending { background: #fff7ed; color: #ea580c; }
+.status-verified { background: #f0fdf4; color: #15803d; }
+.status-rejected { background: #fef2f2; color: #b91c1c; }
+.status-suspended { background: #f3f4f6; color: #4b5563; }
+
+.btn-approve { background: #16a34a; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; margin-right: 6px; }
+.btn-reject { background: transparent; color: #dc2626; border: 1px solid #fecaca; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; }
+.btn-view { background: transparent; color: #1a1a1a; border: 1px solid #e8e6e0; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 500; }
+
+.access-denied { max-width: 500px; margin: 80px auto; text-align: center; padding: 40px; background: #fff; border-radius: 12px; }
+.access-denied h2 { font-size: 24px; margin-bottom: 12px; }
+.access-denied p { color: #5a5550; margin-bottom: 24px; }
+.access-denied a { display: inline-block; padding: 12px 24px; background: #1a1a1a; color: #fff; text-decoration: none; border-radius: 8px; }
+
+.loading { text-align: center; padding: 40px; color: #8a8580; }
+
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.active { display: flex; }
+.modal { background: #fff; border-radius: 12px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 32px; }
+.modal h3 { font-size: 20px; margin-bottom: 20px; }
+.modal-row { padding: 8px 0; border-bottom: 1px solid #f0eee8; display: flex; }
+.modal-row:last-child { border-bottom: none; }
+.modal-label { font-weight: 600; min-width: 140px; color: #5a5550; }
+.modal-value { color: #1a1a1a; }
+.modal-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.modal-close { background: transparent; border: 1px solid #e8e6e0; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-family: inherit; }
+
+textarea, input.modal-input { width: 100%; padding: 10px; border: 1px solid #e8e6e0; border-radius: 6px; font-family: inherit; font-size: 14px; margin-top: 12px; }
+textarea { min-height: 80px; resize: vertical; }
 </style>
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
-<div id="loginScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0e0e0f">
-  <div style="width:360px;text-align:center">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:4px">WorldKidsFashion™</div>
-    <div style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#6b6b72;margin-bottom:36px">Admin Panel</div>
-    <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:32px;text-align:left">
-      <div style="margin-bottom:16px">
-        <label>Username</label>
-        <input type="text" id="loginUser" placeholder="admin" value="admin">
-      </div>
-      <div style="margin-bottom:24px">
-        <label>Password</label>
-        <input type="password" id="loginPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
-      </div>
-      <button class="btn btn-gold" style="width:100%" onclick="doLogin()">Sign In →</button>
-      <div id="loginErr" style="color:#fca5a5;font-size:.82rem;margin-top:12px;display:none">Invalid credentials</div>
+<header class="admin-header">
+  <h1>🛠 WKF Admin Panel</h1>
+  <div>
+    <span class="user-info" id="adminEmail">Loading…</span>
+    <button onclick="window.location.href='index.html'">← Site</button>
+    <button onclick="handleLogout()">Sign Out</button>
+  </div>
+</header>
+
+<!-- Access Denied (initial state, shown if not admin) -->
+<div id="accessDenied" class="access-denied" style="display:none">
+  <h2>🔒 Access Denied</h2>
+  <p>This panel is for authorized administrators only.</p>
+  <a href="index.html">Back to Homepage</a>
+</div>
+
+<!-- Admin Content -->
+<div id="adminContent" style="display:none">
+  <div class="admin-container">
+
+    <!-- Stats -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card"><div class="stat-label">Total Users</div><div class="stat-value" id="statTotal">—</div></div>
+      <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value pending" id="statPending">—</div></div>
+      <div class="stat-card"><div class="stat-label">Verified</div><div class="stat-value verified" id="statVerified">—</div></div>
+      <div class="stat-card"><div class="stat-label">Rejected</div><div class="stat-value rejected" id="statRejected">—</div></div>
+      <div class="stat-card"><div class="stat-label">New Inquiries</div><div class="stat-value pending" id="statInquiries">—</div></div>
     </div>
-    <div style="margin-top:16px;font-size:.78rem;color:#4a4a52">
-      Default: admin / wkf2025admin
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('pending')">Pending Approval <span class="tab-count" id="countPending">0</span></button>
+      <button class="tab" onclick="switchTab('verified')">Verified Users</button>
+      <button class="tab" onclick="switchTab('all')">All Users</button>
+      <button class="tab" onclick="switchTab('inquiries')">Inquiries <span class="tab-count" id="countInquiries">0</span></button>
+    </div>
+
+    <!-- Pending users -->
+    <div id="tab-pending" class="tab-content section">
+      <h2>Pending Verification</h2>
+      <table>
+        <thead><tr><th>Email</th><th>Name</th><th>Company</th><th>Country</th><th>Type</th><th>Registered</th><th>Actions</th></tr></thead>
+        <tbody id="pendingTable"><tr><td colspan="7" class="loading">Loading…</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Verified users -->
+    <div id="tab-verified" class="tab-content section" style="display:none">
+      <h2>Verified Wholesale Buyers</h2>
+      <table>
+        <thead><tr><th>Email</th><th>Name</th><th>Company</th><th>Country</th><th>Verified</th><th>Actions</th></tr></thead>
+        <tbody id="verifiedTable"><tr><td colspan="6" class="loading">Loading…</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- All users -->
+    <div id="tab-all" class="tab-content section" style="display:none">
+      <h2>All Users</h2>
+      <table>
+        <thead><tr><th>Email</th><th>Company</th><th>Country</th><th>Status</th><th>Role</th><th>Registered</th><th>Actions</th></tr></thead>
+        <tbody id="allTable"><tr><td colspan="7" class="loading">Loading…</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Inquiries -->
+    <div id="tab-inquiries" class="tab-content section" style="display:none">
+      <h2>Buyer Inquiries</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Buyer</th><th>Items</th><th>Country</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="inquiriesTable"><tr><td colspan="6" class="loading">Loading…</td></tr></tbody>
+      </table>
     </div>
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel" style="display:none">
-<div class="admin-layout">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <span>WKF Admin</span>
-      <small>WorldKidsFashion™</small>
-    </div>
-    <div class="nav-section">Overview</div>
-    <div class="nav-item active" onclick="showPage('dashboard',this)">📊 Dashboard</div>
-    <div class="nav-section">Pricing</div>
-    <div class="nav-item" onclick="showPage('pricing',this)">💰 Price Settings</div>
-    <div class="nav-item" onclick="showPage('import',this)">📦 Import Catalog</div>
-    <div class="nav-item" onclick="showPage('products',this)">🗂 Products</div>
-    <div class="nav-section">Sales</div>
-    <div class="nav-item" onclick="showPage('partners',this)">🤝 Partner Applications</div>
-    <div class="nav-section">Settings</div>
-    <div class="nav-item" onclick="showPage('settings',this)">⚙️ Admin Settings</div>
-    <div style="position:absolute;bottom:20px;left:0;right:0;padding:0 20px">
-      <button class="btn btn-ghost" style="width:100%;font-size:.8rem" onclick="doLogout()">Sign Out</button>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- DASHBOARD -->
-    <div class="page active" id="page-dashboard">
-      <div class="page-title">Dashboard</div>
-      <div class="page-sub">WorldKidsFashion™ — Admin Overview</div>
-
-      <div class="stat-cards">
-        <div class="stat-card"><div class="num" id="stat-products">0</div><div class="lbl">Products</div></div>
-        <div class="stat-card"><div class="num" id="stat-partners">0</div><div class="lbl">Partner Applications</div></div>
-        <div class="stat-card"><div class="num" id="stat-wholesale">10%</div><div class="lbl">Wholesale Markup</div></div>
-        <div class="stat-card"><div class="num" id="stat-retail">15%</div><div class="lbl">Retail Markup</div></div>
-      </div>
-
-      <div class="card">
-        <h3>Quick Actions</h3>
-        <p>Common tasks</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn btn-gold" onclick="showPage('import',document.querySelector('[onclick*=import]'))">📦 Import New Catalog</button>
-          <button class="btn btn-ghost" onclick="showPage('pricing',document.querySelector('[onclick*=pricing]'))">💰 Update Prices</button>
-          <button class="btn btn-ghost" onclick="showPage('partners',document.querySelector('[onclick*=partners]'))">🤝 View Applications</button>
-          <a href="index.html" target="_blank"><button class="btn btn-ghost">🌐 View Website</button></a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Current Price Formula</h3>
-        <p>Applied to all products on import</p>
-        <div class="price-preview">
-          <div class="pp-col"><label>Supplier Price</label><div class="val">$20.00</div></div>
-          <div class="pp-col"><label>Wholesale (+<span id="dash-wm">10</span>%)</label><div class="val" id="dash-wp">$22.00</div></div>
-          <div class="pp-col"><label>Retail (+<span id="dash-rm">15</span>%)</label><div class="val" id="dash-rp">$25.30</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PRICING -->
-    <div class="page" id="page-pricing">
-      <div class="page-title">Price Settings</div>
-      <div class="page-sub">Set markup percentages. Changes apply to all new imports and recalculate existing products.</div>
-
-      <div class="card">
-        <h3>Markup Configuration</h3>
-        <p>Formula: Supplier Price → ×(1 + wholesale%) = Wholesale → ×(1 + retail%) = Retail</p>
-
-        <div class="row2">
-          <div>
-            <label>Wholesale Markup (%)</label>
-            <div class="input-group">
-              <input type="number" id="wholesale_markup" min="0" max="200" step="0.5" value="10" oninput="updatePreview()">
-              <span class="input-suffix">%</span>
-            </div>
-            <div style="font-size:.78rem;color:#6b6b72">Added to supplier price to get wholesale (B2B) price</div>
-          </div>
-          <div>
-            <label>Retail Markup (%)</label>
-            <div class="input-group">
-              <input type="number" id="retail_markup" min="0" max="500" step="0.5" value="15" oninput="updatePreview()">
-              <span class="input-suffix">%</span>
-            </div>
-            <div style="font-size:.78rem;color:#6b6b72">Added to wholesale price to get retail (B2C / parents) price</div>
-          </div>
-        </div>
-
-        <label style="margin-top:16px">Live Preview (based on $20.00 supplier price)</label>
-        <div class="price-preview">
-          <div class="pp-col"><label>Supplier Price</label><div class="val">$20.00</div></div>
-          <div class="pp-col"><label>Wholesale</label><div class="val" id="prev-wholesale">$22.00</div></div>
-          <div class="pp-col"><label>Retail</label><div class="val" id="prev-retail">$25.30</div></div>
-        </div>
-
-        <div style="margin-top:8px">
-          <button class="btn btn-gold" onclick="savePricing()">Save Price Settings</button>
-          <span id="pricing-saved" style="margin-left:12px;color:#86efac;font-size:.85rem;display:none">✓ Saved!</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Recalculate Existing Products</h3>
-        <p>After changing markup percentages, apply new prices to all imported products.</p>
-        <button class="btn btn-ghost" onclick="recalcProducts()">🔄 Recalculate All Products</button>
-        <span id="recalc-done" style="margin-left:12px;color:#86efac;font-size:.85rem;display:none">✓ Done!</span>
-      </div>
-    </div>
-
-    <!-- IMPORT -->
-    <div class="page" id="page-import">
-      <div class="page-title">Import Catalog</div>
-      <div class="page-sub">Upload supplier price list in CSV or Excel format. Prices are calculated automatically.</div>
-
-      <div class="card">
-        <h3>Upload Supplier File</h3>
-        <p>Supported formats: <strong>CSV</strong>, <strong>Excel (.xlsx)</strong>. The file must have columns: <code style="color:#c9a84c">name, supplier_price</code>. Optional: <code style="color:#c9a84c">brand, category, description, age</code></p>
-
-        <div class="import-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
-          <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" onchange="handleFile(this.files[0])">
-          <div class="import-zone-icon">📂</div>
-          <h4>Drop file here or click to browse</h4>
-          <p>CSV or Excel · Max 10MB</p>
-        </div>
-
-        <div id="importPreview" style="display:none">
-          <div class="alert alert-success" id="importAlert"></div>
-          <div class="progress-bar"><div class="progress-fill" id="importProgress"></div></div>
-          <div style="overflow-x:auto">
-            <table class="prod-table" id="previewTable">
-              <thead><tr>
-                <th>Name</th><th>Brand</th><th>Category</th><th>Supplier $</th>
-                <th>Wholesale $</th><th>Retail $</th><th>Status</th>
-              </tr></thead>
-              <tbody id="previewBody"></tbody>
-            </table>
-          </div>
-          <div style="margin-top:20px;display:flex;gap:12px">
-            <button class="btn btn-gold" onclick="confirmImport()">✓ Import All Products</button>
-            <button class="btn btn-ghost" onclick="cancelImport()">Cancel</button>
-          </div>
-        </div>
-
-        <div id="importSuccess" style="display:none" class="alert alert-success"></div>
-      </div>
-
-      <div class="card">
-        <h3>CSV Template</h3>
-        <p>Download this template, fill in your supplier's products, then upload above.</p>
-        <button class="btn btn-ghost" onclick="downloadTemplate()">⬇ Download CSV Template</button>
-        <pre style="background:#141416;padding:16px;border-radius:8px;margin-top:16px;font-size:.78rem;color:#a8a8b0;overflow-x:auto">name,supplier_price,brand,category,description,age
-Baby Cotton Romper,8.50,BabyCosy,newborn,Soft organic cotton romper,0-6m
-Girls Summer Dress,14.00,LittlePrincess,girls,Floral print summer dress,2-8y
-Boys Tracksuit,16.50,ActiveKids,boys,Cotton fleece tracksuit,4-10y</pre>
-      </div>
-    </div>
-
-    <!-- PRODUCTS -->
-    <div class="page" id="page-products">
-      <div class="page-title">Products</div>
-      <div class="page-sub">All imported products with calculated prices.</div>
-
-      <div class="card" style="padding:0;overflow:hidden">
-        <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <h3 style="margin-bottom:0">Product List</h3>
-          </div>
-          <div style="display:flex;gap:10px">
-            <button class="btn btn-ghost" onclick="clearProducts()">🗑 Clear All</button>
-            <button class="btn btn-gold" onclick="showPage('import',document.querySelector('[onclick*=import]'))">+ Import More</button>
-          </div>
-        </div>
-        <div style="overflow-x:auto;padding:0 24px 24px">
-          <table class="prod-table">
-            <thead><tr>
-              <th>Name</th><th>Brand</th><th>Category</th><th>Age</th>
-              <th>Supplier $</th><th>Wholesale $</th><th>Retail $</th>
-            </tr></thead>
-            <tbody id="productsBody">
-              <tr><td colspan="7" style="text-align:center;padding:32px;color:#4a4a52">No products imported yet. <a href="#" onclick="showPage('import',document.querySelector('[onclick*=import]'));return false" style="color:#c9a84c">Import your first catalog →</a></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- PARTNERS -->
-    <div class="page" id="page-partners">
-      <div class="page-title">Partner Applications</div>
-      <div class="page-sub">Applications from the "Become a Partner" form on the website.</div>
-      <div class="card" id="partnersCard">
-        <div id="partnersList"></div>
-      </div>
-    </div>
-
-    <!-- SETTINGS -->
-    <div class="page" id="page-settings">
-      <div class="page-title">Admin Settings</div>
-      <div class="page-sub">Change admin credentials.</div>
-      <div class="card">
-        <h3>Change Password</h3>
-        <p>Update your admin login password.</p>
-        <div style="max-width:360px">
-          <div style="margin-bottom:14px"><label>Current Password</label><input type="password" id="set-curr"></div>
-          <div style="margin-bottom:14px"><label>New Password</label><input type="password" id="set-new"></div>
-          <div style="margin-bottom:20px"><label>Confirm New Password</label><input type="password" id="set-confirm"></div>
-          <button class="btn btn-gold" onclick="changePassword()">Update Password</button>
-          <span id="pw-msg" style="margin-left:12px;font-size:.85rem;display:none"></span>
-        </div>
-      </div>
-    </div>
-
-  </main>
+<!-- User Detail Modal -->
+<div class="modal-overlay" id="userModal">
+  <div class="modal">
+    <h3 id="modalTitle">User Details</h3>
+    <div id="modalContent"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
 </div>
-</div><!-- /adminPanel -->
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ── AUTH ──────────────────────────────────────────────────────
-const ADMIN_KEY = 'wkf_admin_pw';
-function getAdminPw() { return localStorage.getItem(ADMIN_KEY) || 'wkf2025admin'; }
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-function doLogin() {
-  const user = document.getElementById('loginUser').value;
-  const pass = document.getElementById('loginPass').value;
-  if (user === 'admin' && pass === getAdminPw()) {
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-    loadAll();
-  } else {
-    document.getElementById('loginErr').style.display = 'block';
-  }
-}
+let currentUser = null;
+let currentRole = null;
 
-function doLogout() {
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('loginPass').value = '';
-}
+// On load: check auth and role (with debug info)
+(async () => {
+  try {
+    const { data: { session }, error: sessionError } = await supa.auth.getSession();
 
-function changePassword() {
-  const curr = document.getElementById('set-curr').value;
-  const nw   = document.getElementById('set-new').value;
-  const conf = document.getElementById('set-confirm').value;
-  const msg  = document.getElementById('pw-msg');
-  if (curr !== getAdminPw()) { msg.style.display='inline';msg.style.color='#fca5a5';msg.textContent='Current password incorrect';return; }
-  if (nw !== conf)           { msg.style.display='inline';msg.style.color='#fca5a5';msg.textContent='Passwords do not match';return; }
-  if (nw.length < 6)        { msg.style.display='inline';msg.style.color='#fca5a5';msg.textContent='Min 6 characters';return; }
-  localStorage.setItem(ADMIN_KEY, nw);
-  msg.style.display='inline';msg.style.color='#86efac';msg.textContent='✓ Password updated';
-}
+    console.log('[admin] Session check:', session ? 'YES' : 'NO', sessionError);
 
-// ── NAVIGATION ────────────────────────────────────────────────
-function showPage(id, el) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  if (el) el.classList.add('active');
-  if (id === 'products') renderProducts();
-  if (id === 'partners') renderPartners();
-}
-
-// ── PRICING ───────────────────────────────────────────────────
-function getPricing() {
-  return JSON.parse(localStorage.getItem('wkf_pricing') || JSON.stringify({wholesale_markup:10, retail_markup:15}));
-}
-
-function loadPricing() {
-  const p = getPricing();
-  document.getElementById('wholesale_markup').value = p.wholesale_markup;
-  document.getElementById('retail_markup').value    = p.retail_markup;
-  updatePreview();
-  // dashboard
-  document.getElementById('dash-wm').textContent = p.wholesale_markup;
-  document.getElementById('dash-rm').textContent = p.retail_markup;
-  const wh = (20 * (1 + p.wholesale_markup/100)).toFixed(2);
-  const rt = (wh * (1 + p.retail_markup/100)).toFixed(2);
-  document.getElementById('dash-wp').textContent = '$' + wh;
-  document.getElementById('dash-rp').textContent = '$' + rt;
-  document.getElementById('stat-wholesale').textContent = p.wholesale_markup + '%';
-  document.getElementById('stat-retail').textContent    = p.retail_markup + '%';
-}
-
-function updatePreview() {
-  const wm = parseFloat(document.getElementById('wholesale_markup').value) || 0;
-  const rm = parseFloat(document.getElementById('retail_markup').value)    || 0;
-  const wh = (20 * (1 + wm/100)).toFixed(2);
-  const rt = (parseFloat(wh) * (1 + rm/100)).toFixed(2);
-  document.getElementById('prev-wholesale').textContent = '$' + wh;
-  document.getElementById('prev-retail').textContent    = '$' + rt;
-}
-
-function savePricing() {
-  const pricing = {
-    wholesale_markup: parseFloat(document.getElementById('wholesale_markup').value) || 10,
-    retail_markup:    parseFloat(document.getElementById('retail_markup').value)    || 15
-  };
-  localStorage.setItem('wkf_pricing', JSON.stringify(pricing));
-  const el = document.getElementById('pricing-saved');
-  el.style.display = 'inline';
-  setTimeout(() => el.style.display = 'none', 2000);
-  loadPricing();
-}
-
-function recalcProducts() {
-  const pricing = getPricing();
-  const products = JSON.parse(localStorage.getItem('wkf_products') || '[]');
-  products.forEach(p => {
-    p.wholesale = Math.round(p.supplierPrice * (1 + pricing.wholesale_markup/100) * 100)/100;
-    p.retail    = Math.round(p.wholesale     * (1 + pricing.retail_markup/100)    * 100)/100;
-  });
-  localStorage.setItem('wkf_products', JSON.stringify(products));
-  const el = document.getElementById('recalc-done');
-  el.style.display = 'inline';
-  setTimeout(() => el.style.display = 'none', 2000);
-}
-
-// ── IMPORT ────────────────────────────────────────────────────
-let pendingImport = [];
-
-const dropZone = document.getElementById('dropZone');
-dropZone.addEventListener('dragover', e => {e.preventDefault();dropZone.classList.add('drag')});
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
-dropZone.addEventListener('drop', e => {e.preventDefault();dropZone.classList.remove('drag');handleFile(e.dataTransfer.files[0])});
-
-function handleFile(file) {
-  if (!file) return;
-  const ext = file.name.split('.').pop().toLowerCase();
-  if (!['csv','xlsx','xls'].includes(ext)) {
-    alert('Please upload a CSV or Excel file');
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    let rows = [];
-    if (ext === 'csv') {
-      rows = parseCSV(e.target.result);
-    } else {
-      // For Excel — basic simulation (real xlsx needs SheetJS library)
-      // Show friendly message
-      alert('Excel import: for full Excel support, save your file as CSV first (File → Save As → CSV). The system will then process it automatically.');
+    if (sessionError) {
+      document.getElementById('accessDenied').style.display = 'block';
+      document.getElementById('accessDenied').innerHTML = '<h2>Session Error</h2><p>' + sessionError.message + '</p><a href="login.html">Back to login</a>';
       return;
     }
-    showPreview(rows, file.name);
+
+    if (!session) {
+      // Not logged in - go to login WITHOUT redirect (to avoid loop)
+      document.getElementById('accessDenied').style.display = 'block';
+      document.getElementById('accessDenied').innerHTML = '<h2>Not logged in</h2><p>Please sign in to access admin panel.</p><a href="login.html">Sign in</a>';
+      return;
+    }
+
+    currentUser = session.user;
+    document.getElementById('adminEmail').textContent = currentUser.email;
+    console.log('[admin] User:', currentUser.id, currentUser.email);
+
+    // Check role
+    const { data: profile, error } = await supa
+      .from('profiles')
+      .select('role, status, email')
+      .eq('id', currentUser.id)
+      .single();
+
+    console.log('[admin] Profile lookup:', profile, 'Error:', error);
+
+    if (error) {
+      document.getElementById('accessDenied').style.display = 'block';
+      document.getElementById('accessDenied').innerHTML = '<h2>Profile Lookup Failed</h2><p>Error: ' + error.message + '</p><p>User ID: ' + currentUser.id + '</p><p>Email: ' + currentUser.email + '</p><a href="login.html">Back</a>';
+      return;
+    }
+
+    if (!profile) {
+      document.getElementById('accessDenied').style.display = 'block';
+      document.getElementById('accessDenied').innerHTML = '<h2>Profile Not Found</h2><p>Your auth account exists but has no profile record. Contact admin.</p><p>Email: ' + currentUser.email + '</p><a href="login.html">Back</a>';
+      return;
+    }
+
+    if (profile.role !== 'admin' && profile.role !== 'manager') {
+      document.getElementById('accessDenied').style.display = 'block';
+      document.getElementById('accessDenied').innerHTML = '<h2>🔒 Access Denied</h2><p>Your role: <strong>' + profile.role + '</strong> · Status: <strong>' + profile.status + '</strong></p><p>This panel requires admin or manager role.</p><a href="login.html">Back to login</a> · <a href="account.html" style="margin-left:12px">Go to your account</a>';
+      return;
+    }
+
+    currentRole = profile.role;
+    document.getElementById('adminContent').style.display = 'block';
+
+    // Load data
+    await loadStats();
+    await loadPending();
+  } catch (err) {
+    console.error('[admin] Init error:', err);
+    document.getElementById('accessDenied').style.display = 'block';
+    document.getElementById('accessDenied').innerHTML = '<h2>Init Error</h2><p>' + err.message + '</p><a href="login.html">Back</a>';
+  }
+})();
+
+async function loadStats() {
+  const { data, error } = await supa.from('profiles').select('status');
+  if (error) { console.error(error); return; }
+
+  const stats = { total: data.length, pending: 0, verified: 0, rejected: 0 };
+  data.forEach(p => { if (stats[p.status] !== undefined) stats[p.status]++; });
+
+  document.getElementById('statTotal').textContent = stats.total;
+  document.getElementById('statPending').textContent = stats.pending;
+  document.getElementById('statVerified').textContent = stats.verified;
+  document.getElementById('statRejected').textContent = stats.rejected;
+  document.getElementById('countPending').textContent = stats.pending;
+
+  // Inquiries count
+  const { data: inqData } = await supa.from('inquiries').select('status').eq('status', 'new');
+  const inqCount = inqData ? inqData.length : 0;
+  document.getElementById('statInquiries').textContent = inqCount;
+  document.getElementById('countInquiries').textContent = inqCount;
+}
+
+async function loadPending() {
+  const { data, error } = await supa
+    .from('profiles')
+    .select('*')
+    .eq('status', 'pending')
+    .order('created_at', { ascending: false });
+
+  const tbody = document.getElementById('pendingTable');
+  if (error) { tbody.innerHTML = '<tr><td colspan="7" class="empty-row">Error loading: ' + error.message + '</td></tr>'; return; }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="7" class="empty-row">No pending users 🎉</td></tr>'; return; }
+
+  tbody.innerHTML = data.map(u => `
+    <tr>
+      <td><strong>${u.email}</strong></td>
+      <td>${(u.first_name || '') + ' ' + (u.last_name || '')}</td>
+      <td>${u.company || '—'}</td>
+      <td>${u.country || '—'}</td>
+      <td>${u.business_type || '—'}</td>
+      <td>${new Date(u.created_at).toLocaleDateString()}</td>
+      <td>
+        <button class="btn-view" onclick="showUserDetail('${u.id}')">View</button>
+        <button class="btn-approve" onclick="approveUser('${u.id}', '${u.email}')">Approve</button>
+        <button class="btn-reject" onclick="rejectUser('${u.id}', '${u.email}')">Reject</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+async function loadVerified() {
+  const { data, error } = await supa
+    .from('profiles')
+    .select('*')
+    .eq('status', 'verified')
+    .order('verified_at', { ascending: false });
+
+  const tbody = document.getElementById('verifiedTable');
+  if (error) { tbody.innerHTML = '<tr><td colspan="6" class="empty-row">Error: ' + error.message + '</td></tr>'; return; }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="6" class="empty-row">No verified users yet</td></tr>'; return; }
+
+  tbody.innerHTML = data.map(u => `
+    <tr>
+      <td><strong>${u.email}</strong></td>
+      <td>${(u.first_name || '') + ' ' + (u.last_name || '')}</td>
+      <td>${u.company || '—'}</td>
+      <td>${u.country || '—'}</td>
+      <td>${u.verified_at ? new Date(u.verified_at).toLocaleDateString() : '—'}</td>
+      <td>
+        <button class="btn-view" onclick="showUserDetail('${u.id}')">View</button>
+        <button class="btn-reject" onclick="suspendUser('${u.id}', '${u.email}')">Suspend</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+async function loadAll() {
+  const { data, error } = await supa
+    .from('profiles')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const tbody = document.getElementById('allTable');
+  if (error) { tbody.innerHTML = '<tr><td colspan="7" class="empty-row">Error</td></tr>'; return; }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="7" class="empty-row">No users yet</td></tr>'; return; }
+
+  tbody.innerHTML = data.map(u => `
+    <tr>
+      <td><strong>${u.email}</strong></td>
+      <td>${u.company || '—'}</td>
+      <td>${u.country || '—'}</td>
+      <td><span class="status-badge status-${u.status}">${u.status}</span></td>
+      <td>${u.role}</td>
+      <td>${new Date(u.created_at).toLocaleDateString()}</td>
+      <td><button class="btn-view" onclick="showUserDetail('${u.id}')">View</button></td>
+    </tr>
+  `).join('');
+}
+
+async function loadInquiries() {
+  const { data, error } = await supa
+    .from('inquiries')
+    .select('*, profiles:user_id(email, company, country)')
+    .order('created_at', { ascending: false });
+
+  const tbody = document.getElementById('inquiriesTable');
+  if (error) { tbody.innerHTML = '<tr><td colspan="6" class="empty-row">Error</td></tr>'; return; }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="6" class="empty-row">No inquiries yet</td></tr>'; return; }
+
+  tbody.innerHTML = data.map(i => {
+    const items = Array.isArray(i.items) ? i.items : [];
+    const itemsText = items.length + ' item(s)';
+    const buyer = i.profiles ? i.profiles.email : 'Unknown';
+    const country = i.profiles ? i.profiles.country : '—';
+    return `
+      <tr>
+        <td>${new Date(i.created_at).toLocaleDateString()}</td>
+        <td><strong>${buyer}</strong></td>
+        <td>${itemsText}</td>
+        <td>${country}</td>
+        <td><span class="status-badge status-${i.status === 'new' ? 'pending' : 'verified'}">${i.status}</span></td>
+        <td><button class="btn-view" onclick="showInquiryDetail('${i.id}')">View</button></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function approveUser(userId, email) {
+  if (!confirm('Approve ' + email + '? They will get access to wholesale catalog.')) return;
+
+  const { error } = await supa
+    .from('profiles')
+    .update({ status: 'verified', verified_at: new Date().toISOString(), verified_by: currentUser.id })
+    .eq('id', userId);
+
+  if (error) { alert('Error: ' + error.message); return; }
+
+  alert('✅ User approved. They can now access wholesale features.');
+  await loadStats();
+  await loadPending();
+}
+
+async function rejectUser(userId, email) {
+  const reason = prompt('Reason for rejection (will be saved, not auto-sent):', 'Could not verify business credentials');
+  if (reason === null) return;
+
+  const { error } = await supa
+    .from('profiles')
+    .update({ status: 'rejected', rejection_reason: reason })
+    .eq('id', userId);
+
+  if (error) { alert('Error: ' + error.message); return; }
+
+  alert('User rejected.');
+  await loadStats();
+  await loadPending();
+}
+
+async function suspendUser(userId, email) {
+  if (!confirm('Suspend ' + email + '? They will lose access to wholesale features.')) return;
+
+  const { error } = await supa
+    .from('profiles')
+    .update({ status: 'suspended' })
+    .eq('id', userId);
+
+  if (error) { alert('Error: ' + error.message); return; }
+
+  alert('User suspended.');
+  await loadStats();
+  await loadVerified();
+}
+
+async function showUserDetail(userId) {
+  const { data, error } = await supa
+    .from('profiles')
+    .select('*')
+    .eq('id', userId)
+    .single();
+
+  if (error || !data) { alert('Error loading user'); return; }
+
+  const fields = {
+    'Email': data.email,
+    'First Name': data.first_name || '—',
+    'Last Name': data.last_name || '—',
+    'Company': data.company || '—',
+    'Business Type': data.business_type || '—',
+    'Country': data.country || '—',
+    'Phone': data.phone || '—',
+    'Website': data.website || '—',
+    'VAT Number': data.vat_number || '—',
+    'Registration #': data.registration_number || '—',
+    'Status': data.status,
+    'Role': data.role,
+    'Registered': new Date(data.created_at).toLocaleString(),
+    'Verified At': data.verified_at ? new Date(data.verified_at).toLocaleString() : '—',
+    'Rejection Reason': data.rejection_reason || '—',
+    'Notes': data.notes || '—'
   };
 
-  if (ext === 'csv') reader.readAsText(file);
-  else reader.readAsArrayBuffer(file);
-}
+  document.getElementById('modalTitle').textContent = 'User: ' + data.email;
+  document.getElementById('modalContent').innerHTML = Object.entries(fields).map(([k, v]) =>
+    `<div class="modal-row"><span class="modal-label">${k}:</span><span class="modal-value">${v}</span></div>`
+  ).join('') + '<textarea id="adminNote" placeholder="Add admin notes...">' + (data.notes || '') + '</textarea>';
 
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  if (lines.length < 2) return [];
-  const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g,''));
-  const rows = [];
-  for (let i = 1; i < lines.length; i++) {
-    const vals = lines[i].split(',').map(v => v.trim().replace(/"/g,''));
-    if (!vals[0]) continue;
-    const obj = {};
-    headers.forEach((h,idx) => obj[h] = vals[idx] || '');
-    rows.push(obj);
+  const actions = [];
+  if (data.status === 'pending') {
+    actions.push(`<button class="btn-approve" onclick="approveUser('${data.id}', '${data.email}'); closeModal()">Approve</button>`);
+    actions.push(`<button class="btn-reject" onclick="rejectUser('${data.id}', '${data.email}'); closeModal()">Reject</button>`);
   }
-  return rows;
-}
-
-function showPreview(rows, filename) {
-  const pricing = getPricing();
-  pendingImport = [];
-  const tbody = document.getElementById('previewBody');
-  tbody.innerHTML = '';
-
-  let valid = 0, skipped = 0;
-  rows.forEach(row => {
-    const name  = row['name'] || row['product'] || row['item'] || '';
-    const price = parseFloat(row['supplier_price'] || row['price'] || row['cost'] || 0);
-    if (!name || !price) { skipped++; return; }
-
-    const wholesale = Math.round(price * (1 + pricing.wholesale_markup/100) * 100)/100;
-    const retail    = Math.round(wholesale * (1 + pricing.retail_markup/100) * 100)/100;
-    const product   = {
-      id: 'imp_' + Date.now() + '_' + valid,
-      name,
-      brand:        row['brand'] || 'WKF',
-      category:     row['category'] || row['cat'] || 'general',
-      description:  row['description'] || row['desc'] || '',
-      age:          row['age'] || '0–14y',
-      supplierPrice: price,
-      wholesale, retail
-    };
-    pendingImport.push(product);
-    valid++;
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${name}</td>
-      <td>${product.brand}</td>
-      <td><span class="badge badge-blue">${product.category}</span></td>
-      <td class="price-cell">$${price.toFixed(2)}</td>
-      <td class="price-cell">$${wholesale.toFixed(2)}</td>
-      <td class="price-cell">$${retail.toFixed(2)}</td>
-      <td><span class="badge badge-green">Ready</span></td>`;
-    tbody.appendChild(tr);
-  });
-
-  document.getElementById('importAlert').textContent = `File: ${filename} — ${valid} products ready to import${skipped ? ', ' + skipped + ' rows skipped (missing name or price)' : ''}`;
-  document.getElementById('importProgress').style.width = '100%';
-  document.getElementById('importPreview').style.display = 'block';
-  document.getElementById('importSuccess').style.display = 'none';
-}
-
-function confirmImport() {
-  if (!pendingImport.length) return;
-  const existing = JSON.parse(localStorage.getItem('wkf_products') || '[]');
-  const merged   = [...existing, ...pendingImport];
-  localStorage.setItem('wkf_products', JSON.stringify(merged));
-
-  document.getElementById('importPreview').style.display = 'none';
-  const el = document.getElementById('importSuccess');
-  el.textContent = `✓ ${pendingImport.length} products imported successfully! Total products: ${merged.length}`;
-  el.style.display = 'block';
-  pendingImport = [];
-  updateStats();
-}
-
-function cancelImport() {
-  pendingImport = [];
-  document.getElementById('importPreview').style.display = 'none';
-  document.getElementById('fileInput').value = '';
-}
-
-function downloadTemplate() {
-  const csv = `name,supplier_price,brand,category,description,age
-Baby Cotton Romper,8.50,BabyCosy,newborn,Soft organic cotton romper,0-6m
-Girls Summer Dress,14.00,LittlePrincess,girls,Floral print summer dress,2-8y
-Boys Tracksuit,16.50,ActiveKids,boys,Cotton fleece tracksuit,4-10y
-Organic Bodysuit Set,12.00,PureOrganic,newborn,GOTS certified 3-piece set,0-3m`;
-  const blob = new Blob([csv], {type:'text/csv'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'WKF_Catalog_Template.csv';
-  a.click();
-}
-
-// ── PRODUCTS ──────────────────────────────────────────────────
-function renderProducts() {
-  const products = JSON.parse(localStorage.getItem('wkf_products') || '[]');
-  const tbody    = document.getElementById('productsBody');
-  if (!products.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:32px;color:#4a4a52">No products yet. <a href="#" onclick="showPage(\'import\',document.querySelector(\'[onclick*=import]\'));return false" style="color:#c9a84c">Import catalog →</a></td></tr>';
-    return;
+  if (data.status === 'verified') {
+    actions.push(`<button class="btn-reject" onclick="suspendUser('${data.id}', '${data.email}'); closeModal()">Suspend</button>`);
   }
-  tbody.innerHTML = products.map(p => `
-    <tr>
-      <td>${p.name}</td>
-      <td>${p.brand || '—'}</td>
-      <td><span class="badge badge-blue">${p.category || '—'}</span></td>
-      <td>${p.age || '—'}</td>
-      <td class="price-cell">$${p.supplierPrice.toFixed(2)}</td>
-      <td class="price-cell">$${p.wholesale.toFixed(2)}</td>
-      <td class="price-cell">$${p.retail.toFixed(2)}</td>
-    </tr>`).join('');
+  actions.push(`<button class="btn-approve" onclick="saveNote('${data.id}')">Save Note</button>`);
+  actions.push(`<button class="modal-close" onclick="closeModal()">Close</button>`);
+
+  document.getElementById('modalActions').innerHTML = actions.join('');
+  document.getElementById('userModal').classList.add('active');
 }
 
-function clearProducts() {
-  if (confirm('Delete all imported products?')) {
-    localStorage.removeItem('wkf_products');
-    renderProducts();
-    updateStats();
-  }
+async function saveNote(userId) {
+  const note = document.getElementById('adminNote').value;
+  const { error } = await supa.from('profiles').update({ notes: note }).eq('id', userId);
+  if (error) { alert('Error: ' + error.message); return; }
+  alert('Note saved.');
+  closeModal();
 }
 
-// ── PARTNERS ─────────────────────────────────────────────────
-function renderPartners() {
-  const apps = JSON.parse(localStorage.getItem('wkf_partner_apps') || '[]');
-  const el   = document.getElementById('partnersList');
-  if (!apps.length) {
-    el.innerHTML = '<p style="color:#6b6b72;text-align:center;padding:24px">No applications yet. The form on partner.html will send applications here.</p>';
-    return;
-  }
-  el.innerHTML = apps.map((a,i) => `
-    <div class="partner-row">
-      <div>
-        <div style="font-weight:600;color:#fff">${a.name}</div>
-        <div style="font-size:.78rem;color:#6b6b72">${a.email} · ${a.country}</div>
-      </div>
-      <div style="font-size:.82rem;color:#a8a8b0">${a.channel || '—'}</div>
-      <div style="font-size:.78rem;color:#4a4a52">${new Date(a.date).toLocaleDateString()}</div>
-      <div style="display:flex;gap:8px">
-        <a href="https://wa.me/${(a.phone||'').replace(/\D/g,'')}" target="_blank">
-          <button class="btn btn-green" style="font-size:.75rem;padding:6px 12px">WhatsApp</button>
-        </a>
-        <a href="mailto:${a.email}">
-          <button class="btn btn-ghost" style="font-size:.75rem;padding:6px 12px">Email</button>
-        </a>
-      </div>
-    </div>`).join('');
-  document.getElementById('stat-partners').textContent = apps.length;
+async function showInquiryDetail(inquiryId) {
+  const { data, error } = await supa
+    .from('inquiries')
+    .select('*, profiles:user_id(email, first_name, last_name, company, country, phone)')
+    .eq('id', inquiryId)
+    .single();
+
+  if (error || !data) { alert('Error'); return; }
+
+  const items = Array.isArray(data.items) ? data.items : [];
+  const itemsHtml = items.map(it => `<div style="padding:8px;background:#faf9f6;border-radius:6px;margin-bottom:6px">
+    <strong>${it.sku || it.name || 'Item'}</strong> — Qty: ${it.quantity || 0}, Sizes: ${(it.sizes || []).join(', ') || '—'}
+  </div>`).join('');
+
+  const buyer = data.profiles || {};
+  document.getElementById('modalTitle').textContent = 'Inquiry from ' + (buyer.email || 'Unknown');
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-row"><span class="modal-label">Buyer:</span><span>${buyer.first_name || ''} ${buyer.last_name || ''} (${buyer.email || '—'})</span></div>
+    <div class="modal-row"><span class="modal-label">Company:</span><span>${buyer.company || '—'}</span></div>
+    <div class="modal-row"><span class="modal-label">Country:</span><span>${buyer.country || '—'}</span></div>
+    <div class="modal-row"><span class="modal-label">Phone:</span><span>${buyer.phone || '—'}</span></div>
+    <div class="modal-row"><span class="modal-label">Delivery:</span><span>${data.delivery_country || '—'} via ${data.delivery_method || '—'}</span></div>
+    <div class="modal-row"><span class="modal-label">Required by:</span><span>${data.required_by || '—'}</span></div>
+    <div class="modal-row"><span class="modal-label">Buyer message:</span><span>${data.buyer_message || '—'}</span></div>
+    <div class="modal-row"><span class="modal-label">Status:</span><span class="status-badge status-${data.status === 'new' ? 'pending' : 'verified'}">${data.status}</span></div>
+    <div style="margin-top:16px"><strong>Items:</strong>${itemsHtml || '<em>No items</em>'}</div>
+    <textarea id="adminInquiryNotes" placeholder="Admin notes / quote info...">${data.admin_notes || ''}</textarea>
+  `;
+
+  document.getElementById('modalActions').innerHTML = `
+    <button class="btn-approve" onclick="markInquiryReviewing('${data.id}')">Mark Reviewing</button>
+    <button class="btn-approve" onclick="markInquiryQuoted('${data.id}')">Mark Quoted</button>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  `;
+  document.getElementById('userModal').classList.add('active');
 }
 
-// ── STATS ─────────────────────────────────────────────────────
-function updateStats() {
-  const products = JSON.parse(localStorage.getItem('wkf_products') || '[]');
-  const partners = JSON.parse(localStorage.getItem('wkf_partner_apps') || '[]');
-  document.getElementById('stat-products').textContent = products.length;
-  document.getElementById('stat-partners').textContent = partners.length;
+async function markInquiryReviewing(id) {
+  const notes = document.getElementById('adminInquiryNotes').value;
+  await supa.from('inquiries').update({ status: 'reviewing', admin_notes: notes }).eq('id', id);
+  closeModal(); loadInquiries(); loadStats();
 }
 
-function loadAll() {
-  loadPricing();
-  updateStats();
+async function markInquiryQuoted(id) {
+  const notes = document.getElementById('adminInquiryNotes').value;
+  await supa.from('inquiries').update({ status: 'quoted', admin_notes: notes, quoted_at: new Date().toISOString(), quoted_by: currentUser.id }).eq('id', id);
+  closeModal(); loadInquiries(); loadStats();
 }
+
+function closeModal() { document.getElementById('userModal').classList.remove('active'); }
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+  document.getElementById('tab-' + name).style.display = 'block';
+
+  if (name === 'pending') loadPending();
+  if (name === 'verified') loadVerified();
+  if (name === 'all') loadAll();
+  if (name === 'inquiries') loadInquiries();
+}
+
+async function handleLogout() {
+  await supa.auth.signOut();
+  window.location.href = 'login.html';
+}
+
+// Close modal on backdrop click
+document.getElementById('userModal').addEventListener('click', (e) => {
+  if (e.target.id === 'userModal') closeModal();
+});
 </script>
 </body>
 </html>
