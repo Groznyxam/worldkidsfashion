@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Inquiry — WorldKidsFashion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.inq-wrap { max-width: 900px; margin: 32px auto; padding: 0 24px; }
+.inq-header { margin-bottom: 32px; }
+.inq-header h1 { font-size: 28px; margin: 0 0 8px; }
+.inq-header p { color: #5a5550; margin: 0; }
+
+.item-list { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+.item-row { display: grid; grid-template-columns: 60px 1fr auto; gap: 16px; padding: 12px 0; border-bottom: 1px solid #f0eee8; align-items: center; }
+.item-row:last-child { border-bottom: none; }
+.item-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+.item-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.item-meta { font-size: 12px; color: #5a5550; }
+.item-controls { display: flex; gap: 8px; align-items: center; }
+.qty-input { width: 80px; padding: 6px 8px; border: 1px solid #e8e6e0; border-radius: 6px; font-family: inherit; }
+.size-select { padding: 6px 8px; border: 1px solid #e8e6e0; border-radius: 6px; font-family: inherit; font-size: 13px; }
+.remove-btn { background: transparent; border: none; color: #dc2626; cursor: pointer; padding: 4px 8px; font-family: inherit; font-size: 12px; }
+
+.form-section { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+.form-section h2 { font-size: 18px; margin: 0 0 16px; }
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #5a5550; }
+.form-row input, .form-row select, .form-row textarea { width: 100%; padding: 10px 12px; border: 1px solid #e8e6e0; border-radius: 6px; font-family: inherit; font-size: 14px; }
+.form-row textarea { resize: vertical; min-height: 80px; }
+.form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .form-row-grid { grid-template-columns: 1fr; } }
+
+.btn-submit { width: 100%; padding: 14px 24px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 600; }
+.btn-submit:hover { background: #2a2a2a; }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.empty-state { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 60px 20px; text-align: center; }
+.empty-state h2 { font-size: 20px; margin: 0 0 8px; }
+.empty-state p { color: #5a5550; margin: 0 0 20px; }
+.empty-state a { display: inline-block; padding: 12px 24px; background: #1a1a1a; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; }
+
+.error-box { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 12px 16px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; display: none; }
+.success-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 32px; border-radius: 12px; text-align: center; }
+.success-box h2 { color: #15803d; margin: 0 0 12px; }
+.success-box p { color: #5a5550; margin: 0 0 20px; }
+
+.status-banner { padding: 16px 20px; border-radius: 12px; margin-bottom: 24px; }
+.status-pending { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; }
+.status-rejected { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader"><div class="hdr-inner">
+  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div></a>
+  <nav class="hdr-nav">
+    <a href="catalog.html">← Continue browsing</a>
+  </nav>
+</div></header>
+
+<div class="inq-wrap">
+  <div class="inq-header">
+    <h1>Your Inquiry</h1>
+    <p>Review selected products, specify quantities and submit a quote request.</p>
+  </div>
+
+  <div id="loading" style="text-align:center;padding:40px;color:#8a8580">Loading…</div>
+
+  <!-- Empty state -->
+  <div id="emptyState" class="empty-state" style="display:none">
+    <h2>📋 Your inquiry is empty</h2>
+    <p>Browse the catalog and add products to your inquiry list.</p>
+    <a href="catalog.html">Browse Catalog</a>
+  </div>
+
+  <!-- Login required -->
+  <div id="loginRequired" class="empty-state" style="display:none">
+    <h2>Sign in to submit inquiry</h2>
+    <p>You need a verified wholesale account to submit a quote request.</p>
+    <a href="login.html">Sign In</a>
+  </div>
+
+  <!-- Pending verification -->
+  <div id="pendingStatus" class="status-banner status-pending" style="display:none">
+    <strong>⏳ Account pending verification</strong><br>
+    You can prepare your inquiry but cannot submit it until your account is approved. This usually takes 1-2 business days.
+  </div>
+
+  <!-- Form -->
+  <div id="inquiryFormBox" style="display:none">
+
+    <div class="item-list" id="itemList"></div>
+
+    <div class="form-section">
+      <h2>Delivery & Timeline</h2>
+      <div class="form-row-grid">
+        <div class="form-row">
+          <label>Delivery Country *</label>
+          <input type="text" id="deliveryCountry" required placeholder="e.g. France, Germany, USA">
+        </div>
+        <div class="form-row">
+          <label>Delivery Method</label>
+          <select id="deliveryMethod">
+            <option value="">— Select —</option>
+            <option value="DHL Express">DHL Express</option>
+            <option value="UPS">UPS</option>
+            <option value="FedEx">FedEx</option>
+            <option value="Air Cargo">Air Cargo (large volumes)</option>
+            <option value="Sea Cargo">Sea Cargo (large volumes)</option>
+            <option value="To be advised">To be advised</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Required by (date)</label>
+        <input type="date" id="requiredBy">
+      </div>
+      <div class="form-row">
+        <label>Additional notes</label>
+        <textarea id="buyerMessage" placeholder="Specific requirements, branding requests, sample order preferences, etc."></textarea>
+      </div>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+
+    <button class="btn-submit" id="submitBtn" onclick="submitInquiry()">Submit Quote Request</button>
+
+  </div>
+
+  <!-- Success -->
+  <div id="successBox" class="success-box" style="display:none">
+    <h2>✓ Inquiry Submitted</h2>
+    <p>Your quote request has been received. Our team will review and respond within 1-2 business days with a proforma invoice.</p>
+    <a href="account.html" style="display:inline-block;padding:12px 24px;background:#15803d;color:#fff;text-decoration:none;border-radius:8px;font-weight:600">View My Inquiries</a>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let userProfile = null;
+let inquiry = JSON.parse(localStorage.getItem('wkf_inquiry') || '[]');
+
+(async () => {
+  const { data: { session } } = await supa.auth.getSession();
+  document.getElementById('loading').style.display = 'none';
+
+  if (!session) {
+    if (inquiry.length === 0) {
+      document.getElementById('emptyState').style.display = 'block';
+    } else {
+      document.getElementById('loginRequired').style.display = 'block';
+    }
+    return;
+  }
+
+  currentUser = session.user;
+
+  const { data: profile } = await supa.from('profiles').select('*').eq('id', currentUser.id).single();
+  userProfile = profile;
+
+  if (inquiry.length === 0) {
+    document.getElementById('emptyState').style.display = 'block';
+    return;
+  }
+
+  if (profile.status !== 'verified') {
+    document.getElementById('pendingStatus').style.display = 'block';
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').textContent = 'Account verification required';
+  }
+
+  renderItems();
+  document.getElementById('inquiryFormBox').style.display = 'block';
+})();
+
+function renderItems() {
+  const list = document.getElementById('itemList');
+  list.innerHTML = inquiry.map((item, idx) => `
+    <div class="item-row">
+      <img src="${item.image_url}" class="item-img" alt="${item.name}">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-meta">SKU: ${item.sku} · MOQ: ${item.moq} pcs</div>
+      </div>
+      <div class="item-controls">
+        <input type="number" class="qty-input" min="${item.moq}" value="${item.quantity}" onchange="updateQty(${idx}, this.value)" placeholder="Qty">
+        <button class="remove-btn" onclick="removeItem(${idx})">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function updateQty(idx, value) {
+  const qty = parseInt(value) || inquiry[idx].moq;
+  inquiry[idx].quantity = Math.max(qty, inquiry[idx].moq);
+  localStorage.setItem('wkf_inquiry', JSON.stringify(inquiry));
+  renderItems();
+}
+
+function removeItem(idx) {
+  inquiry.splice(idx, 1);
+  localStorage.setItem('wkf_inquiry', JSON.stringify(inquiry));
+  if (inquiry.length === 0) {
+    document.getElementById('inquiryFormBox').style.display = 'none';
+    document.getElementById('emptyState').style.display = 'block';
+  } else {
+    renderItems();
+  }
+}
+
+function showError(msg) {
+  const box = document.getElementById('errorBox');
+  box.textContent = msg;
+  box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+async function submitInquiry() {
+  const errorBox = document.getElementById('errorBox');
+  errorBox.style.display = 'none';
+
+  const country = document.getElementById('deliveryCountry').value.trim();
+  const method = document.getElementById('deliveryMethod').value;
+  const requiredBy = document.getElementById('requiredBy').value;
+  const message = document.getElementById('buyerMessage').value.trim();
+
+  if (!country) { showError('Please specify delivery country.'); return; }
+  if (inquiry.length === 0) { showError('Your inquiry is empty.'); return; }
+
+  if (userProfile.status !== 'verified') {
+    showError('Your account is not verified yet. Please wait for approval.');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const totalQty = inquiry.reduce((sum, item) => sum + (item.quantity || 0), 0);
+
+  const { data, error } = await supa.from('inquiries').insert({
+    user_id: currentUser.id,
+    status: 'new',
+    items: inquiry,
+    total_quantity: totalQty,
+    delivery_country: country,
+    delivery_method: method || null,
+    required_by: requiredBy || null,
+    buyer_message: message || null
+  }).select();
+
+  if (error) {
+    btn.disabled = false;
+    btn.textContent = 'Submit Quote Request';
+    showError('Failed to submit: ' + error.message);
+    return;
+  }
+
+  // Clear cart
+  localStorage.removeItem('wkf_inquiry');
+  document.getElementById('inquiryFormBox').style.display = 'none';
+  document.getElementById('successBox').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
