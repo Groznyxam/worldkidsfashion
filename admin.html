@@ -673,6 +673,23 @@ async function createInvite() {
   await loadFactories();
 }
 
+async function saveManager(factoryId) {
+  const name = document.getElementById('mgrName').value.trim();
+  const email = document.getElementById('mgrEmail').value.trim();
+  const whatsapp = document.getElementById('mgrWhatsapp').value.trim();
+
+  const { error } = await supa.from('factories').update({
+    manager_name: name || null,
+    manager_email: email || null,
+    manager_whatsapp: whatsapp || null
+  }).eq('id', factoryId);
+
+  if (error) { alert('Error: ' + error.message); return; }
+  alert('Manager assigned successfully.');
+  closeModal();
+  loadFactories();
+}
+
 function copyLink(link) {
   navigator.clipboard.writeText(link).then(() => alert('Link copied to clipboard!'));
 }
@@ -708,9 +725,21 @@ async function showFactoryDetail(id) {
   document.getElementById('modalTitle').textContent = 'Factory: ' + data.factory_name;
   document.getElementById('modalContent').innerHTML = Object.entries(fields).map(([k, v]) =>
     `<div class="modal-row"><span class="modal-label">${k}:</span><span class="modal-value">${v}</span></div>`
-  ).join('');
+  ).join('') + `
+    <div style="margin-top:20px;padding-top:16px;border-top:2px solid #f0eee8">
+      <h4 style="margin-bottom:12px;font-size:14px">Assign WKF Manager</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <input type="text" id="mgrName" class="modal-input" placeholder="Manager name" value="${data.manager_name || ''}" style="margin-top:0">
+        <input type="email" id="mgrEmail" class="modal-input" placeholder="Manager email" value="${data.manager_email || ''}" style="margin-top:0">
+      </div>
+      <input type="tel" id="mgrWhatsapp" class="modal-input" placeholder="Manager WhatsApp (+...)" value="${data.manager_whatsapp || ''}">
+    </div>
+  `;
 
-  document.getElementById('modalActions').innerHTML = `<button class="modal-close" onclick="closeModal()">Close</button>`;
+  document.getElementById('modalActions').innerHTML = `
+    <button class="btn-approve" onclick="saveManager('${data.id}')">Save Manager</button>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  `;
   document.getElementById('userModal').classList.add('active');
 }
 

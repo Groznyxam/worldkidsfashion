@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner Portal — WorldKidsFashion</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; }
+.fhdr { background: #1a1a1a; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.fhdr-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; }
+.fhdr-logo span { font-size: 12px; opacity: 0.7; display: block; font-family: 'DM Sans'; }
+.fhdr-right { display: flex; align-items: center; gap: 12px; }
+.fhdr-right .fname { font-size: 13px; opacity: 0.8; }
+.fhdr-btn { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; text-decoration: none; }
+.fhdr-btn:hover { background: rgba(255,255,255,0.1); }
+
+.fwrap { max-width: 1000px; margin: 24px auto; padding: 0 24px; }
+
+.lang-switch { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+.lang-btn { padding: 6px 14px; background: #fff; border: 1px solid #e8e6e0; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; }
+.lang-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+.welcome { background: linear-gradient(135deg, #1a1a1a, #2d2d2d); color: #fff; border-radius: 16px; padding: 32px; margin-bottom: 24px; }
+.welcome h1 { font-family: 'Cormorant Garamond', serif; font-size: 30px; margin-bottom: 8px; }
+.welcome p { opacity: 0.85; font-size: 15px; line-height: 1.6; }
+
+.quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.qlink { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 20px; text-decoration: none; color: #1a1a1a; transition: all 0.2s; }
+.qlink:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.qlink .icon { font-size: 28px; margin-bottom: 10px; }
+.qlink h3 { font-size: 15px; margin-bottom: 4px; }
+.qlink p { font-size: 13px; color: #8a8580; }
+
+.manager-card { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 20px; margin-bottom: 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.manager-card .micon { font-size: 32px; }
+.manager-card .minfo strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.manager-card .minfo span { font-size: 13px; color: #5a5550; }
+.manager-card .mcontact { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.manager-card .mcontact a { padding: 8px 14px; background: #fff; border: 1px solid #bbf7d0; border-radius: 6px; text-decoration: none; color: #15803d; font-size: 13px; font-weight: 600; }
+
+.terms { background: #fff; border: 1px solid #e8e6e0; border-radius: 16px; padding: 32px; }
+.terms h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #f0eee8; }
+.terms section { margin-bottom: 28px; }
+.terms h3 { font-size: 17px; font-weight: 600; margin-bottom: 12px; color: #1a1a1a; }
+.terms p { color: #5a5550; line-height: 1.7; font-size: 14px; margin-bottom: 10px; }
+.terms ul { list-style: none; padding: 0; }
+.terms li { color: #5a5550; line-height: 1.7; font-size: 14px; padding-left: 24px; position: relative; margin-bottom: 6px; }
+.terms li::before { content: '→'; position: absolute; left: 0; color: #1a1a1a; font-weight: 600; }
+.terms .highlight { background: #fef9e7; border-left: 3px solid #f59e0b; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.terms .highlight strong { color: #92400e; }
+
+.loading { text-align: center; padding: 60px; color: #8a8580; }
+</style>
+</head>
+<body>
+
+<div class="fhdr">
+  <div class="fhdr-logo">WorldKidsFashion<span data-t="portal_label">Partner Portal</span></div>
+  <div class="fhdr-right">
+    <span class="fname" id="factoryNameHdr">—</span>
+    <a href="factory-profile.html" class="fhdr-btn" data-t="nav_profile">Profile</a>
+    <a href="factory-catalog.html" class="fhdr-btn" data-t="nav_catalog">Catalog</a>
+    <button class="fhdr-btn" onclick="handleSignOut()" data-t="nav_signout">Sign Out</button>
+  </div>
+</div>
+
+<div id="loadingScreen" class="loading">Loading your portal…</div>
+
+<div class="fwrap" id="content" style="display:none">
+
+  <div class="lang-switch">
+    <button class="lang-btn active" id="lang-en" onclick="setLang('en')">English</button>
+    <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">Türkçe</button>
+    <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">Русский</button>
+  </div>
+
+  <div class="welcome">
+    <h1><span data-t="welcome_hi">Welcome,</span> <span id="welcomeFactory"></span></h1>
+    <p data-t="welcome_sub">You are part of the WorldKidsFashion manufacturer partner network. Below are your partnership terms. Use the menu to manage your profile and upload catalogs.</p>
+  </div>
+
+  <div class="quick-links">
+    <a href="factory-profile.html" class="qlink">
+      <div class="icon">🏭</div>
+      <h3 data-t="ql_profile_h">Factory Profile</h3>
+      <p data-t="ql_profile_p">Update your details, capacity and bank info</p>
+    </a>
+    <a href="factory-catalog.html" class="qlink">
+      <div class="icon">📦</div>
+      <h3 data-t="ql_catalog_h">Upload Catalog</h3>
+      <p data-t="ql_catalog_p">Share your product catalogs and certificates</p>
+    </a>
+  </div>
+
+  <div class="manager-card" id="managerCard">
+    <div class="micon">👤</div>
+    <div class="minfo">
+      <strong data-t="mgr_label">Your WKF Manager</strong>
+      <span id="managerInfo">info@worldkidsfashion.org</span>
+    </div>
+    <div class="mcontact" id="managerContact"></div>
+  </div>
+
+  <div class="terms" id="termsContent"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const UI = {
+  en: { portal_label:'Partner Portal', nav_profile:'Profile', nav_catalog:'Catalog', nav_signout:'Sign Out',
+    welcome_hi:'Welcome,', welcome_sub:'You are part of the WorldKidsFashion manufacturer partner network. Below are your partnership terms. Use the menu to manage your profile and upload catalogs.',
+    ql_profile_h:'Factory Profile', ql_profile_p:'Update your details, capacity and bank info',
+    ql_catalog_h:'Upload Catalog', ql_catalog_p:'Share your product catalogs and certificates',
+    mgr_label:'Your WKF Manager' },
+  tr: { portal_label:'Partner Portalı', nav_profile:'Profil', nav_catalog:'Katalog', nav_signout:'Çıkış',
+    welcome_hi:'Hoş geldiniz,', welcome_sub:'WorldKidsFashion üretici ortak ağının bir parçasısınız. Aşağıda ortaklık koşullarınız bulunmaktadır. Profilinizi yönetmek ve katalog yüklemek için menüyü kullanın.',
+    ql_profile_h:'Fabrika Profili', ql_profile_p:'Bilgilerinizi, kapasitenizi ve banka bilgilerinizi güncelleyin',
+    ql_catalog_h:'Katalog Yükle', ql_catalog_p:'Ürün kataloglarınızı ve sertifikalarınızı paylaşın',
+    mgr_label:'WKF Yöneticiniz' },
+  ru: { portal_label:'Портал партнёра', nav_profile:'Профиль', nav_catalog:'Каталог', nav_signout:'Выйти',
+    welcome_hi:'Добро пожаловать,', welcome_sub:'Вы — часть партнёрской сети производителей WorldKidsFashion. Ниже ваши условия партнёрства. Используйте меню для управления профилем и загрузки каталогов.',
+    ql_profile_h:'Профиль фабрики', ql_profile_p:'Обновите данные, мощности и банковские реквизиты',
+    ql_catalog_h:'Загрузить каталог', ql_catalog_p:'Поделитесь каталогами и сертификатами',
+    mgr_label:'Ваш менеджер WKF' }
+};
+
+const TERMS = {
+  en: `<h2>Partnership Terms</h2>
+    <section><h3>Who We Are</h3><p>WorldKidsFashion is a B2B sourcing platform connecting international wholesale buyers — boutiques, online stores and distributors in the EU, UK, USA and MENA region — with Turkish kids and baby clothing manufacturers. We act as an authorized sourcing partner: collecting orders, coordinating production, handling quality control, export documentation and international shipping.</p></section>
+    <section><h3>Our Business Model</h3><p>You focus on manufacturing. We bring you international clients.</p>
+    <ul><li>We promote your products to vetted international wholesale buyers</li><li>We collect orders and inquiries through our platform</li><li>We coordinate production scheduling with you</li><li>We handle quality control before dispatch</li><li>We manage export packaging, documentation and logistics</li><li>We process payments from buyers and forward your share</li></ul></section>
+    <section><h3>Commercial Terms</h3>
+    <p><strong>Payment Schedule:</strong></p>
+    <ul><li>30% advance payment from buyer secures the order</li><li>Advance forwarded to you within 3 business days of buyer confirmation</li><li>70% balance paid before dispatch, after our QC approval</li><li>Balance transferred to your bank within 5 business days of QC sign-off</li></ul>
+    <p><strong>Margin:</strong></p>
+    <ul><li>WKF retains 20-30% service margin depending on order volume and complexity</li><li>Margin is added on top of your factory price — you receive 100% of your quoted price</li><li>Buyer never sees your factory price</li></ul>
+    <p><strong>Currency:</strong></p>
+    <ul><li>Invoicing in TRY, USD or EUR (your choice as exporter)</li><li>As this is an export transaction to our Georgia-registered company, foreign currency invoicing is permitted</li><li>Exchange rate fixed at order confirmation date</li></ul></section>
+    <section><h3>What We Need From You</h3>
+    <p><strong>For Onboarding:</strong></p>
+    <ul><li>Company registration documents</li><li>Tax number</li><li>Bank details (USD/EUR accounts preferred)</li><li>Production capacity overview</li><li>Sample line sheet or recent catalog</li><li>Product photos (minimum 800x800px)</li><li>Certifications if any (GOTS, OEKO-TEX, ISO, BCI)</li></ul>
+    <p><strong>Ongoing:</strong></p>
+    <ul><li>Honest stock and capacity reporting</li><li>Pre-production samples for orders above 500 pcs</li><li>7-day notice if delays expected</li><li>Final packing photos before dispatch</li></ul></section>
+    <section><h3>What You Get From Us</h3>
+    <p><strong>Direct Benefits:</strong></p>
+    <ul><li>Steady international order flow without your marketing effort</li><li>Pre-vetted buyers — we verify business credentials before sending orders</li><li>Translation support (English, Russian, Turkish, French)</li><li>Order aggregation — we combine multiple small buyers into single production runs</li></ul>
+    <p><strong>Strategic Benefits:</strong></p>
+    <ul><li>Access to EU, UK, USA market buyers</li><li>Private label opportunities (MOQ from 100 pcs)</li><li>Long-term contracts with stable monthly volumes</li><li>No B2C competition — we sell wholesale only</li></ul></section>
+    <section><h3>Export VAT Benefit</h3>
+    <div class="highlight"><p><strong>Every order you fulfill through WorldKidsFashion is an export transaction.</strong> As an exporter, you are entitled to reclaim your input VAT (KDV) on materials and production costs — a benefit you do not receive on domestic Turkish sales. Working with us turns your domestic production into VAT-recoverable export operations.</p></div></section>
+    <section><h3>Quality Standards</h3>
+    <ul><li>Consistent sizing within ±2cm tolerance</li><li>Fabric composition matching declared specs</li><li>Color accuracy within standard Pantone tolerance</li><li>No defects affecting saleability</li></ul>
+    <p><strong>If quality issues found during pre-dispatch QC:</strong></p>
+    <ul><li>Minor defects (≤5%) — discount negotiated</li><li>Major defects (>5%) — replacement at factory cost</li></ul></section>
+    <section><h3>Confidentiality</h3>
+    <ul><li>Your factory prices and methods are confidential</li><li>Our buyer database and strategy is confidential</li><li>Either party may share aggregated, anonymized data publicly</li><li>NDA template available on request</li></ul></section>
+    <section><h3>How To Start</h3>
+    <ul><li>Complete your factory profile</li><li>Upload your catalog and certifications</li><li>Initial call with your assigned WKF manager via WhatsApp or Zoom</li><li>Sample order (optional) — 1-3 sample products to our Istanbul QC point</li><li>First real order — typically within 30-60 days of full onboarding</li></ul></section>`,
+
+  tr: `<h2>Ortaklık Koşulları</h2>
+    <section><h3>Biz Kimiz</h3><p>WorldKidsFashion, AB, İngiltere, ABD ve MENA bölgesindeki uluslararası toptan alıcıları — butikler, online mağazalar ve distribütörler — Türk çocuk ve bebek giyim üreticileriyle buluşturan bir B2B kaynak platformudur. Yetkili kaynak ortağı olarak çalışıyoruz: siparişleri toplamak, üretim koordinasyonu, kalite kontrol, ihracat dokümantasyonu ve uluslararası kargo.</p></section>
+    <section><h3>İş Modelimiz</h3><p>Siz üretime odaklanın. Biz size uluslararası müşteri getirelim.</p>
+    <ul><li>Ürünlerinizi doğrulanmış uluslararası toptan alıcılara tanıtırız</li><li>Platform üzerinden siparişleri toplarız</li><li>Sizinle üretim planlamasını koordine ederiz</li><li>Sevkiyat öncesi kalite kontrolünü yaparız</li><li>İhracat ambalajı, belgeler ve lojistiği yönetiriz</li><li>Ödemeleri işler ve payınızı iletiriz</li></ul></section>
+    <section><h3>Ticari Koşullar</h3>
+    <p><strong>Ödeme Planı:</strong></p>
+    <ul><li>Alıcıdan %30 avans ile sipariş onaylanır</li><li>Avans 3 iş günü içinde size iletilir</li><li>Kalan %70 sevkiyattan önce, QC onayımızdan sonra</li><li>Bakiye QC onayından sonra 5 iş günü içinde hesabınıza aktarılır</li></ul>
+    <p><strong>Marj:</strong></p>
+    <ul><li>WKF sipariş hacmine göre %20-30 hizmet marjı alır</li><li>Marj fabrika fiyatınızın üstüne eklenir — fiyatınızın %100'ünü alırsınız</li><li>Alıcı fabrika fiyatınızı asla görmez</li></ul>
+    <p><strong>Para Birimi:</strong></p>
+    <ul><li>TRY, USD veya EUR ile faturalandırma (ihracatçı olarak sizin seçiminiz)</li><li>Gürcistan kayıtlı şirketimize ihracat işlemi olduğundan döviz faturalandırması serbesttir</li><li>Döviz kuru sipariş onay tarihinde sabitlenir</li></ul></section>
+    <section><h3>Sizden İstediklerimiz</h3>
+    <p><strong>Kayıt için:</strong></p>
+    <ul><li>Şirket tescil belgeleri</li><li>Vergi numarası</li><li>Banka bilgileri (USD/EUR hesabı tercih edilir)</li><li>Üretim kapasitesi özeti</li><li>Numune line sheet veya güncel katalog</li><li>Ürün fotoğrafları (minimum 800x800px)</li><li>Sertifikalar varsa (GOTS, OEKO-TEX, ISO, BCI)</li></ul>
+    <p><strong>Devam eden:</strong></p>
+    <ul><li>Dürüst stok ve kapasite raporlama</li><li>500 adet üzeri siparişler için üretim öncesi numuneler</li><li>Gecikme beklendiğinde 7 günlük uyarı</li><li>Sevkiyat öncesi son paketleme fotoğrafları</li></ul></section>
+    <section><h3>Bizden Aldıklarınız</h3>
+    <p><strong>Doğrudan Faydalar:</strong></p>
+    <ul><li>Pazarlama çabası gerektirmeyen istikrarlı uluslararası sipariş akışı</li><li>Önceden doğrulanmış alıcılar</li><li>Çeviri desteği (İngilizce, Rusça, Türkçe, Fransızca)</li><li>Sipariş birleştirme — küçük alıcıları tek üretim partisinde topluyoruz</li></ul>
+    <p><strong>Stratejik Faydalar:</strong></p>
+    <ul><li>AB, İngiltere, ABD pazarlarına erişim</li><li>Özel etiket fırsatları (100 adetten MOQ)</li><li>İstikrarlı aylık hacimli uzun vadeli sözleşmeler</li><li>B2C rekabeti yok — sadece toptan satış</li></ul></section>
+    <section><h3>İhracat KDV Avantajı</h3>
+    <div class="highlight"><p><strong>WorldKidsFashion üzerinden tamamladığınız her sipariş bir ihracat işlemidir.</strong> İhracatçı olarak, malzeme ve üretim maliyetlerinizde ödediğiniz girdi KDV'sini geri talep etme hakkına sahipsiniz — yurt içi satışlarda elde edemediğiniz bir avantaj. Bizimle çalışmak, yurt içi üretiminizi KDV iadesi alınabilir ihracat işlemlerine dönüştürür.</p></div></section>
+    <section><h3>Kalite Standartları</h3>
+    <ul><li>±2cm tolerans dahilinde tutarlı bedenleme</li><li>Bildirilen spesifikasyonlara uygun kumaş bileşimi</li><li>Standart Pantone toleransı dahilinde renk doğruluğu</li><li>Satılabilirliği etkileyen kusur yok</li></ul>
+    <p><strong>Sevkiyat öncesi QC'de kalite sorunları bulunursa:</strong></p>
+    <ul><li>Küçük kusurlar (≤%5) — indirim müzakere edilir</li><li>Büyük kusurlar (>%5) — fabrika maliyetine ikame</li></ul></section>
+    <section><h3>Gizlilik</h3>
+    <ul><li>Fabrika fiyatlarınız ve yöntemleriniz gizlidir</li><li>Alıcı veritabanımız ve stratejimiz gizlidir</li><li>Her iki taraf toplu, anonimleştirilmiş veriler paylaşabilir</li><li>Talep üzerine NDA şablonu mevcuttur</li></ul></section>
+    <section><h3>Nasıl Başlanır</h3>
+    <ul><li>Fabrika profilinizi tamamlayın</li><li>Kataloğunuzu ve sertifikalarınızı yükleyin</li><li>Atanmış WKF yöneticinizle WhatsApp veya Zoom üzerinden ilk görüşme</li><li>Numune sipariş (opsiyonel) — İstanbul QC noktamıza 1-3 numune</li><li>İlk gerçek sipariş — genellikle 30-60 gün içinde</li></ul></section>`,
+
+  ru: `<h2>Условия партнёрства</h2>
+    <section><h3>Кто мы</h3><p>WorldKidsFashion — B2B sourcing-платформа, связывающая международных оптовых покупателей (бутики, интернет-магазины, дистрибьюторы в ЕС, Великобритании, США и MENA-регионе) с турецкими производителями детской одежды. Мы работаем как авторизованный sourcing-партнёр: собираем заказы, координируем производство, обеспечиваем контроль качества, экспортную документацию и международную доставку.</p></section>
+    <section><h3>Наша бизнес-модель</h3><p>Вы фокусируетесь на производстве. Мы приводим вам международных клиентов.</p>
+    <ul><li>Продвигаем ваши товары проверенным международным покупателям</li><li>Собираем заказы и запросы через нашу платформу</li><li>Координируем производство вместе с вами</li><li>Проводим контроль качества перед отправкой</li><li>Управляем упаковкой, документацией и логистикой</li><li>Обрабатываем платежи и перечисляем вашу долю</li></ul></section>
+    <section><h3>Коммерческие условия</h3>
+    <p><strong>График оплаты:</strong></p>
+    <ul><li>30% предоплата от покупателя — заказ подтверждён</li><li>Предоплата перечисляется вам в течение 3 рабочих дней</li><li>Оставшиеся 70% — перед отправкой, после нашего QC</li><li>Перевод на ваш счёт в течение 5 рабочих дней после QC</li></ul>
+    <p><strong>Маржа:</strong></p>
+    <ul><li>WKF удерживает 20-30% в зависимости от объёма</li><li>Маржа добавляется поверх вашей цены — вы получаете 100% своей цены</li><li>Покупатель никогда не видит вашу фабричную цену</li></ul>
+    <p><strong>Валюта:</strong></p>
+    <ul><li>Выставление счетов в TRY, USD или EUR (ваш выбор как экспортёра)</li><li>Так как это экспортная операция в нашу компанию в Грузии, валютные счета разрешены</li><li>Курс фиксируется на дату подтверждения заказа</li></ul></section>
+    <section><h3>Что нам нужно от вас</h3>
+    <p><strong>Для регистрации:</strong></p>
+    <ul><li>Регистрационные документы компании</li><li>Налоговый номер</li><li>Банковские реквизиты (предпочтительно USD/EUR)</li><li>Информация о производственных мощностях</li><li>Line sheet или каталог</li><li>Фото товаров (минимум 800x800px)</li><li>Сертификаты при наличии (GOTS, OEKO-TEX, ISO, BCI)</li></ul>
+    <p><strong>Постоянно:</strong></p>
+    <ul><li>Честная отчётность о наличии и мощностях</li><li>Образцы перед производством для заказов от 500 шт</li><li>Уведомление за 7 дней о задержках</li><li>Финальные фото упаковки перед отправкой</li></ul></section>
+    <section><h3>Что вы получаете от нас</h3>
+    <p><strong>Прямые преимущества:</strong></p>
+    <ul><li>Стабильный поток международных заказов без маркетинга</li><li>Предварительно проверенные покупатели</li><li>Поддержка перевода (английский, русский, турецкий, французский)</li><li>Агрегация заказов — объединяем мелких покупателей в одну партию</li></ul>
+    <p><strong>Стратегические преимущества:</strong></p>
+    <ul><li>Доступ к покупателям ЕС, Великобритании, США</li><li>Возможности private label (MOQ от 100 шт)</li><li>Долгосрочные контракты со стабильными объёмами</li><li>Никакой конкуренции с розницей — только опт</li></ul></section>
+    <section><h3>Возврат экспортного НДС</h3>
+    <div class="highlight"><p><strong>Каждый заказ, выполненный через WorldKidsFashion, является экспортной операцией.</strong> Как экспортёр вы имеете право вернуть входящий НДС (КДВ) на материалы и производственные затраты — преимущество, которого нет при внутренних продажах в Турции. Работа с нами превращает ваше внутреннее производство в экспортные операции с возвратом НДС.</p></div></section>
+    <section><h3>Стандарты качества</h3>
+    <ul><li>Стабильное лекало в пределах допуска ±2см</li><li>Состав ткани соответствует спецификациям</li><li>Точность цвета в пределах допуска Pantone</li><li>Без дефектов, влияющих на товарный вид</li></ul>
+    <p><strong>Если найдены проблемы качества на QC:</strong></p>
+    <ul><li>Незначительные дефекты (≤5%) — скидка</li><li>Существенные дефекты (>5%) — замена за счёт фабрики</li></ul></section>
+    <section><h3>Конфиденциальность</h3>
+    <ul><li>Ваши цены и методы конфиденциальны</li><li>Наша база покупателей и стратегия конфиденциальны</li><li>Обе стороны могут делиться обобщёнными данными</li><li>Шаблон NDA доступен по запросу</li></ul></section>
+    <section><h3>С чего начать</h3>
+    <ul><li>Заполните профиль фабрики</li><li>Загрузите каталог и сертификаты</li><li>Первый созвон с менеджером WKF через WhatsApp или Zoom</li><li>Тестовый заказ (опционально) — 1-3 образца на нашу QC-точку в Стамбуле</li><li>Первый реальный заказ — обычно через 30-60 дней</li></ul></section>`
+};
+
+let currentUser = null;
+
+(async () => {
+  const { data: { session } } = await supa.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
+
+  currentUser = session.user;
+
+  const { data: factory, error } = await supa.from('factories').select('*').eq('id', currentUser.id).single();
+
+  if (error || !factory) {
+    document.getElementById('loadingScreen').innerHTML = 'Could not load factory data. Please contact info@worldkidsfashion.org';
+    return;
+  }
+
+  document.getElementById('factoryNameHdr').textContent = factory.factory_name;
+  document.getElementById('welcomeFactory').textContent = factory.factory_name;
+
+  // Manager info
+  if (factory.manager_name || factory.manager_email) {
+    document.getElementById('managerInfo').textContent = (factory.manager_name || '') + (factory.manager_email ? ' · ' + factory.manager_email : '');
+    const contact = document.getElementById('managerContact');
+    let buttons = '';
+    if (factory.manager_whatsapp) buttons += `<a href="https://wa.me/${factory.manager_whatsapp.replace(/[^0-9]/g,'')}" target="_blank">WhatsApp</a>`;
+    if (factory.manager_email) buttons += `<a href="mailto:${factory.manager_email}">Email</a>`;
+    contact.innerHTML = buttons;
+  } else {
+    document.getElementById('managerContact').innerHTML = '<a href="mailto:info@worldkidsfashion.org">Email Us</a>';
+  }
+
+  setLang('en');
+  document.getElementById('loadingScreen').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+})();
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  const t = UI[lang];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const k = el.getAttribute('data-t');
+    if (t[k]) el.textContent = t[k];
+  });
+  document.getElementById('termsContent').innerHTML = TERMS[lang];
+}
+
+async function handleSignOut() {
+  await supa.auth.signOut();
+  window.location.href = 'login.html';
+}
+</script>
+</body>
+</html>

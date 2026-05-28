@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Catalog — WorldKidsFashion</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; }
+.fhdr { background: #1a1a1a; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.fhdr-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; }
+.fhdr-right { display: flex; gap: 12px; }
+.fhdr-btn { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; text-decoration: none; }
+.fhdr-btn:hover { background: rgba(255,255,255,0.1); }
+.fhdr-btn.active { background: #fff; color: #1a1a1a; }
+
+.fwrap { max-width: 800px; margin: 32px auto; padding: 0 24px; }
+.fwrap h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-bottom: 8px; }
+.fwrap > p { color: #5a5550; margin-bottom: 24px; }
+
+.lang-switch { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+.lang-btn { padding: 6px 12px; background: #fff; border: 1px solid #e8e6e0; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; }
+.lang-btn.active { background: #1a1a1a; color: #fff; }
+
+.card { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.card h2 { font-size: 17px; margin-bottom: 8px; }
+.card .sub { font-size: 13px; color: #8a8580; margin-bottom: 16px; }
+
+.method-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.method-tab { flex: 1; padding: 12px; background: #faf9f6; border: 1px solid #e8e6e0; border-radius: 8px; cursor: pointer; text-align: center; font-size: 14px; font-weight: 500; }
+.method-tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+.fg { margin-bottom: 16px; }
+.fg label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #5a5550; }
+.fg input, .fg select { width: 100%; padding: 10px 12px; border: 1px solid #e8e6e0; border-radius: 6px; font-family: inherit; font-size: 14px; }
+
+.dropzone { border: 2px dashed #d0cdc5; border-radius: 8px; padding: 32px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.dropzone:hover, .dropzone.drag { border-color: #1a1a1a; background: #faf9f6; }
+.dropzone .icon { font-size: 36px; margin-bottom: 8px; }
+.dropzone p { color: #5a5550; font-size: 14px; }
+.dropzone .hint { font-size: 12px; color: #8a8580; margin-top: 4px; }
+
+.btn-primary { width: 100%; padding: 12px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; }
+.btn-primary:disabled { opacity: 0.5; }
+
+.file-list { list-style: none; }
+.file-item { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid #f0eee8; border-radius: 8px; margin-bottom: 8px; }
+.file-icon { font-size: 24px; }
+.file-info { flex: 1; min-width: 0; }
+.file-name { font-weight: 500; font-size: 14px; word-break: break-all; }
+.file-meta { font-size: 12px; color: #8a8580; }
+.file-actions a, .file-actions button { padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; font-family: inherit; text-decoration: none; border: 1px solid #e8e6e0; background: #fff; color: #1a1a1a; margin-left: 6px; }
+.file-actions button { color: #dc2626; border-color: #fecaca; }
+
+.msg { padding: 12px 16px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; display: none; }
+.msg-ok { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+.msg-err { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
+.empty { text-align: center; padding: 32px; color: #8a8580; }
+.loading { text-align: center; padding: 60px; color: #8a8580; }
+.progress { height: 6px; background: #f0eee8; border-radius: 3px; overflow: hidden; margin-top: 8px; display: none; }
+.progress-bar { height: 100%; background: #1a1a1a; width: 0%; transition: width 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="fhdr">
+  <div class="fhdr-logo">WorldKidsFashion</div>
+  <div class="fhdr-right">
+    <a href="factory-dashboard.html" class="fhdr-btn" data-t="nav_dash">Dashboard</a>
+    <a href="factory-profile.html" class="fhdr-btn" data-t="nav_profile">Profile</a>
+    <a href="factory-catalog.html" class="fhdr-btn active" data-t="nav_catalog">Catalog</a>
+    <button class="fhdr-btn" onclick="handleSignOut()" data-t="nav_signout">Sign Out</button>
+  </div>
+</div>
+
+<div id="loadingScreen" class="loading">Loading…</div>
+
+<div class="fwrap" id="content" style="display:none">
+  <div class="lang-switch">
+    <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">TR</button>
+    <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">RU</button>
+  </div>
+
+  <h1 data-t="h_title">Upload Catalog & Certificates</h1>
+  <p data-t="h_sub">Share your product catalogs, price lists and certifications with us. The easiest way is to paste a Google Drive or Dropbox link.</p>
+
+  <div id="msg" class="msg"></div>
+
+  <div class="card">
+    <h2 data-t="add_h">Add a File or Link</h2>
+    <p class="sub" data-t="add_sub">Choose how you want to share — a cloud link (recommended) or direct upload.</p>
+
+    <div class="method-tabs">
+      <div class="method-tab active" id="tab-link" onclick="switchMethod('link')" data-t="m_link">🔗 Cloud Link</div>
+      <div class="method-tab" id="tab-upload" onclick="switchMethod('upload')" data-t="m_upload">📤 Direct Upload</div>
+    </div>
+
+    <div class="fg">
+      <label data-t="l_type">File Type</label>
+      <select id="fileType">
+        <option value="catalog" data-t="t_catalog">Product Catalog</option>
+        <option value="pricelist" data-t="t_pricelist">Price List</option>
+        <option value="certificate" data-t="t_certificate">Certificate</option>
+        <option value="photos" data-t="t_photos">Product Photos</option>
+        <option value="other" data-t="t_other">Other</option>
+      </select>
+    </div>
+
+    <div class="fg">
+      <label data-t="l_desc">Description (optional)</label>
+      <input type="text" id="fileDesc" placeholder="e.g. Summer 2026 collection">
+    </div>
+
+    <!-- Link method -->
+    <div id="method-link">
+      <div class="fg">
+        <label data-t="l_url">Google Drive / Dropbox / WeTransfer Link</label>
+        <input type="url" id="fileUrl" placeholder="https://drive.google.com/...">
+      </div>
+      <button class="btn-primary" onclick="addLink()" data-t="btn_addlink">Add Link</button>
+    </div>
+
+    <!-- Upload method -->
+    <div id="method-upload" style="display:none">
+      <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+        <div class="icon">📁</div>
+        <p data-t="dz_text">Click to choose a file or drag it here</p>
+        <p class="hint" data-t="dz_hint">PDF, Excel, JPG, PNG, ZIP · Max 50 MB</p>
+      </div>
+      <input type="file" id="fileInput" style="display:none" accept=".pdf,.xls,.xlsx,.jpg,.jpeg,.png,.zip" onchange="handleFileSelect(this.files[0])">
+      <div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 data-t="files_h">Your Files</h2>
+    <ul class="file-list" id="fileList"><li class="empty">Loading…</li></ul>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const UI = {
+  en: { nav_dash:'Dashboard', nav_profile:'Profile', nav_catalog:'Catalog', nav_signout:'Sign Out',
+    h_title:'Upload Catalog & Certificates', h_sub:'Share your product catalogs, price lists and certifications with us. The easiest way is to paste a Google Drive or Dropbox link.',
+    add_h:'Add a File or Link', add_sub:'Choose how you want to share — a cloud link (recommended) or direct upload.',
+    m_link:'🔗 Cloud Link', m_upload:'📤 Direct Upload',
+    l_type:'File Type', t_catalog:'Product Catalog', t_pricelist:'Price List', t_certificate:'Certificate', t_photos:'Product Photos', t_other:'Other',
+    l_desc:'Description (optional)', l_url:'Google Drive / Dropbox / WeTransfer Link', btn_addlink:'Add Link',
+    dz_text:'Click to choose a file or drag it here', dz_hint:'PDF, Excel, JPG, PNG, ZIP · Max 50 MB',
+    files_h:'Your Files', empty:'No files yet. Add your first catalog above.', uploading:'Uploading…',
+    added:'✓ Added successfully', deleted:'✓ Deleted', err:'Error: ', view:'View', del:'Delete', confirm_del:'Delete this file?' },
+  tr: { nav_dash:'Panel', nav_profile:'Profil', nav_catalog:'Katalog', nav_signout:'Çıkış',
+    h_title:'Katalog & Sertifika Yükle', h_sub:'Ürün kataloglarınızı, fiyat listelerinizi ve sertifikalarınızı bizimle paylaşın. En kolay yol Google Drive veya Dropbox linki yapıştırmaktır.',
+    add_h:'Dosya veya Link Ekle', add_sub:'Nasıl paylaşmak istediğinizi seçin — bulut linki (önerilen) veya doğrudan yükleme.',
+    m_link:'🔗 Bulut Linki', m_upload:'📤 Doğrudan Yükle',
+    l_type:'Dosya Türü', t_catalog:'Ürün Kataloğu', t_pricelist:'Fiyat Listesi', t_certificate:'Sertifika', t_photos:'Ürün Fotoğrafları', t_other:'Diğer',
+    l_desc:'Açıklama (opsiyonel)', l_url:'Google Drive / Dropbox / WeTransfer Linki', btn_addlink:'Link Ekle',
+    dz_text:'Dosya seçmek için tıklayın veya buraya sürükleyin', dz_hint:'PDF, Excel, JPG, PNG, ZIP · Maks 50 MB',
+    files_h:'Dosyalarınız', empty:'Henüz dosya yok. İlk kataloğunuzu yukarıdan ekleyin.', uploading:'Yükleniyor…',
+    added:'✓ Başarıyla eklendi', deleted:'✓ Silindi', err:'Hata: ', view:'Görüntüle', del:'Sil', confirm_del:'Bu dosya silinsin mi?' },
+  ru: { nav_dash:'Панель', nav_profile:'Профиль', nav_catalog:'Каталог', nav_signout:'Выйти',
+    h_title:'Загрузка каталога и сертификатов', h_sub:'Поделитесь каталогами, прайс-листами и сертификатами. Проще всего вставить ссылку Google Drive или Dropbox.',
+    add_h:'Добавить файл или ссылку', add_sub:'Выберите способ — облачная ссылка (рекомендуется) или прямая загрузка.',
+    m_link:'🔗 Облачная ссылка', m_upload:'📤 Прямая загрузка',
+    l_type:'Тип файла', t_catalog:'Каталог товаров', t_pricelist:'Прайс-лист', t_certificate:'Сертификат', t_photos:'Фото товаров', t_other:'Другое',
+    l_desc:'Описание (опционально)', l_url:'Ссылка Google Drive / Dropbox / WeTransfer', btn_addlink:'Добавить ссылку',
+    dz_text:'Нажмите чтобы выбрать файл или перетащите сюда', dz_hint:'PDF, Excel, JPG, PNG, ZIP · Макс 50 МБ',
+    files_h:'Ваши файлы', empty:'Пока нет файлов. Добавьте первый каталог выше.', uploading:'Загрузка…',
+    added:'✓ Успешно добавлено', deleted:'✓ Удалено', err:'Ошибка: ', view:'Открыть', del:'Удалить', confirm_del:'Удалить этот файл?' }
+};
+
+let currentUser = null;
+let currentLang = 'en';
+
+(async () => {
+  const { data: { session } } = await supa.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
+  currentUser = session.user;
+
+  document.getElementById('loadingScreen').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+
+  await loadFiles();
+
+  // Drag & drop
+  const dz = document.getElementById('dropzone');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault(); dz.classList.remove('drag');
+    if (e.dataTransfer.files[0]) handleFileSelect(e.dataTransfer.files[0]);
+  });
+})();
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  const t = UI[lang];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const k = el.getAttribute('data-t');
+    if (t[k]) el.textContent = t[k];
+  });
+  loadFiles();
+}
+
+function switchMethod(m) {
+  document.getElementById('tab-link').classList.toggle('active', m === 'link');
+  document.getElementById('tab-upload').classList.toggle('active', m === 'upload');
+  document.getElementById('method-link').style.display = m === 'link' ? 'block' : 'none';
+  document.getElementById('method-upload').style.display = m === 'upload' ? 'block' : 'none';
+}
+
+function showMsg(text, ok) {
+  const m = document.getElementById('msg');
+  m.className = 'msg ' + (ok ? 'msg-ok' : 'msg-err');
+  m.textContent = text;
+  m.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => { m.style.display = 'none'; }, 4000);
+}
+
+async function addLink() {
+  const url = document.getElementById('fileUrl').value.trim();
+  const type = document.getElementById('fileType').value;
+  const desc = document.getElementById('fileDesc').value.trim();
+
+  if (!url) { showMsg(UI[currentLang].err + 'URL required', false); return; }
+
+  const { error } = await supa.from('factory_files').insert({
+    factory_id: currentUser.id,
+    file_type: type,
+    file_name: desc || url.split('/').pop() || 'Link',
+    file_url: url,
+    description: desc || null
+  });
+
+  if (error) { showMsg(UI[currentLang].err + error.message, false); return; }
+
+  document.getElementById('fileUrl').value = '';
+  document.getElementById('fileDesc').value = '';
+  showMsg(UI[currentLang].added, true);
+  await loadFiles();
+}
+
+async function handleFileSelect(file) {
+  if (!file) return;
+  if (file.size > 50 * 1024 * 1024) { showMsg(UI[currentLang].err + 'Max 50 MB', false); return; }
+
+  const type = document.getElementById('fileType').value;
+  const desc = document.getElementById('fileDesc').value.trim();
+
+  const progress = document.getElementById('progress');
+  const bar = document.getElementById('progressBar');
+  progress.style.display = 'block';
+  bar.style.width = '30%';
+
+  const ext = file.name.split('.').pop();
+  const path = currentUser.id + '/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+
+  const { data: upData, error: upErr } = await supa.storage
+    .from('factory-files')
+    .upload(path, file, { cacheControl: '3600', upsert: false });
+
+  bar.style.width = '70%';
+
+  if (upErr) {
+    progress.style.display = 'none';
+    showMsg(UI[currentLang].err + upErr.message, false);
+    return;
+  }
+
+  // Get signed URL (valid 1 year)
+  const { data: urlData } = await supa.storage
+    .from('factory-files')
+    .createSignedUrl(path, 31536000);
+
+  const { error: dbErr } = await supa.from('factory_files').insert({
+    factory_id: currentUser.id,
+    file_type: type,
+    file_name: file.name,
+    file_url: urlData ? urlData.signedUrl : path,
+    file_size: file.size,
+    description: desc || null
+  });
+
+  bar.style.width = '100%';
+
+  if (dbErr) {
+    progress.style.display = 'none';
+    showMsg(UI[currentLang].err + dbErr.message, false);
+    return;
+  }
+
+  document.getElementById('fileDesc').value = '';
+  document.getElementById('fileInput').value = '';
+  setTimeout(() => { progress.style.display = 'none'; bar.style.width = '0%'; }, 500);
+  showMsg(UI[currentLang].added, true);
+  await loadFiles();
+}
+
+async function loadFiles() {
+  const { data, error } = await supa
+    .from('factory_files')
+    .select('*')
+    .eq('factory_id', currentUser.id)
+    .order('uploaded_at', { ascending: false });
+
+  const list = document.getElementById('fileList');
+  if (error) { list.innerHTML = '<li class="empty">' + UI[currentLang].err + error.message + '</li>'; return; }
+  if (!data || data.length === 0) { list.innerHTML = '<li class="empty">' + UI[currentLang].empty + '</li>'; return; }
+
+  const icons = { catalog:'📚', pricelist:'💰', certificate:'📜', photos:'🖼️', other:'📄' };
+
+  list.innerHTML = data.map(f => {
+    const sizeStr = f.file_size ? (f.file_size / 1024 / 1024).toFixed(1) + ' MB' : 'Link';
+    return `
+      <li class="file-item">
+        <div class="file-icon">${icons[f.file_type] || '📄'}</div>
+        <div class="file-info">
+          <div class="file-name">${f.file_name}</div>
+          <div class="file-meta">${f.file_type} · ${sizeStr} · ${new Date(f.uploaded_at).toLocaleDateString()}</div>
+        </div>
+        <div class="file-actions">
+          <a href="${f.file_url}" target="_blank">${UI[currentLang].view}</a>
+          <button onclick="deleteFile('${f.id}')">${UI[currentLang].del}</button>
+        </div>
+      </li>
+    `;
+  }).join('');
+}
+
+async function deleteFile(id) {
+  if (!confirm(UI[currentLang].confirm_del)) return;
+  const { error } = await supa.from('factory_files').delete().eq('id', id);
+  if (error) { showMsg(UI[currentLang].err + error.message, false); return; }
+  showMsg(UI[currentLang].deleted, true);
+  await loadFiles();
+}
+
+async function handleSignOut() {
+  await supa.auth.signOut();
+  window.location.href = 'login.html';
+}
+</script>
+</body>
+</html>

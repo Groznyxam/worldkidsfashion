@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factory Profile — WorldKidsFashion</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; }
+.fhdr { background: #1a1a1a; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.fhdr-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; }
+.fhdr-right { display: flex; gap: 12px; }
+.fhdr-btn { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; text-decoration: none; }
+.fhdr-btn:hover { background: rgba(255,255,255,0.1); }
+.fhdr-btn.active { background: #fff; color: #1a1a1a; }
+
+.fwrap { max-width: 800px; margin: 32px auto; padding: 0 24px; }
+.fwrap h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-bottom: 8px; }
+.fwrap > p { color: #5a5550; margin-bottom: 24px; }
+
+.lang-switch { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+.lang-btn { padding: 6px 12px; background: #fff; border: 1px solid #e8e6e0; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; }
+.lang-btn.active { background: #1a1a1a; color: #fff; }
+
+.card { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.card h2 { font-size: 16px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0eee8; }
+.fg { margin-bottom: 16px; }
+.fg label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #5a5550; }
+.fg input, .fg textarea { width: 100%; padding: 10px 12px; border: 1px solid #e8e6e0; border-radius: 6px; font-family: inherit; font-size: 14px; }
+.fg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .fg-grid { grid-template-columns: 1fr; } }
+
+.btn-save { width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 600; }
+.btn-save:disabled { opacity: 0.5; }
+.save-msg { padding: 12px 16px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; display: none; }
+.save-ok { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+.save-err { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
+.loading { text-align: center; padding: 60px; color: #8a8580; }
+</style>
+</head>
+<body>
+
+<div class="fhdr">
+  <div class="fhdr-logo">WorldKidsFashion</div>
+  <div class="fhdr-right">
+    <a href="factory-dashboard.html" class="fhdr-btn" data-t="nav_dash">Dashboard</a>
+    <a href="factory-profile.html" class="fhdr-btn active" data-t="nav_profile">Profile</a>
+    <a href="factory-catalog.html" class="fhdr-btn" data-t="nav_catalog">Catalog</a>
+    <button class="fhdr-btn" onclick="handleSignOut()" data-t="nav_signout">Sign Out</button>
+  </div>
+</div>
+
+<div id="loadingScreen" class="loading">Loading…</div>
+
+<div class="fwrap" id="content" style="display:none">
+  <div class="lang-switch">
+    <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">TR</button>
+    <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">RU</button>
+  </div>
+
+  <h1 data-t="h_title">Factory Profile</h1>
+  <p data-t="h_sub">Keep your information up to date so we can match you with the right orders.</p>
+
+  <div id="saveMsg" class="save-msg"></div>
+
+  <div class="card">
+    <h2 data-t="s_company">Company Details</h2>
+    <div class="fg"><label data-t="l_name">Factory Name</label><input type="text" id="factoryName"></div>
+    <div class="fg-grid">
+      <div class="fg"><label data-t="l_contact">Contact Person</label><input type="text" id="contactPerson"></div>
+      <div class="fg"><label data-t="l_phone">Phone</label><input type="tel" id="phone"></div>
+    </div>
+    <div class="fg-grid">
+      <div class="fg"><label data-t="l_whatsapp">WhatsApp</label><input type="tel" id="whatsapp"></div>
+      <div class="fg"><label data-t="l_website">Website</label><input type="url" id="website"></div>
+    </div>
+    <div class="fg"><label data-t="l_address">Address</label><input type="text" id="address"></div>
+    <div class="fg-grid">
+      <div class="fg"><label data-t="l_city">City</label><input type="text" id="city"></div>
+      <div class="fg"><label data-t="l_country">Country</label><input type="text" id="country"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 data-t="s_legal">Legal & Tax</h2>
+    <div class="fg-grid">
+      <div class="fg"><label data-t="l_tax">Tax Number</label><input type="text" id="taxNumber"></div>
+      <div class="fg"><label data-t="l_reg">Registration Number</label><input type="text" id="registrationNumber"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 data-t="s_production">Production</h2>
+    <div class="fg-grid">
+      <div class="fg"><label data-t="l_capacity">Monthly Capacity (pcs)</label><input type="number" id="capacity"></div>
+      <div class="fg"><label data-t="l_lead">Lead Time (days)</label><input type="number" id="leadTime"></div>
+    </div>
+    <div class="fg"><label data-t="l_moq">MOQ per Model</label><input type="number" id="moq"></div>
+    <div class="fg"><label data-t="l_spec">Specialization (comma-separated)</label><input type="text" id="specialization" placeholder="newborn, organic, knitwear"></div>
+    <div class="fg"><label data-t="l_cert">Certifications (comma-separated)</label><input type="text" id="certifications" placeholder="GOTS, OEKO-TEX"></div>
+  </div>
+
+  <div class="card">
+    <h2 data-t="s_bank">Bank Details</h2>
+    <p style="font-size:13px;color:#8a8580;margin-bottom:16px" data-t="s_bank_note">Used for payment transfers. Kept strictly confidential.</p>
+    <div class="fg"><label data-t="l_bankname">Bank Name</label><input type="text" id="bankName"></div>
+    <div class="fg-grid">
+      <div class="fg"><label data-t="l_iban">IBAN</label><input type="text" id="bankIban"></div>
+      <div class="fg"><label data-t="l_swift">SWIFT</label><input type="text" id="bankSwift"></div>
+    </div>
+  </div>
+
+  <button class="btn-save" id="saveBtn" onclick="saveProfile()" data-t="btn_save">Save Changes</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://szzgsablhmzvbicfhvkb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rCbZMyWXL20Yx-hlsC6v3w_f4tjgNPJ';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const UI = {
+  en: { nav_dash:'Dashboard', nav_profile:'Profile', nav_catalog:'Catalog', nav_signout:'Sign Out',
+    h_title:'Factory Profile', h_sub:'Keep your information up to date so we can match you with the right orders.',
+    s_company:'Company Details', l_name:'Factory Name', l_contact:'Contact Person', l_phone:'Phone', l_whatsapp:'WhatsApp', l_website:'Website', l_address:'Address', l_city:'City', l_country:'Country',
+    s_legal:'Legal & Tax', l_tax:'Tax Number', l_reg:'Registration Number',
+    s_production:'Production', l_capacity:'Monthly Capacity (pcs)', l_lead:'Lead Time (days)', l_moq:'MOQ per Model', l_spec:'Specialization (comma-separated)', l_cert:'Certifications (comma-separated)',
+    s_bank:'Bank Details', s_bank_note:'Used for payment transfers. Kept strictly confidential.', l_bankname:'Bank Name', l_iban:'IBAN', l_swift:'SWIFT',
+    btn_save:'Save Changes', saved:'✓ Profile saved successfully', err:'Error saving: ' },
+  tr: { nav_dash:'Panel', nav_profile:'Profil', nav_catalog:'Katalog', nav_signout:'Çıkış',
+    h_title:'Fabrika Profili', h_sub:'Sizi doğru siparişlerle eşleştirebilmemiz için bilgilerinizi güncel tutun.',
+    s_company:'Şirket Bilgileri', l_name:'Fabrika Adı', l_contact:'İletişim Kişisi', l_phone:'Telefon', l_whatsapp:'WhatsApp', l_website:'Web Sitesi', l_address:'Adres', l_city:'Şehir', l_country:'Ülke',
+    s_legal:'Yasal & Vergi', l_tax:'Vergi Numarası', l_reg:'Tescil Numarası',
+    s_production:'Üretim', l_capacity:'Aylık Kapasite (adet)', l_lead:'Teslim Süresi (gün)', l_moq:'Model Başına MOQ', l_spec:'Uzmanlık (virgülle)', l_cert:'Sertifikalar (virgülle)',
+    s_bank:'Banka Bilgileri', s_bank_note:'Ödeme transferleri için kullanılır. Kesinlikle gizli tutulur.', l_bankname:'Banka Adı', l_iban:'IBAN', l_swift:'SWIFT',
+    btn_save:'Değişiklikleri Kaydet', saved:'✓ Profil başarıyla kaydedildi', err:'Kaydetme hatası: ' },
+  ru: { nav_dash:'Панель', nav_profile:'Профиль', nav_catalog:'Каталог', nav_signout:'Выйти',
+    h_title:'Профиль фабрики', h_sub:'Поддерживайте информацию актуальной чтобы мы подбирали вам подходящие заказы.',
+    s_company:'Данные компании', l_name:'Название фабрики', l_contact:'Контактное лицо', l_phone:'Телефон', l_whatsapp:'WhatsApp', l_website:'Сайт', l_address:'Адрес', l_city:'Город', l_country:'Страна',
+    s_legal:'Юридические данные', l_tax:'Налоговый номер', l_reg:'Регистрационный номер',
+    s_production:'Производство', l_capacity:'Месячная мощность (шт)', l_lead:'Срок производства (дни)', l_moq:'MOQ на модель', l_spec:'Специализация (через запятую)', l_cert:'Сертификаты (через запятую)',
+    s_bank:'Банковские реквизиты', s_bank_note:'Используются для переводов. Строго конфиденциально.', l_bankname:'Название банка', l_iban:'IBAN', l_swift:'SWIFT',
+    btn_save:'Сохранить', saved:'✓ Профиль сохранён', err:'Ошибка сохранения: ' }
+};
+
+let currentUser = null;
+let currentLang = 'en';
+
+(async () => {
+  const { data: { session } } = await supa.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
+  currentUser = session.user;
+
+  const { data: f, error } = await supa.from('factories').select('*').eq('id', currentUser.id).single();
+  if (error || !f) { document.getElementById('loadingScreen').textContent = 'Error loading profile'; return; }
+
+  document.getElementById('factoryName').value = f.factory_name || '';
+  document.getElementById('contactPerson').value = f.contact_person || '';
+  document.getElementById('phone').value = f.phone || '';
+  document.getElementById('whatsapp').value = f.whatsapp || '';
+  document.getElementById('website').value = f.website || '';
+  document.getElementById('address').value = f.address || '';
+  document.getElementById('city').value = f.city || '';
+  document.getElementById('country').value = f.country || '';
+  document.getElementById('taxNumber').value = f.tax_number || '';
+  document.getElementById('registrationNumber').value = f.registration_number || '';
+  document.getElementById('capacity').value = f.monthly_capacity || '';
+  document.getElementById('leadTime').value = f.lead_time_days || '';
+  document.getElementById('moq').value = f.moq_per_model || '';
+  document.getElementById('specialization').value = (f.specialization || []).join(', ');
+  document.getElementById('certifications').value = (f.certifications || []).join(', ');
+  document.getElementById('bankName').value = f.bank_name || '';
+  document.getElementById('bankIban').value = f.bank_iban || '';
+  document.getElementById('bankSwift').value = f.bank_swift || '';
+
+  document.getElementById('loadingScreen').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+})();
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  const t = UI[lang];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const k = el.getAttribute('data-t');
+    if (t[k]) el.textContent = t[k];
+  });
+}
+
+async function saveProfile() {
+  const btn = document.getElementById('saveBtn');
+  const msg = document.getElementById('saveMsg');
+  btn.disabled = true;
+  btn.textContent = '...';
+
+  const specStr = document.getElementById('specialization').value.trim();
+  const certStr = document.getElementById('certifications').value.trim();
+
+  const updates = {
+    factory_name: document.getElementById('factoryName').value.trim(),
+    contact_person: document.getElementById('contactPerson').value.trim() || null,
+    phone: document.getElementById('phone').value.trim() || null,
+    whatsapp: document.getElementById('whatsapp').value.trim() || null,
+    website: document.getElementById('website').value.trim() || null,
+    address: document.getElementById('address').value.trim() || null,
+    city: document.getElementById('city').value.trim() || null,
+    country: document.getElementById('country').value.trim() || null,
+    tax_number: document.getElementById('taxNumber').value.trim() || null,
+    registration_number: document.getElementById('registrationNumber').value.trim() || null,
+    monthly_capacity: parseInt(document.getElementById('capacity').value) || null,
+    lead_time_days: parseInt(document.getElementById('leadTime').value) || null,
+    moq_per_model: parseInt(document.getElementById('moq').value) || null,
+    specialization: specStr ? specStr.split(',').map(s => s.trim()).filter(Boolean) : null,
+    certifications: certStr ? certStr.split(',').map(s => s.trim()).filter(Boolean) : null,
+    bank_name: document.getElementById('bankName').value.trim() || null,
+    bank_iban: document.getElementById('bankIban').value.trim() || null,
+    bank_swift: document.getElementById('bankSwift').value.trim() || null,
+    updated_at: new Date().toISOString()
+  };
+
+  const { error } = await supa.from('factories').update(updates).eq('id', currentUser.id);
+
+  btn.disabled = false;
+  btn.textContent = UI[currentLang].btn_save;
+
+  if (error) {
+    msg.className = 'save-msg save-err';
+    msg.textContent = UI[currentLang].err + error.message;
+  } else {
+    msg.className = 'save-msg save-ok';
+    msg.textContent = UI[currentLang].saved;
+  }
+  msg.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => { msg.style.display = 'none'; }, 4000);
+}
+
+async function handleSignOut() {
+  await supa.auth.signOut();
+  window.location.href = 'login.html';
+}
+</script>
+</body>
+</html>
