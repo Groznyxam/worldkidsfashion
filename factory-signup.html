@@ -112,7 +112,20 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
 
       <div class="fg">
         <label data-i18n="f_pass">Choose Password</label>
-        <input type="password" id="password" placeholder="Min 8 characters" minlength="8" required>
+        <div style="position:relative">
+          <input type="password" id="password" placeholder="Min 8 characters (A-Z, a-z, 0-9)" minlength="8" required style="padding-right:70px" oninput="checkPasswordMatch()">
+          <button type="button" onclick="togglePass('password', this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer;font-size:13px;color:#5a5550;padding:4px 8px" data-i18n="f_show">Show</button>
+        </div>
+        <div id="passHint" style="font-size:12px;color:#8a8580;margin-top:4px"></div>
+      </div>
+
+      <div class="fg">
+        <label data-i18n="f_pass2">Repeat Password</label>
+        <div style="position:relative">
+          <input type="password" id="password2" placeholder="Repeat password" minlength="8" required style="padding-right:70px" oninput="checkPasswordMatch()">
+          <button type="button" onclick="togglePass('password2', this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer;font-size:13px;color:#5a5550;padding:4px 8px" data-i18n="f_show">Show</button>
+        </div>
+        <div id="passMatch" style="font-size:12px;margin-top:4px"></div>
       </div>
 
       <h3 style="font-size:15px;margin:24px 0 12px;color:#5a5550" data-i18n="f_business">Business Details</h3>
@@ -209,7 +222,7 @@ const TR = {
     f_name: 'Factory Name',
     f_contact: 'Contact Person',
     f_phone: 'Phone / WhatsApp',
-    f_pass: 'Choose Password',
+    f_pass: 'Choose Password', f_pass2: 'Repeat Password', f_show: 'Show',
     f_business: 'Business Details',
     f_city: 'City',
     f_country: 'Country',
@@ -239,7 +252,7 @@ const TR = {
     f_name: 'Fabrika Adı',
     f_contact: 'İletişim Kişisi',
     f_phone: 'Telefon / WhatsApp',
-    f_pass: 'Şifre Belirleyin',
+    f_pass: 'Şifre Belirleyin', f_pass2: 'Şifreyi Tekrarlayın', f_show: 'Göster',
     f_business: 'İşletme Bilgileri',
     f_city: 'Şehir',
     f_country: 'Ülke',
@@ -269,7 +282,7 @@ const TR = {
     f_name: 'Название фабрики',
     f_contact: 'Контактное лицо',
     f_phone: 'Телефон / WhatsApp',
-    f_pass: 'Придумайте пароль',
+    f_pass: 'Придумайте пароль', f_pass2: 'Повторите пароль', f_show: 'Показать',
     f_business: 'Данные компании',
     f_city: 'Город',
     f_country: 'Страна',
@@ -340,6 +353,43 @@ function showError(msg) {
   box.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+function togglePass(id, btn) {
+  const inp = document.getElementById(id);
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = 'Hide'; }
+  else { inp.type = 'password'; btn.textContent = 'Show'; }
+}
+
+function checkPasswordMatch() {
+  const pass = document.getElementById('password').value;
+  const pass2 = document.getElementById('password2').value;
+  const hint = document.getElementById('passHint');
+  const match = document.getElementById('passMatch');
+
+  // Password content hint
+  if (pass.length > 0 && !/^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};:,.?]+$/.test(pass)) {
+    hint.textContent = '⚠ Only Latin letters, digits and symbols allowed';
+    hint.style.color = '#dc2626';
+  } else if (pass.length > 0 && pass.length < 8) {
+    hint.textContent = 'At least 8 characters';
+    hint.style.color = '#8a8580';
+  } else {
+    hint.textContent = '';
+  }
+
+  // Match check
+  if (pass2.length > 0) {
+    if (pass === pass2) {
+      match.textContent = '✓ Passwords match';
+      match.style.color = '#16a34a';
+    } else {
+      match.textContent = '✕ Passwords do not match';
+      match.style.color = '#dc2626';
+    }
+  } else {
+    match.textContent = '';
+  }
+}
+
 async function handleSignup() {
   document.getElementById('errorBox').style.display = 'none';
 
@@ -347,10 +397,17 @@ async function handleSignup() {
   const contact = document.getElementById('contactPerson').value.trim();
   const phone = document.getElementById('phone').value.trim();
   const pass = document.getElementById('password').value;
+  const pass2 = document.getElementById('password2').value;
   const agree = document.getElementById('agree').checked;
 
   if (!name || !contact || !phone || !pass) { showError('Please fill all required fields.'); return; }
   if (pass.length < 8) { showError('Password must be at least 8 characters.'); return; }
+  // Only Latin letters, digits, common symbols — no Cyrillic/Turkish chars
+  if (!/^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};:,.?]+$/.test(pass)) {
+    showError('Password may contain only Latin letters (A-Z, a-z), digits and symbols. No Cyrillic or special alphabet characters.');
+    return;
+  }
+  if (pass !== pass2) { showError('Passwords do not match. Please re-enter.'); return; }
   if (!agree) { showError('Please confirm the partnership terms.'); return; }
 
   const btn = document.getElementById('submitBtn');
