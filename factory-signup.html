@@ -392,18 +392,17 @@ async function handleSignup() {
       return;
     }
 
-    // 2. Wait briefly for trigger to create profile
-    await new Promise(r => setTimeout(r, 1500));
+    // 2. Wait briefly for triggers to create profile + factory record
+    await new Promise(r => setTimeout(r, 2000));
 
     // 3. Update profile role to factory
     await supa.from('profiles').update({ role: 'factory', status: 'verified' }).eq('id', authData.user.id);
 
-    // 4. Create factory record
+    // 4. Update factory record (base row already created by handle_new_factory trigger)
     const specStr = document.getElementById('specialization').value.trim();
     const spec = specStr ? specStr.split(',').map(s => s.trim()).filter(Boolean) : [];
 
-    await supa.from('factories').insert({
-      id: authData.user.id,
+    const factoryUpdate = {
       factory_name: name,
       contact_person: contact,
       email: inviteData.email,
@@ -419,7 +418,19 @@ async function handleSignup() {
       lead_time_days: parseInt(document.getElementById('leadTime').value) || null,
       moq_per_model: parseInt(document.getElementById('moq').value) || null,
       specialization: spec.length > 0 ? spec : null
-    });
+    };
+
+    // Try update first (row exists from trigger). If no row, fall back to insert.
+    const { data: updData, error: updError } = await supa
+      .from('factories')
+      .update(factoryUpdate)
+      .eq('id', authData.user.id)
+      .select();
+
+    if (!updError && (!updData || updData.length === 0)) {
+      // Trigger didn't create row yet — insert with id
+      await supa.from('factories').insert({ id: authData.user.id, ...factoryUpdate });
+    }
 
     // 5. Mark invite as used
     await supa.from('factory_invites').update({

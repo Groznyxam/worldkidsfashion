@@ -171,6 +171,12 @@ textarea { min-height: 80px; resize: vertical; }
         <div id="inviteResult" style="margin-top:16px;display:none"></div>
       </div>
 
+      <h3 style="font-size:14px;color:#5a5550;margin-bottom:8px">Partnership Applications <span class="tab-count" id="countApplications" style="background:#fff7ed;color:#ea580c">0</span></h3>
+      <table style="margin-bottom:24px">
+        <thead><tr><th>Date</th><th>Factory</th><th>Contact</th><th>Email</th><th>City</th><th>Makes</th><th>Actions</th></tr></thead>
+        <tbody id="applicationsTable"><tr><td colspan="7" class="loading">Loading…</td></tr></tbody>
+      </table>
+
       <h3 style="font-size:14px;color:#5a5550;margin-bottom:8px">Registered Factories</h3>
       <table>
         <thead><tr><th>Factory</th><th>Email</th><th>City</th><th>Capacity</th><th>Joined</th><th>Actions</th></tr></thead>
@@ -572,7 +578,80 @@ async function handleLogout() {
 
 // === FACTORIES ===
 
+async function loadApplications() {
+  const { data, error } = await supa
+    .from('factory_applications')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const tbody = document.getElementById('applicationsTable');
+  if (error) { tbody.innerHTML = '<tr><td colspan="7" class="empty-row">Error: ' + error.message + '</td></tr>'; return; }
+  if (!data || data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-row">No applications yet.</td></tr>';
+    document.getElementById('countApplications').textContent = '0';
+    return;
+  }
+
+  const newCount = data.filter(a => !a.reviewed).length;
+  document.getElementById('countApplications').textContent = newCount;
+
+  tbody.innerHTML = data.map(a => `
+    <tr style="${a.reviewed ? 'opacity:0.6' : ''}">
+      <td>${new Date(a.created_at).toLocaleDateString()}</td>
+      <td><strong>${a.factory_name}</strong></td>
+      <td>${a.contact_person || '—'}</td>
+      <td>${a.email}</td>
+      <td>${a.city || '—'}</td>
+      <td>${a.specialization || '—'}</td>
+      <td><button class="btn-view" onclick="showApplicationDetail('${a.id}')">View</button></td>
+    </tr>
+  `).join('');
+}
+
+async function showApplicationDetail(id) {
+  const { data, error } = await supa.from('factory_applications').select('*').eq('id', id).single();
+  if (error || !data) { alert('Error'); return; }
+
+  const fields = {
+    'Factory Name': data.factory_name,
+    'Contact Person': data.contact_person || '—',
+    'Email': data.email,
+    'Phone': data.phone || '—',
+    'City': data.city || '—',
+    'Country': data.country || '—',
+    'Manufactures': data.specialization || '—',
+    'Monthly Capacity': data.monthly_capacity || '—',
+    'Message': data.message || '—',
+    'Status': data.reviewed ? 'Reviewed' : 'New',
+    'Submitted': new Date(data.created_at).toLocaleString()
+  };
+
+  document.getElementById('modalTitle').textContent = 'Application: ' + data.factory_name;
+  document.getElementById('modalContent').innerHTML = Object.entries(fields).map(([k, v]) =>
+    `<div class="modal-row"><span class="modal-label">${k}:</span><span class="modal-value">${v}</span></div>`
+  ).join('') + `
+    <div style="margin-top:16px;padding:12px;background:#eff6ff;border-radius:8px;font-size:13px;color:#1e40af">
+      To onboard this factory: copy their email, close this, then use "Send Factory Invite" above with their details.
+    </div>
+  `;
+
+  document.getElementById('modalActions').innerHTML = `
+    <button class="btn-approve" onclick="markApplicationReviewed('${data.id}')">Mark Reviewed</button>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  `;
+  document.getElementById('userModal').classList.add('active');
+}
+
+async function markApplicationReviewed(id) {
+  const { error } = await supa.from('factory_applications').update({ reviewed: true, status: 'reviewed' }).eq('id', id);
+  if (error) { alert('Error: ' + error.message); return; }
+  closeModal();
+  loadApplications();
+}
+
 async function loadFactories() {
+  await loadApplications();
+
   // Load factories
   const { data: factories, error: fErr } = await supa
     .from('factories')
