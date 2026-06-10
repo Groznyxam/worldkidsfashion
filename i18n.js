@@ -2184,3 +2184,20 @@ Object.assign(WKF_LANGS.ar, {
   x_inquiry_14:'تم استلام طلب عرض السعر. سيراجعه فريقنا ويردّ خلال 1–2 يوم عمل بفاتورة مبدئية.',
   x_inquiry_15:'عرض استفساراتي',
 });
+
+// blog.html · lookbook.html · parents.html
+Object.assign(WKF_LANGS.ru, {
+  x_blog_1:'Гид', x_blog_2:'· Таблицы размеров включены', x_blog_3:'4 мин чтения', x_blog_4:'6 мин чтения', x_blog_5:'7 мин чтения', x_blog_6:'6 мин чтения',
+  x_lookbook_1:'Красиво', x_lookbook_2:'Персиковый цвет', x_lookbook_3:'Мятный лист', x_lookbook_4:'Лаванда', x_lookbook_5:'Сливочно-жёлтый', x_lookbook_6:'Лепесток розы', x_lookbook_7:'Небесно-голубой',
+  x_parents_1:'Качество',
+});
+Object.assign(WKF_LANGS.tr, {
+  x_blog_1:'Rehber', x_blog_2:'· Beden Tabloları Dahil', x_blog_3:'4 dk okuma', x_blog_4:'6 dk okuma', x_blog_5:'7 dk okuma', x_blog_6:'6 dk okuma',
+  x_lookbook_1:'Zarafetle', x_lookbook_2:'Şeftali Çiçeği', x_lookbook_3:'Nane Yaprağı', x_lookbook_4:'Lavanta', x_lookbook_5:'Tereyağı Sarısı', x_lookbook_6:'Gül Yaprağı', x_lookbook_7:'Gök Mavisi',
+  x_parents_1:'Kalite',
+});
+Object.assign(WKF_LANGS.ar, {
+  x_blog_1:'دليل', x_blog_2:'· جداول المقاسات مشمولة', x_blog_3:'قراءة 4 دقائق', x_blog_4:'قراءة 6 دقائق', x_blog_5:'قراءة 7 دقائق', x_blog_6:'قراءة 6 دقائق',
+  x_lookbook_1:'بأناقة', x_lookbook_2:'زهر الخوخ', x_lookbook_3:'ورقة النعناع', x_lookbook_4:'الخزامى', x_lookbook_5:'أصفر زبدي', x_lookbook_6:'بتلة وردة', x_lookbook_7:'أزرق سماوي',
+  x_parents_1:'جودة',
+});
