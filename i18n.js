@@ -2001,3 +2001,53 @@ Object.assign(WKF_LANGS.ar, {
   x_trust_89:'سياسة الإرجاع والاسترداد', x_trust_90:'المطالبات وعملية العيوب',
   x_trust_91:'ملفات تعريف الارتباط والتتبع', x_trust_92:'المعلومات القانونية للشركة',
 });
+
+// list items next to icons (services/trust bullets, admin, inquiry)
+Object.assign(WKF_LANGS.ru, {
+  x_servicesl_1:'Без посредников, цены фабрики', x_servicesl_2:'MOQ от 6 штук',
+  x_servicesl_3:'1 842+ моделей в наличии', x_servicesl_4:'Отправка за 24–48 часов',
+  x_servicesl_5:'Свои этикетки и бирки от 100 шт.', x_servicesl_6:'Индивидуальный дизайн упаковки',
+  x_servicesl_7:'Ваш бренд на наших качественных товарах', x_servicesl_8:'Срок: 15–25 дней',
+  x_servicesl_9:'Ваши дизайны, наше производство', x_servicesl_10:'MOQ от 300 шт. на модель',
+  x_servicesl_11:'Полный контроль качества включён', x_servicesl_12:'Срок: 30–45 дней',
+  x_servicesl_13:'Без вложений в склад', x_servicesl_14:'Отправка под вашим брендом',
+  x_servicesl_15:'Доступен API остатков в реальном времени', x_servicesl_16:'Международная доставка',
+  x_trustl_1:'Доставлен не тот товар', x_trustl_2:'Доставлен не тот размер', x_trustl_3:'Недостача количества',
+  x_trustl_4:'Видимый производственный дефект', x_trustl_5:'Повреждение до отправки',
+  x_trustl_6:'Нераспроданный товар', x_trustl_7:'Изменение решения после отправки',
+  x_trustl_8:'Неверный выбор размера покупателем', x_trustl_9:'Таможенные задержки или отказ во ввозе',
+  x_trustl_10:'Местные импортные сборы',
+  x_adminl_1:'Доступ запрещён', x_inquiryl_1:'Ваш список запросов пуст', x_inquiryl_2:'Запрос отправлен',
+});
+Object.assign(WKF_LANGS.tr, {
+  x_servicesl_1:'Aracı yok, fabrika fiyatları', x_servicesl_2:'6 adetten MOQ',
+  x_servicesl_3:'1.842+ model stokta', x_servicesl_4:'24–48 saat içinde gönderim',
+  x_servicesl_5:'100 adetten özel etiket ve bağ etiketleri', x_servicesl_6:'Özel ambalaj tasarımı',
+  x_servicesl_7:'Kaliteli ürünlerimizde sizin markanız', x_servicesl_8:'Üretim süresi: 15–25 gün',
+  x_servicesl_9:'Sizin tasarımlarınız, bizim üretimimiz', x_servicesl_10:'Stil başına 300 adetten MOQ',
+  x_servicesl_11:'Tam kalite kontrol dahil', x_servicesl_12:'Üretim süresi: 30–45 gün',
+  x_servicesl_13:'Stok yatırımı yok', x_servicesl_14:'Sizin marka adınızla gönderim',
+  x_servicesl_15:'Gerçek zamanlı stok API’si mevcut', x_servicesl_16:'Uluslararası gönderim',
+  x_trustl_1:'Yanlış ürün teslim edildi', x_trustl_2:'Yanlış beden teslim edildi', x_trustl_3:'Eksik miktar',
+  x_trustl_4:'Görünür üretim kusuru', x_trustl_5:'Sevkiyattan önce oluşan hasar',
+  x_trustl_6:'Satılmayan stok', x_trustl_7:'Sevkiyattan sonra fikir değişikliği',
+  x_trustl_8:'Alıcının yanlış beden seçimi', x_trustl_9:'Gümrük gecikmeleri veya ithalat reddi',
+  x_trustl_10:'Yerel ithalat ücretleri',
+  x_adminl_1:'Erişim Reddedildi', x_inquiryl_1:'Talep listeniz boş', x_inquiryl_2:'Talep Gönderildi',
+});
+Object.assign(WKF_LANGS.ar, {
+  x_servicesl_1:'بلا وسيط، أسعار المصنع', x_servicesl_2:'MOQ من 6 قطع',
+  x_servicesl_3:'أكثر من 1,842 موديلاً في المخزون', x_servicesl_4:'يُشحن خلال 24–48 ساعة',
+  x_servicesl_5:'ملصقات وبطاقات مخصّصة من 100 قطعة', x_servicesl_6:'تصميم تغليف مخصّص',
+  x_servicesl_7:'علامتك على منتجاتنا عالية الجودة', x_servicesl_8:'مدة التنفيذ: 15–25 يوماً',
+  x_servicesl_9:'تصاميمك، إنتاجنا', x_servicesl_10:'MOQ من 300 قطعة لكل موديل',
+  x_servicesl_11:'فحص جودة كامل مشمول', x_servicesl_12:'مدة التنفيذ: 30–45 يوماً',
+  x_servicesl_13:'بلا استثمار في المخزون', x_servicesl_14:'يُشحن باسم علامتك',
+  x_servicesl_15:'واجهة برمجة (API) للمخزون الفوري متاحة', x_servicesl_16:'شحن دولي متاح',
+  x_trustl_1:'تسليم منتج خاطئ', x_trustl_2:'تسليم مقاس خاطئ', x_trustl_3:'كمية ناقصة',
+  x_trustl_4:'عيب تصنيع ظاهر', x_trustl_5:'ضرر حدث قبل الإرسال',
+  x_trustl_6:'مخزون غير مُباع', x_trustl_7:'تغيير الرأي بعد الإرسال',
+  x_trustl_8:'اختيار مقاس خاطئ من المشتري', x_trustl_9:'تأخيرات جمركية أو رفض الاستيراد',
+  x_trustl_10:'رسوم استيراد محلية',
+  x_adminl_1:'تم رفض الوصول', x_inquiryl_1:'قائمة استفسارك فارغة', x_inquiryl_2:'تم إرسال الاستفسار',
+});
