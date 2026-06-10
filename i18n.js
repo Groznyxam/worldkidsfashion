@@ -685,9 +685,20 @@ WKF_LANGS.no = Object.assign({},WKF_LANGS.en,{
     products:'produkter', add_to_cart:'Legg i kurv', search_ph:'Sok blant produkter',
   });
 
+// Arabic — full translation lives below; starts as EN fallback so missing keys
+// never break the page. (Filled in the Arabic translation step.)
+WKF_LANGS.ar = Object.assign({},WKF_LANGS.en,{
+    lang_choose:'اللغة',
+});
+
 
 // Engine
-const LANG_MAP = {ru:'ru',fr:'fr',tr:'tr',de:'de',no:'no',nb:'no',nn:'no'};
+const LANG_MAP = {ru:'ru',tr:'tr',ar:'ar',fr:'fr',de:'de',no:'no',nb:'no',nn:'no'};
+
+// Languages shown in the switcher (order matters). Others stay reachable in code.
+const WKF_UI_LANGS = ['en','ru','tr','ar'];
+const WKF_LANG_NAMES = {en:'English', ru:'Русский', tr:'Türkçe', ar:'العربية'};
+const WKF_RTL_LANGS = ['ar'];
 
 function wkfDetectLang(){
   const s=localStorage.getItem('wkf_lang');
@@ -696,11 +707,24 @@ function wkfDetectLang(){
   return LANG_MAP[b]||'en';
 }
 
+function wkfBuildDropdown(cur){
+  const dd=document.getElementById('langDropdown');
+  if(!dd) return;
+  const head=(WKF_LANGS[cur]&&WKF_LANGS[cur].lang_choose)||'Language';
+  dd.innerHTML='<div class="wkf-lang-head">'+head+'</div>'+
+    WKF_UI_LANGS.map(function(code){
+      return '<button type="button" class="wkf-lang-opt'+(code===cur?' active':'')+'" '+
+        'onclick="wkfSetLang(\''+code+'\')"><span>'+WKF_LANG_NAMES[code]+
+        '</span><span class="code">'+code.toUpperCase()+'</span></button>';
+    }).join('');
+}
+
 function wkfSetLang(code){
   if(!WKF_LANGS[code]) return;
   localStorage.setItem('wkf_lang',code);
   const t=WKF_LANGS[code];
   document.documentElement.lang=code;
+  document.documentElement.dir=WKF_RTL_LANGS.indexOf(code)>=0?'rtl':'ltr';
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.getAttribute('data-i18n');
     if(t[k]!==undefined) el.innerHTML=t[k];
@@ -711,6 +735,7 @@ function wkfSetLang(code){
   });
   const lc=document.getElementById('langCode');
   if(lc){lc.textContent=code.toUpperCase();lc.style.color='var(--ink)';}
+  wkfBuildDropdown(code);
   const dd=document.getElementById('langDropdown');
   if(dd) dd.style.display='none';
 }
