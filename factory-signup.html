@@ -129,62 +129,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
         <div id="passMatch" style="font-size:12px;margin-top:4px"></div>
       </div>
 
-      <h3 style="font-size:15px;margin:24px 0 12px;color:#5a5550" data-i18n="f_business">Business Details</h3>
-
-      <div class="fg-grid">
-        <div class="fg">
-          <label data-i18n="f_city">City</label>
-          <input type="text" id="city" value="Istanbul">
-        </div>
-        <div class="fg">
-          <label data-i18n="f_country">Country</label>
-          <input type="text" id="country" value="Turkey">
-        </div>
-      </div>
-
-      <div class="fg">
-        <label data-i18n="f_address">Address</label>
-        <input type="text" id="address" placeholder="Factory address">
-      </div>
-
-      <div class="fg-grid">
-        <div class="fg">
-          <label data-i18n="f_tax">Tax Number</label>
-          <input type="text" id="taxNumber">
-        </div>
-        <div class="fg">
-          <label data-i18n="f_reg">Registration Number</label>
-          <input type="text" id="registrationNumber">
-        </div>
-      </div>
-
-      <div class="fg">
-        <label data-i18n="f_website">Website</label>
-        <input type="url" id="website" placeholder="https://">
-      </div>
-
-      <h3 style="font-size:15px;margin:24px 0 12px;color:#5a5550" data-i18n="f_production">Production Capacity</h3>
-
-      <div class="fg-grid">
-        <div class="fg">
-          <label data-i18n="f_capacity">Monthly Capacity (pcs)</label>
-          <input type="number" id="capacity" placeholder="e.g. 5000">
-        </div>
-        <div class="fg">
-          <label data-i18n="f_lead">Lead Time (days)</label>
-          <input type="number" id="leadTime" placeholder="e.g. 30">
-        </div>
-      </div>
-
-      <div class="fg">
-        <label data-i18n="f_moq">Minimum Order Quantity per Model</label>
-        <input type="number" id="moq" placeholder="e.g. 100">
-      </div>
-
-      <div class="fg">
-        <label data-i18n="f_specialization">Specialization (comma-separated)</label>
-        <input type="text" id="specialization" placeholder="e.g. newborn, organic, knitwear">
-      </div>
+      <p style="font-size:13px;color:#8a8580;background:#f8f6f2;border:1px solid #e8e6e0;border-radius:8px;padding:12px 14px;margin:20px 0 4px" data-i18n="f_more_later">That's all we need to get started. You can add business details — tax number, address, capacity, certifications — later in your factory profile.</p>
 
       <div class="checkbox-row">
         <input type="checkbox" id="agree" required>
@@ -237,6 +182,7 @@ const TR = {
     f_moq: 'Minimum Order Quantity per Model',
     f_specialization: 'Specialization (comma-separated)',
     f_agree: 'I confirm that the information above is accurate and I agree to the partnership terms.',
+    f_more_later: 'That’s all we need to get started. You can add business details — tax number, address, capacity, certifications — later in your factory profile.',
     f_submit: 'Complete Registration',
     success_h: 'Registration Complete',
     success_p: 'Your factory account has been created. Please check your email to confirm your address, then sign in to access your partnership portal.',
@@ -267,6 +213,7 @@ const TR = {
     f_moq: 'Model Başına Minimum Sipariş Miktarı',
     f_specialization: 'Uzmanlık (virgülle ayırın)',
     f_agree: 'Yukarıdaki bilgilerin doğru olduğunu onaylıyor ve ortaklık koşullarını kabul ediyorum.',
+    f_more_later: 'Başlamak için bu kadarı yeterli. İşletme bilgilerini — vergi numarası, adres, kapasite, sertifikalar — daha sonra fabrika profilinizden ekleyebilirsiniz.',
     f_submit: 'Kaydı Tamamla',
     success_h: 'Kayıt Tamamlandı',
     success_p: 'Fabrika hesabınız oluşturuldu. Lütfen e-posta adresinizi doğrulayın, ardından ortaklık portalınıza erişmek için giriş yapın.',
@@ -297,6 +244,7 @@ const TR = {
     f_moq: 'Минимум на модель',
     f_specialization: 'Специализация (через запятую)',
     f_agree: 'Подтверждаю что указанная информация верна и принимаю условия партнёрства.',
+    f_more_later: 'Это всё, что нужно для старта. Данные компании — налоговый номер, адрес, мощность, сертификаты — можно добавить позже в профиле фабрики.',
     f_submit: 'Завершить регистрацию',
     success_h: 'Регистрация завершена',
     success_p: 'Аккаунт фабрики создан. Подтвердите email по ссылке в письме, затем войдите в личный кабинет.',
@@ -327,6 +275,7 @@ const TR = {
     f_moq: 'الحد الأدنى للطلب لكل موديل',
     f_specialization: 'التخصص (مفصول بفواصل)',
     f_agree: 'أؤكّد أن المعلومات أعلاه دقيقة وأوافق على شروط الشراكة.',
+    f_more_later: 'هذا كل ما نحتاجه للبدء. يمكنك إضافة بيانات العمل — الرقم الضريبي والعنوان والطاقة الإنتاجية والشهادات — لاحقاً في ملف مصنعك.',
     f_submit: 'إكمال التسجيل',
     success_h: 'اكتمل التسجيل',
     success_p: 'تم إنشاء حساب مصنعك. يرجى التحقق من بريدك الإلكتروني لتأكيد عنوانك، ثم سجّل الدخول للوصول إلى بوابة الشراكة.',
@@ -487,26 +436,17 @@ async function handleSignup() {
     // 3. Update profile role to factory
     await supa.from('profiles').update({ role: 'factory', status: 'verified' }).eq('id', authData.user.id);
 
-    // 4. Update factory record (base row already created by handle_new_factory trigger)
-    const specStr = document.getElementById('specialization').value.trim();
-    const spec = specStr ? specStr.split(',').map(s => s.trim()).filter(Boolean) : [];
-
+    // 4. Update factory record (base row already created by handle_new_factory trigger).
+    // Signup stays minimal — business details (tax, address, capacity, specialization,
+    // bank, etc.) are filled later in the factory profile.
     const factoryUpdate = {
       factory_name: name,
       contact_person: contact,
       email: inviteData.email,
       phone: phone,
       whatsapp: phone,
-      city: document.getElementById('city').value.trim() || 'Istanbul',
-      country: document.getElementById('country').value.trim() || 'Turkey',
-      address: document.getElementById('address').value.trim() || null,
-      tax_number: document.getElementById('taxNumber').value.trim() || null,
-      registration_number: document.getElementById('registrationNumber').value.trim() || null,
-      website: document.getElementById('website').value.trim() || null,
-      monthly_capacity: parseInt(document.getElementById('capacity').value) || null,
-      lead_time_days: parseInt(document.getElementById('leadTime').value) || null,
-      moq_per_model: parseInt(document.getElementById('moq').value) || null,
-      specialization: spec.length > 0 ? spec : null
+      city: 'Istanbul',
+      country: 'Turkey'
     };
 
     // Try update first (row exists from trigger). If no row, fall back to insert.
