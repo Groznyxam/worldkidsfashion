@@ -75,6 +75,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <button class="lang-btn active" id="lang-en" onclick="setLang('en')">English</button>
     <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">Türkçe</button>
     <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">Русский</button>
+    <button class="lang-btn" id="lang-ar" onclick="setLang('ar')">العربية</button>
   </div>
 
   <div class="welcome">
@@ -84,19 +85,19 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
 
   <div class="quick-links">
     <a href="factory-profile.html" class="qlink">
-      <div class="icon">🏭</div>
+      <div class="icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg></div>
       <h3 data-t="ql_profile_h">Factory Profile</h3>
       <p data-t="ql_profile_p">Update your details, capacity and bank info</p>
     </a>
     <a href="factory-catalog.html" class="qlink">
-      <div class="icon">📦</div>
+      <div class="icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg></div>
       <h3 data-t="ql_catalog_h">Upload Catalog</h3>
       <p data-t="ql_catalog_p">Share your product catalogs and certificates</p>
     </a>
   </div>
 
   <div class="manager-card" id="managerCard">
-    <div class="micon">👤</div>
+    <div class="micon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
     <div class="minfo">
       <strong data-t="mgr_label">Your WKF Manager</strong>
       <span id="managerInfo">info@worldkidsfashion.org</span>
@@ -129,7 +130,12 @@ const UI = {
     welcome_hi:'Добро пожаловать,', welcome_sub:'Вы — часть партнёрской сети производителей WorldKidsFashion. Ниже ваши условия партнёрства. Используйте меню для управления профилем и загрузки каталогов.',
     ql_profile_h:'Профиль фабрики', ql_profile_p:'Обновите данные, мощности и банковские реквизиты',
     ql_catalog_h:'Загрузить каталог', ql_catalog_p:'Поделитесь каталогами и сертификатами',
-    mgr_label:'Ваш менеджер WKF' }
+    mgr_label:'Ваш менеджер WKF' },
+  ar: { portal_label:'بوابة الشركاء', nav_profile:'الملف الشخصي', nav_catalog:'الكتالوج', nav_signout:'تسجيل الخروج',
+    welcome_hi:'مرحباً،', welcome_sub:'أنت جزء من شبكة شركاء المصنّعين في WorldKidsFashion. فيما يلي شروط شراكتك. استخدم القائمة لإدارة ملفك ورفع الكتالوجات.',
+    ql_profile_h:'ملف المصنع', ql_profile_p:'حدّث بياناتك وطاقتك الإنتاجية ومعلوماتك البنكية',
+    ql_catalog_h:'رفع الكتالوج', ql_catalog_p:'شارك كتالوجات منتجاتك وشهاداتك',
+    mgr_label:'مدير WKF الخاص بك' }
 };
 
 const TERMS = {
@@ -266,6 +272,7 @@ let currentUser = null;
 })();
 
 function setLang(lang) {
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('lang-' + lang).classList.add('active');
   const t = UI[lang];
@@ -273,7 +280,7 @@ function setLang(lang) {
     const k = el.getAttribute('data-t');
     if (t[k]) el.textContent = t[k];
   });
-  document.getElementById('termsContent').innerHTML = TERMS[lang];
+  document.getElementById('termsContent').innerHTML = TERMS[lang] || TERMS.en;
 }
 
 async function handleSignOut() {

@@ -75,13 +75,14 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
   </div>
 </div>
 
-<div id="loadingScreen" class="loading">Loading…</div>
+<div id="loadingScreen" class="loading" data-i18n="loading_text">Loading…</div>
 
 <div class="fwrap" id="content" style="display:none">
   <div class="lang-switch">
     <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
     <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">TR</button>
     <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" id="lang-ar" onclick="setLang('ar')">AR</button>
   </div>
 
   <h1 data-t="h_title">Upload Catalog & Certificates</h1>
@@ -94,8 +95,8 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <p class="sub" data-t="add_sub">Choose how you want to share — a cloud link (recommended) or direct upload.</p>
 
     <div class="method-tabs">
-      <div class="method-tab active" id="tab-link" onclick="switchMethod('link')" data-t="m_link">🔗 Cloud Link</div>
-      <div class="method-tab" id="tab-upload" onclick="switchMethod('upload')" data-t="m_upload">📤 Direct Upload</div>
+      <div class="method-tab active" id="tab-link" onclick="switchMethod('link')"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span data-t="m_link"> Cloud Link</span></div>
+      <div class="method-tab" id="tab-upload" onclick="switchMethod('upload')"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg><span data-t="m_upload"> Direct Upload</span></div>
     </div>
 
     <div class="fg">
@@ -126,7 +127,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <!-- Upload method -->
     <div id="method-upload" style="display:none">
       <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
-        <div class="icon">📁</div>
+        <div class="icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></div>
         <p data-t="dz_text">Click to choose a file or drag it here</p>
         <p class="hint" data-t="dz_hint">PDF, Excel, JPG, PNG, ZIP · Max 50 MB</p>
       </div>
@@ -137,7 +138,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
 
   <div class="card">
     <h2 data-t="files_h">Your Files</h2>
-    <ul class="file-list" id="fileList"><li class="empty">Loading…</li></ul>
+    <ul class="file-list" id="fileList"><li class="empty" data-i18n="loading_text">Loading…</li></ul>
   </div>
 </div>
 
@@ -151,7 +152,7 @@ const UI = {
   en: { nav_dash:'Dashboard', nav_profile:'Profile', nav_catalog:'Catalog', nav_signout:'Sign Out',
     h_title:'Upload Catalog & Certificates', h_sub:'Share your product catalogs, price lists and certifications with us. The easiest way is to paste a Google Drive or Dropbox link.',
     add_h:'Add a File or Link', add_sub:'Choose how you want to share — a cloud link (recommended) or direct upload.',
-    m_link:'🔗 Cloud Link', m_upload:'📤 Direct Upload',
+    m_link:'Cloud Link', m_upload:'Direct Upload',
     l_type:'File Type', t_catalog:'Product Catalog', t_pricelist:'Price List', t_certificate:'Certificate', t_photos:'Product Photos', t_other:'Other',
     l_desc:'Description (optional)', l_url:'Google Drive / Dropbox / WeTransfer Link', btn_addlink:'Add Link',
     dz_text:'Click to choose a file or drag it here', dz_hint:'PDF, Excel, JPG, PNG, ZIP · Max 50 MB',
@@ -160,7 +161,7 @@ const UI = {
   tr: { nav_dash:'Panel', nav_profile:'Profil', nav_catalog:'Katalog', nav_signout:'Çıkış',
     h_title:'Katalog & Sertifika Yükle', h_sub:'Ürün kataloglarınızı, fiyat listelerinizi ve sertifikalarınızı bizimle paylaşın. En kolay yol Google Drive veya Dropbox linki yapıştırmaktır.',
     add_h:'Dosya veya Link Ekle', add_sub:'Nasıl paylaşmak istediğinizi seçin — bulut linki (önerilen) veya doğrudan yükleme.',
-    m_link:'🔗 Bulut Linki', m_upload:'📤 Doğrudan Yükle',
+    m_link:'Bulut Linki', m_upload:'Doğrudan Yükle',
     l_type:'Dosya Türü', t_catalog:'Ürün Kataloğu', t_pricelist:'Fiyat Listesi', t_certificate:'Sertifika', t_photos:'Ürün Fotoğrafları', t_other:'Diğer',
     l_desc:'Açıklama (opsiyonel)', l_url:'Google Drive / Dropbox / WeTransfer Linki', btn_addlink:'Link Ekle',
     dz_text:'Dosya seçmek için tıklayın veya buraya sürükleyin', dz_hint:'PDF, Excel, JPG, PNG, ZIP · Maks 50 MB',
@@ -169,12 +170,21 @@ const UI = {
   ru: { nav_dash:'Панель', nav_profile:'Профиль', nav_catalog:'Каталог', nav_signout:'Выйти',
     h_title:'Загрузка каталога и сертификатов', h_sub:'Поделитесь каталогами, прайс-листами и сертификатами. Проще всего вставить ссылку Google Drive или Dropbox.',
     add_h:'Добавить файл или ссылку', add_sub:'Выберите способ — облачная ссылка (рекомендуется) или прямая загрузка.',
-    m_link:'🔗 Облачная ссылка', m_upload:'📤 Прямая загрузка',
+    m_link:'Облачная ссылка', m_upload:'Прямая загрузка',
     l_type:'Тип файла', t_catalog:'Каталог товаров', t_pricelist:'Прайс-лист', t_certificate:'Сертификат', t_photos:'Фото товаров', t_other:'Другое',
     l_desc:'Описание (опционально)', l_url:'Ссылка Google Drive / Dropbox / WeTransfer', btn_addlink:'Добавить ссылку',
     dz_text:'Нажмите чтобы выбрать файл или перетащите сюда', dz_hint:'PDF, Excel, JPG, PNG, ZIP · Макс 50 МБ',
     files_h:'Ваши файлы', empty:'Пока нет файлов. Добавьте первый каталог выше.', uploading:'Загрузка…',
-    added:'✓ Успешно добавлено', deleted:'✓ Удалено', err:'Ошибка: ', view:'Открыть', del:'Удалить', confirm_del:'Удалить этот файл?' }
+    added:'✓ Успешно добавлено', deleted:'✓ Удалено', err:'Ошибка: ', view:'Открыть', del:'Удалить', confirm_del:'Удалить этот файл?' },
+  ar: { nav_dash:'لوحة التحكم', nav_profile:'الملف الشخصي', nav_catalog:'الكتالوج', nav_signout:'تسجيل الخروج',
+    h_title:'رفع الكتالوج والشهادات', h_sub:'شارك معنا كتالوجات منتجاتك وقوائم الأسعار والشهادات. أسهل طريقة هي لصق رابط Google Drive أو Dropbox.',
+    add_h:'إضافة ملف أو رابط', add_sub:'اختر طريقة المشاركة — رابط سحابي (موصى به) أو رفع مباشر.',
+    m_link:'رابط سحابي', m_upload:'رفع مباشر',
+    l_type:'نوع الملف', t_catalog:'كتالوج المنتجات', t_pricelist:'قائمة الأسعار', t_certificate:'شهادة', t_photos:'صور المنتجات', t_other:'أخرى',
+    l_desc:'الوصف (اختياري)', l_url:'رابط Google Drive / Dropbox / WeTransfer', btn_addlink:'إضافة رابط',
+    dz_text:'انقر لاختيار ملف أو اسحبه إلى هنا', dz_hint:'PDF، Excel، JPG، PNG، ZIP · بحد أقصى 50 ميجابايت',
+    files_h:'ملفاتك', empty:'لا توجد ملفات بعد. أضف كتالوجك الأول بالأعلى.', uploading:'جارٍ الرفع…',
+    added:'✓ تمت الإضافة بنجاح', deleted:'✓ تم الحذف', err:'خطأ: ', view:'عرض', del:'حذف', confirm_del:'حذف هذا الملف؟' }
 };
 
 let currentUser = null;
@@ -202,6 +212,7 @@ let currentLang = 'en';
 
 function setLang(lang) {
   currentLang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('lang-' + lang).classList.add('active');
   const t = UI[lang];
@@ -318,13 +329,20 @@ async function loadFiles() {
   if (error) { list.innerHTML = '<li class="empty">' + UI[currentLang].err + error.message + '</li>'; return; }
   if (!data || data.length === 0) { list.innerHTML = '<li class="empty">' + UI[currentLang].empty + '</li>'; return; }
 
-  const icons = { catalog:'📚', pricelist:'💰', certificate:'📜', photos:'🖼️', other:'📄' };
+  const svgIco = (b) => '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">' + b + '</svg>';
+  const icons = {
+    catalog: svgIco('<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>'),
+    pricelist: svgIco('<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/>'),
+    certificate: svgIco('<path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>'),
+    photos: svgIco('<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/>'),
+    other: svgIco('<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>')
+  };
 
   list.innerHTML = data.map(f => {
     const sizeStr = f.file_size ? (f.file_size / 1024 / 1024).toFixed(1) + ' MB' : 'Link';
     return `
       <li class="file-item">
-        <div class="file-icon">${icons[f.file_type] || '📄'}</div>
+        <div class="file-icon">${icons[f.file_type] || icons.other}</div>
         <div class="file-info">
           <div class="file-name">${f.file_name}</div>
           <div class="file-meta">${f.file_type} · ${sizeStr} · ${new Date(f.uploaded_at).toLocaleDateString()}</div>

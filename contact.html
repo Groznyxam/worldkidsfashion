@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="announce" aria-hidden="true"><div class="announce-track">
-  <span>📍 Istanbul, Turkey</span><span>·</span><span>Mon–Fri 09:00–18:00 GMT+3</span><span>·</span><span>info@worldkidsfashion.org</span><span>·</span>
-  <span>📍 Istanbul, Turkey</span><span>·</span><span>Mon–Fri 09:00–18:00 GMT+3</span><span>·</span><span>info@worldkidsfashion.org</span>
+  <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Istanbul, Turkey</span><span>·</span><span data-i18n="x_contact_1">Mon–Fri 09:00–18:00 GMT+3</span><span>·</span><span>info@worldkidsfashion.org</span><span>·</span>
+  <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Istanbul, Turkey</span><span>·</span><span data-i18n="x_contact_2">Mon–Fri 09:00–18:00 GMT+3</span><span>·</span><span>info@worldkidsfashion.org</span>
 </div></div>
 <header class="site-header" id="siteHeader"><div class="hdr-inner">
   <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub"><span data-i18n="logo_sub2">Wholesale B2B</span></div></a>
@@ -23,11 +23,11 @@
     <a href="shipping.html" class="nav-item" data-i18n="nav_shipping">Shipping</a>
     <a href="trust.html" class="nav-item" data-i18n="nav_trust">Trust Center</a>
     <a href="about.html" class="nav-item" data-i18n="nav_about">About</a>
-    <a href="contact.html" class="nav-item" style="color:var(--red)">Contact</a>
+    <a href="contact.html" class="nav-item" style="color:var(--red)" data-i18n="nav_contact">Contact</a>
   </nav>
   <div class="hdr-right">
     <div id="langWrap" style="position:relative;display:inline-block">
-      <button onclick="wkfToggleLang(event)" style="padding:6px 14px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
+      <button onclick="wkfToggleLang(event)" aria-label="Switch language" style="padding:6px 14px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg> <span id="langCode">EN</span> ▾</button>
       <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
         <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
         <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
@@ -36,7 +36,7 @@
     <a href="register.html" class="hdr-cta"><span data-i18n="btn_register">Register Free →</span></a>
   </div>
 </div></header>
-<div style="background:var(--silk);border-bottom:1px solid var(--border);padding:12px 0"><div class="container" style="font-size:.82rem;color:var(--stone)"><a href="index.html" style="color:var(--stone)">Home</a> › Contact</div></div>
+<div style="background:var(--silk);border-bottom:1px solid var(--border);padding:12px 0"><div class="container" style="font-size:.82rem;color:var(--stone)"><a href="index.html" style="color:var(--stone)" data-i18n="bc_home">Home</a> › Contact</div></div>
 
 <div class="container" style="padding-top:60px;padding-bottom:80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px">
   <div>
@@ -45,35 +45,35 @@
 
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="display:flex;gap:14px;align-items:flex-start;padding:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
-        <span style="font-size:1.6rem">📧</span>
+        <span style="font-size:1.6rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
         <div>
-          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Email</div>
+          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="acc_email">Email</div>
           <a href="mailto:info@worldkidsfashion.org" style="color:var(--red);font-size:.9rem">info@worldkidsfashion.org</a>
           <div style="font-size:.78rem;color:var(--stone);margin-top:4px"><span data-i18n="contact_email_sub">We respond within 1 business day.</span></div>
         </div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;padding:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
-        <span style="font-size:1.6rem">💬</span>
+        <span style="font-size:1.6rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
         <div>
-          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">WhatsApp</div>
+          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="contact_wa">WhatsApp</div>
           <a href="https://wa.me/995598146418" target="_blank" style="color:var(--red);font-size:.9rem">+995 598 146 418</a>
           <div style="font-size:.78rem;color:var(--stone);margin-top:4px"><span data-i18n="contact_wa_sub">For quick questions and order support.</span></div>
         </div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;padding:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
-        <span style="font-size:1.6rem">📞</span>
+        <span style="font-size:1.6rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
         <div>
-          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Phone</div>
+          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="acc_phone">Phone</div>
           <div style="font-size:.9rem">+33 6 95 61 12 93</div>
-          <div style="font-size:.78rem;color:var(--stone);margin-top:4px">Monday – Friday, 09:00 – 18:00 GMT+3</div>
+          <div style="font-size:.78rem;color:var(--stone);margin-top:4px" data-i18n="x_contact_3">Monday – Friday, 09:00 – 18:00 GMT+3</div>
         </div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;padding:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
-        <span style="font-size:1.6rem">📍</span>
+        <span style="font-size:1.6rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
         <div>
-          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Location</div>
-          <div style="font-size:.9rem">Istanbul, Turkey</div>
-          <div style="font-size:.78rem;color:var(--stone);margin-top:4px">GMT+3 timezone</div>
+          <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="contact_loc">Location</div>
+          <div style="font-size:.9rem" data-i18n="ann_istanbul">Istanbul, Turkey</div>
+          <div style="font-size:.78rem;color:var(--stone);margin-top:4px" data-i18n="x_contact_4">GMT+3 timezone</div>
         </div>
       </div>
     </div>
@@ -84,15 +84,15 @@
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:20px"><span data-i18n="contact_form_h">Send a Message</span></h2>
       <div id="contactForm">
         <div style="margin-bottom:16px">
-          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px">Name *</label>
+          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px" data-i18n="acc_name">Name *</label>
           <input id="c-name" type="text" style="width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.92rem;box-sizing:border-box" required>
         </div>
         <div style="margin-bottom:16px">
-          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px">Business Email *</label>
+          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px" data-i18n="x_contact_5">Business Email *</label>
           <input id="c-email" type="email" style="width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.92rem;box-sizing:border-box" required>
         </div>
         <div style="margin-bottom:16px">
-          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px">Subject</label>
+          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px" data-i18n="x_contact_6">Subject</label>
           <select id="c-subject" style="width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.92rem;box-sizing:border-box">
             <option>Wholesale order inquiry</option>
             <option>Private label request</option>
@@ -103,14 +103,14 @@
           </select>
         </div>
         <div style="margin-bottom:20px">
-          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px">Message *</label>
+          <label style="display:block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);margin-bottom:6px" data-i18n="x_contact_7">Message *</label>
           <textarea id="c-msg" rows="5" style="width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.92rem;box-sizing:border-box;resize:vertical" placeholder="Describe your inquiry, product needs, quantities or questions…"></textarea>
         </div>
-        <button onclick="sendContact()" style="width:100%;padding:14px;background:var(--ink);color:#fff;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer">Send Message →</button>
-        <p style="font-size:.75rem;color:var(--mist);margin-top:12px;text-align:center">We respond within 1 business day. Your data is handled per our <a href="privacy.html" style="color:var(--stone)">Privacy Policy</a>.</p>
+        <button onclick="sendContact()" style="width:100%;padding:14px;background:var(--ink);color:#fff;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer" data-i18n="x_contact_8">Send Message →</button>
+        <p style="font-size:.75rem;color:var(--mist);margin-top:12px;text-align:center">We respond within 1 business day. Your data is handled per our <a href="privacy.html" style="color:var(--stone)" data-i18n="ft_privacy">Privacy Policy</a>.</p>
       </div>
       <div id="contactSuccess" style="display:none;text-align:center;padding:20px 0">
-        <div style="font-size:2.5rem;margin-bottom:12px">✉️</div>
+        <div style="font-size:2.5rem;margin-bottom:12px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
         <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin-bottom:8px"><span data-i18n="contact_sent_h">Message Sent</span></h3>
         <p style="color:var(--stone);font-size:.9rem"><span data-i18n="contact_sent_p">We will reply within 1 business day. For urgent inquiries use WhatsApp.</span></p>
       </div>
@@ -121,8 +121,8 @@
 <footer class="site-footer"><div class="container">
   <div class="ft-grid">
     <div><a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion</span><span class="logo-sub"><span data-i18n="logo_sub2">Wholesale B2B</span></div></a><p class="ft-brand-text">Wholesale kids and baby clothing from Istanbul, Turkey.</p></div>
-    <div class="ft-col"><h4>Legal</h4><a href="terms.html">Terms &amp; Conditions</a><a href="privacy.html">Privacy Policy</a><a href="impressum.html">Impressum</a></div>
-    <div class="ft-col"><h4>Platform</h4><a href="catalog.html">Catalog</a><a href="trust.html">Trust Center</a><a href="about.html">About</a></div>
+    <div class="ft-col"><h4>Legal</h4><a href="terms.html">Terms &amp; Conditions</a><a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a><a href="impressum.html" data-i18n="ft_impressum">Impressum</a></div>
+    <div class="ft-col"><h4>Platform</h4><a href="catalog.html" data-i18n="nav_catalog">Catalog</a><a href="trust.html" data-i18n="nav_trust">Trust Center</a><a href="about.html" data-i18n="nav_about">About</a></div>
   </div>
   <div class="ft-bottom"><div class="ft-copy">© 2025 WorldKidsFashion · Istanbul, Turkey · Wholesale only</div></div>
 </div></footer>

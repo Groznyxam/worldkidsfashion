@@ -52,13 +52,14 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
   </div>
 </div>
 
-<div id="loadingScreen" class="loading">Loading…</div>
+<div id="loadingScreen" class="loading" data-i18n="loading_text">Loading…</div>
 
 <div class="fwrap" id="content" style="display:none">
   <div class="lang-switch">
     <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
     <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">TR</button>
     <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" id="lang-ar" onclick="setLang('ar')">AR</button>
   </div>
 
   <h1 data-t="h_title">Factory Profile</h1>
@@ -143,7 +144,14 @@ const UI = {
     s_legal:'Юридические данные', l_tax:'Налоговый номер', l_reg:'Регистрационный номер',
     s_production:'Производство', l_capacity:'Месячная мощность (шт)', l_lead:'Срок производства (дни)', l_moq:'MOQ на модель', l_spec:'Специализация (через запятую)', l_cert:'Сертификаты (через запятую)',
     s_bank:'Банковские реквизиты', s_bank_note:'Используются для переводов. Строго конфиденциально.', l_bankname:'Название банка', l_iban:'IBAN', l_swift:'SWIFT',
-    btn_save:'Сохранить', saved:'✓ Профиль сохранён', err:'Ошибка сохранения: ' }
+    btn_save:'Сохранить', saved:'✓ Профиль сохранён', err:'Ошибка сохранения: ' },
+  ar: { nav_dash:'لوحة التحكم', nav_profile:'الملف الشخصي', nav_catalog:'الكتالوج', nav_signout:'تسجيل الخروج',
+    h_title:'ملف المصنع', h_sub:'حافظ على تحديث معلوماتك حتى نتمكّن من مطابقتك مع الطلبات المناسبة.',
+    s_company:'بيانات الشركة', l_name:'اسم المصنع', l_contact:'الشخص المسؤول', l_phone:'الهاتف', l_whatsapp:'واتساب', l_website:'الموقع الإلكتروني', l_address:'العنوان', l_city:'المدينة', l_country:'الدولة',
+    s_legal:'القانونية والضرائب', l_tax:'الرقم الضريبي', l_reg:'رقم التسجيل',
+    s_production:'الإنتاج', l_capacity:'الطاقة الشهرية (قطعة)', l_lead:'مدة التنفيذ (أيام)', l_moq:'MOQ لكل موديل', l_spec:'التخصص (مفصول بفواصل)', l_cert:'الشهادات (مفصولة بفواصل)',
+    s_bank:'البيانات البنكية', s_bank_note:'تُستخدَم لتحويلات الدفع. تُحفظ بسرّية تامة.', l_bankname:'اسم البنك', l_iban:'IBAN', l_swift:'SWIFT',
+    btn_save:'حفظ التغييرات', saved:'✓ تم حفظ الملف بنجاح', err:'خطأ في الحفظ: ' }
 };
 
 let currentUser = null;
@@ -182,6 +190,7 @@ let currentLang = 'en';
 
 function setLang(lang) {
   currentLang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('lang-' + lang).classList.add('active');
   const t = UI[lang];

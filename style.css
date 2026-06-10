@@ -12,7 +12,7 @@
   --ink2:       #1c1c1e;
   --ink3:       #2e2e32;
   --stone:      #6b6b72;
-  --mist:       #a8a8b0;
+  --mist:       #78787f;  /* darkened from #a8a8b0 for WCAG contrast (~4.3:1 on white) */
   --silk:       #f4f3f0;
   --cream:      #faf9f6;
   --white:      #ffffff;
@@ -43,6 +43,39 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
 /* ── UTILS ── */
 .container { max-width:1300px; margin:0 auto; padding:0 32px; }
 .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+/* ── ICONS (inline SVG replacing emoji; size inherits from container font-size) ── */
+.ico {
+  width:1em; height:1em;
+  display:inline-block; vertical-align:-0.14em; flex:none;
+  fill:none; stroke:currentColor; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.ico polygon, .ico polyline { stroke-linejoin:round; }
+/* large display icons get a thinner, more elegant stroke */
+.cat-top .ico { stroke-width:1.5; color:var(--ink2); opacity:.9; }
+
+/* ── LANGUAGE SWITCHER (dropdown options are built by i18n.js) ── */
+#langDropdown .wkf-lang-head {
+  padding:4px 10px 8px; font-size:.66rem; text-transform:uppercase;
+  letter-spacing:.12em; color:#8a8a92;
+  border-bottom:1px solid rgba(255,255,255,.08); margin-bottom:5px;
+}
+#langDropdown .wkf-lang-opt {
+  display:flex; align-items:center; gap:9px; width:100%;
+  padding:9px 10px; border:none; border-radius:7px; background:none;
+  color:#cfcfd4; font-size:.88rem; font-family:inherit; text-align:left;
+  cursor:pointer; transition:background .15s, color .15s;
+}
+#langDropdown .wkf-lang-opt:hover { background:rgba(255,255,255,.08); color:#fff; }
+#langDropdown .wkf-lang-opt.active { background:rgba(255,255,255,.12); color:#fff; }
+#langDropdown .wkf-lang-opt .code { margin-left:auto; font-size:.7rem; color:#7a7a82; letter-spacing:.05em; }
+
+/* ── RTL (Arabic) — baseline; fine-tuned in the RTL polish step ── */
+[dir="rtl"] .wkf-lang-opt { text-align:right; }
+[dir="rtl"] .wkf-lang-opt .code { margin-left:0; margin-right:auto; }
+[dir="rtl"] .announce-track { animation-name:marquee-rtl; }
+@keyframes marquee-rtl { 0%{transform:translateX(0)} 100%{transform:translateX(50%)} }
 
 /* ── ANNOUNCE BAR ── */
 .announce {
@@ -556,7 +589,8 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
   background:var(--ink); border-color:transparent;
   color:#fff;
 }
-.svc-icon { font-size:32px; margin-bottom:16px; }
+.svc-icon { font-size:32px; margin-bottom:16px; color:var(--red); line-height:1; }
+.svc-card.featured .svc-icon { color:var(--gold); }
 .svc-card h3 { font-size:16px; font-weight:600; color:var(--ink); margin-bottom:8px; }
 .svc-card.featured h3 { color:#fff; }
 .svc-card p { font-size:13.5px; color:var(--stone); line-height:1.65; margin-bottom:16px; }
@@ -957,3 +991,65 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
 #langWrap button:first-child:hover {
   background: rgba(0,0,0,.1) !important;
 }
+
+/* ───────────────────────────────────────────
+   ACCESSIBILITY
+─────────────────────────────────────────── */
+
+/* Visible keyboard focus (mouse clicks don't trigger :focus-visible) */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* Form fields keep their own focus border + a soft ring */
+.fg input:focus-visible, .fg select:focus-visible,
+.price-row input:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+}
+
+/* Respect users who prefer reduced motion: stop marquees, floats, blinks
+   and near-instant transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .announce-track { animation: none !important; transform: none !important; }
+  .btn-primary:hover, .cat-card:hover, .r-card:hover { transform: none !important; }
+}
+
+/* Touch targets: ensure tappable controls are at least ~44px on touch devices */
+@media (pointer: coarse) {
+  .hdr-icon { min-width:44px; min-height:44px; }
+  .lang-btn, .rf-btn { min-height:40px; }
+}
+
+/* ── MOBILE MENU (built by i18n.js wkfMobileMenu) ── */
+.wkf-burger { display:none; width:42px; height:42px; align-items:center; justify-content:center;
+  background:none; border:none; color:var(--ink); cursor:pointer; border-radius:8px; flex:none; }
+.wkf-burger:hover { background:rgba(0,0,0,.05); }
+.wkf-mnav-overlay { position:fixed; inset:0; background:rgba(0,0,0,.45);
+  opacity:0; visibility:hidden; transition:opacity .25s; z-index:998; }
+.wkf-mnav { position:fixed; top:0; right:0; height:100%; width:min(82vw,320px);
+  background:var(--cream); box-shadow:var(--shadow-lg); transform:translateX(100%);
+  transition:transform .28s cubic-bezier(.4,0,.2,1); z-index:999;
+  padding:60px 22px 28px; overflow-y:auto; display:flex; flex-direction:column; }
+.wkf-mnav-close { position:absolute; top:14px; right:14px; width:40px; height:40px;
+  display:flex; align-items:center; justify-content:center; background:none; border:none; color:var(--ink); cursor:pointer; }
+.wkf-mnav-list { display:flex; flex-direction:column; }
+.wkf-mnav-list a, .wkf-mnav .nav-item { display:block; padding:14px 6px; font-size:1.05rem;
+  font-weight:500; color:var(--ink); border-bottom:1px solid var(--border); border-radius:0; white-space:normal; }
+.wkf-mnav-list a:hover, .wkf-mnav .nav-item:hover { background:none; color:var(--red); }
+.wkf-mnav-cta { margin-top:20px; text-align:center; }
+body.wkf-mnav-open { overflow:hidden; }
+body.wkf-mnav-open .wkf-mnav { transform:translateX(0); }
+body.wkf-mnav-open .wkf-mnav-overlay { opacity:1; visibility:visible; }
+[dir="rtl"] .wkf-mnav { right:auto; left:0; transform:translateX(-100%); }
+[dir="rtl"] .wkf-mnav-close { right:auto; left:14px; }
+[dir="rtl"] body.wkf-mnav-open .wkf-mnav { transform:translateX(0); }
+@media (max-width:960px) { .wkf-burger { display:inline-flex; } }
+@media (prefers-reduced-motion: reduce) { .wkf-mnav, .wkf-mnav-overlay { transition:none !important; } }

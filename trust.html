@@ -31,15 +31,15 @@
 <body>
 
 <div class="announce" aria-hidden="true"><div class="announce-track">
-  <span>📍 Istanbul, Turkey</span><span>·</span>
-  <span>Wholesale only</span><span>·</span>
-  <span>MOQ from 6 pcs</span><span>·</span>
-  <span>DHL · UPS · FedEx</span><span>·</span>
+  <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="x_trust_1">Wholesale only</span><span>·</span>
+  <span data-i18n="fact_moq_h">MOQ from 6 pcs</span><span>·</span>
+  <span data-i18n="ann_ship">DHL · UPS · FedEx</span><span>·</span>
   <span>info@worldkidsfashion.org</span><span>·</span>
-  <span>📍 Istanbul, Turkey</span><span>·</span>
-  <span>Wholesale only</span><span>·</span>
-  <span>MOQ from 6 pcs</span><span>·</span>
-  <span>DHL · UPS · FedEx</span>
+  <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Istanbul, Turkey</span><span>·</span>
+  <span data-i18n="x_trust_2">Wholesale only</span><span>·</span>
+  <span data-i18n="fact_moq_h">MOQ from 6 pcs</span><span>·</span>
+  <span data-i18n="ann_ship">DHL · UPS · FedEx</span>
 </div></div>
 
 <header class="site-header" id="siteHeader">
@@ -53,17 +53,17 @@
       <a href="how-it-works.html" class="nav-item" data-i18n="nav_how_it">How It Works</a>
       <a href="private-label.html" class="nav-item" data-i18n="nav_private">Private Label</a>
       <a href="shipping.html" class="nav-item" data-i18n="nav_shipping">Shipping</a>
-      <a href="trust.html" class="nav-item" style="color:var(--red)">Trust Center</a>
+      <a href="trust.html" class="nav-item" style="color:var(--red)" data-i18n="nav_trust">Trust Center</a>
       <a href="about.html" class="nav-item" data-i18n="nav_about">About</a>
       <a href="contact.html" class="nav-item" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="hdr-right">
-      <a href="cart.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a>
-      <a href="account.html" class="hdr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <a href="cart.html" class="hdr-icon" aria-label="Inquiry list"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="hdr-badge" id="cartCount">0</span></a>
+      <a href="account.html" class="hdr-icon" aria-label="Account"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
       <div id="langWrap" style="position:relative;display:inline-block">
-        <button onclick="wkfToggleLang(event)" style="padding:6px 14px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px">🌐 <span id="langCode">EN</span> ▾</button>
+        <button onclick="wkfToggleLang(event)" aria-label="Switch language" style="padding:6px 14px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:20px;color:var(--ink);font-size:.82rem;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg> <span id="langCode">EN</span> ▾</button>
         <div id="langDropdown" style="display:none;position:fixed;top:56px;right:12px;background:#1a1a1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;min-width:158px;box-shadow:0 16px 48px rgba(0,0,0,.7);z-index:99999">
-          <div style="padding:4px 10px 6px;font-size:.68rem;color:#666;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px">Language</div>
+          <div style="padding:4px 10px 6px;font-size:.68rem;color:#666;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:4px" data-i18n="lang_choose">Language</div>
           <button onclick="wkfSetLang('en')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇬🇧 English</button>
           <button onclick="wkfSetLang('ru')" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.86rem;color:#ccc;background:none;border:none;width:100%;text-align:left;font-family:inherit">🇷🇺 Русский</button>
         </div>
@@ -76,16 +76,16 @@
 <!-- BREADCRUMB -->
 <div style="background:var(--silk);border-bottom:1px solid var(--border);padding:12px 0">
   <div class="container" style="font-size:.82rem;color:var(--stone)">
-    <a href="index.html" style="color:var(--stone)">Home</a> › Trust Center
+    <a href="index.html" style="color:var(--stone)" data-i18n="bc_home">Home</a> › Trust Center
   </div>
 </div>
 
 <!-- HERO -->
 <div style="background:var(--ink);color:#fff;padding:60px 0">
   <div class="container" style="max-width:800px">
-    <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4)">Trust & Transparency</span>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin:12px 0 16px">Trust Center</h1>
-    <p style="color:rgba(255,255,255,.6);font-size:1rem;line-height:1.8;max-width:600px">
+    <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4)" data-i18n="x_trust_3">Trust & Transparency</span>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin:12px 0 16px" data-i18n="nav_trust">Trust Center</h1>
+    <p style="color:rgba(255,255,255,.6);font-size:1rem;line-height:1.8;max-width:600px" data-i18n="x_trust_4">
       This page provides verifiable information about our company, processes, certifications and buyer protection. We believe buyers should be able to verify who they are working with before sending money.
     </p>
   </div>
@@ -96,49 +96,49 @@
   <!-- 1. COMPANY INFORMATION -->
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-label">Company Information</div>
+      <div class="trust-label" data-i18n="x_trust_5">Company Information</div>
       <div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Legal Entity</h2>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px" data-i18n="x_trust_6">Legal Entity</h2>
         <div class="info-row">
           <div class="info-item">
-            <div class="info-key">Legal company name</div>
-            <div class="info-val placeholder">[Company name to be added — e.g. Globality Mobile Ltd.]</div>
+            <div class="info-key" data-i18n="x_trust_7">Legal company name</div>
+            <div class="info-val placeholder" data-i18n="x_trust_8">[Company name to be added — e.g. Globality Mobile Ltd.]</div>
           </div>
           <div class="info-item">
-            <div class="info-key">Registration number</div>
-            <div class="info-val placeholder">[Company registration number]</div>
+            <div class="info-key" data-i18n="x_trust_9">Registration number</div>
+            <div class="info-val placeholder" data-i18n="x_trust_10">[Company registration number]</div>
           </div>
           <div class="info-item">
-            <div class="info-key">Tax / VAT number</div>
-            <div class="info-val placeholder">[Tax identification number]</div>
+            <div class="info-key" data-i18n="x_trust_11">Tax / VAT number</div>
+            <div class="info-val placeholder" data-i18n="x_trust_12">[Tax identification number]</div>
           </div>
           <div class="info-item">
-            <div class="info-key">Registered address</div>
-            <div class="info-val placeholder">[Registered legal address — Istanbul, Turkey]</div>
+            <div class="info-key" data-i18n="x_trust_13">Registered address</div>
+            <div class="info-val placeholder" data-i18n="x_trust_14">[Registered legal address — Istanbul, Turkey]</div>
           </div>
           <div class="info-item">
-            <div class="info-key">Operating address</div>
-            <div class="info-val">Istanbul, Turkey</div>
+            <div class="info-key" data-i18n="x_trust_15">Operating address</div>
+            <div class="info-val" data-i18n="ann_istanbul">Istanbul, Turkey</div>
           </div>
           <div class="info-item">
-            <div class="info-key">Email</div>
+            <div class="info-key" data-i18n="acc_email">Email</div>
             <div class="info-val"><a href="mailto:info@worldkidsfashion.org" style="color:var(--red)">info@worldkidsfashion.org</a></div>
           </div>
           <div class="info-item">
-            <div class="info-key">WhatsApp / Phone</div>
+            <div class="info-key" data-i18n="form_phone">WhatsApp / Phone</div>
             <div class="info-val"><a href="https://wa.me/995598146418" style="color:var(--red)">+995 598 146 418</a></div>
           </div>
           <div class="info-item">
-            <div class="info-key">Office phone</div>
+            <div class="info-key" data-i18n="x_trust_16">Office phone</div>
             <div class="info-val">+33 6 95 61 12 93</div>
           </div>
           <div class="info-item">
-            <div class="info-key">Working hours</div>
-            <div class="info-val">Monday – Friday, 09:00 – 18:00 GMT+3 (Istanbul time)</div>
+            <div class="info-key" data-i18n="x_trust_17">Working hours</div>
+            <div class="info-val" data-i18n="x_trust_18">Monday – Friday, 09:00 – 18:00 GMT+3 (Istanbul time)</div>
           </div>
           <div class="info-item">
-            <div class="info-key">Languages</div>
-            <div class="info-val">English, Russian, Turkish, French</div>
+            <div class="info-key" data-i18n="x_trust_19">Languages</div>
+            <div class="info-val" data-i18n="x_trust_20">English, Russian, Turkish, French</div>
           </div>
         </div>
       </div>
@@ -148,48 +148,48 @@
   <!-- 2. QUALITY CONTROL -->
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-label">Quality Control</div>
+      <div class="trust-label" data-i18n="val3_h">Quality Control</div>
       <div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Pre-Shipment Quality Check</h2>
-        <p style="color:var(--stone);font-size:.9rem;margin-bottom:24px;line-height:1.8">Every wholesale order is checked before packing and dispatch. The following steps apply to standard stock orders:</p>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px" data-i18n="x_trust_21">Pre-Shipment Quality Check</h2>
+        <p style="color:var(--stone);font-size:.9rem;margin-bottom:24px;line-height:1.8" data-i18n="x_trust_22">Every wholesale order is checked before packing and dispatch. The following steps apply to standard stock orders:</p>
         <div class="info-row">
           <div class="process-step">
             <div class="step-num">1</div>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Quantity verification</div>
-              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">All items are counted against the confirmed order. Quantities are verified before packing.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_23">Quantity verification</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6" data-i18n="x_trust_24">All items are counted against the confirmed order. Quantities are verified before packing.</div>
             </div>
           </div>
           <div class="process-step">
             <div class="step-num">2</div>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Size and label check</div>
-              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">Size breakdown is verified against the order confirmation. Labels and hangtags are checked if applicable.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_25">Size and label check</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6" data-i18n="x_trust_26">Size breakdown is verified against the order confirmation. Labels and hangtags are checked if applicable.</div>
             </div>
           </div>
           <div class="process-step">
             <div class="step-num">3</div>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Visible defect inspection</div>
-              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">Products are inspected for visible manufacturing defects, stains, damaged stitching or printing issues.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_27">Visible defect inspection</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6" data-i18n="x_trust_28">Products are inspected for visible manufacturing defects, stains, damaged stitching or printing issues.</div>
             </div>
           </div>
           <div class="process-step">
             <div class="step-num">4</div>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Packing and documentation</div>
-              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">Order is packed, packing list is prepared, commercial invoice and export documents are issued.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_29">Packing and documentation</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6" data-i18n="x_trust_30">Order is packed, packing list is prepared, commercial invoice and export documents are issued.</div>
             </div>
           </div>
           <div class="process-step">
             <div class="step-num">5</div>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Photo confirmation (on request)</div>
-              <div style="font-size:.85rem;color:var(--stone);line-height:1.6">For orders above a certain value or on buyer request, packing photos are provided before dispatch.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_31">Photo confirmation (on request)</div>
+              <div style="font-size:.85rem;color:var(--stone);line-height:1.6" data-i18n="x_trust_32">For orders above a certain value or on buyer request, packing photos are provided before dispatch.</div>
             </div>
           </div>
         </div>
-        <div style="margin-top:20px" class="placeholder">
+        <div style="margin-top:20px" class="placeholder" data-i18n="x_trust_33">
           Warehouse and packing process photos will be added here.
         </div>
       </div>
@@ -199,42 +199,42 @@
   <!-- 3. CERTIFICATIONS -->
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-label">Certifications</div>
+      <div class="trust-label" data-i18n="filter_cert">Certifications</div>
       <div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:12px">Product Certifications</h2>
-        <p style="color:var(--stone);font-size:.9rem;margin-bottom:24px;line-height:1.8">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:12px" data-i18n="x_trust_34">Product Certifications</h2>
+        <p style="color:var(--stone);font-size:.9rem;margin-bottom:24px;line-height:1.8" data-i18n="x_trust_35">
           Certification availability varies by product and manufacturer. We do not claim blanket certification across our entire range. Certificate documents are available on request for products where certification applies.
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
           <div class="cert-card">
-            <div style="font-size:1.6rem">🌿</div>
-            <div class="cert-name">GOTS (Global Organic Textile Standard)</div>
-            <div class="cert-detail">Available for selected products where the manufacturer holds current GOTS certification.</div>
+            <div style="font-size:1.6rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+            <div class="cert-name" data-i18n="x_trust_36">GOTS (Global Organic Textile Standard)</div>
+            <div class="cert-detail" data-i18n="x_trust_37">Available for selected products where the manufacturer holds current GOTS certification.</div>
             <div class="cert-detail" style="margin-top:4px">
-              <span style="font-weight:600">Certificate number:</span>
-              <span class="placeholder" style="display:inline;padding:2px 8px">Available on request per product</span>
+              <span style="font-weight:600" data-i18n="x_trust_38">Certificate number:</span>
+              <span class="placeholder" style="display:inline;padding:2px 8px" data-i18n="x_trust_39">Available on request per product</span>
             </div>
             <div class="cert-detail">
-              <span style="font-weight:600">Scope:</span> Per product / per manufacturer
+              <span style="font-weight:600" data-i18n="x_trust_40">Scope:</span> Per product / per manufacturer
             </div>
-            <div style="margin-top:8px;font-size:.78rem;color:var(--red)">Request certificate for specific product →</div>
+            <div style="margin-top:8px;font-size:.78rem;color:var(--red)" data-i18n="x_trust_41">Request certificate for specific product →</div>
           </div>
           <div class="cert-card">
-            <div style="font-size:1.6rem">🔬</div>
-            <div class="cert-name">OEKO-TEX Standard 100</div>
-            <div class="cert-detail">Available for selected products. Confirms no harmful substances above legal limits.</div>
+            <div style="font-size:1.6rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.58 16.5h12.85"/></svg></div>
+            <div class="cert-name" data-i18n="x_trust_42">OEKO-TEX Standard 100</div>
+            <div class="cert-detail" data-i18n="x_trust_43">Available for selected products. Confirms no harmful substances above legal limits.</div>
             <div class="cert-detail" style="margin-top:4px">
-              <span style="font-weight:600">Certificate number:</span>
-              <span class="placeholder" style="display:inline;padding:2px 8px">Available on request per product</span>
+              <span style="font-weight:600" data-i18n="x_trust_44">Certificate number:</span>
+              <span class="placeholder" style="display:inline;padding:2px 8px" data-i18n="x_trust_45">Available on request per product</span>
             </div>
             <div class="cert-detail">
-              <span style="font-weight:600">Scope:</span> Per product / per manufacturer
+              <span style="font-weight:600" data-i18n="x_trust_46">Scope:</span> Per product / per manufacturer
             </div>
-            <div style="margin-top:8px;font-size:.78rem;color:var(--red)">Request certificate for specific product →</div>
+            <div style="margin-top:8px;font-size:.78rem;color:var(--red)" data-i18n="x_trust_47">Request certificate for specific product →</div>
           </div>
         </div>
         <div style="margin-top:16px;padding:14px 16px;background:#fff3cd;border:1px solid #ffc107;border-radius:var(--r);font-size:.85rem;color:#856404">
-          <strong>Important:</strong> Always request the specific certificate document before placing an order if certification is a purchasing requirement for your market.
+          <strong data-i18n="customs_imp">Important:</strong> Always request the specific certificate document before placing an order if certification is a purchasing requirement for your market.
         </div>
       </div>
     </div>
@@ -243,42 +243,42 @@
   <!-- 4. SHIPPING PARTNERS -->
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-label">Shipping Partners</div>
+      <div class="trust-label" data-i18n="x_trust_48">Shipping Partners</div>
       <div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Logistics Partners</h2>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px" data-i18n="x_trust_49">Logistics Partners</h2>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
           <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
-            <div style="font-size:2rem;margin-bottom:8px">✈️</div>
-            <div style="font-weight:600;margin-bottom:4px">DHL Express</div>
-            <div style="font-size:.78rem;color:var(--stone)">2–5 business days to most countries. Full tracking.</div>
+            <div style="font-size:2rem;margin-bottom:8px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
+            <div style="font-weight:600;margin-bottom:4px" data-i18n="ship1_h">DHL Express</div>
+            <div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_50">2–5 business days to most countries. Full tracking.</div>
           </div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
-            <div style="font-size:2rem;margin-bottom:8px">📦</div>
+            <div style="font-size:2rem;margin-bottom:8px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg></div>
             <div style="font-weight:600;margin-bottom:4px">UPS</div>
-            <div style="font-size:.78rem;color:var(--stone)">Available for most international destinations.</div>
+            <div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_51">Available for most international destinations.</div>
           </div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
-            <div style="font-size:2rem;margin-bottom:8px">🚀</div>
-            <div style="font-weight:600;margin-bottom:4px">FedEx</div>
-            <div style="font-size:.78rem;color:var(--stone)">Available on request for selected routes.</div>
+            <div style="font-size:2rem;margin-bottom:8px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+            <div style="font-weight:600;margin-bottom:4px" data-i18n="x_trust_52">FedEx</div>
+            <div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_53">Available on request for selected routes.</div>
           </div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
-            <div style="font-size:2rem;margin-bottom:8px">🚢</div>
-            <div style="font-weight:600;margin-bottom:4px">Air Cargo</div>
-            <div style="font-size:.78rem;color:var(--stone)">For larger volume orders. Cost-effective for heavy shipments.</div>
+            <div style="font-size:2rem;margin-bottom:8px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.2V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.4 20A11.6 11.6 0 0 0 21 14l-8.2-3.6a2 2 0 0 0-1.6 0L3 14a11.6 11.6 0 0 0 2.8 7.8"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></div>
+            <div style="font-weight:600;margin-bottom:4px" data-i18n="x_trust_54">Air Cargo</div>
+            <div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_55">For larger volume orders. Cost-effective for heavy shipments.</div>
           </div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center">
-            <div style="font-size:2rem;margin-bottom:8px">🚛</div>
-            <div style="font-weight:600;margin-bottom:4px">Road Cargo</div>
-            <div style="font-size:.78rem;color:var(--stone)">For European destinations. Larger volumes.</div>
+            <div style="font-size:2rem;margin-bottom:8px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></div>
+            <div style="font-weight:600;margin-bottom:4px" data-i18n="x_trust_56">Road Cargo</div>
+            <div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_57">For European destinations. Larger volumes.</div>
           </div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center;opacity:.6">
-            <div style="font-size:2rem;margin-bottom:8px">📋</div>
-            <div style="font-weight:600;margin-bottom:4px">Custom arrangements</div>
-            <div style="font-size:.78rem;color:var(--stone)">Buyer's own freight forwarder accepted for large orders.</div>
+            <div style="font-size:2rem;margin-bottom:8px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
+            <div style="font-weight:600;margin-bottom:4px" data-i18n="x_trust_58">Custom arrangements</div>
+            <div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_59">Buyer's own freight forwarder accepted for large orders.</div>
           </div>
         </div>
-        <p style="margin-top:16px;font-size:.85rem;color:var(--stone)">
+        <p style="margin-top:16px;font-size:.85rem;color:var(--stone)" data-i18n="x_trust_60">
           Shipping cost is calculated based on destination, weight, volume and delivery method. A shipping quote is included in the proforma invoice.
         </p>
       </div>
@@ -288,36 +288,36 @@
   <!-- 5. PAYMENT SAFETY -->
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-label">Payment Safety</div>
+      <div class="trust-label" data-i18n="x_trust_61">Payment Safety</div>
       <div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">How We Handle Payments</h2>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px" data-i18n="x_trust_62">How We Handle Payments</h2>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="display:flex;gap:12px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
-            <span style="font-size:1.2rem;flex-shrink:0">📋</span>
+            <span style="font-size:1.2rem;flex-shrink:0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Proforma invoice before every payment</div>
-              <div style="font-size:.85rem;color:var(--stone)">You receive a detailed proforma invoice before making any payment. The invoice includes product list, quantities, prices, shipping cost and payment details.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="wdo6">Proforma invoice before every payment</div>
+              <div style="font-size:.85rem;color:var(--stone)" data-i18n="x_trust_63">You receive a detailed proforma invoice before making any payment. The invoice includes product list, quantities, prices, shipping cost and payment details.</div>
             </div>
           </div>
           <div style="display:flex;gap:12px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
-            <span style="font-size:1.2rem;flex-shrink:0">🏦</span>
+            <span style="font-size:1.2rem;flex-shrink:0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Verified bank account details</div>
-              <div class="placeholder">Bank account name, IBAN/SWIFT and correspondent bank details will be displayed here.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_64">Verified bank account details</div>
+              <div class="placeholder" data-i18n="x_trust_65">Bank account name, IBAN/SWIFT and correspondent bank details will be displayed here.</div>
             </div>
           </div>
           <div style="display:flex;gap:12px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)">
-            <span style="font-size:1.2rem;flex-shrink:0">📧</span>
+            <span style="font-size:1.2rem;flex-shrink:0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Payment confirmation</div>
-              <div style="font-size:.85rem;color:var(--stone)">We confirm receipt of payment by email before starting production or dispatch.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_66">Payment confirmation</div>
+              <div style="font-size:.85rem;color:var(--stone)" data-i18n="x_trust_67">We confirm receipt of payment by email before starting production or dispatch.</div>
             </div>
           </div>
           <div style="display:flex;gap:12px;padding:16px;background:#fff3cd;border:1px solid #ffc107;border-radius:var(--r-lg)">
-            <span style="font-size:1.2rem;flex-shrink:0">⚠️</span>
+            <span style="font-size:1.2rem;flex-shrink:0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
             <div>
-              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">Verify payment details carefully</div>
-              <div style="font-size:.85rem;color:#856404">Always verify bank account details directly with our team before making any transfer. We will never ask you to change payment details by email without phone confirmation.</div>
+              <div style="font-weight:600;font-size:.9rem;margin-bottom:4px" data-i18n="x_trust_68">Verify payment details carefully</div>
+              <div style="font-size:.85rem;color:#856404" data-i18n="x_trust_69">Always verify bank account details directly with our team before making any transfer. We will never ask you to change payment details by email without phone confirmation.</div>
             </div>
           </div>
         </div>
@@ -328,52 +328,52 @@
   <!-- 6. BUYER PROTECTION -->
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-label">Buyer Protection</div>
+      <div class="trust-label" data-i18n="x_trust_70">Buyer Protection</div>
       <div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Claim &amp; Dispute Process</h2>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px" data-i18n="x_trust_71">Claim &amp; Dispute Process</h2>
 
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px">How to file a claim</h3>
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px" data-i18n="x_trust_72">How to file a claim</h3>
         <div class="claim-row">
           <div>
-            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 1: Contact us within 3 business days</div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px" data-i18n="x_trust_73">Step 1: Contact us within 3 business days</div>
             <div style="font-size:.82rem;color:var(--stone)">Email info@worldkidsfashion.org or WhatsApp. Include your order number.</div>
           </div>
           <div>
-            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 2: Provide documentation</div>
-            <div style="font-size:.82rem;color:var(--stone)">Photos or video of the issue. Keep original packaging where possible.</div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px" data-i18n="x_trust_74">Step 2: Provide documentation</div>
+            <div style="font-size:.82rem;color:var(--stone)" data-i18n="x_trust_75">Photos or video of the issue. Keep original packaging where possible.</div>
           </div>
         </div>
         <div class="claim-row">
           <div>
-            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 3: We review</div>
-            <div style="font-size:.82rem;color:var(--stone)">Our team reviews the claim within 3–5 business days and proposes a resolution.</div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px" data-i18n="x_trust_76">Step 3: We review</div>
+            <div style="font-size:.82rem;color:var(--stone)" data-i18n="x_trust_77">Our team reviews the claim within 3–5 business days and proposes a resolution.</div>
           </div>
           <div>
-            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px">Step 4: Resolution</div>
-            <div style="font-size:.82rem;color:var(--stone)">Replacement, store credit or agreed refund depending on the nature of the claim.</div>
+            <div style="font-weight:600;font-size:.88rem;margin-bottom:6px" data-i18n="x_trust_78">Step 4: Resolution</div>
+            <div style="font-size:.82rem;color:var(--stone)" data-i18n="x_trust_79">Replacement, store credit or agreed refund depending on the nature of the claim.</div>
           </div>
         </div>
 
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px">Valid claims cover</h3>
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px" data-i18n="x_trust_80">Valid claims cover</h3>
         <ul style="display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--stone)">
-          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Wrong item delivered</li>
-          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Wrong size delivered</li>
-          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Missing quantity</li>
-          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Visible manufacturing defect</li>
-          <li style="display:flex;gap:8px"><span style="color:#16a34a">✓</span> Damage caused before dispatch</li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> <span data-i18n="x_trustl_1">Wrong item delivered</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> <span data-i18n="x_trustl_2">Wrong size delivered</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> <span data-i18n="x_trustl_3">Missing quantity</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> <span data-i18n="x_trustl_4">Visible manufacturing defect</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#16a34a"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> <span data-i18n="x_trustl_5">Damage caused before dispatch</span></li>
         </ul>
 
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px">Claims do not cover</h3>
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:12px;margin-top:24px" data-i18n="x_trust_81">Claims do not cover</h3>
         <ul style="display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--stone)">
-          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Unsold inventory</li>
-          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Change of mind after shipment</li>
-          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Incorrect size selection by buyer</li>
-          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Customs delays or import refusal</li>
-          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> Local import charges</li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> <span data-i18n="x_trustl_6">Unsold inventory</span></li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> <span data-i18n="x_trustl_7">Change of mind after shipment</span></li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> <span data-i18n="x_trustl_8">Incorrect size selection by buyer</span></li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> <span data-i18n="x_trustl_9">Customs delays or import refusal</span></li>
+          <li style="display:flex;gap:8px"><span style="color:var(--red)">✕</span> <span data-i18n="x_trustl_10">Local import charges</span></li>
         </ul>
 
         <div style="margin-top:24px">
-          <a href="returns.html" style="color:var(--red);font-size:.88rem;font-weight:600">Full Return &amp; Refund Policy →</a>
+          <a href="returns.html" style="color:var(--red);font-size:.88rem;font-weight:600" data-i18n="x_trust_82">Full Return &amp; Refund Policy →</a>
         </div>
       </div>
     </div>
@@ -382,33 +382,33 @@
   <!-- 7. LEGAL DOCS -->
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-label">Legal Documents</div>
+      <div class="trust-label" data-i18n="x_trust_83">Legal Documents</div>
       <div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px">Policies &amp; Terms</h2>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:20px" data-i18n="x_trust_84">Policies &amp; Terms</h2>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
           <a href="terms.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
-            <span style="font-size:1.4rem">📄</span>
-            <div><div style="font-weight:600;font-size:.9rem">Terms &amp; Conditions</div><div style="font-size:.78rem;color:var(--stone)">B2B purchase terms</div></div>
+            <span style="font-size:1.4rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
+            <div><div style="font-weight:600;font-size:.9rem" data-i18n="x_trust_85">Terms &amp; Conditions</div><div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_86">B2B purchase terms</div></div>
           </a>
           <a href="privacy.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
-            <span style="font-size:1.4rem">🔒</span>
-            <div><div style="font-weight:600;font-size:.9rem">Privacy Policy</div><div style="font-size:.78rem;color:var(--stone)">How we handle data (GDPR)</div></div>
+            <span style="font-size:1.4rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <div><div style="font-weight:600;font-size:.9rem" data-i18n="ft_privacy">Privacy Policy</div><div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_87">How we handle data (GDPR)</div></div>
           </a>
           <a href="shipping.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
-            <span style="font-size:1.4rem">🚚</span>
-            <div><div style="font-weight:600;font-size:.9rem">Shipping Policy</div><div style="font-size:.78rem;color:var(--stone)">Carriers, costs, customs</div></div>
+            <span style="font-size:1.4rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span>
+            <div><div style="font-weight:600;font-size:.9rem" data-i18n="ft_ship">Shipping Policy</div><div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_88">Carriers, costs, customs</div></div>
           </a>
           <a href="returns.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
-            <span style="font-size:1.4rem">↩️</span>
-            <div><div style="font-weight:600;font-size:.9rem">Return &amp; Refund Policy</div><div style="font-size:.78rem;color:var(--stone)">Claims and defect process</div></div>
+            <span style="font-size:1.4rem">↩</span>
+            <div><div style="font-weight:600;font-size:.9rem" data-i18n="x_trust_89">Return &amp; Refund Policy</div><div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_90">Claims and defect process</div></div>
           </a>
           <a href="cookies.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
-            <span style="font-size:1.4rem">🍪</span>
-            <div><div style="font-weight:600;font-size:.9rem">Cookie Policy</div><div style="font-size:.78rem;color:var(--stone)">Cookies and tracking</div></div>
+            <span style="font-size:1.4rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg></span>
+            <div><div style="font-weight:600;font-size:.9rem" data-i18n="ft_cookies">Cookie Policy</div><div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_91">Cookies and tracking</div></div>
           </a>
           <a href="impressum.html" style="display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;color:var(--ink);transition:box-shadow .2s">
-            <span style="font-size:1.4rem">🏢</span>
-            <div><div style="font-weight:600;font-size:.9rem">Impressum</div><div style="font-size:.78rem;color:var(--stone)">Legal company information</div></div>
+            <span style="font-size:1.4rem"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M8 10h.01"/></svg></span>
+            <div><div style="font-weight:600;font-size:.9rem" data-i18n="ft_impressum">Impressum</div><div style="font-size:.78rem;color:var(--stone)" data-i18n="x_trust_92">Legal company information</div></div>
           </a>
         </div>
       </div>
@@ -425,32 +425,32 @@
         <a href="index.html" class="logo-wrap ft-logo"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main" style="color:#fff">WorldKidsFashion</span><span class="logo-sub"><span data-i18n="logo_sub2">Wholesale B2B</span></div></a>
         <p class="ft-brand-text">Wholesale kids and baby clothing from Istanbul, Turkey. Not for retail consumers.</p>
         <div style="margin-top:12px;font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.8">
-          <div>📧 info@worldkidsfashion.org</div>
-          <div>💬 +995 598 146 418</div>
-          <div>📍 Istanbul, Turkey</div>
+          <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> info@worldkidsfashion.org</div>
+          <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> +995 598 146 418</div>
+          <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Istanbul, Turkey</div>
         </div>
       </div>
       <div class="ft-col">
-        <h4>Wholesale</h4>
-        <a href="catalog.html">Catalog</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="private-label.html">Private Label</a>
-        <a href="shipping.html">Shipping</a>
+        <h4 data-i18n="svc1_h">Wholesale</h4>
+        <a href="catalog.html" data-i18n="nav_catalog">Catalog</a>
+        <a href="how-it-works.html" data-i18n="how_eye_idx">How It Works</a>
+        <a href="private-label.html" data-i18n="nav_private">Private Label</a>
+        <a href="shipping.html" data-i18n="nav_shipping">Shipping</a>
       </div>
       <div class="ft-col">
         <h4>Legal</h4>
         <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="cookies.html">Cookie Policy</a>
-        <a href="shipping.html">Shipping Policy</a>
+        <a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a>
+        <a href="cookies.html" data-i18n="ft_cookies">Cookie Policy</a>
+        <a href="shipping.html" data-i18n="ft_ship">Shipping Policy</a>
         <a href="returns.html">Return &amp; Refund Policy</a>
-        <a href="impressum.html">Impressum</a>
+        <a href="impressum.html" data-i18n="ft_impressum">Impressum</a>
       </div>
       <div class="ft-col">
-        <h4>Company</h4>
-        <a href="about.html">About</a>
-        <a href="trust.html">Trust Center</a>
-        <a href="contact.html">Contact</a>
+        <h4 data-i18n="acc_company">Company</h4>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="trust.html" data-i18n="nav_trust">Trust Center</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
         <a href="register.html">Register</a>
       </div>
     </div>

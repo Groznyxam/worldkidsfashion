@@ -54,7 +54,7 @@
 <body>
 
 <header class="site-header" id="siteHeader"><div class="hdr-inner">
-  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub">Wholesale B2B</span></div></a>
+  <a href="index.html" class="logo-wrap"><div class="logo-icon"></div><div class="logo-text"><span class="logo-main">WorldKidsFashion</span><span class="logo-sub" data-i18n="logo_sub2">Wholesale B2B</span></div></a>
   <nav class="hdr-nav">
     <a href="catalog.html">← Continue browsing</a>
   </nav>
@@ -62,29 +62,29 @@
 
 <div class="inq-wrap">
   <div class="inq-header">
-    <h1>Your Inquiry</h1>
-    <p>Review selected products, specify quantities and submit a quote request.</p>
+    <h1 data-i18n="x_inquiry_1">Your Inquiry</h1>
+    <p data-i18n="x_inquiry_2">Review selected products, specify quantities and submit a quote request.</p>
   </div>
 
-  <div id="loading" style="text-align:center;padding:40px;color:#8a8580">Loading…</div>
+  <div id="loading" style="text-align:center;padding:40px;color:#8a8580" data-i18n="loading_text">Loading…</div>
 
   <!-- Empty state -->
   <div id="emptyState" class="empty-state" style="display:none">
-    <h2>📋 Your inquiry is empty</h2>
-    <p>Browse the catalog and add products to your inquiry list.</p>
-    <a href="catalog.html">Browse Catalog</a>
+    <h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg> <span data-i18n="x_inquiryl_1">Your inquiry is empty</span></h2>
+    <p data-i18n="x_inquiry_3">Browse the catalog and add products to your inquiry list.</p>
+    <a href="catalog.html" data-i18n="x_inquiry_4">Browse Catalog</a>
   </div>
 
   <!-- Login required -->
   <div id="loginRequired" class="empty-state" style="display:none">
-    <h2>Sign in to submit inquiry</h2>
-    <p>You need a verified wholesale account to submit a quote request.</p>
-    <a href="login.html">Sign In</a>
+    <h2 data-i18n="x_inquiry_5">Sign in to submit inquiry</h2>
+    <p data-i18n="x_inquiry_6">You need a verified wholesale account to submit a quote request.</p>
+    <a href="login.html" data-i18n="login_submit">Sign In</a>
   </div>
 
   <!-- Pending verification -->
   <div id="pendingStatus" class="status-banner status-pending" style="display:none">
-    <strong>⏳ Account pending verification</strong><br>
+    <strong data-i18n="x_inquiry_7">⏳ Account pending verification</strong><br>
     You can prepare your inquiry but cannot submit it until your account is approved. This usually takes 1-2 business days.
   </div>
 
@@ -94,14 +94,14 @@
     <div class="item-list" id="itemList"></div>
 
     <div class="form-section">
-      <h2>Delivery & Timeline</h2>
+      <h2 data-i18n="x_inquiry_8">Delivery & Timeline</h2>
       <div class="form-row-grid">
         <div class="form-row">
-          <label>Delivery Country *</label>
+          <label data-i18n="x_inquiry_9">Delivery Country *</label>
           <input type="text" id="deliveryCountry" required placeholder="e.g. France, Germany, USA">
         </div>
         <div class="form-row">
-          <label>Delivery Method</label>
+          <label data-i18n="x_inquiry_10">Delivery Method</label>
           <select id="deliveryMethod">
             <option value="">— Select —</option>
             <option value="DHL Express">DHL Express</option>
@@ -114,26 +114,26 @@
         </div>
       </div>
       <div class="form-row">
-        <label>Required by (date)</label>
+        <label data-i18n="x_inquiry_11">Required by (date)</label>
         <input type="date" id="requiredBy">
       </div>
       <div class="form-row">
-        <label>Additional notes</label>
+        <label data-i18n="x_inquiry_12">Additional notes</label>
         <textarea id="buyerMessage" placeholder="Specific requirements, branding requests, sample order preferences, etc."></textarea>
       </div>
     </div>
 
     <div id="errorBox" class="error-box"></div>
 
-    <button class="btn-submit" id="submitBtn" onclick="submitInquiry()">Submit Quote Request</button>
+    <button class="btn-submit" id="submitBtn" onclick="submitInquiry()" data-i18n="x_inquiry_13">Submit Quote Request</button>
 
   </div>
 
   <!-- Success -->
   <div id="successBox" class="success-box" style="display:none">
-    <h2>✓ Inquiry Submitted</h2>
-    <p>Your quote request has been received. Our team will review and respond within 1-2 business days with a proforma invoice.</p>
-    <a href="account.html" style="display:inline-block;padding:12px 24px;background:#15803d;color:#fff;text-decoration:none;border-radius:8px;font-weight:600">View My Inquiries</a>
+    <h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="x_inquiryl_2">Inquiry Submitted</span></h2>
+    <p data-i18n="x_inquiry_14">Your quote request has been received. Our team will review and respond within 1-2 business days with a proforma invoice.</p>
+    <a href="account.html" style="display:inline-block;padding:12px 24px;background:#15803d;color:#fff;text-decoration:none;border-radius:8px;font-weight:600" data-i18n="x_inquiry_15">View My Inquiries</a>
   </div>
 
 </div>
