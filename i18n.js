@@ -1243,13 +1243,20 @@ function wkfSetLang(code){
   const t=WKF_LANGS[code];
   document.documentElement.lang=code;
   document.documentElement.dir=WKF_RTL_LANGS.indexOf(code)>=0?'rtl':'ltr';
+  // Capture the page's original English (from the DOM) once, so EN always
+  // restores and any key missing a translation falls back to English.
+  if(!window.WKF_ORIG) window.WKF_ORIG={};
+  if(!window.WKF_ORIG_PH) window.WKF_ORIG_PH={};
+  const O=window.WKF_ORIG, OP=window.WKF_ORIG_PH;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.getAttribute('data-i18n');
-    if(t[k]!==undefined) el.innerHTML=t[k];
+    if(O[k]===undefined) O[k]=el.innerHTML;
+    el.innerHTML = (code==='en') ? O[k] : (t[k]!==undefined ? t[k] : O[k]);
   });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
     const k=el.getAttribute('data-i18n-ph');
-    if(t[k]!==undefined) el.placeholder=t[k];
+    if(OP[k]===undefined) OP[k]=el.placeholder;
+    el.placeholder = (code==='en') ? OP[k] : (t[k]!==undefined ? t[k] : OP[k]);
   });
   const lc=document.getElementById('langCode');
   if(lc){lc.textContent=code.toUpperCase();lc.style.color='var(--ink)';}
@@ -1271,4 +1278,88 @@ document.addEventListener('click',function(e){
   const w=document.getElementById('langWrap');
   const d=document.getElementById('langDropdown');
   if(w && d && !w.contains(e.target)) d.style.display='none';
+});
+
+// ─────────────────────────────────────────────────────────────
+// DEEP PAGE CONTENT — body text not in the base dictionary.
+// English comes from each page's DOM (WKF_ORIG fallback); only RU/TR/AR here.
+// NOTE: legal pages are machine-translated — have a native speaker review
+// before relying on them legally.
+// ─────────────────────────────────────────────────────────────
+
+// shipping.html
+Object.assign(WKF_LANGS.ru, {
+  x_shipping_1:'Только опт', x_shipping_2:'Только опт',
+  x_shipping_3:'Обновлено: май 2025',
+  x_shipping_4:'Мы отправляем оптовые заказы из Стамбула (Турция) через международных курьерских и карго-партнёров. Эта политика объясняет, как работает доставка, какие расходы ожидать и за что отвечает покупатель.',
+  x_shipping_5:'Способы доставки',
+  x_shipping_6:'Доступные способы доставки зависят от страны назначения, веса и объёма заказа. Обычно мы отправляем через:',
+  x_shipping_7:'FedEx', x_shipping_8:'Авиакарго', x_shipping_9:'Автокарго',
+  x_shipping_10:'Экспедитор покупателя',
+  x_shipping_11:'Стоимость доставки',
+  x_shipping_12:'Стоимость доставки рассчитывается исходя из страны назначения, веса упаковки, объёма (объёмного веса), стоимости заказа и выбранного способа доставки. Стоимость доставки включается в проформа-счёт до оплаты.',
+  x_shipping_13:'Мы не применяем сплошную политику бесплатной доставки. Любое предложение бесплатной доставки, если оно есть, будет явно указано с применимыми условиями (минимальная сумма заказа, подходящие страны, ограничения по весу и объёму) в момент оформления.',
+  x_shipping_14:'Надбавки за отдалённые районы:',
+  x_shipping_15:'Сроки отправки',
+  x_shipping_16:'Заказы из наличия:', x_shipping_17:'Заказы под собственной маркой:', x_shipping_18:'Заказы на индивидуальное производство:',
+  x_shipping_19:'Таможня, пошлины и импортные налоги',
+  x_shipping_20:'WorldKidsFashion отправляет на условиях DAP (Delivered at Place), если не согласовано иное. Это означает:',
+  x_shipping_21:'Мы отвечаем за товар и стоимость доставки до границы страны назначения.',
+  x_shipping_22:'Покупатель отвечает за таможенное оформление, импортные пошлины и любые местные налоги.',
+  x_shipping_23:'Мы предоставляем всю необходимую экспортную документацию (коммерческий счёт, упаковочный лист, сертификат происхождения при необходимости).',
+  x_shipping_24:'Мы не можем гарантировать конкретные ставки пошлин, так как они зависят от страны покупателя, классификации по коду ТН ВЭД (HS) и текущих торговых правил.',
+  x_shipping_25:'Отслеживание',
+  x_shipping_26:'Все отправления включают трек-номер от перевозчика. Информация для отслеживания отправляется на email покупателя после отгрузки.',
+  x_shipping_27:'Повреждённые или утерянные отправления',
+  x_shipping_28:'Если отправление прибыло с видимыми повреждениями, задокументируйте повреждения фото до вскрытия и свяжитесь с нами в течение 3 рабочих дней. По утерянным отправлениям свяжитесь с нами после истечения расчётной даты доставки перевозчика — мы откроем расследование с перевозчиком.',
+});
+Object.assign(WKF_LANGS.tr, {
+  x_shipping_1:'Sadece toptan', x_shipping_2:'Sadece toptan',
+  x_shipping_3:'Son güncelleme: Mayıs 2025',
+  x_shipping_4:'Toptan siparişleri İstanbul, Türkiye’den uluslararası kurye ve kargo ortakları aracılığıyla gönderiyoruz. Bu politika, kargonun nasıl işlediğini, hangi maliyetlerin beklendiğini ve alıcının neyden sorumlu olduğunu açıklar.',
+  x_shipping_5:'Kargo Yöntemleri',
+  x_shipping_6:'Mevcut kargo yöntemleri varış ülkesine, sipariş ağırlığına ve hacmine bağlıdır. Genellikle şu yollarla gönderiyoruz:',
+  x_shipping_7:'FedEx', x_shipping_8:'Hava Kargo', x_shipping_9:'Kara Kargo',
+  x_shipping_10:'Alıcının nakliye komisyoncusu',
+  x_shipping_11:'Kargo Maliyetleri',
+  x_shipping_12:'Kargo maliyeti varış ülkesine, paket ağırlığına, hacme (hacimsel ağırlık), sipariş değerine ve seçilen teslimat yöntemine göre hesaplanır. Kargo maliyeti ödeme öncesi proforma faturaya dahil edilir.',
+  x_shipping_13:'Genel bir ücretsiz kargo politikası uygulamıyoruz. Varsa, herhangi bir ücretsiz kargo teklifi, geçerli koşullarıyla (minimum sipariş tutarı, uygun ülkeler, ağırlık ve hacim sınırları) sipariş anında açıkça belirtilir.',
+  x_shipping_14:'Uzak bölge ek ücretleri:',
+  x_shipping_15:'Gönderim Süreleri',
+  x_shipping_16:'Hazır stok siparişleri:', x_shipping_17:'Özel etiket siparişleri:', x_shipping_18:'Özel üretim siparişleri:',
+  x_shipping_19:'Gümrük, Vergiler ve İthalat Vergileri',
+  x_shipping_20:'WorldKidsFashion, aksi kararlaştırılmadıkça DAP (Delivered at Place) şartlarıyla gönderir. Bu şu anlama gelir:',
+  x_shipping_21:'Mallardan ve kargo maliyetinden varış ülkesi sınırına kadar biz sorumluyuz.',
+  x_shipping_22:'Alıcı; gümrük işlemlerinden, ithalat vergilerinden ve yerel vergilerden sorumludur.',
+  x_shipping_23:'Gerekli tüm ihracat belgelerini (ticari fatura, çeki listesi, gerektiğinde menşe şahadetnamesi) sağlıyoruz.',
+  x_shipping_24:'Belirli vergi oranlarını garanti edemeyiz; bunlar alıcının ülkesine, HS kodu sınıflandırmasına ve güncel ticaret düzenlemelerine bağlıdır.',
+  x_shipping_25:'Takip',
+  x_shipping_26:'Tüm gönderiler taşıyıcı tarafından sağlanan bir takip numarası içerir. Takip bilgileri gönderimden sonra alıcının e-posta adresine iletilir.',
+  x_shipping_27:'Hasarlı veya Kayıp Gönderiler',
+  x_shipping_28:'Bir gönderi gözle görülür şekilde hasarlı geldiyse, açmadan önce hasarı fotoğraflarla belgeleyin ve 3 iş günü içinde bizimle iletişime geçin. Kayıp gönderiler için, taşıyıcının tahmini teslim tarihi geçtikten sonra bizimle iletişime geçin; taşıyıcı nezdinde bir soruşturma başlatırız.',
+});
+Object.assign(WKF_LANGS.ar, {
+  x_shipping_1:'بالجملة فقط', x_shipping_2:'بالجملة فقط',
+  x_shipping_3:'آخر تحديث: مايو 2025',
+  x_shipping_4:'نشحن طلبات الجملة من إسطنبول، تركيا عبر شركاء البريد السريع والشحن الدوليين. توضّح هذه السياسة كيفية عمل الشحن، والتكاليف المتوقعة، وما يقع على عاتق المشتري.',
+  x_shipping_5:'طرق الشحن',
+  x_shipping_6:'تعتمد طرق الشحن المتاحة على بلد الوجهة ووزن الطلب وحجمه. عادةً نشحن عبر:',
+  x_shipping_7:'FedEx', x_shipping_8:'الشحن الجوي', x_shipping_9:'الشحن البري',
+  x_shipping_10:'وكيل الشحن الخاص بالمشتري',
+  x_shipping_11:'تكاليف الشحن',
+  x_shipping_12:'تُحسب تكلفة الشحن بناءً على بلد الوجهة ووزن الطرد والحجم (الوزن الحجمي) وقيمة الطلب وطريقة التسليم المختارة. تُدرَج تكلفة الشحن في الفاتورة المبدئية قبل الدفع.',
+  x_shipping_13:'لا نطبّق سياسة شحن مجاني شاملة. أي عرض شحن مجاني، إن وُجد، سيُذكر صراحةً مع الشروط المطبّقة (الحد الأدنى لقيمة الطلب، الدول المؤهلة، حدود الوزن والحجم) عند الطلب.',
+  x_shipping_14:'رسوم إضافية للمناطق النائية:',
+  x_shipping_15:'أوقات الإرسال',
+  x_shipping_16:'طلبات المخزون الجاهز:', x_shipping_17:'طلبات العلامة الخاصة:', x_shipping_18:'طلبات الإنتاج المخصّص:',
+  x_shipping_19:'الجمارك والرسوم وضرائب الاستيراد',
+  x_shipping_20:'تشحن WorldKidsFashion وفق شرط DAP (التسليم في المكان) ما لم يُتّفق على خلاف ذلك. وهذا يعني:',
+  x_shipping_21:'نحن مسؤولون عن البضائع وتكلفة الشحن حتى حدود بلد الوجهة.',
+  x_shipping_22:'يتحمّل المشتري التخليص الجمركي ورسوم الاستيراد وأي ضرائب محلية.',
+  x_shipping_23:'نوفّر جميع وثائق التصدير المطلوبة (الفاتورة التجارية، قائمة التعبئة، شهادة المنشأ عند الاقتضاء).',
+  x_shipping_24:'لا يمكننا ضمان معدّلات رسوم محدّدة لأنها تعتمد على بلد المشتري وتصنيف رمز النظام المنسّق (HS) ولوائح التجارة الحالية.',
+  x_shipping_25:'التتبع',
+  x_shipping_26:'تشمل جميع الشحنات رقم تتبع يوفّره الناقل. تُرسَل معلومات التتبع إلى البريد الإلكتروني للمشتري بعد الإرسال.',
+  x_shipping_27:'الشحنات التالفة أو المفقودة',
+  x_shipping_28:'إذا وصلت الشحنة تالفة بشكل ظاهر، فوثّق الضرر بالصور قبل فتحها وتواصل معنا خلال 3 أيام عمل. للشحنات المفقودة، تواصل معنا بعد انقضاء تاريخ التسليم المقدّر من الناقل وسنفتح تحقيقاً مع الناقل.',
 });
