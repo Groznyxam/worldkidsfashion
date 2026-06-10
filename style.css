@@ -44,6 +44,17 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
 .container { max-width:1300px; margin:0 auto; padding:0 32px; }
 .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
 
+/* ── ICONS (inline SVG replacing emoji; size inherits from container font-size) ── */
+.ico {
+  width:1em; height:1em;
+  display:inline-block; vertical-align:-0.14em; flex:none;
+  fill:none; stroke:currentColor; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.ico polygon, .ico polyline { stroke-linejoin:round; }
+/* large display icons get a thinner, more elegant stroke */
+.cat-top .ico { stroke-width:1.5; color:var(--ink2); opacity:.9; }
+
 /* ── ANNOUNCE BAR ── */
 .announce {
   background:var(--ink);
@@ -556,7 +567,8 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
   background:var(--ink); border-color:transparent;
   color:#fff;
 }
-.svc-icon { font-size:32px; margin-bottom:16px; }
+.svc-icon { font-size:32px; margin-bottom:16px; color:var(--red); line-height:1; }
+.svc-card.featured .svc-icon { color:var(--gold); }
 .svc-card h3 { font-size:16px; font-weight:600; color:var(--ink); margin-bottom:8px; }
 .svc-card.featured h3 { color:#fff; }
 .svc-card p { font-size:13.5px; color:var(--stone); line-height:1.65; margin-bottom:16px; }
