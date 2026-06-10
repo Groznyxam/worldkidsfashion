@@ -94,8 +94,8 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <p class="sub" data-t="add_sub">Choose how you want to share — a cloud link (recommended) or direct upload.</p>
 
     <div class="method-tabs">
-      <div class="method-tab active" id="tab-link" onclick="switchMethod('link')" data-t="m_link">🔗 Cloud Link</div>
-      <div class="method-tab" id="tab-upload" onclick="switchMethod('upload')" data-t="m_upload">📤 Direct Upload</div>
+      <div class="method-tab active" id="tab-link" onclick="switchMethod('link')" data-t="m_link"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Cloud Link</div>
+      <div class="method-tab" id="tab-upload" onclick="switchMethod('upload')" data-t="m_upload"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg> Direct Upload</div>
     </div>
 
     <div class="fg">
@@ -126,7 +126,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <!-- Upload method -->
     <div id="method-upload" style="display:none">
       <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
-        <div class="icon">📁</div>
+        <div class="icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></div>
         <p data-t="dz_text">Click to choose a file or drag it here</p>
         <p class="hint" data-t="dz_hint">PDF, Excel, JPG, PNG, ZIP · Max 50 MB</p>
       </div>
