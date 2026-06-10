@@ -2149,3 +2149,38 @@ Object.assign(WKF_LANGS.ar, {
   x_contact_5:'البريد الإلكتروني للعمل *', x_contact_6:'الموضوع', x_contact_7:'الرسالة *', x_contact_8:'أرسل الرسالة ←',
   x_partner_1:'دخل', x_partner_2:'WhatsApp +995 598 146 418',
 });
+
+// account.html · inquiry.html
+Object.assign(WKF_LANGS.ru, {
+  x_account_1:'Загрузка вашего аккаунта…', x_account_2:'Требуется вход', x_account_3:'Войдите, чтобы посмотреть аккаунт.',
+  x_inquiry_1:'Ваш запрос', x_inquiry_2:'Проверьте выбранные товары, укажите количество и отправьте запрос на расчёт.',
+  x_inquiry_3:'Просмотрите каталог и добавьте товары в список запросов.', x_inquiry_4:'Смотреть каталог',
+  x_inquiry_5:'Войдите, чтобы отправить запрос', x_inquiry_6:'Для отправки запроса нужен подтверждённый оптовый аккаунт.',
+  x_inquiry_7:'Аккаунт на проверке', x_inquiry_8:'Доставка и сроки', x_inquiry_9:'Страна доставки *',
+  x_inquiry_10:'Способ доставки', x_inquiry_11:'Нужно к (дата)', x_inquiry_12:'Дополнительные примечания',
+  x_inquiry_13:'Отправить запрос на расчёт',
+  x_inquiry_14:'Ваш запрос получен. Наша команда рассмотрит его и ответит в течение 1–2 рабочих дней с проформа-счётом.',
+  x_inquiry_15:'Мои запросы',
+});
+Object.assign(WKF_LANGS.tr, {
+  x_account_1:'Hesabınız yükleniyor…', x_account_2:'Giriş gerekli', x_account_3:'Hesabınızı görüntülemek için giriş yapın.',
+  x_inquiry_1:'Talebiniz', x_inquiry_2:'Seçili ürünleri inceleyin, miktarları belirtin ve teklif talebi gönderin.',
+  x_inquiry_3:'Kataloğa göz atın ve ürünleri talep listenize ekleyin.', x_inquiry_4:'Kataloğa Göz At',
+  x_inquiry_5:'Talep göndermek için giriş yapın', x_inquiry_6:'Teklif talebi göndermek için doğrulanmış bir toptan hesabınız olmalı.',
+  x_inquiry_7:'Hesap doğrulama bekliyor', x_inquiry_8:'Teslimat ve Zaman Çizelgesi', x_inquiry_9:'Teslimat Ülkesi *',
+  x_inquiry_10:'Teslimat Yöntemi', x_inquiry_11:'Gereken tarih', x_inquiry_12:'Ek notlar',
+  x_inquiry_13:'Teklif Talebi Gönder',
+  x_inquiry_14:'Teklif talebiniz alındı. Ekibimiz inceleyip 1–2 iş günü içinde bir proforma fatura ile yanıt verecektir.',
+  x_inquiry_15:'Taleplerimi Görüntüle',
+});
+Object.assign(WKF_LANGS.ar, {
+  x_account_1:'جارٍ تحميل حسابك…', x_account_2:'تسجيل الدخول مطلوب', x_account_3:'يرجى تسجيل الدخول لعرض حسابك.',
+  x_inquiry_1:'استفسارك', x_inquiry_2:'راجع المنتجات المختارة، حدّد الكميات وأرسل طلب عرض سعر.',
+  x_inquiry_3:'تصفّح الكتالوج وأضف المنتجات إلى قائمة استفسارك.', x_inquiry_4:'تصفح الكتالوج',
+  x_inquiry_5:'سجّل الدخول لإرسال الاستفسار', x_inquiry_6:'تحتاج إلى حساب جملة موثّق لإرسال طلب عرض سعر.',
+  x_inquiry_7:'الحساب قيد التحقق', x_inquiry_8:'التسليم والجدول الزمني', x_inquiry_9:'بلد التسليم *',
+  x_inquiry_10:'طريقة التسليم', x_inquiry_11:'مطلوب بحلول (تاريخ)', x_inquiry_12:'ملاحظات إضافية',
+  x_inquiry_13:'إرسال طلب عرض سعر',
+  x_inquiry_14:'تم استلام طلب عرض السعر. سيراجعه فريقنا ويردّ خلال 1–2 يوم عمل بفاتورة مبدئية.',
+  x_inquiry_15:'عرض استفساراتي',
+});
