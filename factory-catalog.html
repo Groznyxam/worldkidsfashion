@@ -82,6 +82,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
     <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">TR</button>
     <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" id="lang-ar" onclick="setLang('ar')">AR</button>
   </div>
 
   <h1 data-t="h_title">Upload Catalog & Certificates</h1>
@@ -174,7 +175,16 @@ const UI = {
     l_desc:'Описание (опционально)', l_url:'Ссылка Google Drive / Dropbox / WeTransfer', btn_addlink:'Добавить ссылку',
     dz_text:'Нажмите чтобы выбрать файл или перетащите сюда', dz_hint:'PDF, Excel, JPG, PNG, ZIP · Макс 50 МБ',
     files_h:'Ваши файлы', empty:'Пока нет файлов. Добавьте первый каталог выше.', uploading:'Загрузка…',
-    added:'✓ Успешно добавлено', deleted:'✓ Удалено', err:'Ошибка: ', view:'Открыть', del:'Удалить', confirm_del:'Удалить этот файл?' }
+    added:'✓ Успешно добавлено', deleted:'✓ Удалено', err:'Ошибка: ', view:'Открыть', del:'Удалить', confirm_del:'Удалить этот файл?' },
+  ar: { nav_dash:'لوحة التحكم', nav_profile:'الملف الشخصي', nav_catalog:'الكتالوج', nav_signout:'تسجيل الخروج',
+    h_title:'رفع الكتالوج والشهادات', h_sub:'شارك معنا كتالوجات منتجاتك وقوائم الأسعار والشهادات. أسهل طريقة هي لصق رابط Google Drive أو Dropbox.',
+    add_h:'إضافة ملف أو رابط', add_sub:'اختر طريقة المشاركة — رابط سحابي (موصى به) أو رفع مباشر.',
+    m_link:'رابط سحابي', m_upload:'رفع مباشر',
+    l_type:'نوع الملف', t_catalog:'كتالوج المنتجات', t_pricelist:'قائمة الأسعار', t_certificate:'شهادة', t_photos:'صور المنتجات', t_other:'أخرى',
+    l_desc:'الوصف (اختياري)', l_url:'رابط Google Drive / Dropbox / WeTransfer', btn_addlink:'إضافة رابط',
+    dz_text:'انقر لاختيار ملف أو اسحبه إلى هنا', dz_hint:'PDF، Excel، JPG، PNG، ZIP · بحد أقصى 50 ميجابايت',
+    files_h:'ملفاتك', empty:'لا توجد ملفات بعد. أضف كتالوجك الأول بالأعلى.', uploading:'جارٍ الرفع…',
+    added:'✓ تمت الإضافة بنجاح', deleted:'✓ تم الحذف', err:'خطأ: ', view:'عرض', del:'حذف', confirm_del:'حذف هذا الملف؟' }
 };
 
 let currentUser = null;
@@ -202,6 +212,7 @@ let currentLang = 'en';
 
 function setLang(lang) {
   currentLang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('lang-' + lang).classList.add('active');
   const t = UI[lang];

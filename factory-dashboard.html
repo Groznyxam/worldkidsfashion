@@ -75,6 +75,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <button class="lang-btn active" id="lang-en" onclick="setLang('en')">English</button>
     <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">Türkçe</button>
     <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">Русский</button>
+    <button class="lang-btn" id="lang-ar" onclick="setLang('ar')">العربية</button>
   </div>
 
   <div class="welcome">
@@ -129,7 +130,12 @@ const UI = {
     welcome_hi:'Добро пожаловать,', welcome_sub:'Вы — часть партнёрской сети производителей WorldKidsFashion. Ниже ваши условия партнёрства. Используйте меню для управления профилем и загрузки каталогов.',
     ql_profile_h:'Профиль фабрики', ql_profile_p:'Обновите данные, мощности и банковские реквизиты',
     ql_catalog_h:'Загрузить каталог', ql_catalog_p:'Поделитесь каталогами и сертификатами',
-    mgr_label:'Ваш менеджер WKF' }
+    mgr_label:'Ваш менеджер WKF' },
+  ar: { portal_label:'بوابة الشركاء', nav_profile:'الملف الشخصي', nav_catalog:'الكتالوج', nav_signout:'تسجيل الخروج',
+    welcome_hi:'مرحباً،', welcome_sub:'أنت جزء من شبكة شركاء المصنّعين في WorldKidsFashion. فيما يلي شروط شراكتك. استخدم القائمة لإدارة ملفك ورفع الكتالوجات.',
+    ql_profile_h:'ملف المصنع', ql_profile_p:'حدّث بياناتك وطاقتك الإنتاجية ومعلوماتك البنكية',
+    ql_catalog_h:'رفع الكتالوج', ql_catalog_p:'شارك كتالوجات منتجاتك وشهاداتك',
+    mgr_label:'مدير WKF الخاص بك' }
 };
 
 const TERMS = {
@@ -266,6 +272,7 @@ let currentUser = null;
 })();
 
 function setLang(lang) {
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('lang-' + lang).classList.add('active');
   const t = UI[lang];
@@ -273,7 +280,7 @@ function setLang(lang) {
     const k = el.getAttribute('data-t');
     if (t[k]) el.textContent = t[k];
   });
-  document.getElementById('termsContent').innerHTML = TERMS[lang];
+  document.getElementById('termsContent').innerHTML = TERMS[lang] || TERMS.en;
 }
 
 async function handleSignOut() {

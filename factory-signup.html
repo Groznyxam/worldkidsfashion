@@ -66,6 +66,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f8f6f2; color: #1a1a1a; 
     <button class="lang-btn active" id="lang-en" onclick="setLang('en')">English</button>
     <button class="lang-btn" id="lang-tr" onclick="setLang('tr')">Türkçe</button>
     <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">Русский</button>
+    <button class="lang-btn" id="lang-ar" onclick="setLang('ar')">العربية</button>
   </div>
 
   <div id="loadingState" style="text-align:center;padding:40px;color:#8a8580">Validating invitation…</div>
@@ -300,12 +301,43 @@ const TR = {
     success_h: 'Регистрация завершена',
     success_p: 'Аккаунт фабрики создан. Подтвердите email по ссылке в письме, затем войдите в личный кабинет.',
     success_btn: 'Войти'
+  },
+  ar: {
+    hdr_sub: 'بوابة شراكة المصنّعين',
+    invalid_h: 'دعوة غير صالحة أو منتهية',
+    invalid_p: 'رابط الدعوة هذا غير صالح. ربما استُخدم بالفعل أو انتهت صلاحيته. يرجى التواصل معنا على info@worldkidsfashion.org إذا كنت تعتقد أن هذا خطأ.',
+    welcome_h: 'مرحباً بك في WorldKidsFashion',
+    invited_label: 'تمت دعوتك بصفة:',
+    welcome_p: 'ندعوك للانضمام إلى شبكة شركاء المصنّعين لدينا. أكمل التسجيل أدناه للوصول إلى بوابتك المخصّصة، حيث يمكنك رفع الكتالوجات وإدارة ملف مصنعك وتلقّي الطلبات من مشترينا الدوليين بالجملة الموثّقين.',
+    form_h: 'تسجيل المصنع',
+    f_name: 'اسم المصنع',
+    f_contact: 'الشخص المسؤول',
+    f_phone: 'الهاتف / واتساب',
+    f_pass: 'اختر كلمة المرور', f_pass2: 'كرّر كلمة المرور', f_show: 'إظهار',
+    f_business: 'بيانات العمل',
+    f_city: 'المدينة',
+    f_country: 'الدولة',
+    f_address: 'العنوان',
+    f_tax: 'الرقم الضريبي',
+    f_reg: 'رقم التسجيل',
+    f_website: 'الموقع الإلكتروني',
+    f_production: 'الطاقة الإنتاجية',
+    f_capacity: 'الطاقة الشهرية (قطعة)',
+    f_lead: 'مدة التنفيذ (أيام)',
+    f_moq: 'الحد الأدنى للطلب لكل موديل',
+    f_specialization: 'التخصص (مفصول بفواصل)',
+    f_agree: 'أؤكّد أن المعلومات أعلاه دقيقة وأوافق على شروط الشراكة.',
+    f_submit: 'إكمال التسجيل',
+    success_h: 'اكتمل التسجيل',
+    success_p: 'تم إنشاء حساب مصنعك. يرجى التحقق من بريدك الإلكتروني لتأكيد عنوانك، ثم سجّل الدخول للوصول إلى بوابة الشراكة.',
+    success_btn: 'الانتقال لتسجيل الدخول'
   }
 };
 
 let inviteData = null;
 
 function setLang(lang) {
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('lang-' + lang).classList.add('active');
   const t = TR[lang];
