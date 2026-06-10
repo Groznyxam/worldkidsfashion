@@ -65,7 +65,7 @@
     <a href="catalog.html" data-i18n="nav_catalog">Catalog</a>
     <a href="how-it-works.html" data-i18n="nav_how_it">How It Works</a>
     <a href="contact.html" data-i18n="nav_contact">Contact</a>
-    <a href="account.html" id="navAccount" style="display:none">My Account</a>
+    <a href="account.html" id="navAccount" style="display:none" data-i18n="acc_h">My Account</a>
   </nav>
 </div></header>
 
@@ -78,7 +78,7 @@
   <div id="loginPrompt" class="login-required" style="display:none">
     <h3>Sign in to add products to your inquiry</h3>
     <p>You can browse the catalog without an account, but to submit a quote request you need a verified wholesale account.</p>
-    <a href="login.html">Sign In</a>
+    <a href="login.html" data-i18n="login_submit">Sign In</a>
     <a href="register.html" class="secondary">Create Account</a>
   </div>
 
@@ -86,7 +86,7 @@
 
     <aside class="cat-sidebar">
       <div class="filter-group">
-        <h4>Category</h4>
+        <h4 data-i18n="filter_category">Category</h4>
         <label class="filter-option"><input type="checkbox" class="cat-filter" value="newborn" onchange="applyFilters()"> Newborn (0-3m)</label>
         <label class="filter-option"><input type="checkbox" class="cat-filter" value="baby-girl" onchange="applyFilters()"> Baby Girl (3-24m)</label>
         <label class="filter-option"><input type="checkbox" class="cat-filter" value="baby-boy" onchange="applyFilters()"> Baby Boy (3-24m)</label>
@@ -95,15 +95,15 @@
         <label class="filter-option"><input type="checkbox" class="cat-filter" value="organic" onchange="applyFilters()"> Organic / GOTS</label>
       </div>
       <div class="filter-group">
-        <h4>Type</h4>
+        <h4 data-i18n="acc_type">Type</h4>
         <label class="filter-option"><input type="checkbox" class="organic-filter" onchange="applyFilters()"> Organic / GOTS only</label>
       </div>
-      <button class="filter-clear" onclick="clearFilters()">Clear All</button>
+      <button class="filter-clear" onclick="clearFilters()" data-i18n="btn_clear">Clear All</button>
     </aside>
 
     <main class="cat-main">
       <div class="cat-toolbar">
-        <span class="cat-results" id="resultCount">Loading…</span>
+        <span class="cat-results" id="resultCount" data-i18n="loading_text">Loading…</span>
       </div>
       <div class="product-grid" id="productGrid">
         <div class="loading">Loading catalog…</div>

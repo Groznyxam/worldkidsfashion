@@ -74,9 +74,9 @@ textarea { min-height: 80px; resize: vertical; }
 <header class="admin-header">
   <h1><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> WKF Admin Panel</h1>
   <div>
-    <span class="user-info" id="adminEmail">Loading…</span>
+    <span class="user-info" id="adminEmail" data-i18n="loading_text">Loading…</span>
     <button onclick="window.location.href='index.html'">← Site</button>
-    <button onclick="handleLogout()">Sign Out</button>
+    <button onclick="handleLogout()" data-i18n="acc_signout">Sign Out</button>
   </div>
 </header>
 
@@ -84,7 +84,7 @@ textarea { min-height: 80px; resize: vertical; }
 <div id="accessDenied" class="access-denied" style="display:none">
   <h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Access Denied</h2>
   <p>This panel is for authorized administrators only.</p>
-  <a href="index.html">Back to Homepage</a>
+  <a href="index.html" data-i18n="login_back">Back to Homepage</a>
 </div>
 
 <!-- Admin Content -->
@@ -113,8 +113,8 @@ textarea { min-height: 80px; resize: vertical; }
     <div id="tab-pending" class="tab-content section">
       <h2>Pending Verification</h2>
       <table>
-        <thead><tr><th>Email</th><th>Name</th><th>Company</th><th>Country</th><th>Type</th><th>Registered</th><th>Actions</th></tr></thead>
-        <tbody id="pendingTable"><tr><td colspan="7" class="loading">Loading…</td></tr></tbody>
+        <thead><tr><th data-i18n="acc_email">Email</th><th data-i18n="acc_name">Name</th><th data-i18n="acc_company">Company</th><th data-i18n="acc_country">Country</th><th data-i18n="acc_type">Type</th><th data-i18n="acc_registered">Registered</th><th>Actions</th></tr></thead>
+        <tbody id="pendingTable"><tr><td colspan="7" class="loading" data-i18n="loading_text">Loading…</td></tr></tbody>
       </table>
     </div>
 
@@ -122,8 +122,8 @@ textarea { min-height: 80px; resize: vertical; }
     <div id="tab-verified" class="tab-content section" style="display:none">
       <h2>Verified Wholesale Buyers</h2>
       <table>
-        <thead><tr><th>Email</th><th>Name</th><th>Company</th><th>Country</th><th>Verified</th><th>Actions</th></tr></thead>
-        <tbody id="verifiedTable"><tr><td colspan="6" class="loading">Loading…</td></tr></tbody>
+        <thead><tr><th data-i18n="acc_email">Email</th><th data-i18n="acc_name">Name</th><th data-i18n="acc_company">Company</th><th data-i18n="acc_country">Country</th><th>Verified</th><th>Actions</th></tr></thead>
+        <tbody id="verifiedTable"><tr><td colspan="6" class="loading" data-i18n="loading_text">Loading…</td></tr></tbody>
       </table>
     </div>
 
@@ -131,8 +131,8 @@ textarea { min-height: 80px; resize: vertical; }
     <div id="tab-all" class="tab-content section" style="display:none">
       <h2>All Users</h2>
       <table>
-        <thead><tr><th>Email</th><th>Company</th><th>Country</th><th>Status</th><th>Role</th><th>Registered</th><th>Actions</th></tr></thead>
-        <tbody id="allTable"><tr><td colspan="7" class="loading">Loading…</td></tr></tbody>
+        <thead><tr><th data-i18n="acc_email">Email</th><th data-i18n="acc_company">Company</th><th data-i18n="acc_country">Country</th><th data-i18n="acc_inq_status">Status</th><th>Role</th><th data-i18n="acc_registered">Registered</th><th>Actions</th></tr></thead>
+        <tbody id="allTable"><tr><td colspan="7" class="loading" data-i18n="loading_text">Loading…</td></tr></tbody>
       </table>
     </div>
 
@@ -140,8 +140,8 @@ textarea { min-height: 80px; resize: vertical; }
     <div id="tab-inquiries" class="tab-content section" style="display:none">
       <h2>Buyer Inquiries</h2>
       <table>
-        <thead><tr><th>Date</th><th>Buyer</th><th>Items</th><th>Country</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody id="inquiriesTable"><tr><td colspan="6" class="loading">Loading…</td></tr></tbody>
+        <thead><tr><th data-i18n="acc_inq_date">Date</th><th>Buyer</th><th data-i18n="acc_inq_items">Items</th><th data-i18n="acc_country">Country</th><th data-i18n="acc_inq_status">Status</th><th>Actions</th></tr></thead>
+        <tbody id="inquiriesTable"><tr><td colspan="6" class="loading" data-i18n="loading_text">Loading…</td></tr></tbody>
       </table>
     </div>
 
@@ -173,20 +173,20 @@ textarea { min-height: 80px; resize: vertical; }
 
       <h3 style="font-size:14px;color:#5a5550;margin-bottom:8px">Partnership Applications <span class="tab-count" id="countApplications" style="background:#fff7ed;color:#ea580c">0</span></h3>
       <table style="margin-bottom:24px">
-        <thead><tr><th>Date</th><th>Factory</th><th>Contact</th><th>Email</th><th>City</th><th>Makes</th><th>Actions</th></tr></thead>
-        <tbody id="applicationsTable"><tr><td colspan="7" class="loading">Loading…</td></tr></tbody>
+        <thead><tr><th data-i18n="acc_inq_date">Date</th><th>Factory</th><th data-i18n="nav_contact">Contact</th><th data-i18n="acc_email">Email</th><th>City</th><th>Makes</th><th>Actions</th></tr></thead>
+        <tbody id="applicationsTable"><tr><td colspan="7" class="loading" data-i18n="loading_text">Loading…</td></tr></tbody>
       </table>
 
       <h3 style="font-size:14px;color:#5a5550;margin-bottom:8px">Registered Factories</h3>
       <table>
-        <thead><tr><th>Factory</th><th>Email</th><th>City</th><th>Capacity</th><th>Joined</th><th>Actions</th></tr></thead>
-        <tbody id="factoriesTable"><tr><td colspan="6" class="loading">Loading…</td></tr></tbody>
+        <thead><tr><th>Factory</th><th data-i18n="acc_email">Email</th><th>City</th><th>Capacity</th><th>Joined</th><th>Actions</th></tr></thead>
+        <tbody id="factoriesTable"><tr><td colspan="6" class="loading" data-i18n="loading_text">Loading…</td></tr></tbody>
       </table>
 
       <h3 style="font-size:14px;color:#5a5550;margin:24px 0 8px">Pending Invites</h3>
       <table>
-        <thead><tr><th>Factory Name</th><th>Email</th><th>Link</th><th>Sent</th><th>Status</th></tr></thead>
-        <tbody id="invitesTable"><tr><td colspan="5" class="loading">Loading…</td></tr></tbody>
+        <thead><tr><th>Factory Name</th><th data-i18n="acc_email">Email</th><th>Link</th><th>Sent</th><th data-i18n="acc_inq_status">Status</th></tr></thead>
+        <tbody id="invitesTable"><tr><td colspan="5" class="loading" data-i18n="loading_text">Loading…</td></tr></tbody>
       </table>
     </div>
 
