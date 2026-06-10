@@ -1272,7 +1272,43 @@ function wkfToggleLang(e){
   dd.style.display=dd.style.display==='block'?'none':'block';
 }
 
-function wkfInitLang(){wkfSetLang(wkfDetectLang());}
+// Build an accessible mobile menu (hamburger + slide-in panel) from the
+// existing .nav-main links. Runs once per page; only shows < 960px via CSS.
+function wkfMobileMenu(){
+  if(document.querySelector('.wkf-burger')) return;
+  const inner=document.querySelector('.site-header .hdr-inner') || document.querySelector('.hdr-inner');
+  const nav=document.querySelector('.nav-main');
+  if(!inner || !nav) return;
+  const ico=p=>'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';
+  const burger=document.createElement('button');
+  burger.className='wkf-burger'; burger.type='button';
+  burger.setAttribute('aria-label','Open menu'); burger.setAttribute('aria-expanded','false');
+  burger.innerHTML=ico('<path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/>');
+  const overlay=document.createElement('div'); overlay.className='wkf-mnav-overlay';
+  const panel=document.createElement('nav'); panel.className='wkf-mnav'; panel.setAttribute('aria-label','Mobile navigation');
+  const close=document.createElement('button'); close.className='wkf-mnav-close'; close.type='button';
+  close.setAttribute('aria-label','Close menu'); close.innerHTML=ico('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>');
+  const list=document.createElement('div'); list.className='wkf-mnav-list'; list.innerHTML=nav.innerHTML;
+  panel.appendChild(close); panel.appendChild(list);
+  const cta=document.querySelector('.hdr-cta');
+  if(cta){ const c=cta.cloneNode(true); c.className='hdr-cta wkf-mnav-cta'; panel.appendChild(c); }
+  function set(open){
+    document.body.classList.toggle('wkf-mnav-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    if(open){ const f=panel.querySelector('a,button'); if(f) f.focus(); }
+    else burger.focus();
+  }
+  burger.addEventListener('click',()=>set(true));
+  close.addEventListener('click',()=>set(false));
+  overlay.addEventListener('click',()=>set(false));
+  panel.addEventListener('click',e=>{ if(e.target.closest('a')) set(false); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && document.body.classList.contains('wkf-mnav-open')) set(false); });
+  inner.appendChild(burger);
+  document.body.appendChild(overlay);
+  document.body.appendChild(panel);
+}
+
+function wkfInitLang(){ try{ wkfMobileMenu(); }catch(e){} wkfSetLang(wkfDetectLang()); }
 
 document.addEventListener('click',function(e){
   const w=document.getElementById('langWrap');
