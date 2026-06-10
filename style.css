@@ -12,7 +12,7 @@
   --ink2:       #1c1c1e;
   --ink3:       #2e2e32;
   --stone:      #6b6b72;
-  --mist:       #a8a8b0;
+  --mist:       #78787f;  /* darkened from #a8a8b0 for WCAG contrast (~4.3:1 on white) */
   --silk:       #f4f3f0;
   --cream:      #faf9f6;
   --white:      #ffffff;
@@ -990,4 +990,40 @@ button { font-family:'DM Sans',sans-serif; cursor:pointer; border:none; }
 }
 #langWrap button:first-child:hover {
   background: rgba(0,0,0,.1) !important;
+}
+
+/* ───────────────────────────────────────────
+   ACCESSIBILITY
+─────────────────────────────────────────── */
+
+/* Visible keyboard focus (mouse clicks don't trigger :focus-visible) */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* Form fields keep their own focus border + a soft ring */
+.fg input:focus-visible, .fg select:focus-visible,
+.price-row input:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+}
+
+/* Respect users who prefer reduced motion: stop marquees, floats, blinks
+   and near-instant transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .announce-track { animation: none !important; transform: none !important; }
+  .btn-primary:hover, .cat-card:hover, .r-card:hover { transform: none !important; }
+}
+
+/* Touch targets: ensure tappable controls are at least ~44px on touch devices */
+@media (pointer: coarse) {
+  .hdr-icon { min-width:44px; min-height:44px; }
+  .lang-btn, .rf-btn { min-height:40px; }
 }
